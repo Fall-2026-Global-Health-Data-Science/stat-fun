@@ -5,7 +5,7 @@ website:
   page-navigation: true
   title: "STA 199"
   description: "Homepage for STA 199 - Introduction to Data Science at Duke University, Fall 2026."
-  site-url: "https://sta199-f26.github.io/"
+  site-url: "https://fall-2026-global-health-data-science.github.io"
 
   repo-url: https://github.com/sta199-f26/sta199-f26.github.io/
   repo-actions: [edit, issue]
