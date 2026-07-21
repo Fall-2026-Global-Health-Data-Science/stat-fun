@@ -46,182 +46,252 @@
   {
     "objectID": "slides/00-welcome.html#data-science",
     "href": "slides/00-welcome.html#data-science",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Data science",
     "text": "Data science\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nThis is a course on health data science, with an emphasis on statistical thinking and global health challenges\n\nOur process involves\n\nforming a question of interest,\n(collecting) and summarizing data,\nand interpreting and communicating results."
   },
   {
     "objectID": "slides/00-welcome.html#global-health-data-science",
     "href": "slides/00-welcome.html#global-health-data-science",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Global health data science",
     "text": "Global health data science\nSTA/GLHLTH 198 will\n\nprovide a tour of basic statistical methods useful in public health and biomedical research\nemphasize intuition and understanding of the methods, with a focus on critical assessment of evidence, data-driven decision-making, and effective communication of insights from data\nmake use of timely, relevant examples from global health science, with opportunities to think about what makes us human\nutilize free, modern software and reproducible research methods for transparency and data sharing"
   },
   {
     "objectID": "slides/00-welcome.html#frequently-asked-questions",
     "href": "slides/00-welcome.html#frequently-asked-questions",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Frequently Asked Questions",
     "text": "Frequently Asked Questions\n\nQ: What data science background does this course assume?A: None. No prior experience with data science or programming is expected.\nQ: Is this an intro statistics course?A: Statistics and data science are closely related, with substantial overlap. This course is an excellent way to begin learning statistics, but it is not a traditional high school statistics course.\nQ: Will we be doing computing?A: Yes—extensively. Computing is a core part of the course and an essential tool for learning data science and statistics."
   },
   {
     "objectID": "slides/00-welcome.html#software",
     "href": "slides/00-welcome.html#software",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Software",
     "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nWe’ll combine the ease of viewing in Excel with …"
   },
   {
     "objectID": "slides/00-welcome.html#software-1",
     "href": "slides/00-welcome.html#software-1",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Software",
     "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nthe rigor of the R programming language …"
   },
   {
     "objectID": "slides/00-welcome.html#software-2",
     "href": "slides/00-welcome.html#software-2",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Software",
     "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nin an integrated environment. To learn more, check out the introductory video for our computing toolkit."
   },
   {
     "objectID": "slides/00-welcome.html#the-data-science-life-cycle",
     "href": "slides/00-welcome.html#the-data-science-life-cycle",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "The data science life cycle",
     "text": "The data science life cycle"
   },
   {
     "objectID": "slides/00-welcome.html#life-expectancy",
     "href": "slides/00-welcome.html#life-expectancy",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Life Expectancy",
     "text": "Life Expectancy\n\nThe Institute for Health Metrics and Evaluation (IHME) is a resource for data on a variety of important health outcomes worldwide.\nIHME maintains the Global Burden of Disease (GBD), a valuable resource for policymakers and others that quantifies health loss due to a variety of risk factors, diseases, and injuries."
   },
   {
     "objectID": "slides/00-welcome.html#life-expectancy-1",
     "href": "slides/00-welcome.html#life-expectancy-1",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Life Expectancy",
     "text": "Life Expectancy\n\nWe consider data from IHME on (estimated) infant life expectancy from the years 1994–2019 as a function of location (primarily country) and binary gender.\nHere life expectancy is the # of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time."
   },
   {
     "objectID": "slides/00-welcome.html#dataset-terminology",
     "href": "slides/00-welcome.html#dataset-terminology",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Dataset terminology",
     "text": "Dataset terminology\n\nEach row is an observation\n\nEach column is a variable\n\n\n\n\nlife &lt;- readr::read_csv(\"../data/lifeexpectancy_infant.csv\")\n\nlife\n\n# A tibble: 12,240 × 4\n   location sex     year lifeexp\n   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n 1 Japan    Female  2019    87.7\n 2 Japan    Female  2018    87.6\n 3 Japan    Female  2017    87.6\n 4 Japan    Female  2016    87.4\n 5 Japan    Female  2015    87.3\n 6 Japan    Female  2014    87.1\n 7 Japan    Female  2013    86.9\n 8 Iceland  Female  2019    86.9\n 9 Iceland  Female  2018    86.8\n10 Japan    Female  2012    86.7\n# ℹ 12,230 more rows"
   },
   {
-    "objectID": "slides/00-welcome.html#imagine-this-dialogue",
-    "href": "slides/00-welcome.html#imagine-this-dialogue",
-    "title": "Software",
-    "section": "Imagine this dialogue",
-    "text": "Imagine this dialogue\n\nCampaign manager: What is the probability that our candidate wins the election?\n\n\n(A flurry of analysis takes place.)\n\n\nData scientist: Our best guess is 54%.\n\n\nCampaign manager: How reliable is that estimate? How confident are we in that? What’s the margin of error?\n\n\n\n\nParallel Universe 1\nData scientist: It’s 54% give or take 3%.\n\n\nParallel Universe 2\nData scientist: It’s 54% give or take 20%.\n\n\n\n\n\n\n\n\n\n\nIt’s all about decision-making under uncertainty\n\n\nThe manager is going to make wildly different decisions about campaign strategy and spending depending on how uncertain the environment is."
+    "objectID": "slides/00-welcome.html#whats-in-the-life-expectancy-data",
+    "href": "slides/00-welcome.html#whats-in-the-life-expectancy-data",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "What’s in the life expectancy data?",
+    "text": "What’s in the life expectancy data?\nTake a glimpse at the data:\n\nlibrary(tidyverse)\nglimpse(life)\n\nRows: 12,240\nColumns: 4\n$ location &lt;chr&gt; \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\"…\n$ sex      &lt;chr&gt; \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"…\n$ year     &lt;dbl&gt; 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2019, 2018, 2012, 2…\n$ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.09548, 8…"
+  },
+  {
+    "objectID": "slides/00-welcome.html#what-is-eda",
+    "href": "slides/00-welcome.html#what-is-eda",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "What is EDA?",
+    "text": "What is EDA?\n\nExploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics\nOften, this is visual – this is what we’ll focus on first\nBut we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis – this is what we’ll focus on next"
+  },
+  {
+    "objectID": "slides/00-welcome.html#life-expectancy-over-time",
+    "href": "slides/00-welcome.html#life-expectancy-over-time",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Life expectancy over time",
+    "text": "Life expectancy over time\n\nHow would you describe the relationship between year and life expectancy?\nWhat other variables would help us understand data points that don’t follow the overall trend?\nWhat is causing the outliers at the bottom?"
+  },
+  {
+    "objectID": "slides/00-welcome.html#outliers",
+    "href": "slides/00-welcome.html#outliers",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Outliers",
+    "text": "Outliers\nWe’ll learn how to make a more useful plot later, but first let’s look into the outliers.\n\n# We want to look at the bottom 5 values of life expectancy\n# (5 just in case some points are exactly the same)\nlife %&gt;%\n  top_n(-5, lifeexp)\n\n# A tibble: 5 × 4\n  location sex     year lifeexp\n  &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 Burundi  Male    1997   40.8 \n2 Haiti    Female  2010   36.9 \n3 Haiti    Male    2010   28.8 \n4 Rwanda   Female  1994   11.2 \n5 Rwanda   Male    1994    9.14\n\n\nAre these data errors, realistic estimates, or neither?\n(Hint: Recall how life expectancy is calculated.)"
+  },
+  {
+    "objectID": "slides/00-welcome.html#data-visualization-1",
+    "href": "slides/00-welcome.html#data-visualization-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Data visualization",
+    "text": "Data visualization\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.”\n— John Tukey\n\n\nData visualization is the creation and study of the visual representation of data.\nThere are many tools for visualizing data—R is one of them.\nThere are many approaches and systems within R for making data visualizations. ggplot2 is one of them, and it’s what we’ll use in this course."
+  },
+  {
+    "objectID": "slides/00-welcome.html#ggplot2-in-tidyverse",
+    "href": "slides/00-welcome.html#ggplot2-in-tidyverse",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "ggplot2 \\(\\in\\) tidyverse",
+    "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is the tidyverse’s data visualization package.\n\ngg in “ggplot2” stands for Grammar of Graphics.\nInspired by the book Grammar of Graphics by Leland Wilkinson."
+  },
+  {
+    "objectID": "slides/00-welcome.html#grammar-of-graphics",
+    "href": "slides/00-welcome.html#grammar-of-graphics",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\n\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic.\n\n\n\n\n\n\n\n\n\n\n\nSource: BloggoType"
+  },
+  {
+    "objectID": "slides/00-welcome.html#mens-gap-in-life-expectancy-by-year",
+    "href": "slides/00-welcome.html#mens-gap-in-life-expectancy-by-year",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Men’s gap in life expectancy by year",
+    "text": "Men’s gap in life expectancy by year\nLet’s subset to a few countries to de-clutter the plot.\n\n\n\nlife %&gt;%\n  filter(location %in% c(\n    \"United States of America\",\n    \"Rwanda\",\n    \"China\"\n  )) %&gt;%\n  ggplot(aes(\n    x = year,\n    y = lifeexp,\n    shape = sex,\n    color = location\n  )) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nWe’ll learn to make this a lot better later!"
+  },
+  {
+    "objectID": "slides/00-welcome.html#hello-ggplot2",
+    "href": "slides/00-welcome.html#hello-ggplot2",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Hello ggplot2!",
+    "text": "Hello ggplot2!\n\n\nggplot() is the main function in ggplot2.\nPlots are constructed in layers.\nThe structure of the code for plots can be summarized as:\n\n\nggplot(\n  data = [dataset],\n  mapping = aes(x = [x-variable], y = [y-variable])\n) +\n  geom_xxx() +\n  other_options\n\n\nThe ggplot2 package comes with the tidyverse.\n\n\nlibrary(tidyverse)\n\n\nFor help with ggplot2, see https://ggplot2.tidyverse.org/."
+  },
+  {
+    "objectID": "slides/00-welcome.html#anscombes-quartet-datasaurus-dozen",
+    "href": "slides/00-welcome.html#anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Anscombe’s quartet / Datasaurus Dozen\n\n\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dino     55.4  97.2\n 2 dino     51.5  96.0\n 3 dino     46.2  94.5\n 4 dino     42.8  91.4\n 5 dino     40.8  88.3\n 6 dino     38.7  84.9\n 7 dino     35.6  79.9\n 8 dino     33.1  77.6\n 9 dino     29.0  74.5\n10 dino     26.2  71.4\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 star     58.2  91.9\n 2 star     58.2  92.2\n 3 star     58.7  90.3\n 4 star     57.3  89.9\n 5 star     58.1  92.0\n 6 star     57.5  88.1\n 7 star     28.1  63.5\n 8 star     28.1  63.6\n 9 star     28.1  63.1\n10 star     27.6  62.8\n# ℹ 132 more rows\n\n\n\n\n\n# A tibble: 142 × 3\n   dataset      x     y\n   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n 1 bullseye  51.2  83.3\n 2 bullseye  59.0  85.5\n 3 bullseye  51.9  85.8\n 4 bullseye  48.2  85.0\n 5 bullseye  41.7  84.0\n 6 bullseye  37.9  82.6\n 7 bullseye  39.5  80.8\n 8 bullseye  39.6  82.7\n 9 bullseye  34.8  80.0\n10 bullseye  27.6  72.8\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dots     51.1  90.9\n 2 dots     50.5  89.1\n 3 dots     50.2  85.5\n 4 dots     50.1  83.1\n 5 dots     50.6  82.9\n 6 dots     50.3  83.0\n 7 dots     25.6  82.9\n 8 dots     25.5  82.9\n 9 dots     25.4  82.9\n10 dots     25.6  82.9\n# ℹ 132 more rows"
+  },
+  {
+    "objectID": "slides/00-welcome.html#summarising-anscombes-quartet-datasaurus-dozen",
+    "href": "slides/00-welcome.html#summarising-anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Summarising Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Summarising Anscombe’s quartet / Datasaurus Dozen\n\nsummdat &lt;- datasaurus_dozen %&gt;%\n  group_by(dataset) %&gt;%\n  summarise(\n    mean_x = mean(x),\n    mean_y = mean(y),\n    sd_x = sd(x),\n    sd_y = sd(y),\n    r = cor(x, y)\n  )"
+  },
+  {
+    "objectID": "slides/00-welcome.html#summarizing-anscombes-quartet-datasaurus-dozen",
+    "href": "slides/00-welcome.html#summarizing-anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Summarizing Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Summarizing Anscombe’s quartet / Datasaurus Dozen\n\n\n# A tibble: 13 × 6\n   dataset    mean_x mean_y  sd_x  sd_y       r\n   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 away         54.3   47.8  16.8  26.9 -0.0641\n 2 bullseye     54.3   47.8  16.8  26.9 -0.0686\n 3 circle       54.3   47.8  16.8  26.9 -0.0683\n 4 dino         54.3   47.8  16.8  26.9 -0.0645\n 5 dots         54.3   47.8  16.8  26.9 -0.0603\n 6 h_lines      54.3   47.8  16.8  26.9 -0.0617\n 7 high_lines   54.3   47.8  16.8  26.9 -0.0685\n 8 slant_down   54.3   47.8  16.8  26.9 -0.0690\n 9 slant_up     54.3   47.8  16.8  26.9 -0.0686\n10 star         54.3   47.8  16.8  26.9 -0.0630\n11 v_lines      54.3   47.8  16.8  26.9 -0.0694\n12 wide_lines   54.3   47.8  16.8  26.9 -0.0666\n13 x_shape      54.3   47.8  16.8  26.9 -0.0656"
+  },
+  {
+    "objectID": "slides/00-welcome.html#visualizing-the-data",
+    "href": "slides/00-welcome.html#visualizing-the-data",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Visualizing the data",
+    "text": "Visualizing the data"
   },
   {
     "objectID": "slides/00-welcome.html#questions",
     "href": "slides/00-welcome.html#questions",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Questions?",
     "text": "Questions?"
   },
   {
     "objectID": "slides/00-welcome.html#homepage",
     "href": "slides/00-welcome.html#homepage",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Homepage",
     "text": "Homepage\nhttps://fall-2026-global-health-data-science.github.io/stat-fun/index.html\n\nAll course materials\nLinks to Canvas, GitHub, RStudio containers, etc."
   },
   {
     "objectID": "slides/00-welcome.html#course-toolkit",
     "href": "slides/00-welcome.html#course-toolkit",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Course toolkit",
     "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/Fall-2026-Global-Health-Data-Science\n\nRStudio containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
   },
   {
     "objectID": "slides/00-welcome.html#activities",
     "href": "slides/00-welcome.html#activities",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Activities",
     "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nQuizzes\nExams"
   },
   {
     "objectID": "slides/00-welcome.html#grading",
     "href": "slides/00-welcome.html#grading",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Grading",
     "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n10%\n\n\nLabs\n15%\n\n\nMidterm 1\n25%\n\n\nMidterm 2\n25%\n\n\nMidterm 3\n25%\n\n\nFinal\nReplace lowest midterm\n\n\n\nSee course syllabus for how the final letter grade will be determined."
   },
   {
     "objectID": "slides/00-welcome.html#wiggle-room",
     "href": "slides/00-welcome.html#wiggle-room",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Wiggle room",
-    "text": "Wiggle room\n\nAfter Drop/Add, you can miss 4 of 22 lectures and still receive full attendance credit;\nWe drop the two lowest labs;\nWe drop the lowest homework;\nWe replace the lowest midterm score with your final exam score (if it’s better; otherwise the final does not affect your grade)."
+    "text": "Wiggle room\n\nAfter Drop/Add, you can miss 4 lectures and still receive full attendance credit;\nWe drop the two lowest labs;\nWe will give the opportunity for oral exam retakes for partial credit;\nWe replace the lowest midterm score with your final exam score (if it’s better; otherwise the final does not affect your grade)."
   },
   {
     "objectID": "slides/00-welcome.html#attendance-and-participation",
     "href": "slides/00-welcome.html#attendance-and-participation",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Attendance and participation",
     "text": "Attendance and participation\n\nDaily in lecture\nTracked for credit, but not based on correctness, only participation (often questions designed to make you think that might not have a single right answer!)"
   },
   {
     "objectID": "slides/00-welcome.html#labs",
     "href": "slides/00-welcome.html#labs",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Labs",
     "text": "Labs\n\nHands-on practice with data analysis\nA single exercise per lab, graded based on being there and turning in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week for roughly first half of course\nDeveloped collaboratively, but turned in individually by the end of the lab session\nWeekly throughout semester, two lowest scores dropped\nNo late work accepted"
   },
   {
     "objectID": "slides/00-welcome.html#exams",
     "href": "slides/00-welcome.html#exams",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Exams",
     "text": "Exams\n\nThree in-class midterm exams during semester\nFinal (optional to replace lowest grade on midterm)\nNo extensions or make-ups.\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed, and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class or be comfortable with relying on the make-up exam.\n\n\n\n\n\n\n\n\n\nIf you need testing accomodations\n\n\nMake sure I get a letter, and make your appointments in the Testing Center now."
   },
   {
     "objectID": "slides/00-welcome.html#teams",
     "href": "slides/00-welcome.html#teams",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Teams",
     "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc."
   },
   {
     "objectID": "slides/00-welcome.html#questions-1",
     "href": "slides/00-welcome.html#questions-1",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Questions?",
     "text": "Questions?"
   },
   {
-    "objectID": "slides/00-welcome.html#the-data-science-life-cycle-1",
-    "href": "slides/00-welcome.html#the-data-science-life-cycle-1",
-    "title": "Software",
-    "section": "The data science life cycle",
-    "text": "The data science life cycle"
-  },
-  {
-    "objectID": "slides/00-welcome.html#silly-exercise-serious-themes",
-    "href": "slides/00-welcome.html#silly-exercise-serious-themes",
-    "title": "Software",
-    "section": "Silly exercise, serious themes",
-    "text": "Silly exercise, serious themes\n\n\nDomain knowledge and modeling assumptions: data do not speak for themselves. You need some subject-matter expertise about what you’re studying, as well as an interpretive lens;\n\nNot all models or assumptions are created equal!\n\n\nAre you asking questions the data can actually answer?\nUncertainty has many sources, and in some cases, it may be simply irreducible, no matter how hard you try;\nData quality and data cleaning: Data are not gospel. There could be noise and mistakes. Then what?\nWisdom of crowds: aggregating many imperfect guesses can do better than any one individual guess."
-  },
-  {
     "objectID": "slides/00-welcome.html#this-weeks-tasks",
     "href": "slides/00-welcome.html#this-weeks-tasks",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "This week’s tasks",
     "text": "This week’s tasks\n\nAttend lectures and lab:\n\nComputational setup;\nGetting to know you survey;\n\n\nRead the syllabus and ask questions on Ed;\nComplete readings and videos for next class;\nSend me SDAO letters and schedule testing center appointments."
   },
   {
     "objectID": "slides/00-welcome.html#questions-2",
     "href": "slides/00-welcome.html#questions-2",
-    "title": "Software",
+    "title": "Welcome to STA/GLHLTH 198!",
     "section": "Questions?",
     "text": "Questions?"
   },

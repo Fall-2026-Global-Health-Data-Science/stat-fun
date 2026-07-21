@@ -11,7 +11,7 @@
 <meta name="generator" content="quarto-1.7.32">
 <meta name="author" content="Amy Herring">
 <meta name="dcterms.date" content="2026-08-24">
-<title>STA 199 – Software</title>
+<title>STA 199 – Welcome to STA/GLHLTH 198!</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -190,7 +190,7 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Software – STA 199">
+<meta property="og:title" content="Welcome to STA/GLHLTH 198! – STA 199">
 <meta property="og:description" content="Introduction to Global Health Data Science">
 <meta property="og:site_name" content="STA 199">
 </head>
@@ -198,7 +198,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Software</h1>
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">Welcome to STA/GLHLTH 198!</h1>
   <p class="subtitle">Introduction to Global Health Data Science</p>
 
 <div class="quarto-title-authors">
@@ -281,7 +281,7 @@ Amy Herring
 </div></div>
 </section><section id="the-data-science-life-cycle" class="slide level2"><h2>The data science life cycle</h2>
 <p><img data-src="../img/data-science-cycle.001.png"></p>
-</section><section><section id="lets-dive-in" class="title-slide slide level1 center"><h1>Let’s dive in!</h1>
+</section><section class="slide level2"></section><section><section id="lets-dive-in" class="title-slide slide level1 center"><h1>Let’s dive in!</h1>
 
 </section><section id="life-expectancy" class="slide level2"><h2>Life Expectancy</h2>
 <ul>
@@ -323,43 +323,320 @@ Amy Herring
 </div>
 </div>
 </div>
-</section><section id="imagine-this-dialogue" class="slide level2 small"><h2>Imagine this dialogue</h2>
-<div class="fragment">
-<p><span style="color:blue;"><strong>Campaign manager</strong></span>: What is the probability that our candidate wins the election?</p>
+</section><section id="whats-in-the-life-expectancy-data" class="slide level2"><h2>What’s in the life expectancy data?</h2>
+<p>Take a <code>glimpse</code> at the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a></a><span class="fu">glimpse</span>(life)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 12,240
+Columns: 4
+$ location &lt;chr&gt; "Japan", "Japan", "Japan", "Japan", "Japan", "Japan", "Japan"…
+$ sex      &lt;chr&gt; "Female", "Female", "Female", "Female", "Female", "Female", "…
+$ year     &lt;dbl&gt; 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2019, 2018, 2012, 2…
+$ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.09548, 8…</code></pre>
 </div>
-<div class="fragment">
-<p>(A flurry of analysis takes place.)</p>
 </div>
-<div class="fragment">
-<p><span style="color:red;"><strong>Data scientist</strong></span>: Our best guess is 54%.</p>
+</section><section class="slide level2"><div class="question">
+<p>How many rows and columns does this dataset have?</p>
+<p>What does each row represent?</p>
+<p>What does each column represent?</p>
 </div>
-<div class="fragment">
-<p><span style="color:blue;"><strong>Campaign manager</strong></span>: How reliable is that estimate? How confident are we in that? What’s the margin of error?</p>
+<div class="question">
+<p>How many rows and columns does this dataset have?</p>
 </div>
-<div class="fragment">
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Parallel Universe 1</strong></p>
-<p><span style="color:red;"><strong>Data scientist</strong></span>: It’s 54% give or take 3%.</p>
-</div><div class="column" style="width:50%;">
-<div class="fragment">
-<p><strong>Parallel Universe 2</strong></p>
-<p><span style="color:red;"><strong>Data scientist</strong></span>: It’s 54% give or take 20%.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">nrow</span>(life) <span class="co"># number of rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12240</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ncol</span>(life) <span class="co"># number of columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">dim</span>(life)  <span class="co"># dimensions (rows, columns)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12240     4</code></pre>
+</div>
+</div>
+</section><section class="slide level2"></section></section><section><section id="exploratory-data-analysis" class="title-slide slide level1 center"><h1>Exploratory data analysis</h1>
+
+</section><section id="what-is-eda" class="slide level2"><h2>What is EDA?</h2>
+<ul>
+<li>Exploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics</li>
+<li>Often, this is visual – this is what we’ll focus on first</li>
+<li>But we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis – this is what we’ll focus on next</li>
+</ul></section><section id="life-expectancy-over-time" class="slide level2"><h2>Life expectancy over time</h2>
+<div class="question">
+<p>How would you describe the relationship between year and life expectancy?</p>
+<p>What other variables would help us understand data points that don’t follow the overall trend?</p>
+<p>What is causing the <strong>outliers</strong> at the bottom?</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="00-welcome_files/figure-revealjs/unnamed-chunk-7-1.png" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="outliers" class="slide level2"><h2>Outliers</h2>
+<p>We’ll learn how to make a more useful plot later, but first let’s look into the outliers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># We want to look at the bottom 5 values of life expectancy</span></span>
+<span id="cb11-2"><a></a><span class="co"># (5 just in case some points are exactly the same)</span></span>
+<span id="cb11-3"><a></a>life <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">top_n</span>(<span class="sc">-</span><span class="dv">5</span>, lifeexp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  location sex     year lifeexp
+  &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 Burundi  Male    1997   40.8 
+2 Haiti    Female  2010   36.9 
+3 Haiti    Male    2010   28.8 
+4 Rwanda   Female  1994   11.2 
+5 Rwanda   Male    1994    9.14</code></pre>
+</div>
+</div>
+<p>Are these data errors, realistic estimates, or neither?</p>
+<p><em>(Hint: Recall how life expectancy is calculated.)</em></p>
+</section><section class="slide level2"></section></section><section><section id="data-visualization" class="title-slide slide level1 center"><h1>Data visualization</h1>
+
+</section><section id="data-visualization-1" class="slide level2"><h2>Data visualization</h2>
+<blockquote>
+<p><em>“The simple graph has brought more information to the data analyst’s mind than any other device.”</em><br>
+— John Tukey</p>
+</blockquote>
+<ul>
+<li>Data visualization is the creation and study of the visual representation of data.</li>
+<li>There are many tools for visualizing data—R is one of them.</li>
+<li>There are many approaches and systems within R for making data visualizations. <strong>ggplot2</strong> is one of them, and it’s what we’ll use in this course.</li>
+</ul></section><section id="ggplot2-in-tidyverse" class="slide level2"><h2>ggplot2 <span class="math inline">\(\in\)</span> tidyverse</h2>
+<div class="columns v-center">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="../img/ggplot2-part-of-tidyverse.png" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<ul>
+<li>
+<strong>ggplot2</strong> is the tidyverse’s data visualization package.</li>
+<li>
+<code>gg</code> in “ggplot2” stands for <strong>Grammar of Graphics</strong>.</li>
+<li>Inspired by the book <strong>Grammar of Graphics</strong> by Leland Wilkinson.</li>
+</ul>
+</div></div>
+</section><section id="grammar-of-graphics" class="slide level2"><h2>Grammar of Graphics</h2>
+<div class="columns v-center">
+<div class="column" style="width:35%;">
+<p>A grammar of graphics is a tool that enables us to concisely describe the components of a graphic.</p>
+</div><div class="column" style="width:65%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="../img/grammar-of-graphics.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
 </div>
 </div></div>
+<div class="small">
+<p>Source: <a href="http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html">BloggoType</a></p>
 </div>
-<div class="fragment">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</section><section id="mens-gap-in-life-expectancy-by-year" class="slide level2"><h2>Men’s gap in life expectancy by year</h2>
+<p>Let’s subset to a few countries to de-clutter the plot.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>life <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb13-3"><a></a>    <span class="st">"United States of America"</span>,</span>
+<span id="cb13-4"><a></a>    <span class="st">"Rwanda"</span>,</span>
+<span id="cb13-5"><a></a>    <span class="st">"China"</span></span>
+<span id="cb13-6"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb13-8"><a></a>    <span class="at">x =</span> year,</span>
+<span id="cb13-9"><a></a>    <span class="at">y =</span> lifeexp,</span>
+<span id="cb13-10"><a></a>    <span class="at">shape =</span> sex,</span>
+<span id="cb13-11"><a></a>    <span class="at">color =</span> location</span>
+<span id="cb13-12"><a></a>  )) <span class="sc">+</span></span>
+<span id="cb13-13"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>It’s all about decision-making under uncertainty</strong></p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="00-welcome_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
 </div>
-<div class="callout-content">
-<p>The manager is going to make wildly different decisions about campaign strategy and spending depending on how uncertain the environment is.</p>
 </div>
+</div>
+</div></div>
+<p>We’ll learn to make this a lot better later!</p>
+</section><section class="slide level2"><div class="question">
+<ul>
+<li>What are the functions doing the plotting?</li>
+<li>What is the dataset being plotted?</li>
+<li>Which variables map to which features (aesthetics) of the plot?</li>
+</ul>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>life <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb14-3"><a></a>    <span class="st">"United States of America"</span>,</span>
+<span id="cb14-4"><a></a>    <span class="st">"Rwanda"</span>,</span>
+<span id="cb14-5"><a></a>    <span class="st">"China"</span></span>
+<span id="cb14-6"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb14-8"><a></a>    <span class="at">x =</span> year,</span>
+<span id="cb14-9"><a></a>    <span class="at">y =</span> lifeexp,</span>
+<span id="cb14-10"><a></a>    <span class="at">shape =</span> sex,</span>
+<span id="cb14-11"><a></a>    <span class="at">color =</span> location</span>
+<span id="cb14-12"><a></a>  )) <span class="sc">+</span></span>
+<span id="cb14-13"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="hello-ggplot2" class="slide level2"><h2>Hello ggplot2!</h2>
+<ul>
+<li>
+<code>ggplot()</code> is the main function in <strong>ggplot2</strong>.</li>
+<li>Plots are constructed in layers.</li>
+<li>The structure of the code for plots can be summarized as:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb15-2"><a></a>  <span class="at">data =</span> [dataset],</span>
+<span id="cb15-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> [x<span class="sc">-</span>variable], <span class="at">y =</span> [y<span class="sc">-</span>variable])</span>
+<span id="cb15-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">geom_xxx</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a></a>  other_options</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>The <strong>ggplot2</strong> package comes with the <strong>tidyverse</strong>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>For help with <strong>ggplot2</strong>, see <a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a>.</li>
+</ul></section><section class="slide level2"></section></section><section><section id="why-do-we-visualize" class="title-slide slide level1 center"><h1>Why do we visualize?</h1>
+
+</section><section id="anscombes-quartet-datasaurus-dozen" class="slide level2"><h2>Anscombe’s quartet / Datasaurus Dozen</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 3
+   dataset     x     y
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 dino     55.4  97.2
+ 2 dino     51.5  96.0
+ 3 dino     46.2  94.5
+ 4 dino     42.8  91.4
+ 5 dino     40.8  88.3
+ 6 dino     38.7  84.9
+ 7 dino     35.6  79.9
+ 8 dino     33.1  77.6
+ 9 dino     29.0  74.5
+10 dino     26.2  71.4
+# ℹ 132 more rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 3
+   dataset     x     y
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 star     58.2  91.9
+ 2 star     58.2  92.2
+ 3 star     58.7  90.3
+ 4 star     57.3  89.9
+ 5 star     58.1  92.0
+ 6 star     57.5  88.1
+ 7 star     28.1  63.5
+ 8 star     28.1  63.6
+ 9 star     28.1  63.1
+10 star     27.6  62.8
+# ℹ 132 more rows</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 3
+   dataset      x     y
+   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+ 1 bullseye  51.2  83.3
+ 2 bullseye  59.0  85.5
+ 3 bullseye  51.9  85.8
+ 4 bullseye  48.2  85.0
+ 5 bullseye  41.7  84.0
+ 6 bullseye  37.9  82.6
+ 7 bullseye  39.5  80.8
+ 8 bullseye  39.6  82.7
+ 9 bullseye  34.8  80.0
+10 bullseye  27.6  72.8
+# ℹ 132 more rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 3
+   dataset     x     y
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1 dots     51.1  90.9
+ 2 dots     50.5  89.1
+ 3 dots     50.2  85.5
+ 4 dots     50.1  83.1
+ 5 dots     50.6  82.9
+ 6 dots     50.3  83.0
+ 7 dots     25.6  82.9
+ 8 dots     25.5  82.9
+ 9 dots     25.4  82.9
+10 dots     25.6  82.9
+# ℹ 132 more rows</code></pre>
+</div>
+</div>
+</div></div>
+</section><section id="summarising-anscombes-quartet-datasaurus-dozen" class="slide level2"><h2>Summarising Anscombe’s quartet / Datasaurus Dozen</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>summdat <span class="ot">&lt;-</span> datasaurus_dozen <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">group_by</span>(dataset) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-4"><a></a>    <span class="at">mean_x =</span> <span class="fu">mean</span>(x),</span>
+<span id="cb21-5"><a></a>    <span class="at">mean_y =</span> <span class="fu">mean</span>(y),</span>
+<span id="cb21-6"><a></a>    <span class="at">sd_x =</span> <span class="fu">sd</span>(x),</span>
+<span id="cb21-7"><a></a>    <span class="at">sd_y =</span> <span class="fu">sd</span>(y),</span>
+<span id="cb21-8"><a></a>    <span class="at">r =</span> <span class="fu">cor</span>(x, y)</span>
+<span id="cb21-9"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="summarizing-anscombes-quartet-datasaurus-dozen" class="slide level2"><h2>Summarizing Anscombe’s quartet / Datasaurus Dozen</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 6
+   dataset    mean_x mean_y  sd_x  sd_y       r
+   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 away         54.3   47.8  16.8  26.9 -0.0641
+ 2 bullseye     54.3   47.8  16.8  26.9 -0.0686
+ 3 circle       54.3   47.8  16.8  26.9 -0.0683
+ 4 dino         54.3   47.8  16.8  26.9 -0.0645
+ 5 dots         54.3   47.8  16.8  26.9 -0.0603
+ 6 h_lines      54.3   47.8  16.8  26.9 -0.0617
+ 7 high_lines   54.3   47.8  16.8  26.9 -0.0685
+ 8 slant_down   54.3   47.8  16.8  26.9 -0.0690
+ 9 slant_up     54.3   47.8  16.8  26.9 -0.0686
+10 star         54.3   47.8  16.8  26.9 -0.0630
+11 v_lines      54.3   47.8  16.8  26.9 -0.0694
+12 wide_lines   54.3   47.8  16.8  26.9 -0.0666
+13 x_shape      54.3   47.8  16.8  26.9 -0.0656</code></pre>
+</div>
+</div>
+</section><section id="visualizing-the-data" class="slide level2"><h2>Visualizing the data</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="00-welcome_files/figure-revealjs/quartet-plot-1.gif" style="width:80.0%"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -428,9 +705,9 @@ Amy Herring
 <p>See course syllabus for how the final letter grade will be determined.</p>
 </section><section id="wiggle-room" class="slide level2"><h2>Wiggle room</h2>
 <ul>
-<li>After Drop/Add, you can miss 4 of 22 lectures and still receive full attendance credit;</li>
+<li>After Drop/Add, you can miss 4 lectures and still receive full attendance credit;</li>
 <li>We drop the two lowest labs;</li>
-<li>We drop the lowest homework;</li>
+<li>We will give the opportunity for oral exam retakes for partial credit;</li>
 <li>We replace the lowest midterm score with your final exam score (if it’s better; otherwise the final does not affect your grade).</li>
 </ul></section><section id="attendance-and-participation" class="slide level2 smaller"><h2>Attendance and participation</h2>
 <ul>
@@ -491,23 +768,7 @@ Amy Herring
 </ul>
 </li>
 </ul></section><section id="questions-1" class="slide level2 larger"><h2>Questions?</h2>
-</section><section id="the-data-science-life-cycle-1" class="slide level2"><h2>The data science life cycle</h2>
-<p><img data-src="img/data-science-cycle.001.png"></p>
-</section></section><section><section id="wrap-up" class="title-slide slide level1 center"><h1>Wrap up</h1>
-
-</section><section id="silly-exercise-serious-themes" class="slide level2 scrollable medium"><h2>Silly exercise, serious themes</h2>
-<ul>
-<li class="fragment">
-<p><strong>Domain knowledge and modeling assumptions</strong>: data do not speak for themselves. You need some subject-matter expertise about what you’re studying, as well as an interpretive lens;</p>
-<ul>
-<li class="fragment">Not all models or assumptions are created equal!</li>
-</ul>
-</li>
-<li class="fragment"><p>Are you asking questions the data can actually answer?</p></li>
-<li class="fragment"><p>Uncertainty has many sources, and in some cases, it may be simply irreducible, no matter how hard you try;</p></li>
-<li class="fragment"><p><strong>Data quality and data cleaning</strong>: Data are not gospel. There could be noise and mistakes. Then what?</p></li>
-<li class="fragment"><p><strong>Wisdom of crowds</strong>: aggregating many imperfect guesses can do better than any one individual guess.</p></li>
-</ul></section><section id="this-weeks-tasks" class="slide level2"><h2>This week’s tasks</h2>
+</section><section id="this-weeks-tasks" class="slide level2"><h2>This week’s tasks</h2>
 <ul>
 <li>Attend lectures and lab:
 <ul>
