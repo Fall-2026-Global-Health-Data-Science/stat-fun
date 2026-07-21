@@ -4,11 +4,7 @@
     "items": []
   },
   {
-    "listing": "/ae.html",
-    "items": []
-  },
-  {
-    "listing": "/exam-review.html",
+    "listing": "/lab.html",
     "items": []
   },
   {
@@ -16,7 +12,11 @@
     "items": []
   },
   {
-    "listing": "/lab.html",
+    "listing": "/exam-review.html",
+    "items": []
+  },
+  {
+    "listing": "/ae.html",
     "items": []
   }
 ]
