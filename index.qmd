@@ -1,5 +1,5 @@
 ---
-title: "STA 199: Introduction to Data Science and Statistical Thinking"
+title: "STA 198: Introduction to Global Health Data Science"
 execute: 
   freeze: false
 editor_options: 
