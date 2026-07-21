@@ -1,9 +1,5 @@
 [
   {
-    "listing": "/hw.html",
-    "items": []
-  },
-  {
     "listing": "/course-team.html",
     "items": []
   },
@@ -13,6 +9,10 @@
   },
   {
     "listing": "/exam-review.html",
+    "items": []
+  },
+  {
+    "listing": "/hw.html",
     "items": []
   },
   {

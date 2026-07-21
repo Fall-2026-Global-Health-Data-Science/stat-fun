@@ -2,13 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>STA 199: Introduction to Data Science and Statistical Thinking – STA 199</title>
+<title>STA 198: Introduction to Global Health Data Science – STA 199</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -36,14 +33,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-23ad7f931ea55132c9c36c87a05ef136.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-cef5993a97ebd1e3d4301fd7553d21a3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-23ad7f931ea55132c9c36c87a05ef136.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5b2928d1bfca2ef7878dcde09742d91a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c2f60f74ab842760f704a4cd40e3aab7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-5b2928d1bfca2ef7878dcde09742d91a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
@@ -72,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta property="og:title" content="STA 199: Introduction to Data Science and Statistical Thinking – STA 199">
+<meta property="og:title" content="STA 198: Introduction to Global Health Data Science – STA 199">
 <meta property="og:description" content="Homepage for STA 199 - Introduction to Data Science at Duke University, Fall 2026.">
 <meta property="og:site_name" content="STA 199">
 </head>
@@ -256,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./img/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./img/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+      <img src="./img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/sta199-f26" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <a href="https://cmgr.oit.duke.edu/containers" title="RStudio containers" class="quarto-navigation-tool px-1" aria-label="RStudio containers"><i class="bi bi-code-square"></i></a>
@@ -502,7 +499,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Schedule</a></li></ol></nav><div class="quarto-title">
-<h1 class="title">STA 199: Introduction to Data Science and Statistical Thinking</h1>
+<h1 class="title">STA 198: Introduction to Global Health Data Science</h1>
 </div>
 
 
@@ -519,23 +516,23 @@ ul.task-list li input[type="checkbox"] {
 </header><p>This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display column-screen-inset-right">
-<div id="okagxhlefb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#okagxhlefb table {
+<div id="brumxgppnt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#brumxgppnt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#okagxhlefb thead, #okagxhlefb tbody, #okagxhlefb tfoot, #okagxhlefb tr, #okagxhlefb td, #okagxhlefb th {
+#brumxgppnt thead, #brumxgppnt tbody, #brumxgppnt tfoot, #brumxgppnt tr, #brumxgppnt td, #brumxgppnt th {
   border-style: none;
 }
 
-#okagxhlefb p {
+#brumxgppnt p {
   margin: 0;
   padding: 0;
 }
 
-#okagxhlefb .gt_table {
+#brumxgppnt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -561,12 +558,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_caption {
+#brumxgppnt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#okagxhlefb .gt_title {
+#brumxgppnt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -578,7 +575,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#okagxhlefb .gt_subtitle {
+#brumxgppnt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -590,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#okagxhlefb .gt_heading {
+#brumxgppnt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -602,13 +599,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_bottom_border {
+#brumxgppnt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_col_headings {
+#brumxgppnt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -623,7 +620,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_col_heading {
+#brumxgppnt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -643,7 +640,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#okagxhlefb .gt_column_spanner_outer {
+#brumxgppnt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -655,15 +652,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#okagxhlefb .gt_column_spanner_outer:first-child {
+#brumxgppnt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#okagxhlefb .gt_column_spanner_outer:last-child {
+#brumxgppnt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#okagxhlefb .gt_column_spanner {
+#brumxgppnt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -675,11 +672,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#okagxhlefb .gt_spanner_row {
+#brumxgppnt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#okagxhlefb .gt_group_heading {
+#brumxgppnt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -705,7 +702,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#okagxhlefb .gt_empty_group_heading {
+#brumxgppnt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -720,15 +717,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#okagxhlefb .gt_from_md > :first-child {
+#brumxgppnt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#okagxhlefb .gt_from_md > :last-child {
+#brumxgppnt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#okagxhlefb .gt_row {
+#brumxgppnt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -747,7 +744,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#okagxhlefb .gt_stub {
+#brumxgppnt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -760,7 +757,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#okagxhlefb .gt_stub_row_group {
+#brumxgppnt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -774,15 +771,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#okagxhlefb .gt_row_group_first td {
+#brumxgppnt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#okagxhlefb .gt_row_group_first th {
+#brumxgppnt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#okagxhlefb .gt_summary_row {
+#brumxgppnt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -792,16 +789,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#okagxhlefb .gt_first_summary_row {
+#brumxgppnt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_first_summary_row.thick {
+#brumxgppnt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#okagxhlefb .gt_last_summary_row {
+#brumxgppnt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -811,7 +808,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_grand_summary_row {
+#brumxgppnt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -821,7 +818,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#okagxhlefb .gt_first_grand_summary_row {
+#brumxgppnt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -831,7 +828,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_last_grand_summary_row_top {
+#brumxgppnt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,11 +838,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_striped {
+#brumxgppnt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#okagxhlefb .gt_table_body {
+#brumxgppnt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -854,7 +851,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_footnotes {
+#brumxgppnt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -868,7 +865,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_footnote {
+#brumxgppnt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -877,7 +874,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#okagxhlefb .gt_sourcenotes {
+#brumxgppnt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -891,7 +888,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#okagxhlefb .gt_sourcenote {
+#brumxgppnt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -899,76 +896,76 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#okagxhlefb .gt_left {
+#brumxgppnt .gt_left {
   text-align: left;
 }
 
-#okagxhlefb .gt_center {
+#brumxgppnt .gt_center {
   text-align: center;
 }
 
-#okagxhlefb .gt_right {
+#brumxgppnt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#okagxhlefb .gt_font_normal {
+#brumxgppnt .gt_font_normal {
   font-weight: normal;
 }
 
-#okagxhlefb .gt_font_bold {
+#brumxgppnt .gt_font_bold {
   font-weight: bold;
 }
 
-#okagxhlefb .gt_font_italic {
+#brumxgppnt .gt_font_italic {
   font-style: italic;
 }
 
-#okagxhlefb .gt_super {
+#brumxgppnt .gt_super {
   font-size: 65%;
 }
 
-#okagxhlefb .gt_footnote_marks {
+#brumxgppnt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#okagxhlefb .gt_asterisk {
+#brumxgppnt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#okagxhlefb .gt_indent_1 {
+#brumxgppnt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#okagxhlefb .gt_indent_2 {
+#brumxgppnt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#okagxhlefb .gt_indent_3 {
+#brumxgppnt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#okagxhlefb .gt_indent_4 {
+#brumxgppnt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#okagxhlefb .gt_indent_5 {
+#brumxgppnt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#okagxhlefb .katex-display {
+#brumxgppnt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#okagxhlefb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#brumxgppnt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 2%">
 <col style="width: 10%">
@@ -1479,14 +1476,13 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
