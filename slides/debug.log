@@ -1,0 +1,58 @@
+[31m
+
+processing file: 00-welcome.qmd
+[39m  |                                                          |                                                  |   0%  |                                                          |.                                                 |   2%                      |                                                          |..                                                |   4% [unnamed-chunk-1]    |                                                          |...                                               |   6%                      |                                                          |....                                              |   9% [unnamed-chunk-2]    |                                                          |.....                                             |  11%                      |                                                          |......                                            |  13% [unnamed-chunk-3]    |                                                          |.......                                           |  15%                      |                                                          |.........                                         |  17% [unnamed-chunk-4]    |                                                          |..........                                        |  19%                      |                                                          |...........                                       |  21% [unnamed-chunk-5]    |                                                          |............                                      |  23%                      |                                                          |.............                                     |  26% [unnamed-chunk-6]    |                                                          |..............                                    |  28%                      |                                                          |...............                                   |  30% [unnamed-chunk-7]    |                                                          |................                                  |  32%                      |                                                          |.................                                 |  34% [outliers]           |                                                          |..................                                |  36%                      |                                                          |...................                               |  38% [unnamed-chunk-8]    |                                                          |....................                              |  40%                      |                                                          |.....................                             |  43% [unnamed-chunk-9]    |                                                          |......................                            |  45%                      |                                                          |.......................                           |  47% [lifeexp]            |                                                          |........................                          |  49%                      |                                                          |..........................                        |  51% [unnamed-chunk-10]   |                                                          |...........................                       |  53%                      |                                                          |............................                      |  55% [unnamed-chunk-11]   |                                                          |.............................                     |  57%                      |                                                          |..............................                    |  60% [unnamed-chunk-12]   |                                                          |...............................                   |  62%                      |                                                          |................................                  |  64% [unnamed-chunk-13]   |                                                          |.................................                 |  66%                      |                                                          |..................................                |  68% [unnamed-chunk-14]   |                                                          |...................................               |  70%                      |                                                          |....................................              |  72% [datasaur-for-show]  |                                                          |.....................................             |  74%                      |                                                          |......................................            |  77% [datasaur-view1]     |                                                          |.......................................           |  79%                      |                                                          |........................................          |  81% [datasaur-view2]     |                                                          |.........................................         |  83%                      |                                                          |...........................................       |  85% [pkgadd]             |                                                          |............................................      |  87%                      |                                                          |.............................................     |  89% [dozen-summary]      |                                                          |..............................................    |  91%                      |                                                          |...............................................   |  94% [dozen-summary2]     |                                                          |................................................  |  96%                      |                                                          |................................................. |  98% [quartet-plot]       |                                                          |..................................................| 100%                                                                                                                                  
+[31moutput file: 00-welcome.knit.md
+
+[39m[1mpandoc [22m
+  to: revealjs
+  output-file: 00-welcome.html
+  standalone: true
+  title-prefix: STA 199
+  wrap: none
+  default-image-extension: png
+  html-math-method: mathjax
+  slide-level: 2
+  toc: false
+  variables: {}
+  
+[1mmetadata[22m
+  link-citations: true
+  width: 1050
+  height: 700
+  margin: 0.1
+  center: false
+  navigationMode: linear
+  controlsLayout: edges
+  controlsTutorial: false
+  hash: true
+  history: true
+  hashOneBasedIndex: false
+  fragmentInURL: false
+  transition: fade
+  backgroundTransition: none
+  pdfSeparateFragments: false
+  lang: en
+  auto-stretch: false
+  theme: slides.scss
+  code-copy: hover
+  editor: source
+  engines:
+    - path: /Applications/RStudio.app/Contents/Resources/app/quarto/share/extension-subtrees/julia-engine/_extensions/julia-engine/julia-engine.js
+  institute: Duke University <br> STA/GLHLTH 198 Fall 2026
+  author: Amy Herring
+  slideNumber: true
+  chalkboard: true
+  title: Welcome to STA/GLHLTH 198!
+  subtitle: Introduction to Global Health Data Science
+  date: '2026-08-24'
+  
+Error running Lua:
+Error parsing YAML metadata at (line 300, column 1):
+YAML parse exception at line 7, column 0,
+while scanning a simple key:
+could not find expected ':'
+stack traceback:
+	...ts/Resources/app/quarto/share/pandoc/datadir/readqmd.lua:185: in function 'readqmd.readqmd'
+	...ntents/Resources/app/quarto/share/filters/qmd-reader.lua:13: in function 'Reader'
+[33mWARN: Error encountered when rendering files[39m

@@ -2,8 +2,9 @@
 title: "Welcome to STA/GLHLTH 198!"
 subtitle: "Introduction to Global Health Data Science"
 date: "2026-08-24"
-format: revealjs
-auto-stretch: false
+format:
+  revealjs:
+    auto-stretch: false
 ---
 
 
@@ -48,7 +49,7 @@ STA/GLHLTH 198 will
 :::
 
 ---
-title: "Software"
+# Software
 ---
 
 ## Software
@@ -131,11 +132,12 @@ for our computing toolkit.
 
 ![](../img/data-science-cycle.001.png)
 
----
-class: middle
+
 ---
 
 # Let's dive in!
+
+---
 
 ## Life Expectancy
 
@@ -175,58 +177,422 @@ life
 
 :::
 
+## What's in the life expectancy data?
 
-## Imagine this dialogue {.small}
+Take a `glimpse` at the data:
 
-. . .
+```{r}
+library(tidyverse)
+glimpse(life)
+```
 
-[**Campaign manager**]{style="color:blue;"}: What is the probability that our candidate wins the election?
+---
 
-. . .
+::: {.question}
 
-(A flurry of analysis takes place.)
+How many rows and columns does this dataset have?
 
-. . .
+What does each row represent?
 
-[**Data scientist**]{style="color:red;"}: Our best guess is 54%.
+What does each column represent?
 
-. . .
+:::
 
-[**Campaign manager**]{style="color:blue;"}: How reliable is that estimate? How confident are we in that? What's the margin of error?
+::: {.question}
+
+How many rows and columns does this dataset have?
+
+:::
+
+```{r}
+nrow(life) # number of rows
+
+ncol(life) # number of columns
+
+dim(life)  # dimensions (rows, columns)
+```
+
+---
+
+# Exploratory data analysis
+
+---
+
+## What is EDA?
+
+- Exploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics
+- Often, this is visual -- this is what we'll focus on first
+- But we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis -- this is what we'll focus on next
+
+---
+
+## Life expectancy over time
+
+::: {.question}
+
+How would you describe the relationship between year and life expectancy?
+
+What other variables would help us understand data points that don't follow the overall trend?
+
+What is causing the **outliers** at the bottom?
+
+:::
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-width: 8
+#| out-width: 50%
+
+life %>%
+  ggplot(aes(x = year, y = lifeexp, shape = sex)) +
+  geom_point() +
+  labs(
+    title = "Life expectancy over time",
+    x = "Year",
+    y = "Life Expectancy (Years)"
+  )
+```
+
+## Outliers
+
+We'll learn how to make a more useful plot later, but first let's look into the outliers.
 
 
-. . .
+```{r}
+#| label: outliers
 
-::: columns
+# We want to look at the bottom 5 values of life expectancy
+# (5 just in case some points are exactly the same)
+life %>%
+  top_n(-5, lifeexp)
+```
+
+Are these data errors, realistic estimates, or neither?
+
+*(Hint: Recall how life expectancy is calculated.)*
+
+---
+
+
+# Data visualization
+
+---
+
+
+## Data visualization
+
+> *"The simple graph has brought more information to the data analyst's mind than any other device."*  
+> — John Tukey
+
+- Data visualization is the creation and study of the visual representation of data.
+- There are many tools for visualizing data—R is one of them.
+- There are many approaches and systems within R for making data visualizations. **ggplot2** is one of them, and it's what we'll use in this course.
+
+---
+
+
+
+
+
+
+
+## ggplot2 $\in$ tidyverse
+
+:::: {.columns .v-center}
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| out-width: 80%
+
+knitr::include_graphics("../img/ggplot2-part-of-tidyverse.png")
+```
+
+:::
+
+::: {.column width="40%"}
+
+- **ggplot2** is the tidyverse's data visualization package.
+- `gg` in "ggplot2" stands for **Grammar of Graphics**.
+- Inspired by the book **Grammar of Graphics** by Leland Wilkinson.
+
+:::
+
+::::
+
+---
+
+## Grammar of Graphics
+
+
+
+:::: {.columns .v-center}
+
+::: {.column width="35%"}
+
+A grammar of graphics is a tool that enables us to concisely describe the components of a graphic.
+
+:::
+
+::: {.column width="65%"}
+
+```{r}
+#| echo: false
+#| out-width: 100%
+
+knitr::include_graphics("../img/grammar-of-graphics.png")
+```
+
+:::
+
+::::
+
+::: {.small}
+
+Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html)
+
+:::
+
+
+---
+
+## Men's gap in life expectancy by year
+
+Let's subset to a few countries to de-clutter the plot.
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+```{r}
+#| eval: false
+
+life %>%
+  filter(location %in% c(
+    "United States of America",
+    "Rwanda",
+    "China"
+  )) %>%
+  ggplot(aes(
+    x = year,
+    y = lifeexp,
+    shape = sex,
+    color = location
+  )) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="55%"}
+
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 4
+#| fig-align: center
+
+life %>%
+  filter(location %in% c(
+    "United States of America",
+    "Rwanda",
+    "China"
+  )) %>%
+  ggplot(aes(
+    x = year,
+    y = lifeexp,
+    shape = sex,
+    color = location
+  )) +
+  geom_point()
+```
+
+:::
+
+::::
+
+We'll learn to make this a lot better later!
+
+
+
+---
+
+::: {.question}
+
+- What are the functions doing the plotting?
+- What is the dataset being plotted?
+- Which variables map to which features (aesthetics) of the plot?
+
+:::
+
+```{r}
+#| eval: false
+
+life %>%
+  filter(location %in% c(
+    "United States of America",
+    "Rwanda",
+    "China"
+  )) %>%
+  ggplot(aes(
+    x = year,
+    y = lifeexp,
+    shape = sex,
+    color = location
+  )) +
+  geom_point()
+```
+
+---
+
+## Hello ggplot2!
+
+- `ggplot()` is the main function in **ggplot2**.
+- Plots are constructed in layers.
+- The structure of the code for plots can be summarized as:
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = [dataset],
+  mapping = aes(x = [x-variable], y = [y-variable])
+) +
+  geom_xxx() +
+  other_options
+```
+
+- The **ggplot2** package comes with the **tidyverse**.
+
+```{r}
+library(tidyverse)
+```
+
+- For help with **ggplot2**, see <https://ggplot2.tidyverse.org/>.
+
+
+---
+
+# Why do we visualize?
+
+---
+
+
+## Anscombe's quartet / Datasaurus Dozen
+
+```{r}
+#| label: datasaur-for-show
+#| echo: false
+
+library(datasauRus)
+```
+
+:::: {.columns}
+
 ::: {.column width="50%"}
 
-**Parallel Universe 1**
+```{r}
+#| label: datasaur-view1
+#| echo: false
 
-[**Data scientist**]{style="color:red;"}: It's 54% give or take 3%.
+datasaurus_dozen %>%
+  filter(dataset == "dino") %>%
+  print()
+
+datasaurus_dozen %>%
+  filter(dataset == "star") %>%
+  print()
+```
 
 :::
 
 ::: {.column width="50%"}
 
-:::  {.fragment}
+```{r}
+#| label: datasaur-view2
+#| echo: false
 
-**Parallel Universe 2**
+datasaurus_dozen %>%
+  filter(dataset == "bullseye") %>%
+  print()
 
-[**Data scientist**]{style="color:red;"}: It's 54% give or take 20%.
+datasaurus_dozen %>%
+  filter(dataset == "dots") %>%
+  print()
+```
 
 :::
 
-:::
-:::
+::::
 
-. . .
+---
 
-::: callout-note
-## It's all about decision-making under uncertainty
+## Summarising Anscombe's quartet / Datasaurus Dozen
 
-The manager is going to make wildly different decisions about campaign strategy and spending depending on how uncertain the environment is.
-:::
+```{r}
+#| label: pkgadd
+#| echo: false
 
+library(gganimate)
+```
+
+```{r}
+#| label: dozen-summary
+#| eval: false
+
+summdat <- datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarise(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    r = cor(x, y)
+  )
+```
+
+---
+
+## Summarizing Anscombe's quartet / Datasaurus Dozen
+
+```{r}
+#| label: dozen-summary2
+#| echo: false
+
+summdat <- datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarise(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    r = cor(x, y)
+  )
+
+print(summdat, n = 13)
+```
+
+---
+
+## Visualizing the data
+
+```{r}
+#| label: quartet-plot
+#| echo: false
+#| cache: true
+#| out-width: 80%
+#| fig-asp: 0.5
+
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_point() +
+  theme_minimal() +
+  transition_states(dataset, 3, 1) +
+  ease_aes("cubic-in-out")
+```
+
+---
 
 
 ## Questions? {.larger}
@@ -273,11 +639,13 @@ All linked from the course website:
 
 See course syllabus for how the final letter grade will be determined.
 
+
+
 ## Wiggle room
 
-- After Drop/Add, you can miss 4 of 22 lectures and still receive full attendance credit;
+- After Drop/Add, you can miss 4 lectures and still receive full attendance credit;
 - We drop the two lowest labs;
-- We drop the lowest homework;
+- We will give the opportunity for oral exam retakes for partial credit;
 - We replace the lowest midterm score with your final exam score (if it’s better; otherwise the final does not affect your grade).
 
 ## Attendance and participation {.smaller}
@@ -285,7 +653,6 @@ See course syllabus for how the final letter grade will be determined.
 -   Daily in lecture
 
 -   Tracked for credit, but not based on correctness, only participation (often questions designed to make you think that might not have a single right answer!)
-
 
 
 ## Labs {.smaller}
@@ -343,26 +710,6 @@ Make sure I get a letter, and make your appointments in the Testing Center now.
 
 
 
-## The data science life cycle
-
-![](img/data-science-cycle.001.png)
-
-
-# Wrap up
-
-## Silly exercise, serious themes {.scrollable .medium}
-
-::: incremental
--   **Domain knowledge and modeling assumptions**: data do not speak for themselves. You need some subject-matter expertise about what you're studying, as well as an interpretive lens;
-
-    - Not all models or assumptions are created equal!
-
--   Are you asking questions the data can actually answer?
--   Uncertainty has many sources, and in some cases, it may be simply irreducible, no matter how hard you try;
--   **Data quality and data cleaning**: Data are not gospel. There could be noise and mistakes. Then what?
--   **Wisdom of crowds**: aggregating many imperfect guesses can do better than any one individual guess.
-:::
-
 ## This week's tasks
 
 -   Attend lectures and lab:
@@ -373,5 +720,7 @@ Make sure I get a letter, and make your appointments in the Testing Center now.
 -   Send me SDAO letters and schedule testing center appointments.
 
 ## Questions? {.larger}
+
+
 
 
