@@ -240,256 +240,109 @@
     "text": "Facet and color, no legend\n\n\n\nlifeexpwide %&gt;%\n  filter(\n    year %in% c(1999, 2009, 2019),\n    worldbankregion %in% c(\n      \"North America\",\n      \"South Asia\",\n      \"Sub-Saharan Africa\"\n    )\n  ) %&gt;%\n  ggplot(\n    aes(\n      x = Female,\n      y = Male,\n      color = year\n    )\n  ) +\n  geom_point() +\n  facet_wrap(~worldbankregion) +\n  guides(color = \"none\")"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#data-science",
-    "href": "slides/w01-01-welcome.html#data-science",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Data science",
-    "text": "Data science\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nThis is a course on health data science, with an emphasis on statistical thinking and global health challenges\n\nOur process involves\n\nforming a question of interest,\n(collecting) and summarizing data,\nand interpreting and communicating results."
+    "objectID": "slides/w01-04-vizcat.html#variables",
+    "href": "slides/w01-04-vizcat.html#variables",
+    "title": "Visualising categorical data",
+    "section": "Variables",
+    "text": "Variables\n\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
   },
   {
-    "objectID": "slides/w01-01-welcome.html#global-health-data-science",
-    "href": "slides/w01-01-welcome.html#global-health-data-science",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Global health data science",
-    "text": "Global health data science\nSTA/GLHLTH 198 will\n\nprovide a tour of basic statistical methods useful in public health and biomedical research\nemphasize intuition and understanding of the methods, with a focus on critical assessment of evidence, data-driven decision-making, and effective communication of insights from data\nmake use of timely, relevant examples from global health science, with opportunities to think about what makes us human\nutilize free, modern software and reproducible research methods for transparency and data sharing"
+    "objectID": "slides/w01-04-vizcat.html#bar-plot-1",
+    "href": "slides/w01-04-vizcat.html#bar-plot-1",
+    "title": "Visualising categorical data",
+    "section": "Bar plot",
+    "text": "Bar plot\n\n\n\n\nggplot(gats, aes(x = CURRENTSMOKE)) +\n  geom_bar()"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#frequently-asked-questions",
-    "href": "slides/w01-01-welcome.html#frequently-asked-questions",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Frequently Asked Questions",
-    "text": "Frequently Asked Questions\n\nQ: What data science background does this course assume?A: None. No prior experience with data science or programming is expected.\nQ: Is this an intro statistics course?A: Statistics and data science are closely related, with substantial overlap. This course is an excellent way to begin learning statistics, but it is not a traditional high school statistics course.\nQ: Will we be doing computing?A: Yes—extensively. Computing is a core part of the course and an essential tool for learning data science and statistics."
+    "objectID": "slides/w01-04-vizcat.html#stacked-bar-plot",
+    "href": "slides/w01-04-vizcat.html#stacked-bar-plot",
+    "title": "Visualising categorical data",
+    "section": "Stacked bar plot",
+    "text": "Stacked bar plot\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar()"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#software",
-    "href": "slides/w01-01-welcome.html#software",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Software",
-    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nWe’ll combine the ease of viewing in Excel with …"
+    "objectID": "slides/w01-04-vizcat.html#ok-i-dislike-those-colors",
+    "href": "slides/w01-04-vizcat.html#ok-i-dislike-those-colors",
+    "title": "Visualising categorical data",
+    "section": "Ok, I dislike those colors",
+    "text": "Ok, I dislike those colors\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar() +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Current smoker\",\n    y = \"Count\",\n    fill = \"Gender\"\n  )"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#software-1",
-    "href": "slides/w01-01-welcome.html#software-1",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Software",
-    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nthe rigor of the R programming language …"
+    "objectID": "slides/w01-04-vizcat.html#segmented-bar-plot",
+    "href": "slides/w01-04-vizcat.html#segmented-bar-plot",
+    "title": "Visualising categorical data",
+    "section": "Segmented bar plot",
+    "text": "Segmented bar plot\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar(position = \"fill\") +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Current smoker\",\n    y = \"Proportion\",\n    fill = \"Gender\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nHere, instead of looking at raw counts, we’re looking at the proportion of smokers in each gender category."
   },
   {
-    "objectID": "slides/w01-01-welcome.html#software-2",
-    "href": "slides/w01-01-welcome.html#software-2",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Software",
-    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nin an integrated environment. To learn more, check out the introductory video for our computing toolkit."
+    "objectID": "slides/w01-04-vizcat.html#which-plot-is-more-useful",
+    "href": "slides/w01-04-vizcat.html#which-plot-is-more-useful",
+    "title": "Visualising categorical data",
+    "section": "Which plot is more useful?",
+    "text": "Which plot is more useful?"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#the-data-science-life-cycle",
-    "href": "slides/w01-01-welcome.html#the-data-science-life-cycle",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "The data science life cycle",
-    "text": "The data science life cycle"
+    "objectID": "slides/w01-04-vizcat.html#customizing-bar-plots",
+    "href": "slides/w01-04-vizcat.html#customizing-bar-plots",
+    "title": "Visualising categorical data",
+    "section": "Customizing bar plots",
+    "text": "Customizing bar plots\n\n\n\n\nggplot(\n  gats,\n  aes(\n    y = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar(position = \"fill\") +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = \"Current Smoker?\",\n    fill = \"Gender\",\n    title = \"Smoking by Gender\",\n    subtitle = \"2018\"\n  )"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#life-expectancy",
-    "href": "slides/w01-01-welcome.html#life-expectancy",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Life Expectancy",
-    "text": "Life Expectancy\n\nThe Institute for Health Metrics and Evaluation (IHME) is a resource for data on a variety of important health outcomes worldwide.\nIHME maintains the Global Burden of Disease (GBD), a valuable resource for policymakers and others that quantifies health loss due to a variety of risk factors, diseases, and injuries."
+    "objectID": "slides/w01-04-vizcat.html#side-by-side-bar-plot",
+    "href": "slides/w01-04-vizcat.html#side-by-side-bar-plot",
+    "title": "Visualising categorical data",
+    "section": "Side-by-side bar plot",
+    "text": "Side-by-side bar plot\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar(position = position_dodge()) +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Current smoker\",\n    y = \"Count\",\n    fill = \"Gender\"\n  )"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#life-expectancy-1",
-    "href": "slides/w01-01-welcome.html#life-expectancy-1",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Life Expectancy",
-    "text": "Life Expectancy\n\nWe consider data from IHME on (estimated) infant life expectancy from the years 1994–2019 as a function of location (primarily country) and binary gender.\nHere life expectancy is the # of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time."
+    "objectID": "slides/w01-04-vizcat.html#already-talked-about",
+    "href": "slides/w01-04-vizcat.html#already-talked-about",
+    "title": "Visualising categorical data",
+    "section": "Already talked about…",
+    "text": "Already talked about…\n\nColoring and faceting histograms and density plots\nSide-by-side box plots"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#dataset-terminology",
-    "href": "slides/w01-01-welcome.html#dataset-terminology",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Dataset terminology",
-    "text": "Dataset terminology\n\nEach row is an observation\n\nEach column is a variable\n\n\n\n\nlife &lt;- readr::read_csv(\"../data/lifeexpectancy_infant.csv\")\n\nlife\n\n# A tibble: 12,240 × 4\n   location sex     year lifeexp\n   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n 1 Japan    Female  2019    87.7\n 2 Japan    Female  2018    87.6\n 3 Japan    Female  2017    87.6\n 4 Japan    Female  2016    87.4\n 5 Japan    Female  2015    87.3\n 6 Japan    Female  2014    87.1\n 7 Japan    Female  2013    86.9\n 8 Iceland  Female  2019    86.9\n 9 Iceland  Female  2018    86.8\n10 Japan    Female  2012    86.7\n# ℹ 12,230 more rows"
+    "objectID": "slides/w01-04-vizcat.html#violin-plots",
+    "href": "slides/w01-04-vizcat.html#violin-plots",
+    "title": "Visualising categorical data",
+    "section": "Violin plots",
+    "text": "Violin plots\nViolin plots are like boxplots, but instead of showing the quartiles (25th, 50th, and 75th %iles), they show rotated density plots on each side."
   },
   {
-    "objectID": "slides/w01-01-welcome.html#whats-in-the-life-expectancy-data",
-    "href": "slides/w01-01-welcome.html#whats-in-the-life-expectancy-data",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "What’s in the life expectancy data?",
-    "text": "What’s in the life expectancy data?\nTake a glimpse at the data:\n\nlibrary(tidyverse)\nglimpse(life)\n\nRows: 12,240\nColumns: 4\n$ location &lt;chr&gt; \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\"…\n$ sex      &lt;chr&gt; \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"…\n$ year     &lt;dbl&gt; 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2019, 2018, 2012, 2…\n$ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.09548, 8…"
+    "objectID": "slides/w01-04-vizcat.html#violin-plots-1",
+    "href": "slides/w01-04-vizcat.html#violin-plots-1",
+    "title": "Visualising categorical data",
+    "section": "Violin plots",
+    "text": "Violin plots\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION\n  )\n) +\n  geom_violin()"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#what-is-eda",
-    "href": "slides/w01-01-welcome.html#what-is-eda",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "What is EDA?",
-    "text": "What is EDA?\n\nExploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics\nOften, this is visual – this is what we’ll focus on first\nBut we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis – this is what we’ll focus on next"
+    "objectID": "slides/w01-04-vizcat.html#ridge-plots",
+    "href": "slides/w01-04-vizcat.html#ridge-plots",
+    "title": "Visualising categorical data",
+    "section": "Ridge plots",
+    "text": "Ridge plots\nRidge plots also show density estimates across categorical groups"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#life-expectancy-over-time",
-    "href": "slides/w01-01-welcome.html#life-expectancy-over-time",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Life expectancy over time",
-    "text": "Life expectancy over time\n\nHow would you describe the relationship between year and life expectancy?\nWhat other variables would help us understand data points that don’t follow the overall trend?\nWhat is causing the outliers at the bottom?"
+    "objectID": "slides/w01-04-vizcat.html#ridge-plots-1",
+    "href": "slides/w01-04-vizcat.html#ridge-plots-1",
+    "title": "Visualising categorical data",
+    "section": "Ridge plots",
+    "text": "Ridge plots\n\n\n\n\nlibrary(ggridges)\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION,\n    fill = EDUCATION,\n    color = EDUCATION\n  )\n) +\n  geom_density_ridges(alpha = 0.5)"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#outliers",
-    "href": "slides/w01-01-welcome.html#outliers",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Outliers",
-    "text": "Outliers\nWe’ll learn how to make a more useful plot later, but first let’s look into the outliers.\n\n# We want to look at the bottom 5 values of life expectancy\n# (5 just in case some points are exactly the same)\nlife %&gt;%\n  top_n(-5, lifeexp)\n\n# A tibble: 5 × 4\n  location sex     year lifeexp\n  &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 Burundi  Male    1997   40.8 \n2 Haiti    Female  2010   36.9 \n3 Haiti    Male    2010   28.8 \n4 Rwanda   Female  1994   11.2 \n5 Rwanda   Male    1994    9.14\n\n\nAre these data errors, realistic estimates, or neither?\n(Hint: Recall how life expectancy is calculated.)"
+    "objectID": "slides/w01-04-vizcat.html#muted-color-palette",
+    "href": "slides/w01-04-vizcat.html#muted-color-palette",
+    "title": "Visualising categorical data",
+    "section": "Muted color palette",
+    "text": "Muted color palette\n\n\n\n\nlibrary(ggridges)\n\nduke_palette &lt;- c(\n  \"#012169\",  # Duke blue\n  \"#C7BDD9\",  # soft lavender\n  \"#9BB7A5\",  # muted sage\n  \"#D6C3A5\",  # warm sand\n  \"#A8B7C9\",  # dusty blue\n  \"#C9A7A1\",  # dusty rose\n  \"#B9C3A3\",  # olive sage\n  \"#8FA4B8\",  # slate blue\n  \"#D9D6CC\",  # warm gray\n  \"#B7AFC8\"   # gray lavender\n\n)\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION,\n    fill = EDUCATION,\n    color = EDUCATION\n  )\n) +\n  geom_density_ridges(alpha = 0.8) +\n  scale_fill_manual(values = duke_palette) +\n  scale_color_manual(values = duke_palette)"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#data-visualization-1",
-    "href": "slides/w01-01-welcome.html#data-visualization-1",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Data visualization",
-    "text": "Data visualization\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.”\n— John Tukey\n\n\nData visualization is the creation and study of the visual representation of data.\nThere are many tools for visualizing data—R is one of them.\nThere are many approaches and systems within R for making data visualizations. ggplot2 is one of them, and it’s what we’ll use in this course."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#ggplot2-in-tidyverse",
-    "href": "slides/w01-01-welcome.html#ggplot2-in-tidyverse",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "ggplot2 \\(\\in\\) tidyverse",
-    "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is the tidyverse’s data visualization package.\n\ngg in “ggplot2” stands for Grammar of Graphics.\nInspired by the book Grammar of Graphics by Leland Wilkinson."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#grammar-of-graphics",
-    "href": "slides/w01-01-welcome.html#grammar-of-graphics",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Grammar of Graphics",
-    "text": "Grammar of Graphics\n\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic.\n\n\n\n\n\n\n\n\n\n\n\nSource: BloggoType"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#mens-gap-in-life-expectancy-by-year",
-    "href": "slides/w01-01-welcome.html#mens-gap-in-life-expectancy-by-year",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Men’s gap in life expectancy by year",
-    "text": "Men’s gap in life expectancy by year\nLet’s subset to a few countries to de-clutter the plot.\n\n\n\nlife %&gt;%\n  filter(location %in% c(\n    \"United States of America\",\n    \"Rwanda\",\n    \"China\"\n  )) %&gt;%\n  ggplot(aes(\n    x = year,\n    y = lifeexp,\n    shape = sex,\n    color = location\n  )) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nWe’ll learn to make this a lot better later!"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#hello-ggplot2",
-    "href": "slides/w01-01-welcome.html#hello-ggplot2",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Hello ggplot2!",
-    "text": "Hello ggplot2!\n\n\nggplot() is the main function in ggplot2.\nPlots are constructed in layers.\nThe structure of the code for plots can be summarized as:\n\n\nggplot(\n  data = [dataset],\n  mapping = aes(x = [x-variable], y = [y-variable])\n) +\n  geom_xxx() +\n  other_options\n\n\nThe ggplot2 package comes with the tidyverse.\n\n\nlibrary(tidyverse)\n\n\nFor help with ggplot2, see https://ggplot2.tidyverse.org/."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#anscombes-quartet-datasaurus-dozen",
-    "href": "slides/w01-01-welcome.html#anscombes-quartet-datasaurus-dozen",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Anscombe’s quartet / Datasaurus Dozen",
-    "text": "Anscombe’s quartet / Datasaurus Dozen\n\n\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dino     55.4  97.2\n 2 dino     51.5  96.0\n 3 dino     46.2  94.5\n 4 dino     42.8  91.4\n 5 dino     40.8  88.3\n 6 dino     38.7  84.9\n 7 dino     35.6  79.9\n 8 dino     33.1  77.6\n 9 dino     29.0  74.5\n10 dino     26.2  71.4\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 star     58.2  91.9\n 2 star     58.2  92.2\n 3 star     58.7  90.3\n 4 star     57.3  89.9\n 5 star     58.1  92.0\n 6 star     57.5  88.1\n 7 star     28.1  63.5\n 8 star     28.1  63.6\n 9 star     28.1  63.1\n10 star     27.6  62.8\n# ℹ 132 more rows\n\n\n\n\n\n# A tibble: 142 × 3\n   dataset      x     y\n   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n 1 bullseye  51.2  83.3\n 2 bullseye  59.0  85.5\n 3 bullseye  51.9  85.8\n 4 bullseye  48.2  85.0\n 5 bullseye  41.7  84.0\n 6 bullseye  37.9  82.6\n 7 bullseye  39.5  80.8\n 8 bullseye  39.6  82.7\n 9 bullseye  34.8  80.0\n10 bullseye  27.6  72.8\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dots     51.1  90.9\n 2 dots     50.5  89.1\n 3 dots     50.2  85.5\n 4 dots     50.1  83.1\n 5 dots     50.6  82.9\n 6 dots     50.3  83.0\n 7 dots     25.6  82.9\n 8 dots     25.5  82.9\n 9 dots     25.4  82.9\n10 dots     25.6  82.9\n# ℹ 132 more rows"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#summarising-anscombes-quartet-datasaurus-dozen",
-    "href": "slides/w01-01-welcome.html#summarising-anscombes-quartet-datasaurus-dozen",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Summarising Anscombe’s quartet / Datasaurus Dozen",
-    "text": "Summarising Anscombe’s quartet / Datasaurus Dozen\n\nsummdat &lt;- datasaurus_dozen %&gt;%\n  group_by(dataset) %&gt;%\n  summarise(\n    mean_x = mean(x),\n    mean_y = mean(y),\n    sd_x = sd(x),\n    sd_y = sd(y),\n    r = cor(x, y)\n  )"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#summarizing-anscombes-quartet-datasaurus-dozen",
-    "href": "slides/w01-01-welcome.html#summarizing-anscombes-quartet-datasaurus-dozen",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Summarizing Anscombe’s quartet / Datasaurus Dozen",
-    "text": "Summarizing Anscombe’s quartet / Datasaurus Dozen\n\n\n# A tibble: 13 × 6\n   dataset    mean_x mean_y  sd_x  sd_y       r\n   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 away         54.3   47.8  16.8  26.9 -0.0641\n 2 bullseye     54.3   47.8  16.8  26.9 -0.0686\n 3 circle       54.3   47.8  16.8  26.9 -0.0683\n 4 dino         54.3   47.8  16.8  26.9 -0.0645\n 5 dots         54.3   47.8  16.8  26.9 -0.0603\n 6 h_lines      54.3   47.8  16.8  26.9 -0.0617\n 7 high_lines   54.3   47.8  16.8  26.9 -0.0685\n 8 slant_down   54.3   47.8  16.8  26.9 -0.0690\n 9 slant_up     54.3   47.8  16.8  26.9 -0.0686\n10 star         54.3   47.8  16.8  26.9 -0.0630\n11 v_lines      54.3   47.8  16.8  26.9 -0.0694\n12 wide_lines   54.3   47.8  16.8  26.9 -0.0666\n13 x_shape      54.3   47.8  16.8  26.9 -0.0656"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#visualizing-the-data",
-    "href": "slides/w01-01-welcome.html#visualizing-the-data",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Visualizing the data",
-    "text": "Visualizing the data"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#questions",
-    "href": "slides/w01-01-welcome.html#questions",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Questions?",
-    "text": "Questions?"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#homepage",
-    "href": "slides/w01-01-welcome.html#homepage",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Homepage",
-    "text": "Homepage\nhttps://fall-2026-global-health-data-science.github.io/stat-fun/index.html\n\nAll course materials\nLinks to Canvas, GitHub, RStudio containers, etc."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#course-toolkit",
-    "href": "slides/w01-01-welcome.html#course-toolkit",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Course toolkit",
-    "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/Fall-2026-Global-Health-Data-Science\n\nRStudio containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#activities",
-    "href": "slides/w01-01-welcome.html#activities",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Activities",
-    "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nQuizzes\nExams"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#grading",
-    "href": "slides/w01-01-welcome.html#grading",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Grading",
-    "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n10%\n\n\nLabs\n15%\n\n\nMidterm 1\n25%\n\n\nMidterm 2\n25%\n\n\nMidterm 3\n25%\n\n\nFinal\nReplace lowest midterm\n\n\n\nSee course syllabus for how the final letter grade will be determined."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#wiggle-room",
-    "href": "slides/w01-01-welcome.html#wiggle-room",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Wiggle room",
-    "text": "Wiggle room\n\nAfter Drop/Add, you can miss 4 lectures and still receive full attendance credit;\nWe drop the two lowest labs;\nWe will give the opportunity for oral exam retakes for partial credit;\nWe replace the lowest midterm score with your final exam score (if it’s better; otherwise the final does not affect your grade)."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#attendance-and-participation",
-    "href": "slides/w01-01-welcome.html#attendance-and-participation",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Attendance and participation",
-    "text": "Attendance and participation\n\nDaily in lecture\nTracked for credit, but not based on correctness, only participation (often questions designed to make you think that might not have a single right answer!)"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#labs",
-    "href": "slides/w01-01-welcome.html#labs",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Labs",
-    "text": "Labs\n\nHands-on practice with data analysis\nA single exercise per lab, graded based on being there and turning in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week for roughly first half of course\nDeveloped collaboratively, but turned in individually by the end of the lab session\nWeekly throughout semester, two lowest scores dropped\nNo late work accepted"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#exams",
-    "href": "slides/w01-01-welcome.html#exams",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Exams",
-    "text": "Exams\n\nThree in-class midterm exams during semester\nFinal (optional to replace lowest grade on midterm)\nNo extensions or make-ups.\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed, and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class or be comfortable with relying on the make-up exam.\n\n\n\n\n\n\n\n\n\nIf you need testing accomodations\n\n\nMake sure I get a letter, and make your appointments in the Testing Center now."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#teams",
-    "href": "slides/w01-01-welcome.html#teams",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Teams",
-    "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#questions-1",
-    "href": "slides/w01-01-welcome.html#questions-1",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Questions?",
-    "text": "Questions?"
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#this-weeks-tasks",
-    "href": "slides/w01-01-welcome.html#this-weeks-tasks",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "This week’s tasks",
-    "text": "This week’s tasks\n\nAttend lectures and lab:\n\nComputational setup;\nGetting to know you survey;\n\n\nRead the syllabus and ask questions on Ed;\nComplete readings and videos for next class;\nSend me SDAO letters and schedule testing center appointments."
-  },
-  {
-    "objectID": "slides/w01-01-welcome.html#questions-2",
-    "href": "slides/w01-01-welcome.html#questions-2",
-    "title": "Welcome to STA/GLHLTH 198!",
-    "section": "Questions?",
-    "text": "Questions?"
+    "objectID": "slides/w01-04-vizcat.html#dont-need-the-legend",
+    "href": "slides/w01-04-vizcat.html#dont-need-the-legend",
+    "title": "Visualising categorical data",
+    "section": "Don’t need the legend",
+    "text": "Don’t need the legend\n\n\n\n\nlibrary(ggridges)\n\nduke_palette &lt;- c(\n  \"#012169\", \"#C7BDD9\", \"#9BB7A5\",\n  \"#D6C3A5\", \"#A8B7C9\", \"#C9A7A1\",\n  \"#B9C3A3\", \"#8FA4B8\", \"#D9D6CC\",\n  \"#B7AFC8\"\n)\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION,\n    fill = EDUCATION,\n    color = EDUCATION\n  )\n) +\n  geom_density_ridges(alpha = 0.6) +\n  scale_fill_manual(values = duke_palette) +\n  scale_color_manual(values = duke_palette) +\n  theme(\n    legend.position = \"none\"\n  )"
   },
   {
     "objectID": "course-syllabus.html",
@@ -1419,11 +1272,487 @@
     ]
   },
   {
+    "objectID": "slides/w01-01-welcome.html#data-science",
+    "href": "slides/w01-01-welcome.html#data-science",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Data science",
+    "text": "Data science\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nThis is a course on health data science, with an emphasis on statistical thinking and global health challenges\n\nOur process involves\n\nforming a question of interest,\n(collecting) and summarizing data,\nand interpreting and communicating results."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#global-health-data-science",
+    "href": "slides/w01-01-welcome.html#global-health-data-science",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Global health data science",
+    "text": "Global health data science\nSTA/GLHLTH 198 will\n\nprovide a tour of basic statistical methods useful in public health and biomedical research\nemphasize intuition and understanding of the methods, with a focus on critical assessment of evidence, data-driven decision-making, and effective communication of insights from data\nmake use of timely, relevant examples from global health science, with opportunities to think about what makes us human\nutilize free, modern software and reproducible research methods for transparency and data sharing"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#frequently-asked-questions",
+    "href": "slides/w01-01-welcome.html#frequently-asked-questions",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Frequently Asked Questions",
+    "text": "Frequently Asked Questions\n\nQ: What data science background does this course assume?A: None. No prior experience with data science or programming is expected.\nQ: Is this an intro statistics course?A: Statistics and data science are closely related, with substantial overlap. This course is an excellent way to begin learning statistics, but it is not a traditional high school statistics course.\nQ: Will we be doing computing?A: Yes—extensively. Computing is a core part of the course and an essential tool for learning data science and statistics."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#software",
+    "href": "slides/w01-01-welcome.html#software",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Software",
+    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nWe’ll combine the ease of viewing in Excel with …"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#software-1",
+    "href": "slides/w01-01-welcome.html#software-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Software",
+    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nthe rigor of the R programming language …"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#software-2",
+    "href": "slides/w01-01-welcome.html#software-2",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Software",
+    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nin an integrated environment. To learn more, check out the introductory video for our computing toolkit."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#the-data-science-life-cycle",
+    "href": "slides/w01-01-welcome.html#the-data-science-life-cycle",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "The data science life cycle",
+    "text": "The data science life cycle"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#life-expectancy",
+    "href": "slides/w01-01-welcome.html#life-expectancy",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Life Expectancy",
+    "text": "Life Expectancy\n\nThe Institute for Health Metrics and Evaluation (IHME) is a resource for data on a variety of important health outcomes worldwide.\nIHME maintains the Global Burden of Disease (GBD), a valuable resource for policymakers and others that quantifies health loss due to a variety of risk factors, diseases, and injuries."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#life-expectancy-1",
+    "href": "slides/w01-01-welcome.html#life-expectancy-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Life Expectancy",
+    "text": "Life Expectancy\n\nWe consider data from IHME on (estimated) infant life expectancy from the years 1994–2019 as a function of location (primarily country) and binary gender.\nHere life expectancy is the # of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#dataset-terminology",
+    "href": "slides/w01-01-welcome.html#dataset-terminology",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Dataset terminology",
+    "text": "Dataset terminology\n\nEach row is an observation\n\nEach column is a variable\n\n\n\n\nlife &lt;- readr::read_csv(\"../data/lifeexpectancy_infant.csv\")\n\nlife\n\n# A tibble: 12,240 × 4\n   location sex     year lifeexp\n   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n 1 Japan    Female  2019    87.7\n 2 Japan    Female  2018    87.6\n 3 Japan    Female  2017    87.6\n 4 Japan    Female  2016    87.4\n 5 Japan    Female  2015    87.3\n 6 Japan    Female  2014    87.1\n 7 Japan    Female  2013    86.9\n 8 Iceland  Female  2019    86.9\n 9 Iceland  Female  2018    86.8\n10 Japan    Female  2012    86.7\n# ℹ 12,230 more rows"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#whats-in-the-life-expectancy-data",
+    "href": "slides/w01-01-welcome.html#whats-in-the-life-expectancy-data",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "What’s in the life expectancy data?",
+    "text": "What’s in the life expectancy data?\nTake a glimpse at the data:\n\nlibrary(tidyverse)\nglimpse(life)\n\nRows: 12,240\nColumns: 4\n$ location &lt;chr&gt; \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\", \"Japan\"…\n$ sex      &lt;chr&gt; \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"…\n$ year     &lt;dbl&gt; 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2019, 2018, 2012, 2…\n$ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.09548, 8…"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#what-is-eda",
+    "href": "slides/w01-01-welcome.html#what-is-eda",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "What is EDA?",
+    "text": "What is EDA?\n\nExploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics\nOften, this is visual – this is what we’ll focus on first\nBut we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis – this is what we’ll focus on next"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#life-expectancy-over-time",
+    "href": "slides/w01-01-welcome.html#life-expectancy-over-time",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Life expectancy over time",
+    "text": "Life expectancy over time\n\nHow would you describe the relationship between year and life expectancy?\nWhat other variables would help us understand data points that don’t follow the overall trend?\nWhat is causing the outliers at the bottom?"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#outliers",
+    "href": "slides/w01-01-welcome.html#outliers",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Outliers",
+    "text": "Outliers\nWe’ll learn how to make a more useful plot later, but first let’s look into the outliers.\n\n# We want to look at the bottom 5 values of life expectancy\n# (5 just in case some points are exactly the same)\nlife %&gt;%\n  top_n(-5, lifeexp)\n\n# A tibble: 5 × 4\n  location sex     year lifeexp\n  &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 Burundi  Male    1997   40.8 \n2 Haiti    Female  2010   36.9 \n3 Haiti    Male    2010   28.8 \n4 Rwanda   Female  1994   11.2 \n5 Rwanda   Male    1994    9.14\n\n\nAre these data errors, realistic estimates, or neither?\n(Hint: Recall how life expectancy is calculated.)"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#data-visualization-1",
+    "href": "slides/w01-01-welcome.html#data-visualization-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Data visualization",
+    "text": "Data visualization\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.”\n— John Tukey\n\n\nData visualization is the creation and study of the visual representation of data.\nThere are many tools for visualizing data—R is one of them.\nThere are many approaches and systems within R for making data visualizations. ggplot2 is one of them, and it’s what we’ll use in this course."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#ggplot2-in-tidyverse",
+    "href": "slides/w01-01-welcome.html#ggplot2-in-tidyverse",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "ggplot2 \\(\\in\\) tidyverse",
+    "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is the tidyverse’s data visualization package.\n\ngg in “ggplot2” stands for Grammar of Graphics.\nInspired by the book Grammar of Graphics by Leland Wilkinson."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#grammar-of-graphics",
+    "href": "slides/w01-01-welcome.html#grammar-of-graphics",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\n\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic.\n\n\n\n\n\n\n\n\n\n\n\nSource: BloggoType"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#mens-gap-in-life-expectancy-by-year",
+    "href": "slides/w01-01-welcome.html#mens-gap-in-life-expectancy-by-year",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Men’s gap in life expectancy by year",
+    "text": "Men’s gap in life expectancy by year\nLet’s subset to a few countries to de-clutter the plot.\n\n\n\nlife %&gt;%\n  filter(location %in% c(\n    \"United States of America\",\n    \"Rwanda\",\n    \"China\"\n  )) %&gt;%\n  ggplot(aes(\n    x = year,\n    y = lifeexp,\n    shape = sex,\n    color = location\n  )) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nWe’ll learn to make this a lot better later!"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#hello-ggplot2",
+    "href": "slides/w01-01-welcome.html#hello-ggplot2",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Hello ggplot2!",
+    "text": "Hello ggplot2!\n\n\nggplot() is the main function in ggplot2.\nPlots are constructed in layers.\nThe structure of the code for plots can be summarized as:\n\n\nggplot(\n  data = [dataset],\n  mapping = aes(x = [x-variable], y = [y-variable])\n) +\n  geom_xxx() +\n  other_options\n\n\nThe ggplot2 package comes with the tidyverse.\n\n\nlibrary(tidyverse)\n\n\nFor help with ggplot2, see https://ggplot2.tidyverse.org/."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#anscombes-quartet-datasaurus-dozen",
+    "href": "slides/w01-01-welcome.html#anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Anscombe’s quartet / Datasaurus Dozen\n\n\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dino     55.4  97.2\n 2 dino     51.5  96.0\n 3 dino     46.2  94.5\n 4 dino     42.8  91.4\n 5 dino     40.8  88.3\n 6 dino     38.7  84.9\n 7 dino     35.6  79.9\n 8 dino     33.1  77.6\n 9 dino     29.0  74.5\n10 dino     26.2  71.4\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 star     58.2  91.9\n 2 star     58.2  92.2\n 3 star     58.7  90.3\n 4 star     57.3  89.9\n 5 star     58.1  92.0\n 6 star     57.5  88.1\n 7 star     28.1  63.5\n 8 star     28.1  63.6\n 9 star     28.1  63.1\n10 star     27.6  62.8\n# ℹ 132 more rows\n\n\n\n\n\n# A tibble: 142 × 3\n   dataset      x     y\n   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n 1 bullseye  51.2  83.3\n 2 bullseye  59.0  85.5\n 3 bullseye  51.9  85.8\n 4 bullseye  48.2  85.0\n 5 bullseye  41.7  84.0\n 6 bullseye  37.9  82.6\n 7 bullseye  39.5  80.8\n 8 bullseye  39.6  82.7\n 9 bullseye  34.8  80.0\n10 bullseye  27.6  72.8\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dots     51.1  90.9\n 2 dots     50.5  89.1\n 3 dots     50.2  85.5\n 4 dots     50.1  83.1\n 5 dots     50.6  82.9\n 6 dots     50.3  83.0\n 7 dots     25.6  82.9\n 8 dots     25.5  82.9\n 9 dots     25.4  82.9\n10 dots     25.6  82.9\n# ℹ 132 more rows"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#summarising-anscombes-quartet-datasaurus-dozen",
+    "href": "slides/w01-01-welcome.html#summarising-anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Summarising Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Summarising Anscombe’s quartet / Datasaurus Dozen\n\nsummdat &lt;- datasaurus_dozen %&gt;%\n  group_by(dataset) %&gt;%\n  summarise(\n    mean_x = mean(x),\n    mean_y = mean(y),\n    sd_x = sd(x),\n    sd_y = sd(y),\n    r = cor(x, y)\n  )"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#summarizing-anscombes-quartet-datasaurus-dozen",
+    "href": "slides/w01-01-welcome.html#summarizing-anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Summarizing Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Summarizing Anscombe’s quartet / Datasaurus Dozen\n\n\n# A tibble: 13 × 6\n   dataset    mean_x mean_y  sd_x  sd_y       r\n   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 away         54.3   47.8  16.8  26.9 -0.0641\n 2 bullseye     54.3   47.8  16.8  26.9 -0.0686\n 3 circle       54.3   47.8  16.8  26.9 -0.0683\n 4 dino         54.3   47.8  16.8  26.9 -0.0645\n 5 dots         54.3   47.8  16.8  26.9 -0.0603\n 6 h_lines      54.3   47.8  16.8  26.9 -0.0617\n 7 high_lines   54.3   47.8  16.8  26.9 -0.0685\n 8 slant_down   54.3   47.8  16.8  26.9 -0.0690\n 9 slant_up     54.3   47.8  16.8  26.9 -0.0686\n10 star         54.3   47.8  16.8  26.9 -0.0630\n11 v_lines      54.3   47.8  16.8  26.9 -0.0694\n12 wide_lines   54.3   47.8  16.8  26.9 -0.0666\n13 x_shape      54.3   47.8  16.8  26.9 -0.0656"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#visualizing-the-data",
+    "href": "slides/w01-01-welcome.html#visualizing-the-data",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Visualizing the data",
+    "text": "Visualizing the data"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#questions",
+    "href": "slides/w01-01-welcome.html#questions",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#homepage",
+    "href": "slides/w01-01-welcome.html#homepage",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Homepage",
+    "text": "Homepage\nhttps://fall-2026-global-health-data-science.github.io/stat-fun/index.html\n\nAll course materials\nLinks to Canvas, GitHub, RStudio containers, etc."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#course-toolkit",
+    "href": "slides/w01-01-welcome.html#course-toolkit",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Course toolkit",
+    "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/Fall-2026-Global-Health-Data-Science\n\nRStudio containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#activities",
+    "href": "slides/w01-01-welcome.html#activities",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Activities",
+    "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nQuizzes\nExams"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#grading",
+    "href": "slides/w01-01-welcome.html#grading",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Grading",
+    "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n10%\n\n\nLabs\n15%\n\n\nMidterm 1\n25%\n\n\nMidterm 2\n25%\n\n\nMidterm 3\n25%\n\n\nFinal\nReplace lowest midterm\n\n\n\nSee course syllabus for how the final letter grade will be determined."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#wiggle-room",
+    "href": "slides/w01-01-welcome.html#wiggle-room",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Wiggle room",
+    "text": "Wiggle room\n\nAfter Drop/Add, you can miss 4 lectures and still receive full attendance credit;\nWe drop the two lowest labs;\nWe will give the opportunity for oral exam retakes for partial credit;\nWe replace the lowest midterm score with your final exam score (if it’s better; otherwise the final does not affect your grade)."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#attendance-and-participation",
+    "href": "slides/w01-01-welcome.html#attendance-and-participation",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Attendance and participation",
+    "text": "Attendance and participation\n\nDaily in lecture\nTracked for credit, but not based on correctness, only participation (often questions designed to make you think that might not have a single right answer!)"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#labs",
+    "href": "slides/w01-01-welcome.html#labs",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Labs",
+    "text": "Labs\n\nHands-on practice with data analysis\nA single exercise per lab, graded based on being there and turning in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week for roughly first half of course\nDeveloped collaboratively, but turned in individually by the end of the lab session\nWeekly throughout semester, two lowest scores dropped\nNo late work accepted"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#exams",
+    "href": "slides/w01-01-welcome.html#exams",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Exams",
+    "text": "Exams\n\nThree in-class midterm exams during semester\nFinal (optional to replace lowest grade on midterm)\nNo extensions or make-ups.\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed, and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class or be comfortable with relying on the make-up exam.\n\n\n\n\n\n\n\n\n\nIf you need testing accomodations\n\n\nMake sure I get a letter, and make your appointments in the Testing Center now."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#teams",
+    "href": "slides/w01-01-welcome.html#teams",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Teams",
+    "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#questions-1",
+    "href": "slides/w01-01-welcome.html#questions-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#this-weeks-tasks",
+    "href": "slides/w01-01-welcome.html#this-weeks-tasks",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "This week’s tasks",
+    "text": "This week’s tasks\n\nAttend lectures and lab:\n\nComputational setup;\nGetting to know you survey;\n\n\nRead the syllabus and ask questions on Ed;\nComplete readings and videos for next class;\nSend me SDAO letters and schedule testing center appointments."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#questions-2",
+    "href": "slides/w01-01-welcome.html#questions-2",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#number-of-variables-involved",
+    "href": "slides/w01-03-viznum.html#number-of-variables-involved",
+    "title": "Visualising numeric data",
+    "section": "Number of variables involved",
+    "text": "Number of variables involved\n\nUnivariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariable/multivariate data analysis - relationship between many variables at once, sometimes focusing on the relationship between two while conditioning for others. (Often we reserve multivariate for multiple outcomes, and multivariable for multiple predictors.)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#types-of-variables",
+    "href": "slides/w01-03-viznum.html#types-of-variables",
+    "title": "Visualising numeric data",
+    "section": "Types of variables",
+    "text": "Types of variables\n\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only a finite number of distinct values (e.g., counts), respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#data-life-expectancy",
+    "href": "slides/w01-03-viznum.html#data-life-expectancy",
+    "title": "Visualising numeric data",
+    "section": "Data: Life Expectancy",
+    "text": "Data: Life Expectancy\n\n\n\nWe focus again on the IHME data on estimated life expectancy for a variety of countries and locations worldwide in the year 2019.\n\n\n\nglimpse(lifespan2019)\n\nRows: 408\nColumns: 5\n$ location        &lt;chr&gt; \"Japan\", \"Iceland\", \"Singapore\", \"Switz…\n$ sex             &lt;chr&gt; \"Female\", \"Female\", \"Female\", \"Female\",…\n$ lifeexp         &lt;dbl&gt; 87.65871, 86.85256, 86.68768, 85.81825,…\n$ worldbankregion &lt;chr&gt; \"East Asia and Pacific\", \"Europe and Ce…\n$ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#selected-variables",
+    "href": "slides/w01-03-viznum.html#selected-variables",
+    "title": "Visualising numeric data",
+    "section": "Selected variables",
+    "text": "Selected variables\n\n\n\n\nVariable\nDescription\n\n\n\nlocation\nCountry or area name\n\n\nworldbankregion\nWorld region, as classified by the World Bank\n\n\npop\nEstimated 2019 population of the location\n\n\nsex\nBinary sex as reported by the country\n\n\nlifeexp\nLife expectancy from infancy"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#variable-types",
+    "href": "slides/w01-03-viznum.html#variable-types",
+    "title": "Visualising numeric data",
+    "section": "Variable types",
+    "text": "Variable types\n\n\n\n\nVariable\nType\n\n\n\nlocation\nCategorical, not ordinal\n\n\nworldbankregion\nCategorical, not ordinal\n\n\npop\nNumerical, discrete\n\n\nsex\nCategorical, not ordinal\n\n\nlifeexp\nNumerical, continuous\n\n\n\n\nIn the full data (not subset to 2019), year is an additional numerical, discrete variable."
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#describing-shapes-of-numerical-distributions",
+    "href": "slides/w01-03-viznum.html#describing-shapes-of-numerical-distributions",
+    "title": "Visualising numeric data",
+    "section": "Describing shapes of numerical distributions",
+    "text": "Describing shapes of numerical distributions\n\n\nShape\n\nSkewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)\nModality: unimodal, bimodal, multimodal, uniform\n\n\n\nCenter: mean (mean), median (median), mode\n\nSpread: range (range), standard deviation (sd), variance (square of sd), interquartile range (IQR)\nUnusual observations"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#measures-of-center",
+    "href": "slides/w01-03-viznum.html#measures-of-center",
+    "title": "Visualising numeric data",
+    "section": "Measures of center",
+    "text": "Measures of center\nConsider a random variable \\(x_i\\) that is the estimated life expectancy for country \\(i\\), \\(i = 1, \\ldots, n\\), among \\(n\\) countries.\n\n\nMean: estimated as\n\n\\[ \\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\\]"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#measures-of-center-1",
+    "href": "slides/w01-03-viznum.html#measures-of-center-1",
+    "title": "Visualising numeric data",
+    "section": "Measures of center",
+    "text": "Measures of center\n\n\nMedian: middle number (50th percentile), \\(x_{(n+1)/2}\\)\n\nFor \\(n\\) odd, the median is the middle number.\nFor \\(n\\) even, the median is the mean of the two middle numbers.\nJust remember: it splits the ordered data in half.\n\n\n\nMode: most frequent value in the data set"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#measures-of-spread",
+    "href": "slides/w01-03-viznum.html#measures-of-spread",
+    "title": "Visualising numeric data",
+    "section": "Measures of spread",
+    "text": "Measures of spread\n\nvariance: average squared distance from mean\n\nstandard deviation (sd): square root of variance (on same scale as data). The sample variance \\(s^2\\) is estimated in a single sample as \\[\\frac{\\sum_{i=1}^n (x_i-\\overline{x})^2}{n-1}\\]\n\nwe think of 1 sd as a sizeable difference. For example, height of college students in the US has a sd \\(\\approx\\) 3 in men and \\(\\approx\\) 2.5 in women"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#measures-of-spread-1",
+    "href": "slides/w01-03-viznum.html#measures-of-spread-1",
+    "title": "Visualising numeric data",
+    "section": "Measures of spread",
+    "text": "Measures of spread\n\nrange: difference between highest and lowest values, e.g. \\(x_{(n)}-x_{(1)}\\)\n\ninterquartile range (IQR): difference between 75th and 25th %iles\n\nwe think of this as pretty big too\n75th %ile of height among male college students in the US is 5’11”, and the 25th %ile is 5’7”, so the IQR is 4”\nfor female students, the 75th %ile is 5’5.6”, 25th %ile is 5’1.6”, and IQR is also 4”"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#scatterplot",
+    "href": "slides/w01-03-viznum.html#scatterplot",
+    "title": "Visualising numeric data",
+    "section": "Scatterplot",
+    "text": "Scatterplot\nPreviously we viewed a scatterplot showing the relationship between life expectancy of females and males in each location.\n\n\n\nggplot(\n  lifeexpwide2019,\n  aes(\n    x = Female,\n    y = Male\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\",\n    subtitle = \"2019\",\n    x = \"Female life expectancy\",\n    y = \"Male life expectancy\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#histogram-1",
+    "href": "slides/w01-03-viznum.html#histogram-1",
+    "title": "Visualising numeric data",
+    "section": "Histogram",
+    "text": "Histogram\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#histograms-and-binwidth-binwidth-0.5",
+    "href": "slides/w01-03-viznum.html#histograms-and-binwidth-binwidth-0.5",
+    "title": "Visualising numeric data",
+    "section": "Histograms and binwidth: binwidth = 0.5\n",
+    "text": "Histograms and binwidth: binwidth = 0.5\n\n\n\nThe bin width is the width of the interval used for grouping the data. It is selected automatically by R, but we can alter it. For example, a bin width of \\(\\frac{1}{2}\\) plots a bar for each 6 month life expectancy group, while a bin width of 10 plots a bar for groups of 10 years.\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 0.5)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#histograms-and-binwidth-binwidth-3",
+    "href": "slides/w01-03-viznum.html#histograms-and-binwidth-binwidth-3",
+    "title": "Visualising numeric data",
+    "section": "Histograms and binwidth: binwidth = 3\n",
+    "text": "Histograms and binwidth: binwidth = 3\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 3)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#histograms-and-binwidth-binwidth-10",
+    "href": "slides/w01-03-viznum.html#histograms-and-binwidth-binwidth-10",
+    "title": "Visualising numeric data",
+    "section": "Histograms and binwidth: binwidth = 10\n",
+    "text": "Histograms and binwidth: binwidth = 10\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 10)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#customizing-histograms",
+    "href": "slides/w01-03-viznum.html#customizing-histograms",
+    "title": "Visualising numeric data",
+    "section": "Customizing histograms",
+    "text": "Customizing histograms\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 3) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    title = \"2019 Life Expectancy of Women\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#fill-with-a-categorical-variable",
+    "href": "slides/w01-03-viznum.html#fill-with-a-categorical-variable",
+    "title": "Visualising numeric data",
+    "section": "Fill with a categorical variable",
+    "text": "Fill with a categorical variable\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_histogram(\n    binwidth = 3,\n    alpha = 0.5\n  ) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    title = \"2019 Life Expectancy of Women\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#facet-with-a-categorical-variable",
+    "href": "slides/w01-03-viznum.html#facet-with-a-categorical-variable",
+    "title": "Visualising numeric data",
+    "section": "Facet with a categorical variable",
+    "text": "Facet with a categorical variable\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_histogram(\n    binwidth = 3,\n    alpha = 0.5\n  ) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    title = \"2019 Life Expectancy of Women\"\n  ) +\n  facet_wrap(~worldbankregion, nrow = 3)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#facet-with-a-categorical-variable-fixing-labels",
+    "href": "slides/w01-03-viznum.html#facet-with-a-categorical-variable-fixing-labels",
+    "title": "Visualising numeric data",
+    "section": "Facet with a categorical variable (fixing labels)",
+    "text": "Facet with a categorical variable (fixing labels)\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_histogram(\n    binwidth = 3,\n    alpha = 0.5\n  ) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    fill = \"World Bank Region\",\n    title = \"2019 Life Expectancy of Women\"\n  ) +\n  facet_wrap(~worldbankregion, nrow = 3) +\n  theme(\n    strip.background = element_blank(),\n    strip.text.x = element_blank()\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nWhich version of all these plots seems most useful, and why?"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#density-plot-1",
+    "href": "slides/w01-03-viznum.html#density-plot-1",
+    "title": "Visualising numeric data",
+    "section": "Density plot",
+    "text": "Density plot\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density()\n\nA density function is a function whose value at any given point can be interpreted as providing a relative likelihood of values. That is, higher values of the density function indicate values of the random variable that are more likely to be observed."
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#density-plots-adjust-0.5",
+    "href": "slides/w01-03-viznum.html#density-plots-adjust-0.5",
+    "title": "Visualising numeric data",
+    "section": "Density plots: adjust = 0.5\n",
+    "text": "Density plots: adjust = 0.5\n\n\n\n\nThe bandwidth is a parameter that specifies the degree of smoothing. A small bandwidth shows many bumps (like a histogram with a small bin width), while a large bandwidth smooths over many bumps. It is specified using the adjust argument.\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 0.5)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#density-plots-adjust-1",
+    "href": "slides/w01-03-viznum.html#density-plots-adjust-1",
+    "title": "Visualising numeric data",
+    "section": "Density plots: adjust = 1\n",
+    "text": "Density plots: adjust = 1\n\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 1)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#density-plots-adjust-2",
+    "href": "slides/w01-03-viznum.html#density-plots-adjust-2",
+    "title": "Visualising numeric data",
+    "section": "Density plots: adjust = 2\n",
+    "text": "Density plots: adjust = 2\n\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 2)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#customizing-density-plots",
+    "href": "slides/w01-03-viznum.html#customizing-density-plots",
+    "title": "Visualising numeric data",
+    "section": "Customizing density plots",
+    "text": "Customizing density plots\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 1) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Density\",\n    title = \"2019 Life Expectancy of Women\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#adding-a-categorical-variable",
+    "href": "slides/w01-03-viznum.html#adding-a-categorical-variable",
+    "title": "Visualising numeric data",
+    "section": "Adding a categorical variable",
+    "text": "Adding a categorical variable\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_density(adjust = 1) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Density\",\n    title = \"2019 Life Expectancy of Women\",\n    fill = \"Region\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#box-plot-1",
+    "href": "slides/w01-03-viznum.html#box-plot-1",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_boxplot() + theme(\n  axis.title.y = element_blank(),\n  axis.text.y  = element_blank(),\n  axis.ticks.y = element_blank()\n)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#box-plot-2",
+    "href": "slides/w01-03-viznum.html#box-plot-2",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\n\n\n\n\n\n\n\n\n\n\n\n\nTechnical specifications vary across software packages\n\nMedian: line in the middle of the box\n\nHinges (25th and 75th percentiles): edges of the box\n\nUpper whisker: extends to the largest data point no more than (1.5 IQR) above the upper hinge (75th percentile); similarly for the lower whisker\n\nOutliers: observations beyond the whiskers, sometimes plotted"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#comparing-box-plots-and-density-plots",
+    "href": "slides/w01-03-viznum.html#comparing-box-plots-and-density-plots",
+    "title": "Visualising numeric data",
+    "section": "Comparing box plots and density plots",
+    "text": "Comparing box plots and density plots\n\n\n\n\n\n\n\n\n\n\n\n\nWhat features of the distribution do both plots show well?\nWhat additional information does the density plot provide?\nWhat additional information does the box plot provide?\nIs the distribution symmetric or skewed?"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#box-plot-3",
+    "href": "slides/w01-03-viznum.html#box-plot-3",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\nThe distribution of population is highly skewed.\n\n\n\n\n\n\n\n\n\n\n\n\nMost countries have relatively small populations.\nA few countries have extremely large populations.\nThese large populations appear as outliers.\nThe long right tail indicates a right-skewed distribution."
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#box-plot-4",
+    "href": "slides/w01-03-viznum.html#box-plot-4",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\n\nHere we plot the natural logarithm of the population because the original population values are highly skewed (primarily due to China and India). On the log scale, the largest countries are no longer extreme outliers, and the smallest populations become the outliers.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe log (ln) transformation reduces the effect of extremely large populations.\nThe distribution is much more symmetric than on the original scale.\nCountries with the smallest populations now appear as outliers.\nLog transformations are often useful for variables that span several orders of magnitude."
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#customizing-box-plots",
+    "href": "slides/w01-03-viznum.html#customizing-box-plots",
+    "title": "Visualising numeric data",
+    "section": "Customizing box plots",
+    "text": "Customizing box plots\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(aes(x = lifeexp)) +\n  geom_boxplot() +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = NULL,\n    title = \"2019 Life Expectancy of Women\"\n  ) +\n  theme(\n    axis.ticks.y = element_blank(),\n    axis.text.y = element_blank()\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum.html#adding-a-categorical-variable-1",
+    "href": "slides/w01-03-viznum.html#adding-a-categorical-variable-1",
+    "title": "Visualising numeric data",
+    "section": "Adding a categorical variable",
+    "text": "Adding a categorical variable\n\n\n\n\nlifespan2019 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      y = worldbankregion\n    )\n  ) +\n  geom_boxplot() +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = NULL,\n    title = \"2019 Life Expectancy of Women\",\n    subtitle = \"By region\"\n  )"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "STA 198: Introduction to Global Health Data Science",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n1\nMon, Aug 24\nWelcome to STA 198!\n📝 Syllabus\n\n🖥️ slides 01 🖥️ slides 02\n\n\n\n\n\nWed, Aug 26\nMeet the toolkit\n📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto  🎥 Code along :: First data viz with UN Votes\n\n\n\n\n\n\nThu, Aug 27\nLab 0: Mise en place\n\n\nLab 0 due at the end of lab session (not graded)\n\n\n2\nMon, Aug 31\nARC Presentation  Grammar of data visualization\n📗 r4ds - chp 1  📘 ims - chp 4  🎥 Visualizing data  🎥 Building a plot step-by-step with ggplot2  🎥 Grammar of graphics  🎥 Code along :: First look at Palmer Penguins\n\n\nslides 0101 slides 02)\n\n\n\n\nWed, Sep 2\nGrammar of data transformation\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\n\n\nThu, Sep 3\nLab 1: Exploring NC Counties\n\n\nLab 1 due at the end of the lab session\n\n\n3\nMon, Sep 7\nNo lecture - Labor Day\n\n\n\n\n\n\nWed, Sep 9\nExploratory data analysis I\nTo be posted\n\nHW 1 due at 11:59 pm\n\n\n\nThu, Sep 10\nLab 2: Get in teams then group_by()\n\nTo be posted\n\nLab 2 due at the end of the lab session\n\n\n4\nMon, Sep 14\nExploratory data analysis II\nTo be posted\n\n\n\n\n\nWed, Sep 16\nTidying data\nTo be posted\n\nHW 2 due at 11:59 pm\n\n\n\nThu, Sep 17\nLab 3: Inflation everywhere\nTo be posted\n\nLab 3 due at the end of the lab session\n\n\n5\nMon, Sep 21\nJoining data\nTo be posted\n\n\n\n\n\nWed, Sep 23\nData types and classes\nTo be posted\n\nHW 3 due at 11:59 pm\n\n\n\nThu, Sep 24\nLab 4: Changes in college athletics\nTo be posted\n\nLab 4 due at the end of lab session\n\n\n6\nMon, Sep 28\nImporting and recoding data\nTo be posted\n\n\n\n\n\nWed, Sep 30\nWeb scraping a single page\nTo be posted\n\nHW 4 due at 11:59 pm\n\n\n\nThu, Oct 1\nExam 1 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Oct 4\n\n\n\nExam 1 take-home due at noon (12 pm)\n\n\n7\nMon, Oct 5\nExam 1 review\nTo be posted\n\n\n\n\n\nWed, Oct 7\nExam 1 - In-class\nTo be posted\n\n\n\n\n\nThu, Oct 8\nProject milestone 1 - Working collaboratively [45 mins]  Project milestone 2 - Project proposals [30 mins]\nTo be posted\n\nProject milestone 1 due at the end of lab session\n\n\n\nFri, Oct 9\n\n\n\nMidterm course evaluation due at 11:59 pm (optional)\n\n\n8\nMon, Oct 12\nNo Lecture - Fall Break\nTo be posted\n\n\n\n\n\nWed, Oct 14\nWeb scraping many pages\nTo be posted\n\nProject milestone 2 due at 11:59 pm\n\n\n\nThu, Oct 15\nLab 5: TBD\nTo be posted\n\nLab 5 due at the end of lab session\n\n\n9\nMon, Oct 19\nData science ethics\nTo be posted\n\nPeer evaluation 1 due at 11:59 pm\n\n\n\nMon, Oct 19\nThe language of models\nTo be posted\n\n\n\n\n\nTue, Oct 20\nProject milestone 3 - Improve and progress\nTo be posted\n\nProject milestone 3 at the end of lab session\n\n\n10\nMon, Oct 26\nLinear regression with a single predictor\nTo be posted\n\n\n\n\n\nWed, Oct 28\nLinear regression with multiple predictors\nTo be posted\n\nHW 5 due at 11:59 pm\n\n\n\nThu, Oct 29\nProject milestone 4 - Peer review [30 minutes]  Lab 6: TBD\nTo be posted\n\nProject milestone 4 at the end of lab session  Lab 6 due at the end of lab session\n\n\n11\nMon, Nov 2\nModel selection and overfitting\nTo be posted\n\nPeer evaluation 2 due at 11:59 pm\n\n\n\nWed, Nov 4\nDeveloping and communicating data science results\nTo be posted\n\n\n\n\n\nThu, Nov 5\nProject milestone 6 - Presentation\nTo be posted\n\nProject milestone 6 presentation due at the start of lab session\n\n\n12\nMon, Nov 9\nLogistic regression\nTo be posted\n\nPeer evaluation 3 due at 11:59 pm\n\n\n\nWed, Nov 11\nSpending your data\nTo be posted\n\nHW 6 due at 11:59 pm\n\n\n\nThu, Nov 12\nExam 2 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Nov 15\n\n\n\nExam 2 take-home due at noon (12 pm)\n\n\n13\nMon, Nov 16\nExam 2 review\nTo be posted\n\n\n\n\n\nWed, Nov 18\nExam 2 - In-class\nTo be posted\n\n\n\n\n\nThu, Nov 19\nLab 7: Leavin’ on a jet plane\nTo be posted\n\nLab 7 due at the end of lab session\n\n\n14\nMon, Nov 23\nEvaluating models\nTo be posted\n\nProject milestone 6 write-up due at 11:59 pm\n\n\n\nWed, Nov 25\nNo lecture - Thanksgiving\nTo be posted\n\n\n\n\n\nWed, Nov 25\nNo lab - Thanksgiving\nTo be posted\n\n\n\n\n\nSat, Nov 28\n\n\n\n\n\n\n15\nMon, Nov 30\nQuantifying uncertainty with bootstrap intervals\nTo be posted\n\nPeer evaluation 4 due at 11:59 pm\n\n\n\nWed, Dec 2\nMaking decisions with randomization tests\nTo be posted\n\nHW 7 due at 11:59 pm\n\n\n\nFri, Dec 4\nLab 8: Inference\nTo be posted\n\nLab 8 due at the end of lab session\n\n\n\nSat, Dec 5\n\n\n\n\n\n\n\nNA\nFinal review (time TBD, location TBD)\n\n\n\n\n\n16\nThu, Dec 10\nFinal (9 am - 12 pm)\nTo be posted",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n1\nMon, Aug 24\nWelcome to STA 198!\n📝 Syllabus\n\n🖥️ slides 01 🖥️ slides 02 🖥️ slides 03 🖥️ slides 04\n\n\n\n\n\nWed, Aug 26\nMeet the toolkit\n📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto  🎥 Code along :: First data viz with UN Votes\n\n\n\n\n\n\nThu, Aug 27\nLab 0: Mise en place\n\n\nLab 0 due at the end of lab session (not graded)\n\n\n2\nMon, Aug 31\nARC Presentation  Grammar of data visualization\n📗 r4ds - chp 1  📘 ims - chp 4  🎥 Visualizing data  🎥 Building a plot step-by-step with ggplot2  🎥 Grammar of graphics  🎥 Code along :: First look at Palmer Penguins\n\n\nslides 0101 slides 02)\n\n\n\n\nWed, Sep 2\nGrammar of data transformation\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\n\n\nThu, Sep 3\nLab 1: Exploring NC Counties\n\n\nLab 1 due at the end of the lab session\n\n\n3\nMon, Sep 7\nNo lecture - Labor Day\n\n\n\n\n\n\nWed, Sep 9\nExploratory data analysis I\nTo be posted\n\nHW 1 due at 11:59 pm\n\n\n\nThu, Sep 10\nLab 2: Get in teams then group_by()\n\nTo be posted\n\nLab 2 due at the end of the lab session\n\n\n4\nMon, Sep 14\nExploratory data analysis II\nTo be posted\n\n\n\n\n\nWed, Sep 16\nTidying data\nTo be posted\n\nHW 2 due at 11:59 pm\n\n\n\nThu, Sep 17\nLab 3: Inflation everywhere\nTo be posted\n\nLab 3 due at the end of the lab session\n\n\n5\nMon, Sep 21\nJoining data\nTo be posted\n\n\n\n\n\nWed, Sep 23\nData types and classes\nTo be posted\n\nHW 3 due at 11:59 pm\n\n\n\nThu, Sep 24\nLab 4: Changes in college athletics\nTo be posted\n\nLab 4 due at the end of lab session\n\n\n6\nMon, Sep 28\nImporting and recoding data\nTo be posted\n\n\n\n\n\nWed, Sep 30\nWeb scraping a single page\nTo be posted\n\nHW 4 due at 11:59 pm\n\n\n\nThu, Oct 1\nExam 1 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Oct 4\n\n\n\nExam 1 take-home due at noon (12 pm)\n\n\n7\nMon, Oct 5\nExam 1 review\nTo be posted\n\n\n\n\n\nWed, Oct 7\nExam 1 - In-class\nTo be posted\n\n\n\n\n\nThu, Oct 8\nProject milestone 1 - Working collaboratively [45 mins]  Project milestone 2 - Project proposals [30 mins]\nTo be posted\n\nProject milestone 1 due at the end of lab session\n\n\n\nFri, Oct 9\n\n\n\nMidterm course evaluation due at 11:59 pm (optional)\n\n\n8\nMon, Oct 12\nNo Lecture - Fall Break\nTo be posted\n\n\n\n\n\nWed, Oct 14\nWeb scraping many pages\nTo be posted\n\nProject milestone 2 due at 11:59 pm\n\n\n\nThu, Oct 15\nLab 5: TBD\nTo be posted\n\nLab 5 due at the end of lab session\n\n\n9\nMon, Oct 19\nData science ethics\nTo be posted\n\nPeer evaluation 1 due at 11:59 pm\n\n\n\nMon, Oct 19\nThe language of models\nTo be posted\n\n\n\n\n\nTue, Oct 20\nProject milestone 3 - Improve and progress\nTo be posted\n\nProject milestone 3 at the end of lab session\n\n\n10\nMon, Oct 26\nLinear regression with a single predictor\nTo be posted\n\n\n\n\n\nWed, Oct 28\nLinear regression with multiple predictors\nTo be posted\n\nHW 5 due at 11:59 pm\n\n\n\nThu, Oct 29\nProject milestone 4 - Peer review [30 minutes]  Lab 6: TBD\nTo be posted\n\nProject milestone 4 at the end of lab session  Lab 6 due at the end of lab session\n\n\n11\nMon, Nov 2\nModel selection and overfitting\nTo be posted\n\nPeer evaluation 2 due at 11:59 pm\n\n\n\nWed, Nov 4\nDeveloping and communicating data science results\nTo be posted\n\n\n\n\n\nThu, Nov 5\nProject milestone 6 - Presentation\nTo be posted\n\nProject milestone 6 presentation due at the start of lab session\n\n\n12\nMon, Nov 9\nLogistic regression\nTo be posted\n\nPeer evaluation 3 due at 11:59 pm\n\n\n\nWed, Nov 11\nSpending your data\nTo be posted\n\nHW 6 due at 11:59 pm\n\n\n\nThu, Nov 12\nExam 2 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Nov 15\n\n\n\nExam 2 take-home due at noon (12 pm)\n\n\n13\nMon, Nov 16\nExam 2 review\nTo be posted\n\n\n\n\n\nWed, Nov 18\nExam 2 - In-class\nTo be posted\n\n\n\n\n\nThu, Nov 19\nLab 7: Leavin’ on a jet plane\nTo be posted\n\nLab 7 due at the end of lab session\n\n\n14\nMon, Nov 23\nEvaluating models\nTo be posted\n\nProject milestone 6 write-up due at 11:59 pm\n\n\n\nWed, Nov 25\nNo lecture - Thanksgiving\nTo be posted\n\n\n\n\n\nWed, Nov 25\nNo lab - Thanksgiving\nTo be posted\n\n\n\n\n\nSat, Nov 28\n\n\n\n\n\n\n15\nMon, Nov 30\nQuantifying uncertainty with bootstrap intervals\nTo be posted\n\nPeer evaluation 4 due at 11:59 pm\n\n\n\nWed, Dec 2\nMaking decisions with randomization tests\nTo be posted\n\nHW 7 due at 11:59 pm\n\n\n\nFri, Dec 4\nLab 8: Inference\nTo be posted\n\nLab 8 due at the end of lab session\n\n\n\nSat, Dec 5\n\n\n\n\n\n\n\nNA\nFinal review (time TBD, location TBD)\n\n\n\n\n\n16\nThu, Dec 10\nFinal (9 am - 12 pm)\nTo be posted",
     "crumbs": [
       "Course information",
       "Schedule"
