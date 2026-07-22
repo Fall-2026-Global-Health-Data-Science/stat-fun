@@ -3,8 +3,8 @@ project:
 
 website:
   page-navigation: true
-  title: "STA 199"
-  description: "Homepage for STA 199 - Introduction to Data Science at Duke University, Fall 2026."
+  title: "STA 198"
+  description: "Homepage for STA 198 - Introduction to Global Health Data Science at Duke University, Fall 2026."
   site-url: "https://fall-2026-global-health-data-science.github.io"
 
   repo-url: https://github.com/sta199-f26/sta199-f26.github.io/

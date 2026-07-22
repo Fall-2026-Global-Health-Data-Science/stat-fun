@@ -1,0 +1,942 @@
+---
+title: "Visualising categorical data"
+subtitle: "Introduction to Global Health Data Science"
+date: "2026-08-26"
+format:
+  revealjs:
+    auto-stretch: false
+---
+
+```{r, child="setup.Rmd", echo=FALSE}
+```
+
+
+```{r}
+#| label: packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(openintro)
+library(ggridges)
+
+gats <- read_csv("../data/gats_rev.csv")
+
+gats <- gats |>
+  mutate(
+    RESIDENCE = factor(
+      RESIDENCE,
+      levels = c(1, 2),
+      labels = c("Urban", "Rural")
+    ),
+    PROVINCE = factor(
+      PROVINCE,
+      levels = 1:31,
+      labels = c(
+        "Beijing", "Tianjin", "Hebei", "Shanxi", "Neimenggu",
+        "Liaoning", "Jilin", "Heilongjiang", "Shanghai", "Jiangsu",
+        "Zhejiang", "Anhui", "Fujian", "Jiangxi", "Shangdong",
+        "Henan", "Hubei", "Hunan", "Guangdong", "Guangxi",
+        "Hainan", "Chongqing", "Sichuan", "Guizhou", "Yunnan",
+        "Xizang", "Shaanxi", "Gansu", "Qinghai", "Ningxia",
+        "Xinjiang"
+      )
+    ),
+    REGION6 = factor(
+      REGION6,
+      levels = 1:6,
+      labels = c(
+        "North", "North-East", "East",
+        "South-Central", "South-West", "North-West"
+      )
+    ),
+    REGION3 = factor(
+      REGION3,
+      levels = 1:3,
+      labels = c("East", "Central", "West")
+    ),
+    GENDER = factor(
+      GENDER,
+      levels = c(1, 2),
+      labels = c("Male", "Female")
+    ),
+    CURRENTSMOKE = factor(
+      CURRENTSMOKE,
+      levels = c(1, 2, 7),
+      labels = c("Yes", "No", "Don't Know")
+    ),
+    EDUCATION = factor(
+      EDUCATION,
+      levels = c(1, 2, 3, 4, 5, 6, 7, 8, 77, 99),
+      labels = c(
+        "None",
+        "Less than Primary School",
+        "Primary School",
+        "Less than Secondary School",
+        "Secondary School",
+        "High School",
+        "University",
+        "Postgraduate",
+        "Don't Know",
+        "Refused"
+      )
+    ),
+    OCCUPATION = factor(
+      OCCUPATION,
+      levels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 77, 99),
+      labels = c(
+        "Farming",
+        "Government",
+        "Business",
+        "Teacher",
+        "Healthcare",
+        "Student",
+        "Soldier",
+        "Unemployed",
+        "Retired",
+        "Other",
+        "Don't Know",
+        "Refused"
+      )
+    ),
+    HEARDOFECIG = factor(
+      HEARDOFECIG,
+      levels = c(1, 2, 9),
+      labels = c("Yes", "No", "Refused")
+    ),
+    ECIGUSE = factor(
+      ECIGUSE,
+      levels = c(1, 2, 3, 9),
+      labels = c(
+        "Daily",
+        "Less than Daily",
+        "Not at All",
+        "Refused"
+      )
+    ),
+    TRYSTOP = factor(
+      TRYSTOP,
+      levels = c(1, 2, 9),
+      labels = c("Yes", "No", "Refused")
+    ),
+    HOMESMOKERULES = factor(
+      HOMESMOKERULES,
+      levels = c(1, 2, 3, 4, 7, 9),
+      labels = c(
+        "Allowed",
+        "Not Allowed but Exceptions",
+        "Never Allowed",
+        "No Rules",
+        "Don't Know",
+        "Refused"
+      )
+    ),
+    SMOKESICK = factor(
+      SMOKESICK,
+      levels = c(1, 2, 7, 9),
+      labels = c(
+        "Yes",
+        "No",
+        "Don't Know",
+        "Refused"
+      )
+    ),
+    SMOKECANCER = factor(
+      SMOKECANCER,
+      levels = c(1, 2, 7, 9),
+      labels = c(
+        "Yes",
+        "No",
+        "Don't Know",
+        "Refused"
+      )
+    )
+  )
+```
+
+# Recap
+
+---
+
+## Variables
+
+- **Numerical** variables can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values.
+- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
+
+---
+
+### Data
+
+We consider data from the Global Adult Tobacco Survey (GATS), which is designed to provide nationally-representative data on non-institutionalized people 15 years and older. This survey is a global standard for systematically monitoring adult tobacco use and is produced by the Centers for Disease Control (CDC) in collaboration with the World Health Organization (WHO), RTI International, and Johns Hopkins University.
+
+China has the largest smoking population in the world and accounts for roughly 40% of tobacco consumption worldwide. We will focus on GATS data from China in 2018 (the most recent survey year), but note data from other countries are available from the [WHO's Microdata Repository](https://extranet.who.int/ncdsmicrodata/index.php/home).
+
+---
+
+### Data
+
+```{r}
+#| echo: true
+
+glimpse(gats)
+```
+
+---
+
+### Selected variables
+
+| Variable | Description |
+|----------|-------------|
+| `CURRENTSMOKE` | Current smoking status (yes, no, or don't know) |
+| `AGE` | Computed from date of birth |
+| `EDUCATION` | Highest level of education completed |
+| `GENDER` | Interviewer-recorded gender (male, female, or missing/NA) |
+| `PROVINCE` | Province of residence |
+
+Other variables are also available in the dataset. Sample survey weights are not included but should be used to obtain nationally representative estimates (our unweighted estimates are fairly close for the quantities we consider today).
+
+---
+
+# Bar plot
+
+---
+
+## Bar plot
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+ggplot(gats, aes(x = CURRENTSMOKE)) +
+  geom_bar()
+```
+
+</div>
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(gats, aes(x = CURRENTSMOKE)) +
+  geom_bar()
+```
+
+:::
+
+::::
+
+---
+
+
+## Stacked bar plot
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar()
+```
+
+</div>
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar()
+```
+
+:::
+
+::::
+
+---
+
+## Ok, I dislike those colors
+
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar() +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Count",
+    fill = "Gender"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar() +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Count",
+    fill = "Gender"
+  )
+```
+
+:::
+
+::::
+
+---
+
+## Segmented bar plot
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Proportion",
+    fill = "Gender"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Proportion",
+    fill = "Gender"
+  )
+```
+
+<div style="font-size:0.80em;">
+
+Here, instead of looking at raw counts, we're looking at the proportion of smokers in each gender category.
+
+</div>
+
+:::
+
+::::
+
+---
+
+## Which plot is more useful?
+
+:::: columns
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar() +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Count",
+    fill = "Gender"
+  )
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Proportion",
+    fill = "Gender"
+  )
+```
+
+
+:::
+
+::::
+
+---
+
+## Customizing bar plots
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+ggplot(
+  gats,
+  aes(
+    y = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Proportion",
+    y = "Current Smoker?",
+    fill = "Gender",
+    title = "Smoking by Gender",
+    subtitle = "2018"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    y = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Proportion",
+    y = "Current Smoker?",
+    fill = "Gender",
+    title = "Smoking by Gender",
+    subtitle = "2018"
+  )
+```
+
+:::
+
+::::
+
+---
+
+## Side-by-side bar plot
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar(position = position_dodge()) +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Count",
+    fill = "Gender"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    x = CURRENTSMOKE,
+    fill = GENDER
+  )
+) +
+  geom_bar(position = position_dodge()) +
+  scale_fill_manual(
+    values = c(
+      "Male" = "#012169",
+      "Female" = "#C7BDD9"
+    )
+  ) +
+  labs(
+    x = "Current smoker",
+    y = "Count",
+    fill = "Gender"
+  )
+```
+
+:::
+
+::::
+
+---
+
+# Relationships between numerical and categorical variables
+
+---
+
+## Already talked about...
+
+- Coloring and faceting histograms and density plots
+- Side-by-side box plots
+
+---
+
+## Violin plots
+
+Violin plots are like boxplots, but instead of showing the quartiles (25th, 50th, and 75th %iles), they show rotated density plots on each side.
+
+---
+
+## Violin plots
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION
+  )
+) +
+  geom_violin()
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION
+  )
+) +
+  geom_violin()
+```
+
+:::
+
+::::
+
+---
+
+## Ridge plots
+
+Ridge plots also show density estimates across categorical groups
+
+---
+
+## Ridge plots
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+library(ggridges)
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION,
+    fill = EDUCATION,
+    color = EDUCATION
+  )
+) +
+  geom_density_ridges(alpha = 0.5)
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+library(ggridges)
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION,
+    fill = EDUCATION,
+    color = EDUCATION
+  )
+) +
+  geom_density_ridges(alpha = 0.5)
+```
+
+:::
+
+::::
+
+---
+
+## Muted color palette
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.80em;">
+
+```{r}
+#| eval: false
+
+library(ggridges)
+
+duke_palette <- c(
+  "#012169",  # Duke blue
+  "#C7BDD9",  # soft lavender
+  "#9BB7A5",  # muted sage
+  "#D6C3A5",  # warm sand
+  "#A8B7C9",  # dusty blue
+  "#C9A7A1",  # dusty rose
+  "#B9C3A3",  # olive sage
+  "#8FA4B8",  # slate blue
+  "#D9D6CC",  # warm gray
+  "#B7AFC8"   # gray lavender
+
+)
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION,
+    fill = EDUCATION,
+    color = EDUCATION
+  )
+) +
+  geom_density_ridges(alpha = 0.8) +
+  scale_fill_manual(values = duke_palette) +
+  scale_color_manual(values = duke_palette)
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+library(ggridges)
+
+duke_palette <- c(
+  "#012169",
+  "#C7BDD9",
+  "#9BB7A5",
+  "#D6C3A5",
+  "#A8B7C9",
+  "#C9A7A1",
+  "#B9C3A3",
+  "#8FA4B8",
+  "#D9D6CC",
+  "#B7AFC8"
+)
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION,
+    fill = EDUCATION,
+    color = EDUCATION
+  )
+) +
+  geom_density_ridges(alpha = 0.8) +
+  scale_fill_manual(values = duke_palette) +
+  scale_color_manual(values = duke_palette)
+```
+
+:::
+
+::::
+
+---
+
+## Don't need the legend
+
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.75em;">
+
+```{r}
+#| eval: false
+
+library(ggridges)
+
+duke_palette <- c(
+  "#012169", "#C7BDD9", "#9BB7A5",
+  "#D6C3A5", "#A8B7C9", "#C9A7A1",
+  "#B9C3A3", "#8FA4B8", "#D9D6CC",
+  "#B7AFC8"
+)
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION,
+    fill = EDUCATION,
+    color = EDUCATION
+  )
+) +
+  geom_density_ridges(alpha = 0.6) +
+  scale_fill_manual(values = duke_palette) +
+  scale_color_manual(values = duke_palette) +
+  theme(
+    legend.position = "none"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+library(ggridges)
+
+duke_palette <- c(
+  "#012169", "#C7BDD9", "#9BB7A5",
+  "#D6C3A5", "#A8B7C9", "#C9A7A1",
+  "#B9C3A3", "#8FA4B8", "#D9D6CC",
+  "#B7AFC8"
+)
+
+ggplot(
+  gats,
+  aes(
+    x = AGE,
+    y = EDUCATION,
+    fill = EDUCATION,
+    color = EDUCATION
+  )
+) +
+  geom_density_ridges(alpha = 0.6) +
+  scale_fill_manual(values = duke_palette) +
+  scale_color_manual(values = duke_palette) +
+  theme(
+    legend.position = "none"
+  )
+```
+
+:::
+
+::::
+
