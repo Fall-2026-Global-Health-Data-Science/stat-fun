@@ -1,0 +1,1439 @@
+---
+title: "Visualising data with ggplot2"
+subtitle: "Introduction to Global Health Data Science"
+date: "2026-08-24"
+format:
+  revealjs:
+    auto-stretch: false
+---
+
+```{r, child="setup.Rmd", echo=FALSE}
+```
+
+
+```{r}
+#| label: packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+life <- readr::read_csv("../data/lifeexpectancy_infant.csv")
+regmapping <- readr::read_csv("../data/loc.csv")
+
+lifespan <- life %>%
+  left_join(regmapping, by = "location")
+
+lifeexpwide <- lifespan %>%
+  pivot_wider(
+    names_from = sex,
+    values_from = lifeexp
+  )
+
+lifeexpwide2019 <- lifespan %>%
+  filter(year == 2019) %>%
+  pivot_wider(
+    names_from = sex,
+    values_from = lifeexp
+  )
+```
+
+## ggplot2 $\in$ tidyverse
+
+:::: {.columns .v-center}
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| out-width: 80%
+
+knitr::include_graphics("../img/ggplot2-part-of-tidyverse.png")
+```
+
+:::
+
+::: {.column width="60%"}
+
+- **ggplot2** is the tidyverse's data visualization package.
+- The structure of ggplot code can be summarized as:
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = my_data,
+  mapping = aes(
+    x = x_var,
+    y = y_var
+  )
+) +
+  geom_xxx() +
+  other_options
+```
+
+:::
+
+::::
+
+---
+
+## Data: Life expectancy from infancy
+
+IHME data on location (mostly countries), World Bank region, binary sex, and estimated life expectancy and population in 2019 will be used to explore the men's health gap (later we will add more years).
+
+:::: {.columns .v-center}
+
+::: {.column width="30%"}
+
+```{r}
+#| echo: false
+#| out-width: 50%
+
+knitr::include_graphics("../img/drabernathy.png")
+```
+
+*Dr. Abernathy of* **The Simpsons** *(aged 40)*
+
+:::
+
+::: {.column width="70%"}
+
+```{r}
+glimpse(lifeexpwide2019)
+```
+
+*Grampa Simpson* (Matt Groening)
+
+```{r}
+#| echo: false
+#| out-width: 15%
+
+knitr::include_graphics("../img/Abraham_Simpson.png")
+```
+
+:::
+
+::::
+
+---
+
+## Life expectancy
+
+:::: columns
+
+::: {.column width="70%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-align: center
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy",
+    subtitle = "2019",
+    x = "Female life expectancy",
+    y = "Male life expectancy",
+    color = "World Bank Region"
+  )
+```
+
+:::
+
+::: {.column width="30%"}
+
+<small>
+
+### Discuss
+
+- What does the color represent?
+- What overall pattern do you notice?
+- What additional information would help explain the scatter?
+
+</small>
+
+:::
+
+::::
+
+---
+
+## Building the plot
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy",
+    subtitle = "2019",
+    x = "Female life expectancy",
+    y = "Male life expectancy",
+    color = "World Bank Region"
+  )
+```
+
+---
+
+# Coding out loud
+
+---
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.6em;">
+
+> **Start with the `lifeexpwide2019` data**  
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019
+)
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-asp: 1.4
+#| out-width: 100%
+
+ggplot(
+  data = lifeexpwide2019
+)
+```
+
+:::
+
+::::
+
+---
+
+## Coding out loud
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.6em;">
+
+> Start with the `lifeexpwide2019` data,  
+> **and map female life expectancy to the x-axis**  
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female
+  )
+)
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-asp: 1.4
+#| out-width: 100%
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female
+  )
+)
+```
+
+:::
+
+::::
+
+---
+
+## Coding out loud
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+
+<div style="font-size:0.6em;">
+
+> Start with the `lifeexpwide2019` data,  
+> map female life expectancy to the x-axis,  
+> **and map male life expectancy to the y-axis**  
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male
+  )
+)
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male
+  )
+)
+```
+
+:::
+
+::::
+
+---
+
+## Coding out loud
+
+:::: columns
+
+::: {.column width="60%"}
+
+
+<div style="font-size:0.6em;">
+
+> Start with the `lifeexpwide2019` data,  
+> map female life expectancy to the x-axis,  
+> map male life expectancy to the y-axis,  
+> **and represent each observation with a point**  
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+---
+
+## Coding out loud
+
+:::: columns
+
+::: {.column width="60%"}
+
+
+<div style="font-size:0.6em;">
+
+> Start with the `lifeexpwide2019` data,  
+> map female life expectancy to the x-axis,  
+> map male life expectancy to the y-axis,  
+> represent each observation with a point,  
+> **and map region to the color of each point** 
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+---
+
+## Coding out loud
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.6em;">
+
+> Start with the `lifeexpwide2019` data,  
+> map female life expectancy to the x-axis,  
+> map male life expectancy to the y-axis,  
+> represent each observation with a point,  
+> map region to the color of each point,  
+> **and title the plot "Life expectancy."**
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy"
+  )
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy"
+  )
+```
+
+:::
+
+::::
+
+---
+
+
+## Coding out loud
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.6em;">
+
+> Start with the `lifeexpwide2019` data,  
+> map female life expectancy to the x-axis,  
+> map male life expectancy to the y-axis,  
+> represent each observation with a point,  
+> map region to the color of each point,  
+> title the plot "Life expectancy,"
+> **and add the subtitle "2019."**
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", 
+    subtitle = "2019"
+  )
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", subtitle="2019"
+  )
+```
+
+:::
+
+::::
+
+---
+
+
+## Coding out loud
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.5em;">
+
+> Start with the `lifeexpwide2019` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2019,"
+> **and refine x and y axis labels.**
+
+</div>
+
+<div style="font-size:0.80em;">
+
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", 
+    subtitle = "2019",
+     x = "Female life expectancy", 
+     y = "Male life expectancy"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", subtitle="2019", x = "Female life expectancy", y = "Male life expectancy"
+  )
+```
+
+:::
+
+::::
+
+---
+
+
+## Coding out loud
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.5em;">
+
+> Start with the `lifeexpwide2019` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2019," refine the axis labels, 
+> **and fix the legend label.**
+
+</div>
+
+<div style="font-size:0.80em;">
+
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", 
+    subtitle = "2019",
+     x = "Female life expectancy", 
+     y = "Male life expectancy",
+     color="World Bank Region"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", subtitle="2019", x = "Female life expectancy", y = "Male life expectancy",color="World Bank Region"
+  )
+```
+
+:::
+
+::::
+
+
+---
+
+
+## Coding out loud
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.5em;">
+
+> Start with the `lifeexpwide2019` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2019," refine the axis labels, fix the legend label, 
+> **and add a caption for data source.**
+
+</div>
+
+<div style="font-size:0.80em;">
+
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", 
+    subtitle = "2019",
+     x = "Female life expectancy", 
+     y = "Male life expectancy",
+     color="World Bank Region",
+     caption = "Source: IHME"
+  )
+```
+
+</div>
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion, 
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", subtitle="2019", x = "Female life expectancy", y = "Male life expectancy",color="World Bank Region",caption = "Source: IHME"
+  )
+```
+
+:::
+
+::::
+
+
+---
+
+## Argument names
+
+::: {.callout-tip title="Tip"}
+
+You can omit the names of the first two arguments when building plots with `ggplot()`.
+
+:::
+
+:::: columns
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2019,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+---
+
+# Aesthetics
+
+---
+
+## Aesthetics options
+
+Commonly used characteristics of plotting characters that can be **mapped to a specific variable** in the data are:
+
+::: {.incremental}
+
+- `color`
+- `shape`
+- `size`
+- `alpha` (transparency)
+
+:::
+
+---
+
+## Color
+
+:::: columns
+
+::: {.column width="40%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+---
+
+## Shape
+
+:::: columns
+
+::: {.column width="40%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    shape = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    shape = worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+**Oops!** Only **6** shapes are available, so this isn't a good option for our **more than 6** regions!
+
+---
+
+## Shape
+
+Can also map to the same variable as `color` (helps for color vision deficiency)
+
+
+:::: columns
+
+::: {.column width="40%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    shape = worldbankregion,
+    color=worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    shape = worldbankregion, color=worldbankregion
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+---
+
+## Size
+
+:::: columns
+
+::: {.column width="40%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion,
+    size = pop
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion,
+    size = pop
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+---
+
+## Alpha (Transparency)
+
+:::: columns
+
+::: {.column width="40%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion,
+    alpha = pop
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion,
+    alpha = pop
+  )
+) +
+  geom_point()
+```
+
+:::
+
+::::
+
+---
+
+## Mapping vs. setting aesthetics
+
+:::: columns
+
+::: {.column width="50%"}
+
+**Mapping**
+
+<div style="font-size:0.80em;">
+
+
+```{r}
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male,
+    size = pop
+  )
+) +
+  geom_point()
+```
+
+</div>
+
+:::
+
+::: {.column width="50%"}
+
+**Setting**
+
+<div style="font-size:0.80em;">
+
+
+```{r}
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2019,
+  aes(
+    x = Female,
+    y = Male
+  )
+) +
+  geom_point(size = 2)
+```
+
+</div>
+
+:::
+
+::::
+
+---
+
+## Mapping vs. setting
+
+- **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data.
+  - Goes into `aes()`.
+
+- **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data.
+  - Goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!).
+  
+---
+
+# Faceting
+
+---
+
+## Faceting
+
+- Smaller plots that display different subsets of the data
+- Useful for exploring conditional relationships and large data
+
+---
+
+## Faceting
+
+:::: columns
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+
+lifeexpwide %>%
+  filter(
+    year %in% c(1999, 2009, 2019),
+    worldbankregion %in% c(
+      "North America",
+      "South Asia",
+      "Sub-Saharan Africa"
+    )
+  ) %>%
+  ggplot(
+    aes(
+      x = Female,
+      y = Male
+    )
+  ) +
+  geom_point() +
+  facet_grid(year ~ worldbankregion)
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+lifeexpwide %>%
+  filter(
+    year %in% c(1999, 2009, 2019),
+    worldbankregion %in% c(
+      "North America",
+      "South Asia",
+      "Sub-Saharan Africa"
+    )
+  ) %>%
+  ggplot(
+    aes(
+      x = Female,
+      y = Male
+    )
+  ) +
+  geom_point() +
+  facet_grid(year ~ worldbankregion)
+```
+
+:::
+
+::::
+
+---
+
+## Various ways to facet
+
+---
+
+```{r}
+#| warning: false
+#| fig-asp: 0.5
+
+lifeexpwide %>%
+  filter(
+    year %in% c(1999, 2009, 2019),
+    worldbankregion %in% c("North America","South Asia","Sub-Saharan Africa"
+    )
+  ) %>%
+  ggplot(
+    aes(x = Female, y = Male)
+  ) +
+  geom_point() +
+  facet_wrap(~worldbankregion)
+```
+
+---
+
+```{r}
+#| warning: false
+#| fig-asp: 0.5
+
+lifeexpwide %>%
+  filter(year %in% c(1999, 2009,2019),worldbankregion %in% c("North America","South Asia","Sub-Saharan Africa")) %>%
+    ggplot(aes(x = Female,
+               y = Male)) + 
+  geom_point() +
+  facet_grid(.~worldbankregion)
+```
+
+---
+
+## Faceting summary
+
+- `facet_grid()`
+  - 2D grid
+  - `rows ~ cols`
+  - Use `.` for no split.
+
+- `facet_wrap()`
+  - 1D ribbon wrapped according to the number of rows and columns specified or the available plotting area.
+  
+---
+
+## Facet and color
+
+:::: columns
+
+::: {.column width="60%"}
+
+```{r}
+#| eval: false
+
+lifeexpwide %>%
+  filter(
+    year %in% c(1999, 2009, 2019),
+    worldbankregion %in% c(
+      "North America",
+      "South Asia",
+      "Sub-Saharan Africa"
+    )
+  ) %>%
+  ggplot(
+    aes(
+      x = Female,
+      y = Male,
+      color = year
+    )
+  ) +
+  geom_point() +
+  facet_wrap(~worldbankregion)
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+lifeexpwide %>%
+  filter(
+    year %in% c(1999, 2009, 2019),
+    worldbankregion %in% c(
+      "North America",
+      "South Asia",
+      "Sub-Saharan Africa"
+    )
+  ) %>%
+  ggplot(
+    aes(
+      x = Female,
+      y = Male,
+      color = year
+    )
+  ) +
+  geom_point() +
+  facet_wrap(~worldbankregion)
+```
+
+:::
+
+::::
+
+---
+
+## Facet and color, no legend
+
+:::: columns
+
+::: {.column width="60%"}
+
+```{r}
+#| eval: false
+
+lifeexpwide %>%
+  filter(
+    year %in% c(1999, 2009, 2019),
+    worldbankregion %in% c(
+      "North America",
+      "South Asia",
+      "Sub-Saharan Africa"
+    )
+  ) %>%
+  ggplot(
+    aes(
+      x = Female,
+      y = Male,
+      color = year
+    )
+  ) +
+  geom_point() +
+  facet_wrap(~worldbankregion) +
+  guides(color = "none")
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+lifeexpwide %>%
+  filter(
+    year %in% c(1999, 2009, 2019),
+    worldbankregion %in% c(
+      "North America",
+      "South Asia",
+      "Sub-Saharan Africa"
+    )
+  ) %>%
+  ggplot(
+    aes(
+      x = Female,
+      y = Male,
+      color = year
+    )
+  ) +
+  geom_point() +
+  facet_wrap(~worldbankregion) +
+  guides(color = "none")
+```
+
+:::
+
+::::
+
+
+
