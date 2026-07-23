@@ -150,7 +150,7 @@ for our computing toolkit.
 ## Life Expectancy
 
 
-- We consider data from IHME on (estimated) infant life expectancy from the years 1994–2019 as a function of location (primarily country) and binary gender.
+- We consider data from IHME on (estimated) infant life expectancy from the years 1990–2019 as a function of location (primarily country) and binary gender.
 
 - Here **life expectancy** is the \# of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time.
 
