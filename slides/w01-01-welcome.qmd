@@ -132,6 +132,72 @@ for our computing toolkit.
 
 ![](../img/data-science-cycle.001.png)
 
+---
+
+# The statistical process
+
+---
+
+## Statistical process
+
+
+Convert data into useful information, whereby practitioners
+- form a question of interest,
+- collect, summarize, and analyze the data,
+- and interpret the results
+
+---
+
+## Identifying the question of interest
+
+The <span style="color:#012169;">population</span> is the group we would like to learn about.
+
+- What is the prevalence of diabetes among <span style="color:#012169;">U.S. adults</span>, and has it changed over time?
+- Is there a relationship between tumor type and five-year mortality in <span style="color:#012169;">breast cancer patients</span>?
+- Does the average amount of caffeine vary by vendor in <span style="color:#012169;">12 oz. cups of coffee at Duke coffee shops</span>?
+
+If we had data from every unit in the population, we could just calculate what we wanted and be done!
+
+---
+
+## Sampling from the population
+
+Unfortunately, we (usually) have to settle with a <span style="color:#012169;">sample</span> from the population.
+
+Ideally, the sample is <span style="color:#012169;">representative</span>, allowing us to use probability and statistical inference to make conclusions that are generalizable to the broader population of interest.
+
+---
+
+## Sampling methods
+
+<span style="color:#012169;">Probability sampling</span> (e.g., simple random sampling, stratified, cluster, or multi-stage sampling)
+
+- All units have a known chance of being selected
+- More likely to be generalizable
+- Can be more expensive and time-consuming
+
+<span style="color:#012169;">Non-probability sampling</span> (e.g., quota, convenience, or snowball sampling)
+
+- Some units unable to be selected, with no way of knowing size or effect of sampling errors
+- Less generalizable to population of interest
+- More convenient and less costly
+
+---
+
+## Study design
+
+<span style="color:#012169;">Experimental studies</span> (e.g., randomized controlled trials)
+
+- Researchers directly control exposures or treatments
+- Ability to make causal statements
+- Less real-world applicability and generalizability
+
+<span style="color:#012169;">Observational studies</span> (e.g., surveys, electronic medical records)
+
+- Researchers do not assign exposures or treatments
+- Real-world setting with lower burden on participants
+- Inability to prove causality
+- Generally more susceptible to bias than experimental studies (learn more about many types of bias at the [Catalog of Bias](https://catalogofbias.org/biases/)) 
 
 ---
 
