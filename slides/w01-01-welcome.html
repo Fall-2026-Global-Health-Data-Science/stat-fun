@@ -281,7 +281,47 @@ Amy Herring
 </div></div>
 </section><section id="the-data-science-life-cycle" class="slide level2"><h2>The data science life cycle</h2>
 <p><img data-src="../img/data-science-cycle.001.png"></p>
-</section><section class="slide level2"></section><section><section id="lets-dive-in" class="title-slide slide level1 center"><h1>Let’s dive in!</h1>
+</section><section class="slide level2"></section><section><section id="the-statistical-process" class="title-slide slide level1 center"><h1>The statistical process</h1>
+
+</section><section id="statistical-process" class="slide level2"><h2>Statistical process</h2>
+<p>Convert data into useful information, whereby practitioners - form a question of interest, - collect, summarize, and analyze the data, - and interpret the results</p>
+</section><section id="identifying-the-question-of-interest" class="slide level2"><h2>Identifying the question of interest</h2>
+<p>The <span style="color:#012169;">population</span> is the group we would like to learn about.</p>
+<ul>
+<li>What is the prevalence of diabetes among <span style="color:#012169;">U.S. adults</span>, and has it changed over time?</li>
+<li>Is there a relationship between tumor type and five-year mortality in <span style="color:#012169;">breast cancer patients</span>?</li>
+<li>Does the average amount of caffeine vary by vendor in <span style="color:#012169;">12 oz. cups of coffee at Duke coffee shops</span>?</li>
+</ul>
+<p>If we had data from every unit in the population, we could just calculate what we wanted and be done!</p>
+</section><section id="sampling-from-the-population" class="slide level2"><h2>Sampling from the population</h2>
+<p>Unfortunately, we (usually) have to settle with a <span style="color:#012169;">sample</span> from the population.</p>
+<p>Ideally, the sample is <span style="color:#012169;">representative</span>, allowing us to use probability and statistical inference to make conclusions that are generalizable to the broader population of interest.</p>
+</section><section id="sampling-methods" class="slide level2"><h2>Sampling methods</h2>
+<p><span style="color:#012169;">Probability sampling</span> (e.g., simple random sampling, stratified, cluster, or multi-stage sampling)</p>
+<ul>
+<li>All units have a known chance of being selected</li>
+<li>More likely to be generalizable</li>
+<li>Can be more expensive and time-consuming</li>
+</ul>
+<p><span style="color:#012169;">Non-probability sampling</span> (e.g., quota, convenience, or snowball sampling)</p>
+<ul>
+<li>Some units unable to be selected, with no way of knowing size or effect of sampling errors</li>
+<li>Less generalizable to population of interest</li>
+<li>More convenient and less costly</li>
+</ul></section><section id="study-design" class="slide level2"><h2>Study design</h2>
+<p><span style="color:#012169;">Experimental studies</span> (e.g., randomized controlled trials)</p>
+<ul>
+<li>Researchers directly control exposures or treatments</li>
+<li>Ability to make causal statements</li>
+<li>Less real-world applicability and generalizability</li>
+</ul>
+<p><span style="color:#012169;">Observational studies</span> (e.g., surveys, electronic medical records)</p>
+<ul>
+<li>Researchers do not assign exposures or treatments</li>
+<li>Real-world setting with lower burden on participants</li>
+<li>Inability to prove causality</li>
+<li>Generally more susceptible to bias than experimental studies (learn more about many types of bias at the <a href="https://catalogofbias.org/biases/">Catalog of Bias</a>)</li>
+</ul></section><section class="slide level2"></section></section><section><section id="lets-dive-in" class="title-slide slide level1 center"><h1>Let’s dive in!</h1>
 
 </section><section id="life-expectancy" class="slide level2"><h2>Life Expectancy</h2>
 <ul>
@@ -289,7 +329,7 @@ Amy Herring
 <li><p>IHME maintains the <a href="http://ghdx.healthdata.org">Global Burden of Disease (GBD)</a>, a valuable resource for policymakers and others that quantifies health loss due to a variety of risk factors, diseases, and injuries.</p></li>
 </ul></section><section id="life-expectancy-1" class="slide level2"><h2>Life Expectancy</h2>
 <ul>
-<li><p>We consider data from IHME on (estimated) infant life expectancy from the years 1994–2019 as a function of location (primarily country) and binary gender.</p></li>
+<li><p>We consider data from IHME on (estimated) infant life expectancy from the years 1990–2019 as a function of location (primarily country) and binary gender.</p></li>
 <li><p>Here <strong>life expectancy</strong> is the # of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time.</p></li>
 </ul></section><section class="slide level2"></section></section><section><section id="what-is-in-a-dataset" class="title-slide slide level1 center"><h1>What is in a dataset?</h1>
 
