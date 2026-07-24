@@ -247,7 +247,7 @@ Amy Herring
 </div>
 </div></div>
 </section><section id="data-life-expectancy-from-infancy" class="slide level2"><h2>Data: Life expectancy from infancy</h2>
-<p>IHME data on location (mostly countries), World Bank region, binary sex, and estimated life expectancy and population in 2019 will be used to explore the men’s health gap (later we will add more years).</p>
+<p>IHME data on location (mostly countries), World Bank region, binary sex, and estimated life expectancy and population in 2023 will be used to explore the men’s health gap (later we will add more years).</p>
 <div class="columns v-center">
 <div class="column" style="width:30%;">
 <div class="cell" data-layout-align="center">
@@ -261,16 +261,16 @@ Amy Herring
 <p><em>Dr.&nbsp;Abernathy of</em> <strong>The Simpsons</strong> <em>(aged 40)</em></p>
 </div><div class="column" style="width:70%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">glimpse</span>(lifeexpwide2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">glimpse</span>(lifeexpwide2023)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 204
 Columns: 6
-$ location        &lt;chr&gt; "Japan", "Iceland", "Singapore", "Switz…
-$ year            &lt;dbl&gt; 2019, 2019, 2019, 2019, 2019, 2019, 201…
-$ worldbankregion &lt;chr&gt; "East Asia and Pacific", "Europe and Ce…
-$ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…
-$ Female          &lt;dbl&gt; 87.65871, 86.85256, 86.68768, 85.81825,…
-$ Male            &lt;dbl&gt; 81.86335, 81.45510, 82.92565, 82.04920,…</code></pre>
+$ location        &lt;chr&gt; "Afghanistan", "Albania", "Algeria", "A…
+$ year            &lt;dbl&gt; 2023, 2023, 2023, 2023, 2023, 2023, 202…
+$ worldbankregion &lt;chr&gt; "South Asia", "Europe and Central Asia"…
+$ pop             &lt;dbl&gt; 38041757, 2854191, 43053054, 55312, 771…
+$ Female          &lt;dbl&gt; 68.98985, 82.05155, 77.60938, 74.38214,…
+$ Male            &lt;dbl&gt; 68.13812, 77.27016, 74.54654, 67.96911,…</code></pre>
 </div>
 </div>
 <p><em>Grampa Simpson</em> (Matt Groening)</p>
@@ -307,7 +307,7 @@ $ Male            &lt;dbl&gt; 81.86335, 81.45510, 82.92565, 82.04920,…</code><
 </section><section id="building-the-plot" class="slide level2"><h2>Building the plot</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb4-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb4-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb4-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb4-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb4-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -317,7 +317,7 @@ $ Male            &lt;dbl&gt; 81.86335, 81.45510, 82.92565, 82.04920,…</code><
 <span id="cb4-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb4-10"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb4-11"><a></a>    <span class="at">title =</span> <span class="st">"Life expectancy"</span>,</span>
-<span id="cb4-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2019"</span>,</span>
+<span id="cb4-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2023"</span>,</span>
 <span id="cb4-13"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy"</span>,</span>
 <span id="cb4-14"><a></a>    <span class="at">y =</span> <span class="st">"Male life expectancy"</span>,</span>
 <span id="cb4-15"><a></a>    <span class="at">color =</span> <span class="st">"World Bank Region"</span></span>
@@ -329,12 +329,12 @@ $ Male            &lt;dbl&gt; 81.86335, 81.45510, 82.92565, 82.04920,…</code><
 <div class="column" style="width:60%;">
 <div style="font-size:0.6em;">
 <blockquote>
-<p><strong>Start with the <code>lifeexpwide2019</code> data</strong></p>
+<p><strong>Start with the <code>lifeexpwide2023</code> data</strong></p>
 </blockquote>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb5-2"><a></a>  <span class="at">data =</span> lifeexpwide2019</span>
+<span id="cb5-2"><a></a>  <span class="at">data =</span> lifeexpwide2023</span>
 <span id="cb5-3"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -352,12 +352,12 @@ $ Male            &lt;dbl&gt; 81.86335, 81.45510, 82.92565, 82.04920,…</code><
 <div class="column" style="width:60%;">
 <div style="font-size:0.6em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data,<br><strong>and map female life expectancy to the x-axis</strong></p>
+<p>Start with the <code>lifeexpwide2023</code> data,<br><strong>and map female life expectancy to the x-axis</strong></p>
 </blockquote>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb6-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb6-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb6-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb6-4"><a></a>    <span class="at">x =</span> Female</span>
 <span id="cb6-5"><a></a>  )</span>
@@ -378,13 +378,13 @@ $ Male            &lt;dbl&gt; 81.86335, 81.45510, 82.92565, 82.04920,…</code><
 <div class="column" style="width:60%;">
 <div style="font-size:0.6em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data,<br>
+<p>Start with the <code>lifeexpwide2023</code> data,<br>
 map female life expectancy to the x-axis,<br><strong>and map male life expectancy to the y-axis</strong></p>
 </blockquote>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb7-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb7-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb7-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb7-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb7-5"><a></a>    <span class="at">y =</span> Male</span>
@@ -406,14 +406,14 @@ map female life expectancy to the x-axis,<br><strong>and map male life expectanc
 <div class="column" style="width:60%;">
 <div style="font-size:0.6em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data,<br>
+<p>Start with the <code>lifeexpwide2023</code> data,<br>
 map female life expectancy to the x-axis,<br>
 map male life expectancy to the y-axis,<br><strong>and represent each observation with a point</strong></p>
 </blockquote>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb8-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb8-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb8-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb8-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb8-5"><a></a>    <span class="at">y =</span> Male</span>
@@ -436,7 +436,7 @@ map male life expectancy to the y-axis,<br><strong>and represent each observatio
 <div class="column" style="width:60%;">
 <div style="font-size:0.6em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data,<br>
+<p>Start with the <code>lifeexpwide2023</code> data,<br>
 map female life expectancy to the x-axis,<br>
 map male life expectancy to the y-axis,<br>
 represent each observation with a point,<br><strong>and map region to the color of each point</strong></p>
@@ -444,7 +444,7 @@ represent each observation with a point,<br><strong>and map region to the color 
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb9-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb9-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb9-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb9-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb9-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -468,7 +468,7 @@ represent each observation with a point,<br><strong>and map region to the color 
 <div class="column" style="width:60%;">
 <div style="font-size:0.6em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data,<br>
+<p>Start with the <code>lifeexpwide2023</code> data,<br>
 map female life expectancy to the x-axis,<br>
 map male life expectancy to the y-axis,<br>
 represent each observation with a point,<br>
@@ -477,7 +477,7 @@ map region to the color of each point,<br><strong>and title the plot “Life exp
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb10-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb10-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb10-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb10-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb10-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -502,19 +502,19 @@ map region to the color of each point,<br><strong>and title the plot “Life exp
 </section><section id="coding-out-loud-6" class="slide level2"><h2>Coding out loud</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div style="font-size:0.6em;">
+<div style="font-size:0.5em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data,<br>
+<p>Start with the <code>lifeexpwide2023</code> data,<br>
 map female life expectancy to the x-axis,<br>
 map male life expectancy to the y-axis,<br>
 represent each observation with a point,<br>
 map region to the color of each point,<br>
-title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</strong></p>
+title the plot “Life expectancy,” <strong>and add the subtitle “2023.”</strong></p>
 </blockquote>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb11-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb11-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb11-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb11-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb11-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -524,7 +524,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <span id="cb11-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb11-10"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb11-11"><a></a>    <span class="at">title =</span> <span class="st">"Life expectancy"</span>, </span>
-<span id="cb11-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2019"</span></span>
+<span id="cb11-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2023"</span></span>
 <span id="cb11-13"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -542,13 +542,13 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="column" style="width:60%;">
 <div style="font-size:0.5em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2019,” <strong>and refine x and y axis labels.</strong></p>
+<p>Start with the <code>lifeexpwide2023</code> data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2023,” <strong>and refine x and y axis labels.</strong></p>
 </blockquote>
 </div>
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb12-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb12-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb12-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb12-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb12-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -558,7 +558,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <span id="cb12-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb12-10"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb12-11"><a></a>    <span class="at">title =</span> <span class="st">"Life expectancy"</span>, </span>
-<span id="cb12-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2019"</span>,</span>
+<span id="cb12-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2023"</span>,</span>
 <span id="cb12-13"><a></a>     <span class="at">x =</span> <span class="st">"Female life expectancy"</span>, </span>
 <span id="cb12-14"><a></a>     <span class="at">y =</span> <span class="st">"Male life expectancy"</span></span>
 <span id="cb12-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -579,13 +579,13 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="column" style="width:60%;">
 <div style="font-size:0.5em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2019,” refine the axis labels, <strong>and fix the legend label.</strong></p>
+<p>Start with the <code>lifeexpwide2023</code> data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2023,” refine the axis labels, <strong>and fix the legend label.</strong></p>
 </blockquote>
 </div>
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb13-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb13-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb13-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb13-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb13-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -595,7 +595,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <span id="cb13-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb13-10"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb13-11"><a></a>    <span class="at">title =</span> <span class="st">"Life expectancy"</span>, </span>
-<span id="cb13-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2019"</span>,</span>
+<span id="cb13-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2023"</span>,</span>
 <span id="cb13-13"><a></a>     <span class="at">x =</span> <span class="st">"Female life expectancy"</span>, </span>
 <span id="cb13-14"><a></a>     <span class="at">y =</span> <span class="st">"Male life expectancy"</span>,</span>
 <span id="cb13-15"><a></a>     <span class="at">color=</span><span class="st">"World Bank Region"</span></span>
@@ -617,13 +617,13 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="column" style="width:60%;">
 <div style="font-size:0.5em;">
 <blockquote>
-<p>Start with the <code>lifeexpwide2019</code> data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2019,” refine the axis labels, fix the legend label, <strong>and add a caption for data source.</strong></p>
+<p>Start with the <code>lifeexpwide2023</code> data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2023,” refine the axis labels, fix the legend label, <strong>and add a caption for data source.</strong></p>
 </blockquote>
 </div>
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb14-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb14-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb14-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb14-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb14-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -633,7 +633,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <span id="cb14-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb14-10"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb14-11"><a></a>    <span class="at">title =</span> <span class="st">"Life expectancy"</span>, </span>
-<span id="cb14-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2019"</span>,</span>
+<span id="cb14-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2023"</span>,</span>
 <span id="cb14-13"><a></a>     <span class="at">x =</span> <span class="st">"Female life expectancy"</span>, </span>
 <span id="cb14-14"><a></a>     <span class="at">y =</span> <span class="st">"Male life expectancy"</span>,</span>
 <span id="cb14-15"><a></a>     <span class="at">color=</span><span class="st">"World Bank Region"</span>,</span>
@@ -671,7 +671,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb15-2"><a></a>  <span class="at">data =</span> lifeexpwide2019,</span>
+<span id="cb15-2"><a></a>  <span class="at">data =</span> lifeexpwide2023,</span>
 <span id="cb15-3"><a></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb15-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb15-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -683,7 +683,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb16-2"><a></a>  lifeexpwide2019,</span>
+<span id="cb16-2"><a></a>  lifeexpwide2023,</span>
 <span id="cb16-3"><a></a>  <span class="fu">aes</span>(</span>
 <span id="cb16-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb16-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -708,7 +708,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb17-2"><a></a>  lifeexpwide2019,</span>
+<span id="cb17-2"><a></a>  lifeexpwide2023,</span>
 <span id="cb17-3"><a></a>  <span class="fu">aes</span>(</span>
 <span id="cb17-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb17-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -732,7 +732,7 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb18-2"><a></a>  lifeexpwide2019,</span>
+<span id="cb18-2"><a></a>  lifeexpwide2023,</span>
 <span id="cb18-3"><a></a>  <span class="fu">aes</span>(</span>
 <span id="cb18-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb18-5"><a></a>    <span class="at">y =</span> Male,</span>
@@ -751,22 +751,21 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 </div>
 </div>
 </div></div>
-<p><strong>Oops!</strong> Only <strong>6</strong> shapes are available, so this isn’t a good option for our <strong>more than 6</strong> regions!</p>
-</section><section id="shape-1" class="slide level2"><h2>Shape</h2>
-<p>Can also map to the same variable as <code>color</code> (helps for color vision deficiency)</p>
+<p><strong>Oops!</strong> Only <strong>6</strong> shapes are available, so this isn’t a good option for our <strong>more than 6</strong> regions! Let’s fix that.</p>
+</section><section id="shape-take-2" class="slide level2"><h2>Shape, take 2</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb19-2"><a></a>  lifeexpwide2019,</span>
+<span id="cb19-2"><a></a>  lifeexpwide2023,</span>
 <span id="cb19-3"><a></a>  <span class="fu">aes</span>(</span>
 <span id="cb19-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb19-5"><a></a>    <span class="at">y =</span> Male,</span>
-<span id="cb19-6"><a></a>    <span class="at">shape =</span> worldbankregion,</span>
-<span id="cb19-7"><a></a>    <span class="at">color=</span>worldbankregion</span>
-<span id="cb19-8"><a></a>  )</span>
-<span id="cb19-9"><a></a>) <span class="sc">+</span></span>
-<span id="cb19-10"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-6"><a></a>    <span class="at">shape =</span> worldbankregion</span>
+<span id="cb19-7"><a></a>  )</span>
+<span id="cb19-8"><a></a>) <span class="sc">+</span></span>
+<span id="cb19-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  </span>
+<span id="cb19-10"><a></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">15</span>,<span class="dv">18</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
@@ -778,20 +777,22 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 </div>
 </div>
 </div></div>
-</section><section id="size" class="slide level2"><h2>Size</h2>
+<p><strong>Oops!</strong> Only <strong>6</strong> shapes are available, so this isn’t a good option for our <strong>more than 6</strong> regions! Let’s fix that.</p>
+</section><section id="shape-1" class="slide level2"><h2>Shape</h2>
+<p>Can also map to the same variable as <code>color</code> (helps for color vision deficiency)</p>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb20-2"><a></a>  lifeexpwide2019,</span>
+<span id="cb20-2"><a></a>  lifeexpwide2023,</span>
 <span id="cb20-3"><a></a>  <span class="fu">aes</span>(</span>
 <span id="cb20-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb20-5"><a></a>    <span class="at">y =</span> Male,</span>
-<span id="cb20-6"><a></a>    <span class="at">color =</span> worldbankregion,</span>
-<span id="cb20-7"><a></a>    <span class="at">size =</span> pop</span>
+<span id="cb20-6"><a></a>    <span class="at">shape =</span> worldbankregion,</span>
+<span id="cb20-7"><a></a>    <span class="at">color=</span>worldbankregion</span>
 <span id="cb20-8"><a></a>  )</span>
-<span id="cb20-9"><a></a>) <span class="sc">+</span></span>
-<span id="cb20-10"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-9"><a></a>) <span class="sc">+</span> <span class="fu">geom_point</span>() </span>
+<span id="cb20-10"><a></a><span class="sc">+</span>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">15</span>,<span class="dv">18</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
@@ -803,17 +804,17 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 </div>
 </div>
 </div></div>
-</section><section id="alpha-transparency" class="slide level2"><h2>Alpha (Transparency)</h2>
+</section><section id="size" class="slide level2"><h2>Size</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb21-2"><a></a>  lifeexpwide2019,</span>
+<span id="cb21-2"><a></a>  lifeexpwide2023,</span>
 <span id="cb21-3"><a></a>  <span class="fu">aes</span>(</span>
 <span id="cb21-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb21-5"><a></a>    <span class="at">y =</span> Male,</span>
 <span id="cb21-6"><a></a>    <span class="at">color =</span> worldbankregion,</span>
-<span id="cb21-7"><a></a>    <span class="at">alpha =</span> pop</span>
+<span id="cb21-7"><a></a>    <span class="at">size =</span> pop</span>
 <span id="cb21-8"><a></a>  )</span>
 <span id="cb21-9"><a></a>) <span class="sc">+</span></span>
 <span id="cb21-10"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -828,24 +829,49 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 </div>
 </div>
 </div></div>
+</section><section id="alpha-transparency" class="slide level2"><h2>Alpha (Transparency)</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb22-2"><a></a>  lifeexpwide2023,</span>
+<span id="cb22-3"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb22-4"><a></a>    <span class="at">x =</span> Female,</span>
+<span id="cb22-5"><a></a>    <span class="at">y =</span> Male,</span>
+<span id="cb22-6"><a></a>    <span class="at">color =</span> worldbankregion,</span>
+<span id="cb22-7"><a></a>    <span class="at">alpha =</span> pop</span>
+<span id="cb22-8"><a></a>  )</span>
+<span id="cb22-9"><a></a>) <span class="sc">+</span></span>
+<span id="cb22-10"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 </section><section id="mapping-vs.-setting-aesthetics" class="slide level2"><h2>Mapping vs.&nbsp;setting aesthetics</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Mapping</strong></p>
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb22-2"><a></a>  lifeexpwide2019,</span>
-<span id="cb22-3"><a></a>  <span class="fu">aes</span>(</span>
-<span id="cb22-4"><a></a>    <span class="at">x =</span> Female,</span>
-<span id="cb22-5"><a></a>    <span class="at">y =</span> Male,</span>
-<span id="cb22-6"><a></a>    <span class="at">size =</span> pop</span>
-<span id="cb22-7"><a></a>  )</span>
-<span id="cb22-8"><a></a>) <span class="sc">+</span></span>
-<span id="cb22-9"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb23-2"><a></a>  lifeexpwide2023,</span>
+<span id="cb23-3"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb23-4"><a></a>    <span class="at">x =</span> Female,</span>
+<span id="cb23-5"><a></a>    <span class="at">y =</span> Male,</span>
+<span id="cb23-6"><a></a>    <span class="at">size =</span> pop</span>
+<span id="cb23-7"><a></a>  )</span>
+<span id="cb23-8"><a></a>) <span class="sc">+</span></span>
+<span id="cb23-9"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-41-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -855,17 +881,17 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <p><strong>Setting</strong></p>
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb23-2"><a></a>  lifeexpwide2019,</span>
-<span id="cb23-3"><a></a>  <span class="fu">aes</span>(</span>
-<span id="cb23-4"><a></a>    <span class="at">x =</span> Female,</span>
-<span id="cb23-5"><a></a>    <span class="at">y =</span> Male</span>
-<span id="cb23-6"><a></a>  )</span>
-<span id="cb23-7"><a></a>) <span class="sc">+</span></span>
-<span id="cb23-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb24-2"><a></a>  lifeexpwide2023,</span>
+<span id="cb24-3"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb24-4"><a></a>    <span class="at">x =</span> Female,</span>
+<span id="cb24-5"><a></a>    <span class="at">y =</span> Male</span>
+<span id="cb24-6"><a></a>  )</span>
+<span id="cb24-7"><a></a>) <span class="sc">+</span></span>
+<span id="cb24-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-44-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -896,29 +922,29 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb24-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2009</span>, <span class="dv">2019</span>),</span>
-<span id="cb24-4"><a></a>    worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(</span>
-<span id="cb24-5"><a></a>      <span class="st">"North America"</span>,</span>
-<span id="cb24-6"><a></a>      <span class="st">"South Asia"</span>,</span>
-<span id="cb24-7"><a></a>      <span class="st">"Sub-Saharan Africa"</span></span>
-<span id="cb24-8"><a></a>    )</span>
-<span id="cb24-9"><a></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb24-10"><a></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb24-11"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb24-12"><a></a>      <span class="at">x =</span> Female,</span>
-<span id="cb24-13"><a></a>      <span class="at">y =</span> Male</span>
-<span id="cb24-14"><a></a>    )</span>
-<span id="cb24-15"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb24-16"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-17"><a></a>  <span class="fu">facet_grid</span>(year <span class="sc">~</span> worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb25-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2009</span>, <span class="dv">2023</span>),</span>
+<span id="cb25-4"><a></a>    worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb25-5"><a></a>      <span class="st">"North America"</span>,</span>
+<span id="cb25-6"><a></a>      <span class="st">"South Asia"</span>,</span>
+<span id="cb25-7"><a></a>      <span class="st">"Sub-Saharan Africa"</span></span>
+<span id="cb25-8"><a></a>    )</span>
+<span id="cb25-9"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb25-10"><a></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb25-11"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb25-12"><a></a>      <span class="at">x =</span> Female,</span>
+<span id="cb25-13"><a></a>      <span class="at">y =</span> Male</span>
+<span id="cb25-14"><a></a>    )</span>
+<span id="cb25-15"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb25-16"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-17"><a></a>  <span class="fu">facet_grid</span>(year <span class="sc">~</span> worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-44-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-46-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -926,34 +952,34 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 </div></div>
 </section><section id="various-ways-to-facet" class="slide level2"><h2>Various ways to facet</h2>
 </section><section class="slide level2"><div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb25-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2009</span>, <span class="dv">2019</span>),</span>
-<span id="cb25-4"><a></a>    worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"North America"</span>,<span class="st">"South Asia"</span>,<span class="st">"Sub-Saharan Africa"</span></span>
-<span id="cb25-5"><a></a>    )</span>
-<span id="cb25-6"><a></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb25-7"><a></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb25-8"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> Female, <span class="at">y =</span> Male)</span>
-<span id="cb25-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb25-10"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb25-11"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb26-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2010</span>, <span class="dv">2023</span>),</span>
+<span id="cb26-4"><a></a>    worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"North America"</span>,<span class="st">"South Asia"</span>,<span class="st">"Sub-Saharan Africa"</span></span>
+<span id="cb26-5"><a></a>    )</span>
+<span id="cb26-6"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb26-7"><a></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb26-8"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> Female, <span class="at">y =</span> Male)</span>
+<span id="cb26-9"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb26-10"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-11"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-45-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-47-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </section><section class="slide level2"><div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2009</span>,<span class="dv">2019</span>),worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"North America"</span>,<span class="st">"South Asia"</span>,<span class="st">"Sub-Saharan Africa"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Female,</span>
-<span id="cb26-4"><a></a>               <span class="at">y =</span> Male)) <span class="sc">+</span> </span>
-<span id="cb26-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb26-6"><a></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span>worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2010</span>, <span class="dv">2023</span>),worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"North America"</span>,<span class="st">"South Asia"</span>,<span class="st">"Sub-Saharan Africa"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Female,</span>
+<span id="cb27-4"><a></a>               <span class="at">y =</span> Male)) <span class="sc">+</span> </span>
+<span id="cb27-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-6"><a></a>  <span class="fu">facet_grid</span>(.<span class="sc">~</span>worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-46-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
@@ -978,42 +1004,9 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb27-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2009</span>, <span class="dv">2019</span>),</span>
-<span id="cb27-4"><a></a>    worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(</span>
-<span id="cb27-5"><a></a>      <span class="st">"North America"</span>,</span>
-<span id="cb27-6"><a></a>      <span class="st">"South Asia"</span>,</span>
-<span id="cb27-7"><a></a>      <span class="st">"Sub-Saharan Africa"</span></span>
-<span id="cb27-8"><a></a>    )</span>
-<span id="cb27-9"><a></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb27-10"><a></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb27-11"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb27-12"><a></a>      <span class="at">x =</span> Female,</span>
-<span id="cb27-13"><a></a>      <span class="at">y =</span> Male,</span>
-<span id="cb27-14"><a></a>      <span class="at">color =</span> year</span>
-<span id="cb27-15"><a></a>    )</span>
-<span id="cb27-16"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb27-17"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb27-18"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div><div class="column" style="width:40%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section><section id="facet-and-color-no-legend" class="slide level2"><h2>Facet and color, no legend</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
 <span id="cb28-2"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb28-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2009</span>, <span class="dv">2019</span>),</span>
+<span id="cb28-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2010</span>, <span class="dv">2023</span>),</span>
 <span id="cb28-4"><a></a>    worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(</span>
 <span id="cb28-5"><a></a>      <span class="st">"North America"</span>,</span>
 <span id="cb28-6"><a></a>      <span class="st">"South Asia"</span>,</span>
@@ -1028,14 +1021,47 @@ title the plot “Life expectancy,” <strong>and add the subtitle “2019.”</
 <span id="cb28-15"><a></a>    )</span>
 <span id="cb28-16"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb28-17"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb28-18"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion) <span class="sc">+</span></span>
-<span id="cb28-19"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-18"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-50-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section><section id="facet-and-color-no-legend" class="slide level2"><h2>Facet and color, no legend</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>lifeexpwide <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb29-3"><a></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1999</span>, <span class="dv">2010</span>, <span class="dv">2023</span>),</span>
+<span id="cb29-4"><a></a>    worldbankregion <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb29-5"><a></a>      <span class="st">"North America"</span>,</span>
+<span id="cb29-6"><a></a>      <span class="st">"South Asia"</span>,</span>
+<span id="cb29-7"><a></a>      <span class="st">"Sub-Saharan Africa"</span></span>
+<span id="cb29-8"><a></a>    )</span>
+<span id="cb29-9"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb29-10"><a></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb29-11"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb29-12"><a></a>      <span class="at">x =</span> Female,</span>
+<span id="cb29-13"><a></a>      <span class="at">y =</span> Male,</span>
+<span id="cb29-14"><a></a>      <span class="at">color =</span> year</span>
+<span id="cb29-15"><a></a>    )</span>
+<span id="cb29-16"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb29-17"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-18"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion) <span class="sc">+</span></span>
+<span id="cb29-19"><a></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="w01-02-ggplot_files/figure-revealjs/unnamed-chunk-52-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>

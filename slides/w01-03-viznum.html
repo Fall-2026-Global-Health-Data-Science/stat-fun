@@ -235,19 +235,19 @@ Amy Herring
 <div class="columns">
 <div class="column" style="width:40%;">
 <ul>
-<li>We focus again on the IHME data on estimated life expectancy for a variety of countries and locations worldwide in the year 2019.</li>
+<li>We focus again on the IHME data on estimated life expectancy for a variety of countries and locations worldwide in the year 2023.</li>
 </ul>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center" data-output-lines="18">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">glimpse</span>(lifespan2019)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">glimpse</span>(lifespan2023)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 408
 Columns: 5
-$ location        &lt;chr&gt; "Japan", "Iceland", "Singapore", "Switz…
-$ sex             &lt;chr&gt; "Female", "Female", "Female", "Female",…
-$ lifeexp         &lt;dbl&gt; 87.65871, 86.85256, 86.68768, 85.81825,…
-$ worldbankregion &lt;chr&gt; "East Asia and Pacific", "Europe and Ce…
-$ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code></pre>
+$ location        &lt;chr&gt; "Afghanistan", "Afghanistan", "Albania"…
+$ sex             &lt;chr&gt; "Female", "Male", "Female", "Male", "Fe…
+$ lifeexp         &lt;dbl&gt; 68.98985, 68.13812, 82.05155, 77.27016,…
+$ worldbankregion &lt;chr&gt; "South Asia", "South Asia", "Europe and…
+$ pop             &lt;dbl&gt; 38041757, 38041757, 2854191, 2854191, 4…</code></pre>
 </div>
 </div>
 </div></div>
@@ -270,7 +270,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 </tr>
 <tr class="odd">
 <td><code>pop</code></td>
-<td>Estimated 2019 population of the location</td>
+<td>Estimated 2023 population of the location</td>
 </tr>
 <tr class="even">
 <td><code>sex</code></td>
@@ -315,7 +315,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 </tbody>
 </table>
 </div>
-<p>In the full data (not subset to 2019), <code>year</code> is an additional numerical, discrete variable.</p>
+<p>In the full data (not subset to 2023), <code>year</code> is an additional numerical, discrete variable.</p>
 </section><section class="slide level2"></section></section><section><section id="visualizing-numerical-data" class="title-slide slide level1 center"><h1>Visualizing numerical data</h1>
 
 </section><section id="describing-shapes-of-numerical-distributions" class="slide level2"><h2>Describing shapes of numerical distributions</h2>
@@ -379,7 +379,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb3-2"><a></a>  lifeexpwide2019,</span>
+<span id="cb3-2"><a></a>  lifeexpwide2023,</span>
 <span id="cb3-3"><a></a>  <span class="fu">aes</span>(</span>
 <span id="cb3-4"><a></a>    <span class="at">x =</span> Female,</span>
 <span id="cb3-5"><a></a>    <span class="at">y =</span> Male</span>
@@ -388,7 +388,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb3-8"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb3-9"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb3-10"><a></a>    <span class="at">title =</span> <span class="st">"Life expectancy"</span>,</span>
-<span id="cb3-11"><a></a>    <span class="at">subtitle =</span> <span class="st">"2019"</span>,</span>
+<span id="cb3-11"><a></a>    <span class="at">subtitle =</span> <span class="st">"2023"</span>,</span>
 <span id="cb3-12"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy"</span>,</span>
 <span id="cb3-13"><a></a>    <span class="at">y =</span> <span class="st">"Male life expectancy"</span></span>
 <span id="cb3-14"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -409,7 +409,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb4-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -432,7 +432,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:60%;">
 <p>The bin width is the width of the interval used for grouping the data. It is selected automatically by R, but we can alter it. For example, a bin width of <span class="math inline">\(\frac{1}{2}\)</span> plots a bar for each 6 month life expectancy group, while a bin width of 10 plots a bar for groups of 10 years.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb5-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -454,7 +454,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb6-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -476,7 +476,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb7-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -497,7 +497,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb8-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -506,7 +506,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb8-7"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb8-8"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb8-9"><a></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb8-10"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span></span>
+<span id="cb8-10"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span></span>
 <span id="cb8-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -523,7 +523,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb9-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb9-4"><a></a>    <span class="fu">aes</span>(</span>
@@ -538,7 +538,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb9-13"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb9-14"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb9-15"><a></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb9-16"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span></span>
+<span id="cb9-16"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span></span>
 <span id="cb9-17"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -556,7 +556,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb10-4"><a></a>    <span class="fu">aes</span>(</span>
@@ -571,7 +571,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb10-13"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb10-14"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb10-15"><a></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb10-16"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span></span>
+<span id="cb10-16"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span></span>
 <span id="cb10-17"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb10-18"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -591,7 +591,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb11-4"><a></a>    <span class="fu">aes</span>(</span>
@@ -607,7 +607,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb11-14"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb11-15"><a></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
 <span id="cb11-16"><a></a>    <span class="at">fill =</span> <span class="st">"World Bank Region"</span>,</span>
-<span id="cb11-17"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span></span>
+<span id="cb11-17"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span></span>
 <span id="cb11-18"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb11-19"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>worldbankregion, <span class="at">nrow =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb11-20"><a></a>  <span class="fu">theme</span>(</span>
@@ -636,7 +636,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb12-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb12-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -662,7 +662,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div style="font-size:0.80em;">
 <p>The <em>bandwidth</em> is a parameter that specifies the degree of smoothing. A small bandwidth shows many bumps (like a histogram with a small bin width), while a large bandwidth smooths over many bumps. It is specified using the <em>adjust</em> argument.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb13-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -686,7 +686,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb14-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -710,7 +710,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb15-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb15-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -733,7 +733,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:60%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb16-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb16-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -742,7 +742,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb16-7"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb16-8"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb16-9"><a></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb16-10"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span></span>
+<span id="cb16-10"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span></span>
 <span id="cb16-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -761,7 +761,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb17-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb17-4"><a></a>    <span class="fu">aes</span>(</span>
@@ -773,7 +773,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb17-10"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb17-11"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb17-12"><a></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb17-13"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span>,</span>
+<span id="cb17-13"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span>,</span>
 <span id="cb17-14"><a></a>    <span class="at">fill =</span> <span class="st">"Region"</span></span>
 <span id="cb17-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -795,7 +795,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb18-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb18-4"><a></a>    <span class="fu">aes</span>(<span class="at">x =</span> lifeexp)</span>
@@ -909,14 +909,14 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb19-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb19-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeexp)) <span class="sc">+</span></span>
 <span id="cb19-4"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb19-5"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb19-6"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb19-7"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-8"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span></span>
+<span id="cb19-8"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span></span>
 <span id="cb19-9"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb19-10"><a></a>  <span class="fu">theme</span>(</span>
 <span id="cb19-11"><a></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
@@ -939,7 +939,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <div class="column" style="width:40%;">
 <div style="font-size:0.80em;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>lifespan2019 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>lifespan2023 <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb20-3"><a></a>  <span class="fu">ggplot</span>(</span>
 <span id="cb20-4"><a></a>    <span class="fu">aes</span>(</span>
@@ -951,7 +951,7 @@ $ pop             &lt;dbl&gt; 126264931, 360563, 5703569, 8575280, 47…</code><
 <span id="cb20-10"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb20-11"><a></a>    <span class="at">x =</span> <span class="st">"Female life expectancy (years)"</span>,</span>
 <span id="cb20-12"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb20-13"><a></a>    <span class="at">title =</span> <span class="st">"2019 Life Expectancy of Women"</span>,</span>
+<span id="cb20-13"><a></a>    <span class="at">title =</span> <span class="st">"2023 Life Expectancy of Women"</span>,</span>
 <span id="cb20-14"><a></a>    <span class="at">subtitle =</span> <span class="st">"By region"</span></span>
 <span id="cb20-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

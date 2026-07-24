@@ -1,11 +1,9 @@
 [
   {
-    "listing": "/ae.html",
-    "items": []
-  },
-  {
     "listing": "/lab.html",
-    "items": []
+    "items": [
+      "/lab/lab-01.html"
+    ]
   },
   {
     "listing": "/exam-review.html",

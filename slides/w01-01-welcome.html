@@ -329,7 +329,7 @@ Amy Herring
 <li><p>IHME maintains the <a href="http://ghdx.healthdata.org">Global Burden of Disease (GBD)</a>, a valuable resource for policymakers and others that quantifies health loss due to a variety of risk factors, diseases, and injuries.</p></li>
 </ul></section><section id="life-expectancy-1" class="slide level2"><h2>Life Expectancy</h2>
 <ul>
-<li><p>We consider data from IHME on (estimated) infant life expectancy from the years 1990–2019 as a function of location (primarily country) and binary gender.</p></li>
+<li><p>We consider data from IHME on (estimated) infant life expectancy from the years 1990–2023 as a function of location (primarily country) and binary gender.</p></li>
 <li><p>Here <strong>life expectancy</strong> is the # of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time.</p></li>
 </ul></section><section class="slide level2"></section></section><section><section id="what-is-in-a-dataset" class="title-slide slide level1 center"><h1>What is in a dataset?</h1>
 
@@ -346,20 +346,20 @@ Amy Herring
 <span id="cb1-2"><a></a></span>
 <span id="cb1-3"><a></a>life</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12,240 × 4
-   location sex     year lifeexp
-   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
- 1 Japan    Female  2019    87.7
- 2 Japan    Female  2018    87.6
- 3 Japan    Female  2017    87.6
- 4 Japan    Female  2016    87.4
- 5 Japan    Female  2015    87.3
- 6 Japan    Female  2014    87.1
- 7 Japan    Female  2013    86.9
- 8 Iceland  Female  2019    86.9
- 9 Iceland  Female  2018    86.8
-10 Japan    Female  2012    86.7
-# ℹ 12,230 more rows</code></pre>
+<pre><code># A tibble: 13,872 × 4
+   location    sex     year lifeexp
+   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Afghanistan Female  1990    59.8
+ 2 Afghanistan Female  1991    59.8
+ 3 Afghanistan Female  1992    60.2
+ 4 Afghanistan Female  1993    60.5
+ 5 Afghanistan Female  1994    60.7
+ 6 Afghanistan Female  1995    61.1
+ 7 Afghanistan Female  1996    61.6
+ 8 Afghanistan Female  1997    61.6
+ 9 Afghanistan Female  1998    60.7
+10 Afghanistan Female  1999    62.0
+# ℹ 13,862 more rows</code></pre>
 </div>
 </div>
 </div>
@@ -369,12 +369,12 @@ Amy Herring
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a></a><span class="fu">glimpse</span>(life)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 12,240
+<pre><code>Rows: 13,872
 Columns: 4
-$ location &lt;chr&gt; "Japan", "Japan", "Japan", "Japan", "Japan", "Japan", "Japan"…
+$ location &lt;chr&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 $ sex      &lt;chr&gt; "Female", "Female", "Female", "Female", "Female", "Female", "…
-$ year     &lt;dbl&gt; 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2019, 2018, 2012, 2…
-$ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.09548, 8…</code></pre>
+$ year     &lt;dbl&gt; 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2…
+$ lifeexp  &lt;dbl&gt; 59.77891, 59.75369, 60.19466, 60.47221, 60.69472, 61.14557, 6…</code></pre>
 </div>
 </div>
 </section><section class="slide level2"><div class="question">
@@ -388,7 +388,7 @@ $ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.0954
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">nrow</span>(life) <span class="co"># number of rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12240</code></pre>
+<pre><code>[1] 13872</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ncol</span>(life) <span class="co"># number of columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -396,7 +396,7 @@ $ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.0954
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">dim</span>(life)  <span class="co"># dimensions (rows, columns)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12240     4</code></pre>
+<pre><code>[1] 13872     4</code></pre>
 </div>
 </div>
 </section><section class="slide level2"></section></section><section><section id="exploratory-data-analysis" class="title-slide slide level1 center"><h1>Exploratory data analysis</h1>
@@ -431,11 +431,11 @@ $ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.0954
 <pre><code># A tibble: 5 × 4
   location sex     year lifeexp
   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-1 Burundi  Male    1997   40.8 
-2 Haiti    Female  2010   36.9 
-3 Haiti    Male    2010   28.8 
-4 Rwanda   Female  1994   11.2 
-5 Rwanda   Male    1994    9.14</code></pre>
+1 Haiti    Female  2010   27.9 
+2 Haiti    Male    2010   34.8 
+3 Rwanda   Female  1994   16.8 
+4 Rwanda   Male    1994    9.88
+5 Rwanda   Male    1997   36.7 </code></pre>
 </div>
 </div>
 <p>Are these data errors, realistic estimates, or neither?</p>
@@ -564,6 +564,8 @@ $ lifeexp  &lt;dbl&gt; 87.65871, 87.64361, 87.64209, 87.44221, 87.32871, 87.0954
 <ul>
 <li>For help with <strong>ggplot2</strong>, see <a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a>.</li>
 </ul></section><section class="slide level2"></section></section><section><section id="why-do-we-visualize" class="title-slide slide level1 center"><h1>Why do we visualize?</h1>
+
+</section><section class="slide level2"></section></section><section><section id="amy-drop-datasaurus-and-do-in-lab" class="title-slide slide level1 center"><h1>AMY: DROP DATASAURUS AND DO IN LAB?</h1>
 
 </section><section id="anscombes-quartet-datasaurus-dozen" class="slide level2"><h2>Anscombe’s quartet / Datasaurus Dozen</h2>
 <div class="columns">
