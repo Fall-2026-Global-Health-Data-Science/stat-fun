@@ -1,0 +1,490 @@
+---
+title: "Conditional Probability"
+subtitle: "Introduction to Global Health Data Science"
+date: "2026-09-02"
+format:
+  revealjs:
+    auto-stretch: false
+---
+
+```{r, child="setup.Rmd", echo=FALSE}
+```
+
+
+```{r}
+#| label: packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+```
+
+
+## Conditional Probability
+
+Often we wish to know the probabilty an event will occur given that another event has occured.  
+
+For example, instead of the **marginal** probability of contracting COVID (regardless of vaccination status), we may wish to know the probability that someone will contract COVID given that they have been vaccinated, or the probability someone will contract COVID given that they have not been vaccinated. 
+
+These are examples of **conditional probability**. The conditional probability that an ant is carried back (A) given that they are lightly injured (B) is denoted $P(A|B)$, which we say as "probability of A given B."
+
+---
+
+## Simple Example
+
+Suppose we have a small set containing 9 ants with light injuries carried back to the nest, 1 ant with a light injury that is not carried back, and 10 heavily-injured ants that are not carried back.
+
+
+If we feel this set is a sample representative of a population of interest, we can **estimate** the probability an ant is carried back as $\frac{9}{9+1+10}=0.45$. 
+
+We may be interested in the conditional probability an ant is carried back given that it is only lightly injured, which we can estimate as $\frac{9}{9+1}=0.9$ -- we just change the denominator to correspond to our smaller population of interest.
+
+---
+
+## Conditional probability and multiplicative rule
+
+More formally, we define **conditional probability** as 
+$P(A|B)=\frac{P(A \cap B)}{P(B)}$ (verify this on your own using the simple example on the prior slide).
+
+Manipulating this formula, we get the **multiplicative rule of probability**: $P(A \cap B)=P(B)P(A|B)$.
+
+---
+
+## Law of total probability
+
+One more helpful rule is the **law of total probability**:
+
+$P(A)= P(A \cap B)+P(A \cap \overline{B})=P(A \mid B)P(B) + P(A \mid \overline{B})P(\overline{B}),$ which translates to the obvious statement that the probability that A occurs is equal to the sum of the probabilities that A occurs with B and that A occurs without B.
+
+---
+
+## Back to ant outcomes
+
+Recall our termite-raiding ant data:
+
+<div style="height: 40px;"></div>
+
+|      | **Carried Back** | **Carried Away** | **Not Carried** |
+|---------------------|:----------------:|:--------------:|:------:|
+| **Lightly Injured** |    45  | 0 | 5 |
+| **Heavily Injured** |     5 | 5|    20   |
+
+
+<div style="overflow:hidden; height:250px; margin-top:20px;">
+  <img src="../img/mantabele.jpg"
+       style="width:100%; height:auto; transform:translateY(-80px);">
+</div>
+
+---
+
+## Three Probabilities
+
+Define events A=carried back to the nest and B=lightly injured. Calculate the following probabilities for a randomly-selected ant in this cohort.
+
+- **Marginal probability** of being carried back to the nest, $P(A)$
+
+- **Joint probability** of being carried back to the nest and light injury, $P(A \cap B)$
+
+- **Conditional probability** of being carried back to the nest given a light injury, $P(A \mid B)$
+
+---
+
+## Independence
+
+Events $A$ and $B$ are **independent** when $P(A \mid B)=P(A)$ or $P(B \mid A)=P(B)$.
+
+In other words, knowing that one event has occurred does not lead to any change in the probability we assign to another event.  
+
+---
+
+
+## Checking Independence
+
+We can use the multiplicative rule to check if two events are independent.
+
+If events A and B are independent, then $$P(A \cap B)=P(A)\times P(B).$$
+
+**Check it out**: Are light injury and being carried back to the nest independent in our cohort?
+
+---
+
+## Independent vs Disjoint Events
+
+For **independent events** $A$ and $B$, $P(A \mid B)=P(A)$ and $P(B \mid A)=P(B)$, so knowing one event occurred tells us *nothing* about the chances the other event will occur.
+
+For two **disjoint** or **mutually exclusive** events, knowing that one event has occurred tells us that the other event definitely has not occurred, e.g. $P(A \cap B)=0$.
+
+Disjoint events are therefore *not* independent!
+
+---
+
+# Example: Breast Cancer Screening
+
+---
+
+## Mammogram result
+
+Let $A$ be the event that a woman has breast cancer (e.g., **prevalence** in population for a certain age group).  Say $P(A)=0.01$ for a 40-year-old woman.
+
+Let $B$ be the event that a screening mammogram is positive.
+
+Once a person has a positive mammogram, our mental estimate of the probability she has breast cancer, now $P(A|B)$, has increased.  How much should it increase?  Are we certain she has cancer, e.g. P(cancer $\mid$ mammo positive)=1, or is there some chance the test is wrong?
+
+---
+
+## Sensitivity and Specificity
+
+A=has cancer
+B=mammogram positive
+
+A *diagnostic test* like a mammogram is often characterized by its quality -- we want a test to have good sensitivity (picking up cancer when a person really has it) and specificity (ruling out cancer when a person is cancer-free).
+
+Sensitivity is $P(B|A)$, and specificity is $P(\overline{B} \mid \overline{A})$. 
+
+A typical screening mammogram has sensitivity of 85% and specificity of 90%. 
+
+---
+
+## Bayes' Theorem
+
+**Bayes' theorem** gives us a formal way to update our beliefs based on new information.  It says $P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}=\frac{P(A \cap B)}{P(B)}$. 
+
+In this example, a 40 year old woman with a positive screening mammogram may wish to know her chances of having cancer. Several papers have shown that even doctors tend to strongly overestimate her chances of having cancer.
+
+We'll consider two ways to solve this problem: one way using Bayes' formula directly, and another based on a "hypothetical 10000" table, which applies known probabilities to a hypothetical population of 10,000 40 year old women.
+
+---
+
+## Hypothetical Population of 10,000
+
+:::: columns
+
+::: {.column width="50%"}
+
+<div style="font-size:0.8em;">
+
+We are still using **Bayes' theorem**, but it is hidden behind the scenes.
+
+Here's what we know:
+
+1. The **prevalence** of breast cancer among 40-year-old women is **1%**:
+$$P(\mathrm{cancer})=0.01$$
+2. The **sensitivity** of a screening mammogram is **85%**
+3. The **specificity** of a screening mammogram is **90%**.
+
+</div>
+
+:::
+
+::: {.column width="50%"}
+
+<div style="
+  width:calc(100% + 24px);
+  margin-right:-24px;
+  box-sizing:border-box;
+  background-color:#C7BDD9;
+  padding:18px 24px;
+  border-radius:10px;
+  font-size:0.82em;
+">
+
+Let's construct a **2 × 2 table** comparing true cancer status and mammogram results in our hypothetical population of **10,000 women**.
+
+<div style="margin-top:20px;"></div>
+
+|              | **Cancer** | **No Cancer** | **Total** |
+|---------------|:----------:|:-------------:|----------:|
+| **Mammo +**   |            |               |           |
+| **Mammo −**   |            |               |           |
+| **Total**     |            |               | <span style="color:#012169;">10,000</span> |
+
+</div>
+
+:::
+
+::::
+
+---
+
+## Hypothetical Population of 10,000
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.8em;">
+
+
+
+1. The **prevalence** of breast cancer among 40-year-old women is **1%**:
+$$P(\mathrm{cancer})=0.01$$
+2. The **sensitivity** of a screening mammogram is **85%**
+3. The **specificity** of a screening mammogram is **90%**.
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+<div style="
+  width:calc(100% + 24px);
+  margin-right:-24px;
+  box-sizing:border-box;
+  background-color:#C7BDD9;
+  padding:18px 24px;
+  border-radius:10px;
+  font-size:0.82em;
+">
+
+Item 1 says the prevalence in this group is 1%, so then we expect to have $10000\times0.01=100$ cases and $10000\times0.99=9900$ cancer-free women.
+
+
+<div style="margin-top:20px;"></div>
+
+|              | **Cancer** | **No Cancer** | **Total** |
+|---------------|:----------:|:-------------:|----------:|
+| **Mammo +**   |            |               |           |
+| **Mammo −**   |            |               |           |
+| **Total**     |   <span style="color:#012169;">100</span>         |    <span style="color:#012169;">9900</span>           | 10,000 |
+
+</div>
+
+:::
+
+::::
+
+
+## Hypothetical Population of 10,000
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.8em;">
+
+
+
+1. The **prevalence** of breast cancer among 40-year-old women is **1%**:
+$$P(\mathrm{cancer})=0.01$$
+2. The **sensitivity** of a screening mammogram is **85%**
+3. The **specificity** of a screening mammogram is **90%**.
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+<div style="
+  width:calc(100% + 24px);
+  margin-right:-24px;
+  box-sizing:border-box;
+  background-color:#C7BDD9;
+  padding:18px 24px;
+  border-radius:10px;
+  font-size:0.82em;
+">
+
+Item 2 gives the sensitivity, so $P(\mathrm{mammo +} \mid \mathrm{cancer})=0.85$.  
+
+Thus in the group of 100 women with cancer, the mammogram should pick up $100\times0.85=85$ of them, and miss the remaining $100-85=15$.
+
+
+<div style="margin-top:20px;"></div>
+
+|              | **Cancer** | **No Cancer** | **Total** |
+|---------------|:----------:|:-------------:|----------:|
+| **Mammo +**   |   <span style="color:#012169;">85</span>        |               |           |
+| **Mammo −**   |   <span style="color:#012169;">15</span>         |               |           |
+| **Total**     |   100         |    9900           | 10,000 |
+
+</div>
+
+:::
+
+::::
+
+
+## Hypothetical Population of 10,000
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.8em;">
+
+
+
+1. The **prevalence** of breast cancer among 40-year-old women is **1%**:
+$$P(\mathrm{cancer})=0.01$$
+2. The **sensitivity** of a screening mammogram is **85%**
+3. The **specificity** of a screening mammogram is **90%**.
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+<div style="
+  width:calc(100% + 24px);
+  margin-right:-24px;
+  box-sizing:border-box;
+  background-color:#C7BDD9;
+  padding:18px 24px;
+  border-radius:10px;
+  font-size:0.82em;
+">
+
+Item 3 gives the specificity, so $P(\mathrm{mammo -} \mid \mathrm{no cancer})=0.90$.  
+
+Thus in the group of 9900 women without cancer, the mammogram should correctly identify $9900*0.90=8910$ of them as being cancer-free, and it will mistakenly identify $9900-8910=990$ as having cancer (false positives).
+
+
+<div style="margin-top:20px;"></div>
+
+|              | **Cancer** | **No Cancer** | **Total** |
+|---------------|:----------:|:-------------:|----------:|
+| **Mammo +**   |   85        |   <span style="color:#012169;">990</span>             |           |
+| **Mammo −**   |   15         |   <span style="color:#012169;">8910</span>             |           |
+| **Total**     |   100         |    9900           | 10,000 |
+
+</div>
+
+:::
+
+::::
+
+
+## Hypothetical Population of 10,000
+
+:::: columns
+
+::: {.column width="40%"}
+
+<div style="font-size:0.8em;">
+
+
+
+1. The **prevalence** of breast cancer among 40-year-old women is **1%**:
+$$P(\mathrm{cancer})=0.01$$
+2. The **sensitivity** of a screening mammogram is **85%**
+3. The **specificity** of a screening mammogram is **90%**.
+
+</div>
+
+:::
+
+::: {.column width="60%"}
+
+<div style="
+  width:calc(100% + 24px);
+  margin-right:-24px;
+  box-sizing:border-box;
+  background-color:#C7BDD9;
+  padding:18px 24px;
+  border-radius:10px;
+  font-size:0.82em;
+">
+
+Now we complete the table by filling in the row totals.
+
+
+<div style="margin-top:20px;"></div>
+
+|              | **Cancer** | **No Cancer** | **Total** |
+|---------------|:----------:|:-------------:|----------:|
+| **Mammo +**   |   85        |     990           |    <span style="color:#012169;">1075</span>       |
+| **Mammo −**   |   15         |     8910          |    <span style="color:#012169;">8925</span>        |
+| **Total**     |   100         |    9900           | 10,000 |
+
+At this point, it's easy to calculate the conditional probability of cancer given a positive mammogram as $\frac{85}{1075}=0.079$.
+
+
+</div>
+
+:::
+
+::::
+
+---
+
+## Bayes' Theorem in Action
+
+Alternatively, we could just use Bayes' Theorem directly.
+
+- Baseline probability of cancer $P(A)=0.01$ (prevalence)
+
+- She wants to know $P(A \mid B)$, or her chances of having cancer given that her mammogram is positive (also called **positive predictive value**).
+
+- Bayes' Theorem: $P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}$.  
+
+- Sensitivity is $P(B \mid A)=0.85$. 
+
+- How do we get $P(B)$?
+
+---
+
+## Bayes' Theorem in Action
+
+<div style="font-size:0.75em;">
+
+- How do we get $P(B)$?  We can get this using the law of total probability:  $P(B)=P(B \mid A)P(A) + P(B \mid \overline{A})P(\overline{A})$. 
+
+- We can get $P(B \mid \overline{A})$ using the specificity $P(\overline{B} \mid \overline{A})=0.90$  and the fact that $P(\overline{B} \mid \overline{A})+P(B \mid \overline{A})=1$.  So $P(B \mid \overline{A})=1-0.9=0.1$.
+  
+- Then
+$P(B)=P(B \mid A)P(A) + P(B \mid \overline{A})P(\overline{A})=0.85\times0.01+0.1\times0.99=0.1075$
+
+- Then $P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}=\frac{0.85*0.01}{0.1075}=0.079$.
+
+
+</div>
+
+---
+
+## Bayes' Theorem and Baseline Prevalence
+
+Here, we can think of the 1% prevalence of breast cancer among 40 year old women as our **prior probability** a woman has cancer, and 7.9% as the **posterior probability** she has cancer after we see the data that her screening mammogram is positive.
+
+Cancer would be confirmed or ruled out by subsequent testing, such as a diagnostic mammogram, ultrasound, and/or biopsy. 
+
+---
+
+## You Try It!
+
+Most people who have a negative test result (e.g., mammogram looks good or COVID test negative) don't worry any longer about whether they really do have disease. Are they right not to worry? Suppose our 40 year old woman with a baseline 1% breast cancer risk instead had a negative (all clear) mammogram. What is the updated probability she has breast cancer given this test result?
+
+
+---
+
+## You Try It!
+
+The prevalence of cancer is strongly dependent on age.  Calculate the conditional probability of cancer given a positive mammogram for women in the following age groups.
+
+1. Women in their 20's, for whom cancer prevalence is roughly $\frac{1}{10000}$
+2. Women in their 50's, for whom cancer prevalence is roughly $\frac{1}{50}$
+3. Women in their 60's, for whom cancer prevalence is roughly $\frac{1}{30}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

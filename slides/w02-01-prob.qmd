@@ -145,8 +145,8 @@ The **probability** of an event tells us how likely an event is to occur, and it
 
 An **event** is the basic element to which probability is applied, e.g. the result of an observation or experiment.
 
-- **A** is the event that an ant is lightly injured
-- **B** is the event that an ant is carried back to the nest
+- **A** is the event that an ant is carried back to the nest
+- **B** is the event that an ant is lightly injured
 - **C** is the event that a person has blood type A+
 
 ---
@@ -163,11 +163,11 @@ Sample spaces depend on the research question.  For exploration of ABO blood typ
 
 ## Operations on Events
 
-- The **union** of A and B, denoted $A \cup B$, is the event that A, or B, or both A and B, occur. Here, $A \cup B$ is the event that an ant is lightly injured, is carried back to the nest, or both.
+- The **union** of A and B, denoted $A \cup B$, is the event that A, or B, or both A and B, occur. Here, $A \cup B$ is the event that an ant is carried back to the nest, lightly injured, or both.
 
 - The **intersection** of A and B, denoted $A \cap B$, is the event that both A and B occur. Here $A \cap B$ is the event that a lightly injured ant is carried back to the nest. A and B are **disjoint** or **mutually exclusive** if $A \cap B = \emptyset$ (A and B can't occur simultaneously).  
 
-- The **complement** of A, denoted $A^c$ or $\overline{A}$, is the event A does not occur (heavilyly injured, given that all our experiments involved either heavily or lightly injured ants). $A$ and $\overline{A}$ are **mutually exclusive**. 
+- The **complement** of A, denoted $A^c$ or $\overline{A}$, is the event A does not occur (not carried back to the nest). $A$ and $\overline{A}$ are **mutually exclusive**. 
 
 ---
 
@@ -261,7 +261,7 @@ You can think of "carried away" as a type of disposal.
 
 ## Practicing with Probabilities
 
-Define events A=lightly injured and B=carried back. Calculate the following probabilities for a randomly-selected injured ant from the study.
+Define events A=carried back to the nest and B=lightly injured. Calculate the following probabilities for a randomly-selected injured ant from the study.
 
 - $P(A)$
 
