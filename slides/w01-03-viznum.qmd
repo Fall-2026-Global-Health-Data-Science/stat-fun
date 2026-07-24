@@ -26,8 +26,8 @@ regmapping <- readr::read_csv("../data/loc.csv")
 lifespan <- life %>%
   left_join(regmapping, by = "location")
 
-lifespan2019=lifespan %>%
-  filter(year=='2019') %>%
+lifespan2023=lifespan %>%
+  filter(year=='2023') %>%
   select(-year)
 
 lifeexpwide <- lifespan %>%
@@ -36,8 +36,8 @@ lifeexpwide <- lifespan %>%
     values_from = lifeexp
   )
 
-lifeexpwide2019 <- lifespan %>%
-  filter(year == 2019) %>%
+lifeexpwide2023 <- lifespan %>%
+  filter(year == 2023) %>%
   pivot_wider(
     names_from = sex,
     values_from = lifeexp
@@ -75,7 +75,7 @@ lifeexpwide2019 <- lifespan %>%
 
 ::: {.column width="40%"}
 
-- We focus again on the IHME data on estimated life expectancy for a variety of countries and locations worldwide in the year 2019.
+- We focus again on the IHME data on estimated life expectancy for a variety of countries and locations worldwide in the year 2023.
 
 :::
 
@@ -84,7 +84,7 @@ lifeexpwide2019 <- lifespan %>%
 ```{r}
 #| output-lines: 18
 
-glimpse(lifespan2019)
+glimpse(lifespan2023)
 ```
 
 :::
@@ -103,7 +103,7 @@ glimpse(lifespan2019)
 |----------|-------------|
 | `location` | Country or area name |
 | `worldbankregion` | World region, as classified by the World Bank |
-| `pop` | Estimated 2019 population of the location |
+| `pop` | Estimated 2023 population of the location |
 | `sex` | Binary sex as reported by the country |
 | `lifeexp` | Life expectancy from infancy |
 
@@ -127,7 +127,7 @@ glimpse(lifespan2019)
 
 </div>
 
-In the full data (not subset to 2019), `year` is an additional numerical, discrete variable.
+In the full data (not subset to 2023), `year` is an additional numerical, discrete variable.
 
 ---
 
@@ -205,7 +205,7 @@ Previously we viewed a scatterplot showing the relationship between life expecta
 #| eval: false
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male
@@ -214,7 +214,7 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy",
-    subtitle = "2019",
+    subtitle = "2023",
     x = "Female life expectancy",
     y = "Male life expectancy"
   )
@@ -230,7 +230,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male
@@ -239,7 +239,7 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy",
-    subtitle = "2019",
+    subtitle = "2023",
     x = "Female life expectancy",
     y = "Male life expectancy"
   )
@@ -264,7 +264,7 @@ ggplot(
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -281,7 +281,7 @@ lifespan2019 %>%
 #| message: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -306,7 +306,7 @@ The bin width is the width of the interval used for grouping the data. It is sel
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -323,7 +323,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -346,7 +346,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -363,7 +363,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -386,7 +386,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -403,7 +403,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -426,7 +426,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -435,7 +435,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Frequency",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   )
 ```
 
@@ -448,7 +448,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -457,7 +457,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Frequency",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   )
 ```
 
@@ -476,7 +476,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -491,7 +491,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Frequency",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   )
 ```
 
@@ -504,7 +504,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -519,7 +519,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Frequency",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   )
 ```
 
@@ -540,7 +540,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -555,7 +555,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Frequency",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   ) +
   facet_wrap(~worldbankregion, nrow = 3)
 ```
@@ -571,7 +571,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -586,7 +586,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Frequency",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   ) +
   facet_wrap(~worldbankregion, nrow = 3)
 ```
@@ -608,7 +608,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -624,7 +624,7 @@ lifespan2019 %>%
     x = "Female life expectancy (years)",
     y = "Frequency",
     fill = "World Bank Region",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   ) +
   facet_wrap(~worldbankregion, nrow = 3) +
   theme(
@@ -644,7 +644,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -660,7 +660,7 @@ lifespan2019 %>%
     x = "Female life expectancy (years)",
     y = "Frequency",
     fill = "World Bank Region",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   ) +
   facet_wrap(~worldbankregion, nrow = 3) +
   theme(
@@ -698,7 +698,7 @@ Which version of all these plots seems most useful, and why?
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -721,7 +721,7 @@ A **density function** is a function whose value at any given point can be inter
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -748,7 +748,7 @@ The *bandwidth* is a parameter that specifies the degree of smoothing. A small b
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -767,7 +767,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -792,7 +792,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -811,7 +811,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -836,7 +836,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -855,7 +855,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -880,7 +880,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -889,7 +889,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Density",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   )
 ```
 
@@ -904,7 +904,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -913,7 +913,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Density",
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   )
 ```
 
@@ -934,7 +934,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -946,7 +946,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Density",
-    title = "2019 Life Expectancy of Women",
+    title = "2023 Life Expectancy of Women",
     fill = "Region"
   )
 ```
@@ -962,7 +962,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -974,7 +974,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = "Density",
-    title = "2019 Life Expectancy of Women",
+    title = "2023 Life Expectancy of Women",
     fill = "Region"
   )
 ```
@@ -1000,7 +1000,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -1023,7 +1023,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -1052,7 +1052,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(x = lifeexp)
@@ -1096,7 +1096,7 @@ lifespan2019 %>%
 library(patchwork)
 
 p1 <-
-  lifespan2019 %>%
+  lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(aes(x = lifeexp)) +
   geom_density() +
@@ -1106,7 +1106,7 @@ p1 <-
   )
 
 p2 <-
-  lifespan2019 %>%
+  lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(aes(y = lifeexp)) +
   geom_boxplot() + theme(
@@ -1152,7 +1152,7 @@ The distribution of population is highly skewed.
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(aes(x = pop)) +
   geom_boxplot() +
@@ -1191,7 +1191,7 @@ Here we plot the natural logarithm of the population because the original popula
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(aes(x = log(pop))) +
   geom_boxplot() + labs(x="Log(population)")
@@ -1227,14 +1227,14 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(aes(x = lifeexp)) +
   geom_boxplot() +
   labs(
     x = "Female life expectancy (years)",
     y = NULL,
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   ) +
   theme(
     axis.ticks.y = element_blank(),
@@ -1253,14 +1253,14 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(aes(x = lifeexp)) +
   geom_boxplot() +
   labs(
     x = "Female life expectancy (years)",
     y = NULL,
-    title = "2019 Life Expectancy of Women"
+    title = "2023 Life Expectancy of Women"
   ) +
   theme(
     axis.ticks.y = element_blank(),
@@ -1285,7 +1285,7 @@ lifespan2019 %>%
 ```{r}
 #| eval: false
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -1297,7 +1297,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = NULL,
-    title = "2019 Life Expectancy of Women",
+    title = "2023 Life Expectancy of Women",
     subtitle = "By region"
   )
 ```
@@ -1313,7 +1313,7 @@ lifespan2019 %>%
 #| warning: false
 #| out-width: 100%
 
-lifespan2019 %>%
+lifespan2023 %>%
   filter(sex == "Female") %>%
   ggplot(
     aes(
@@ -1325,7 +1325,7 @@ lifespan2019 %>%
   labs(
     x = "Female life expectancy (years)",
     y = NULL,
-    title = "2019 Life Expectancy of Women",
+    title = "2023 Life Expectancy of Women",
     subtitle = "By region"
   )
 ```

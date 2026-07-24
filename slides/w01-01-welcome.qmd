@@ -216,9 +216,10 @@ Ideally, the sample is <span style="color:#012169;">representative</span>, allow
 ## Life Expectancy
 
 
-- We consider data from IHME on (estimated) infant life expectancy from the years 1990–2019 as a function of location (primarily country) and binary gender.
+- We consider data from IHME on (estimated) infant life expectancy from the years 1990–2023 as a function of location (primarily country) and binary gender.
 
 - Here **life expectancy** is the \# of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time.
+
 
 ---
 
@@ -545,6 +546,7 @@ library(tidyverse)
 
 ---
 
+# AMY: DROP DATASAURUS AND DO IN LAB?
 
 ## Anscombe's quartet / Datasaurus Dozen
 

@@ -31,8 +31,8 @@ lifeexpwide <- lifespan %>%
     values_from = lifeexp
   )
 
-lifeexpwide2019 <- lifespan %>%
-  filter(year == 2019) %>%
+lifeexpwide2023 <- lifespan %>%
+  filter(year == 2023) %>%
   pivot_wider(
     names_from = sex,
     values_from = lifeexp
@@ -81,7 +81,7 @@ ggplot(
 
 ## Data: Life expectancy from infancy
 
-IHME data on location (mostly countries), World Bank region, binary sex, and estimated life expectancy and population in 2019 will be used to explore the men's health gap (later we will add more years).
+IHME data on location (mostly countries), World Bank region, binary sex, and estimated life expectancy and population in 2023 will be used to explore the men's health gap (later we will add more years).
 
 :::: {.columns .v-center}
 
@@ -101,7 +101,7 @@ knitr::include_graphics("../img/drabernathy.png")
 ::: {.column width="70%"}
 
 ```{r}
-glimpse(lifeexpwide2019)
+glimpse(lifeexpwide2023)
 ```
 
 *Grampa Simpson* (Matt Groening)
@@ -132,7 +132,7 @@ knitr::include_graphics("../img/Abraham_Simpson.png")
 #| fig-align: center
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -142,7 +142,7 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy",
-    subtitle = "2019",
+    subtitle = "2023",
     x = "Female life expectancy",
     y = "Male life expectancy",
     color = "World Bank Region"
@@ -175,7 +175,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -185,7 +185,7 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy",
-    subtitle = "2019",
+    subtitle = "2023",
     x = "Female life expectancy",
     y = "Male life expectancy",
     color = "World Bank Region"
@@ -205,7 +205,7 @@ ggplot(
 
 <div style="font-size:0.6em;">
 
-> **Start with the `lifeexpwide2019` data**  
+> **Start with the `lifeexpwide2023` data**  
 
 </div>
 
@@ -213,7 +213,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019
+  data = lifeexpwide2023
 )
 ```
 
@@ -228,7 +228,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  data = lifeexpwide2019
+  data = lifeexpwide2023
 )
 ```
 
@@ -246,7 +246,7 @@ ggplot(
 
 <div style="font-size:0.6em;">
 
-> Start with the `lifeexpwide2019` data,  
+> Start with the `lifeexpwide2023` data,  
 > **and map female life expectancy to the x-axis**  
 
 </div>
@@ -255,7 +255,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female
   )
@@ -273,7 +273,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female
   )
@@ -296,7 +296,7 @@ ggplot(
 
 <div style="font-size:0.6em;">
 
-> Start with the `lifeexpwide2019` data,  
+> Start with the `lifeexpwide2023` data,  
 > map female life expectancy to the x-axis,  
 > **and map male life expectancy to the y-axis**  
 
@@ -306,7 +306,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male
@@ -325,7 +325,7 @@ ggplot(
 #| fig-asp: 1.4
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male
@@ -348,7 +348,7 @@ ggplot(
 
 <div style="font-size:0.6em;">
 
-> Start with the `lifeexpwide2019` data,  
+> Start with the `lifeexpwide2023` data,  
 > map female life expectancy to the x-axis,  
 > map male life expectancy to the y-axis,  
 > **and represent each observation with a point**  
@@ -359,7 +359,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male
@@ -379,7 +379,7 @@ ggplot(
 #| fig-asp: 1.4
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male
@@ -403,7 +403,7 @@ ggplot(
 
 <div style="font-size:0.6em;">
 
-> Start with the `lifeexpwide2019` data,  
+> Start with the `lifeexpwide2023` data,  
 > map female life expectancy to the x-axis,  
 > map male life expectancy to the y-axis,  
 > represent each observation with a point,  
@@ -415,7 +415,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -436,7 +436,7 @@ ggplot(
 #| fig-asp: 1.4
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -461,7 +461,7 @@ ggplot(
 
 <div style="font-size:0.6em;">
 
-> Start with the `lifeexpwide2019` data,  
+> Start with the `lifeexpwide2023` data,  
 > map female life expectancy to the x-axis,  
 > map male life expectancy to the y-axis,  
 > represent each observation with a point,  
@@ -474,7 +474,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -499,7 +499,7 @@ ggplot(
 
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -509,75 +509,6 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy"
-  )
-```
-
-:::
-
-::::
-
----
-
-
-## Coding out loud
-
-
-:::: columns
-
-::: {.column width="60%"}
-
-<div style="font-size:0.6em;">
-
-> Start with the `lifeexpwide2019` data,  
-> map female life expectancy to the x-axis,  
-> map male life expectancy to the y-axis,  
-> represent each observation with a point,  
-> map region to the color of each point,  
-> title the plot "Life expectancy,"
-> **and add the subtitle "2019."**
-
-</div>
-
-```{r}
-#| eval: false
-
-ggplot(
-  data = lifeexpwide2019,
-  mapping = aes(
-    x = Female,
-    y = Male,
-    color = worldbankregion
-  )
-) +
-  geom_point() +
-  labs(
-    title = "Life expectancy", 
-    subtitle = "2019"
-  )
-```
-
-:::
-
-::: {.column width="40%"}
-
-```{r}
-#| echo: false
-#| warning: false
-#| out-width: 100%
-#| fig-asp: 1.4
-
-
-ggplot(
-  data = lifeexpwide2019,
-  mapping = aes(
-    x = Female,
-    y = Male,
-    color = worldbankregion
-  )
-) +
-  geom_point() +
-  labs(
-    title = "Life expectancy", subtitle="2019"
   )
 ```
 
@@ -597,7 +528,76 @@ ggplot(
 
 <div style="font-size:0.5em;">
 
-> Start with the `lifeexpwide2019` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2019,"
+> Start with the `lifeexpwide2023` data,  
+> map female life expectancy to the x-axis,  
+> map male life expectancy to the y-axis,  
+> represent each observation with a point,  
+> map region to the color of each point,  
+> title the plot "Life expectancy,"
+> **and add the subtitle "2023."**
+
+</div>
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = lifeexpwide2023,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", 
+    subtitle = "2023"
+  )
+```
+
+:::
+
+::: {.column width="40%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+#| fig-asp: 1.4
+
+
+ggplot(
+  data = lifeexpwide2023,
+  mapping = aes(
+    x = Female,
+    y = Male,
+    color = worldbankregion
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Life expectancy", subtitle="2023"
+  )
+```
+
+:::
+
+::::
+
+---
+
+
+## Coding out loud
+
+
+:::: columns
+
+::: {.column width="60%"}
+
+<div style="font-size:0.5em;">
+
+> Start with the `lifeexpwide2023` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2023,"
 > **and refine x and y axis labels.**
 
 </div>
@@ -609,7 +609,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -619,7 +619,7 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy", 
-    subtitle = "2019",
+    subtitle = "2023",
      x = "Female life expectancy", 
      y = "Male life expectancy"
   )
@@ -639,7 +639,7 @@ ggplot(
 
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -648,7 +648,7 @@ ggplot(
 ) +
   geom_point() +
   labs(
-    title = "Life expectancy", subtitle="2019", x = "Female life expectancy", y = "Male life expectancy"
+    title = "Life expectancy", subtitle="2023", x = "Female life expectancy", y = "Male life expectancy"
   )
 ```
 
@@ -668,7 +668,7 @@ ggplot(
 
 <div style="font-size:0.5em;">
 
-> Start with the `lifeexpwide2019` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2019," refine the axis labels, 
+> Start with the `lifeexpwide2023` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2023," refine the axis labels, 
 > **and fix the legend label.**
 
 </div>
@@ -680,7 +680,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -690,7 +690,7 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy", 
-    subtitle = "2019",
+    subtitle = "2023",
      x = "Female life expectancy", 
      y = "Male life expectancy",
      color="World Bank Region"
@@ -711,7 +711,7 @@ ggplot(
 
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -720,7 +720,7 @@ ggplot(
 ) +
   geom_point() +
   labs(
-    title = "Life expectancy", subtitle="2019", x = "Female life expectancy", y = "Male life expectancy",color="World Bank Region"
+    title = "Life expectancy", subtitle="2023", x = "Female life expectancy", y = "Male life expectancy",color="World Bank Region"
   )
 ```
 
@@ -741,7 +741,7 @@ ggplot(
 
 <div style="font-size:0.5em;">
 
-> Start with the `lifeexpwide2019` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2019," refine the axis labels, fix the legend label, 
+> Start with the `lifeexpwide2023` data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot "Life expectancy," add the subtitle "2023," refine the axis labels, fix the legend label, 
 > **and add a caption for data source.**
 
 </div>
@@ -753,7 +753,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -763,7 +763,7 @@ ggplot(
   geom_point() +
   labs(
     title = "Life expectancy", 
-    subtitle = "2019",
+    subtitle = "2023",
      x = "Female life expectancy", 
      y = "Male life expectancy",
      color="World Bank Region",
@@ -785,7 +785,7 @@ ggplot(
 
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -794,7 +794,7 @@ ggplot(
 ) +
   geom_point() +
   labs(
-    title = "Life expectancy", subtitle="2019", x = "Female life expectancy", y = "Male life expectancy",color="World Bank Region",caption = "Source: IHME"
+    title = "Life expectancy", subtitle="2023", x = "Female life expectancy", y = "Male life expectancy",color="World Bank Region",caption = "Source: IHME"
   )
 ```
 
@@ -821,7 +821,7 @@ You can omit the names of the first two arguments when building plots with `ggpl
 #| eval: false
 
 ggplot(
-  data = lifeexpwide2019,
+  data = lifeexpwide2023,
   mapping = aes(
     x = Female,
     y = Male,
@@ -839,7 +839,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -884,7 +884,7 @@ Commonly used characteristics of plotting characters that can be **mapped to a s
 #| eval: false
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -904,7 +904,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -930,7 +930,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -950,7 +950,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -964,7 +964,57 @@ ggplot(
 
 ::::
 
-**Oops!** Only **6** shapes are available, so this isn't a good option for our **more than 6** regions!
+**Oops!** Only **6** shapes are available, so this isn't a good option for our **more than 6** regions! Let's fix that.
+
+---
+
+## Shape, take 2
+
+:::: columns
+
+::: {.column width="40%"}
+
+```{r}
+#| eval: false
+
+ggplot(
+  lifeexpwide2023,
+  aes(
+    x = Female,
+    y = Male,
+    shape = worldbankregion
+  )
+) +
+  geom_point() +  
+  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))
+```
+
+:::
+
+::: {.column width="60%"}
+
+```{r}
+#| echo: false
+#| warning: false
+#| out-width: 100%
+
+ggplot(
+  lifeexpwide2023,
+  aes(
+    x = Female,
+    y = Male,
+    shape = worldbankregion
+  )
+) +
+  geom_point() +  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))
+```
+
+:::
+
+::::
+
+**Oops!** Only **6** shapes are available, so this isn't a good option for our **more than 6** regions! Let's fix that.
+
 
 ---
 
@@ -981,15 +1031,15 @@ Can also map to the same variable as `color` (helps for color vision deficiency)
 #| eval: false
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
     shape = worldbankregion,
     color=worldbankregion
   )
-) +
-  geom_point()
+) + geom_point() 
++  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))
 ```
 
 :::
@@ -1002,14 +1052,14 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
     shape = worldbankregion, color=worldbankregion
   )
 ) +
-  geom_point()
+  geom_point() +  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))
 ```
 
 :::
@@ -1028,7 +1078,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -1049,7 +1099,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -1076,7 +1126,7 @@ ggplot(
 #| eval: false
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -1097,7 +1147,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -1130,7 +1180,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male,
@@ -1156,7 +1206,7 @@ ggplot(
 #| out-width: 100%
 
 ggplot(
-  lifeexpwide2019,
+  lifeexpwide2023,
   aes(
     x = Female,
     y = Male
@@ -1205,7 +1255,7 @@ ggplot(
 
 lifeexpwide %>%
   filter(
-    year %in% c(1999, 2009, 2019),
+    year %in% c(1999, 2009, 2023),
     worldbankregion %in% c(
       "North America",
       "South Asia",
@@ -1233,7 +1283,7 @@ lifeexpwide %>%
 
 lifeexpwide %>%
   filter(
-    year %in% c(1999, 2009, 2019),
+    year %in% c(1999, 2010, 2023),
     worldbankregion %in% c(
       "North America",
       "South Asia",
@@ -1266,7 +1316,7 @@ lifeexpwide %>%
 
 lifeexpwide %>%
   filter(
-    year %in% c(1999, 2009, 2019),
+    year %in% c(1999, 2010, 2023),
     worldbankregion %in% c("North America","South Asia","Sub-Saharan Africa"
     )
   ) %>%
@@ -1284,7 +1334,7 @@ lifeexpwide %>%
 #| fig-asp: 0.5
 
 lifeexpwide %>%
-  filter(year %in% c(1999, 2009,2019),worldbankregion %in% c("North America","South Asia","Sub-Saharan Africa")) %>%
+  filter(year %in% c(1999, 2010, 2023),worldbankregion %in% c("North America","South Asia","Sub-Saharan Africa")) %>%
     ggplot(aes(x = Female,
                y = Male)) + 
   geom_point() +
@@ -1316,7 +1366,7 @@ lifeexpwide %>%
 
 lifeexpwide %>%
   filter(
-    year %in% c(1999, 2009, 2019),
+    year %in% c(1999, 2010, 2023),
     worldbankregion %in% c(
       "North America",
       "South Asia",
@@ -1346,7 +1396,7 @@ lifeexpwide %>%
 
 lifeexpwide %>%
   filter(
-    year %in% c(1999, 2009, 2019),
+    year %in% c(1999, 2010, 2023),
     worldbankregion %in% c(
       "North America",
       "South Asia",
@@ -1381,7 +1431,7 @@ lifeexpwide %>%
 
 lifeexpwide %>%
   filter(
-    year %in% c(1999, 2009, 2019),
+    year %in% c(1999, 2010, 2023),
     worldbankregion %in% c(
       "North America",
       "South Asia",
@@ -1412,7 +1462,7 @@ lifeexpwide %>%
 
 lifeexpwide %>%
   filter(
-    year %in% c(1999, 2009, 2019),
+    year %in% c(1999, 2010, 2023),
     worldbankregion %in% c(
       "North America",
       "South Asia",

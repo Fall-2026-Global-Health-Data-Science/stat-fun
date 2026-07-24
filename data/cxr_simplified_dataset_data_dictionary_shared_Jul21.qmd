@@ -1,0 +1,173 @@
+---
+title: "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)"
+subtitle: "STA/GLHLTH 198L"
+author: "George"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    df-print: paged
+editor: visual
+---
+
+```{r setup}
+#| echo: false
+#| message: false
+library(dplyr)
+library(tibble)
+library(knitr)
+```
+
+A DASH-format data dictionary for the three simplified teaching files in `cxr_data.RData` (built via a reproducible R pipeline from the full Collab-CXR research file). See `simplification_memo_shared_Jul21.qmd` for the reasoning behind every simplification choice.
+
+## Study_Variables sheet
+
+```{r study-variables}
+Dataset_Name <- c(rep("cxr_readings", 9), rep("cxr_cases", 7), rep("cxr_combined", 12))
+
+Variable_Name <- c(
+  "patient_id", "pathology", "radiologist_id", "had_ai_help", "had_history",
+  "radiologist_prob", "ai_prob", "truth", "time_seconds",
+  "patient_id", "pathology", "truth", "ai_prob", "mean_human_prob", "human_accuracy", "n_reads",
+  "patient_id", "pathology", "radiologist_id", "had_ai_help", "had_history",
+  "radiologist_prob", "ai_prob", "truth", "time_seconds", "mean_human_prob", "human_accuracy", "n_reads"
+)
+
+Variable_Label <- c(
+  "Patient case identifier", "Pathology being rated", "Radiologist identifier",
+  "AI assistance available", "Clinical history available",
+  "Radiologist's probability rating", "AI's probability rating",
+  "Ground truth label", "Active reading time",
+  "Patient case identifier", "Pathology being rated", "Ground truth label",
+  "AI's probability rating", "Average radiologist probability",
+  "Share of correct human reads", "Number of readings",
+  "Patient case identifier", "Pathology being rated", "Radiologist identifier",
+  "AI assistance available", "Clinical history available",
+  "Radiologist's probability rating", "AI's probability rating",
+  "Ground truth label", "Active reading time",
+  "Average radiologist probability", "Share of correct human reads", "Number of readings"
+)
+
+Variable_Label_Description <- c(
+  "Links to the Stanford AIMI CheXmultimodal dataset; patient_id N corresponds to image file N.jpg. One patient appears many times (once per pathology, per radiologist who read that case).",
+  "Which of 4 top-level chest X-ray findings this row rates. Simplified from the original 104-code hierarchy down to the 4 top-level ('level 0') categories that also have an AI prediction available.",
+  "Opaque ID for the study participant who produced this reading. 227 distinct radiologists appear across the file. Same person can appear under different had_ai_help / had_history combinations.",
+  "TRUE if the radiologist was shown the AI's prediction (alg_pred) while making this reading; FALSE if they read unassisted. Derived from the source file's with_ai boolean, not by parsing the treatment code string.",
+  "TRUE if the radiologist was given the patient's clinical history/indication when making this reading; FALSE otherwise. Derived from the source file's with_ch boolean.",
+  "The radiologist's own probability estimate (0-1) that this pathology is present, reported via an interface slider.",
+  "The CheXpert model's probability estimate (0-1) that this pathology is present, based on the image alone. Identical for every radiologist reading the same patient/pathology, whether or not had_ai_help is TRUE for that reading.",
+  "Binary (0/1) diagnostic gold standard, from the 5 Mount-Sinai-based expert labelers' averaged rating thresholded at 0.5 (source column gt_binary_simple_us). Constant across every radiologist who read the same case.",
+  "Seconds the radiologist spent actively working on this case (source column active_time). Excludes idle/away time.",
+  "Same identifier and meaning as in cxr_readings, but each row here is one patient x pathology combination, not one individual reading.",
+  "Same 4 categories as in cxr_readings.",
+  "Same binary ground truth as cxr_readings; one value per case since it does not depend on who read it.",
+  "Same AI probability as cxr_readings; included once per case since it is identical across all readers of that case.",
+  "Average of radiologist_prob across all radiologists who read this patient/pathology combination (n_reads readings), rounded to 4 decimal places.",
+  "Proportion of individual radiologist reads for this case that were correct, using a 0.5 cutoff on radiologist_prob against truth.",
+  "How many individual radiologist readings (rows in cxr_readings) this case/pathology combination has. Varies 35-106 per case because of the study's mixed designs - some cases were read once, others up to 4 times under a within-subject washout design.",
+  "Same as cxr_readings.", "Same as cxr_readings.", "Same as cxr_readings.",
+  "Same as cxr_readings.", "Same as cxr_readings.", "Same as cxr_readings.", "Same as cxr_readings.",
+  "Same as cxr_readings.", "Same as cxr_readings.",
+  "Same as cxr_cases's mean_human_prob, joined onto every reading of this case (so the value repeats n_reads times across the readings for a given patient/pathology).",
+  "Same as cxr_cases's human_accuracy, joined onto every reading of this case (repeats n_reads times).",
+  "Same as cxr_cases's n_reads, joined onto every reading of this case (repeats n_reads times)."
+)
+
+Variable_Type <- c(
+  "Numeric", "Coded", "Character", "Coded", "Coded", "Numeric", "Numeric", "Coded", "Numeric",
+  "Numeric", "Coded", "Coded", "Numeric", "Numeric", "Numeric", "Numeric",
+  "Numeric", "Coded", "Character", "Coded", "Coded", "Numeric", "Numeric", "Coded", "Numeric", "Numeric", "Numeric", "Numeric"
+)
+
+Variable_Code_List <- c(
+  NA, "Pathology_Selected", NA, "Boolean_TrueFalse", "Boolean_TrueFalse", NA, NA, "Binary_01", NA,
+  NA, "Pathology_Selected", "Binary_01", NA, NA, NA, NA,
+  NA, "Pathology_Selected", NA, "Boolean_TrueFalse", "Boolean_TrueFalse", NA, NA, "Binary_01", NA, NA, NA, NA
+)
+
+Value_Range_Minimum <- c(NA, NA, NA, NA, NA, 0, 0, 0, 0, NA, NA, 0, 0, 0, 0, 35, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 35)
+Value_Range_Maximum <- c(NA, NA, NA, NA, NA, 1, 1, 1, NA, NA, NA, 1, 1, 1, 1, 106, NA, NA, NA, NA, NA, 1, 1, 1, NA, 1, 1, 106)
+
+all_vecs <- list(Variable_Name, Variable_Label, Variable_Label_Description, Variable_Type,
+                  Variable_Code_List, Value_Range_Minimum, Value_Range_Maximum, Dataset_Name)
+stopifnot(length(unique(sapply(all_vecs, length))) == 1)
+stopifnot(!anyNA(Variable_Name), !anyNA(Variable_Label))
+
+study_variables <- tibble(
+  `Dataset Name` = Dataset_Name,
+  `Variable Name` = Variable_Name,
+  `Variable Label` = Variable_Label,
+  `Variable Label Description` = Variable_Label_Description,
+  `Variable Type` = Variable_Type,
+  `Variable Code List` = Variable_Code_List,
+  `Value Range Minimum` = Value_Range_Minimum,
+  `Value Range Maximum` = Value_Range_Maximum
+)
+
+kable(study_variables, caption = "Study_Variables sheet (DASH Codebook format)")
+
+```
+
+## Code_Lists sheet
+
+```{r code-lists}
+Code_List_Name <- c(
+  "Pathology_Selected", "Pathology_Selected", "Pathology_Selected", "Pathology_Selected",
+  "Boolean_TrueFalse", "Boolean_TrueFalse",
+  "Binary_01", "Binary_01"
+)
+Value <- c(
+  "Any abnormality", "Airspace opacity", "Cardiomediastinal abnormality", "Support device or hardware",
+  "TRUE", "FALSE",
+  "0", "1"
+)
+Value_Label <- c(
+  "Top-level flag: is any finding present on this image at all? (source pathology code 106_abnormal)",
+  "Any airspace opacity finding, e.g. consolidation, infiltrate (source pathology code 2_airspace_opacity)",
+  "Any abnormality of the heart/mediastinum silhouette (source pathology code 34_cardiomediastinal_abnormality)",
+  "Any tube, line, or other medical hardware finding (source pathology code 78_support_device_hardware)",
+  "Yes",
+  "No",
+  "No / Negative",
+  "Yes / Positive"
+)
+stopifnot(length(Code_List_Name) == length(Value), length(Value) == length(Value_Label))
+
+code_lists <- tibble(
+  `Code List Name` = Code_List_Name,
+  Value = Value,
+  `Value Label` = Value_Label
+)
+
+kable(code_lists, caption = "Code_Lists sheet (DASH Codebook format)")
+```
+
+## Cross-check against the live RData file
+
+```{r variable-check}
+load("cxr_data.RData")
+
+dict_readings_vars <- study_variables$`Variable Name`[study_variables$`Dataset Name` == "cxr_readings"]
+dict_cases_vars <- study_variables$`Variable Name`[study_variables$`Dataset Name` == "cxr_cases"]
+dict_combined_vars <- study_variables$`Variable Name`[study_variables$`Dataset Name` == "cxr_combined"]
+
+check_match <- function(dict_vars, data_vars, label) {
+  missing_from_dict <- setdiff(data_vars, dict_vars)
+  missing_from_data <- setdiff(dict_vars, data_vars)
+  if (length(missing_from_dict) > 0) {
+    message(label, ": columns in data but not in dictionary: ", paste(missing_from_dict, collapse = ", "))
+  }
+  if (length(missing_from_data) > 0) {
+    message(label, ": columns in dictionary but not in data: ", paste(missing_from_data, collapse = ", "))
+  }
+  if (length(missing_from_dict) == 0 && length(missing_from_data) == 0) {
+    message(label, ": dictionary and data columns match exactly (", length(data_vars), " variables).")
+  }
+}
+
+check_match(dict_readings_vars, colnames(cxr_readings), "cxr_readings")
+check_match(dict_cases_vars, colnames(cxr_cases), "cxr_cases")
+check_match(dict_combined_vars, colnames(cxr_combined), "cxr_combined")
+```
