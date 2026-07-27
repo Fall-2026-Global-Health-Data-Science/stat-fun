@@ -1313,18 +1313,25 @@
     "text": "Practicing with Probabilities\nDefine events A=carried back to the nest and B=lightly injured. Calculate the following probabilities for a randomly-selected injured ant from the study.\n\n\\(P(A)\\)\n\\(P(B)\\)\n\\(P(A \\cup B)\\)\n\\(P(A \\cap B)\\)\n\\(P(\\overline{A} \\cap B)\\)\n\\(P(A \\cap \\overline{B})\\)\n\\(P(\\overline{A} \\cap \\overline{B})\\)"
   },
   {
+    "objectID": "slides/w01-03-viznum.html",
+    "href": "slides/w01-03-viznum.html",
+    "title": "Visualising numeric data",
+    "section": "",
+    "text": "Univariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariable/multivariate data analysis - relationship between many variables at once, sometimes focusing on the relationship between two while conditioning for others. (Often we reserve multivariate for multiple outcomes, and multivariable for multiple predictors.)\n\n\n\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only a finite number of distinct values (e.g., counts), respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+  },
+  {
     "objectID": "slides/w01-03-viznum.html#number-of-variables-involved",
     "href": "slides/w01-03-viznum.html#number-of-variables-involved",
     "title": "Visualising numeric data",
-    "section": "Number of variables involved",
-    "text": "Number of variables involved\n\nUnivariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariable/multivariate data analysis - relationship between many variables at once, sometimes focusing on the relationship between two while conditioning for others. (Often we reserve multivariate for multiple outcomes, and multivariable for multiple predictors.)"
+    "section": "",
+    "text": "Univariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariable/multivariate data analysis - relationship between many variables at once, sometimes focusing on the relationship between two while conditioning for others. (Often we reserve multivariate for multiple outcomes, and multivariable for multiple predictors.)"
   },
   {
     "objectID": "slides/w01-03-viznum.html#types-of-variables",
     "href": "slides/w01-03-viznum.html#types-of-variables",
     "title": "Visualising numeric data",
-    "section": "Types of variables",
-    "text": "Types of variables\n\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only a finite number of distinct values (e.g., counts), respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+    "section": "",
+    "text": "Numerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only a finite number of distinct values (e.g., counts), respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
   },
   {
     "objectID": "slides/w01-03-viznum.html#data-life-expectancy",
@@ -1532,6 +1539,230 @@
   {
     "objectID": "slides/w01-03-viznum.html#adding-a-categorical-variable-1",
     "href": "slides/w01-03-viznum.html#adding-a-categorical-variable-1",
+    "title": "Visualising numeric data",
+    "section": "Adding a categorical variable",
+    "text": "Adding a categorical variable\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      y = worldbankregion\n    )\n  ) +\n  geom_boxplot() +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = NULL,\n    title = \"2023 Life Expectancy of Women\",\n    subtitle = \"By region\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#number-of-variables-involved",
+    "href": "slides/w01-03-viznum-slides.html#number-of-variables-involved",
+    "title": "Visualising numeric data",
+    "section": "Number of variables involved",
+    "text": "Number of variables involved\n\nUnivariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariable/multivariate data analysis - relationship between many variables at once, sometimes focusing on the relationship between two while conditioning for others. (Often we reserve multivariate for multiple outcomes, and multivariable for multiple predictors.)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#types-of-variables",
+    "href": "slides/w01-03-viznum-slides.html#types-of-variables",
+    "title": "Visualising numeric data",
+    "section": "Types of variables",
+    "text": "Types of variables\n\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only a finite number of distinct values (e.g., counts), respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#data-life-expectancy",
+    "href": "slides/w01-03-viznum-slides.html#data-life-expectancy",
+    "title": "Visualising numeric data",
+    "section": "Data: Life Expectancy",
+    "text": "Data: Life Expectancy\n\n\n\nWe focus again on the IHME data on estimated life expectancy for a variety of countries and locations worldwide in the year 2023.\n\n\n\nglimpse(lifespan2023)\n\nRows: 408\nColumns: 5\n$ location        &lt;chr&gt; \"Afghanistan\", \"Afghanistan\", \"Albania\"…\n$ sex             &lt;chr&gt; \"Female\", \"Male\", \"Female\", \"Male\", \"Fe…\n$ lifeexp         &lt;dbl&gt; 68.98985, 68.13812, 82.05155, 77.27016,…\n$ worldbankregion &lt;chr&gt; \"South Asia\", \"South Asia\", \"Europe and…\n$ pop             &lt;dbl&gt; 38041757, 38041757, 2854191, 2854191, 4…"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#selected-variables",
+    "href": "slides/w01-03-viznum-slides.html#selected-variables",
+    "title": "Visualising numeric data",
+    "section": "Selected variables",
+    "text": "Selected variables\n\n\n\n\nVariable\nDescription\n\n\n\nlocation\nCountry or area name\n\n\nworldbankregion\nWorld region, as classified by the World Bank\n\n\npop\nEstimated 2023 population of the location\n\n\nsex\nBinary sex as reported by the country\n\n\nlifeexp\nLife expectancy from infancy"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#variable-types",
+    "href": "slides/w01-03-viznum-slides.html#variable-types",
+    "title": "Visualising numeric data",
+    "section": "Variable types",
+    "text": "Variable types\n\n\n\n\nVariable\nType\n\n\n\nlocation\nCategorical, not ordinal\n\n\nworldbankregion\nCategorical, not ordinal\n\n\npop\nNumerical, discrete\n\n\nsex\nCategorical, not ordinal\n\n\nlifeexp\nNumerical, continuous\n\n\n\n\nIn the full data (not subset to 2023), year is an additional numerical, discrete variable."
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#describing-shapes-of-numerical-distributions",
+    "href": "slides/w01-03-viznum-slides.html#describing-shapes-of-numerical-distributions",
+    "title": "Visualising numeric data",
+    "section": "Describing shapes of numerical distributions",
+    "text": "Describing shapes of numerical distributions\n\n\nShape\n\nSkewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)\nModality: unimodal, bimodal, multimodal, uniform\n\n\n\nCenter: mean (mean), median (median), mode\n\nSpread: range (range), standard deviation (sd), variance (square of sd), interquartile range (IQR)\nUnusual observations"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#measures-of-center",
+    "href": "slides/w01-03-viznum-slides.html#measures-of-center",
+    "title": "Visualising numeric data",
+    "section": "Measures of center",
+    "text": "Measures of center\nConsider a random variable \\(x_i\\) that is the estimated life expectancy for country \\(i\\), \\(i = 1, \\ldots, n\\), among \\(n\\) countries.\n\n\nMean: estimated as\n\n\\[ \\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\\]"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#measures-of-center-1",
+    "href": "slides/w01-03-viznum-slides.html#measures-of-center-1",
+    "title": "Visualising numeric data",
+    "section": "Measures of center",
+    "text": "Measures of center\n\n\nMedian: middle number (50th percentile), \\(x_{(n+1)/2}\\)\n\nFor \\(n\\) odd, the median is the middle number.\nFor \\(n\\) even, the median is the mean of the two middle numbers.\nJust remember: it splits the ordered data in half.\n\n\n\nMode: most frequent value in the data set"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#measures-of-spread",
+    "href": "slides/w01-03-viznum-slides.html#measures-of-spread",
+    "title": "Visualising numeric data",
+    "section": "Measures of spread",
+    "text": "Measures of spread\n\nvariance: average squared distance from mean\n\nstandard deviation (sd): square root of variance (on same scale as data). The sample variance \\(s^2\\) is estimated in a single sample as \\[\\frac{\\sum_{i=1}^n (x_i-\\overline{x})^2}{n-1}\\]\n\nwe think of 1 sd as a sizeable difference. For example, height of college students in the US has a sd \\(\\approx\\) 3 in men and \\(\\approx\\) 2.5 in women"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#measures-of-spread-1",
+    "href": "slides/w01-03-viznum-slides.html#measures-of-spread-1",
+    "title": "Visualising numeric data",
+    "section": "Measures of spread",
+    "text": "Measures of spread\n\nrange: difference between highest and lowest values, e.g. \\(x_{(n)}-x_{(1)}\\)\n\ninterquartile range (IQR): difference between 75th and 25th %iles\n\nwe think of this as pretty big too\n75th %ile of height among male college students in the US is 5’11”, and the 25th %ile is 5’7”, so the IQR is 4”\nfor female students, the 75th %ile is 5’5.6”, 25th %ile is 5’1.6”, and IQR is also 4”"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#scatterplot",
+    "href": "slides/w01-03-viznum-slides.html#scatterplot",
+    "title": "Visualising numeric data",
+    "section": "Scatterplot",
+    "text": "Scatterplot\nPreviously we viewed a scatterplot showing the relationship between life expectancy of females and males in each location.\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\",\n    subtitle = \"2023\",\n    x = \"Female life expectancy\",\n    y = \"Male life expectancy\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#histogram-1",
+    "href": "slides/w01-03-viznum-slides.html#histogram-1",
+    "title": "Visualising numeric data",
+    "section": "Histogram",
+    "text": "Histogram\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#histograms-and-binwidth-binwidth-0.5",
+    "href": "slides/w01-03-viznum-slides.html#histograms-and-binwidth-binwidth-0.5",
+    "title": "Visualising numeric data",
+    "section": "Histograms and binwidth: binwidth = 0.5\n",
+    "text": "Histograms and binwidth: binwidth = 0.5\n\n\n\nThe bin width is the width of the interval used for grouping the data. It is selected automatically by R, but we can alter it. For example, a bin width of \\(\\frac{1}{2}\\) plots a bar for each 6 month life expectancy group, while a bin width of 10 plots a bar for groups of 10 years.\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 0.5)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#histograms-and-binwidth-binwidth-3",
+    "href": "slides/w01-03-viznum-slides.html#histograms-and-binwidth-binwidth-3",
+    "title": "Visualising numeric data",
+    "section": "Histograms and binwidth: binwidth = 3\n",
+    "text": "Histograms and binwidth: binwidth = 3\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 3)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#histograms-and-binwidth-binwidth-10",
+    "href": "slides/w01-03-viznum-slides.html#histograms-and-binwidth-binwidth-10",
+    "title": "Visualising numeric data",
+    "section": "Histograms and binwidth: binwidth = 10\n",
+    "text": "Histograms and binwidth: binwidth = 10\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 10)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#customizing-histograms",
+    "href": "slides/w01-03-viznum-slides.html#customizing-histograms",
+    "title": "Visualising numeric data",
+    "section": "Customizing histograms",
+    "text": "Customizing histograms\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_histogram(binwidth = 3) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    title = \"2023 Life Expectancy of Women\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#fill-with-a-categorical-variable",
+    "href": "slides/w01-03-viznum-slides.html#fill-with-a-categorical-variable",
+    "title": "Visualising numeric data",
+    "section": "Fill with a categorical variable",
+    "text": "Fill with a categorical variable\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_histogram(\n    binwidth = 3,\n    alpha = 0.5\n  ) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    title = \"2023 Life Expectancy of Women\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#facet-with-a-categorical-variable",
+    "href": "slides/w01-03-viznum-slides.html#facet-with-a-categorical-variable",
+    "title": "Visualising numeric data",
+    "section": "Facet with a categorical variable",
+    "text": "Facet with a categorical variable\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_histogram(\n    binwidth = 3,\n    alpha = 0.5\n  ) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    title = \"2023 Life Expectancy of Women\"\n  ) +\n  facet_wrap(~worldbankregion, nrow = 3)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#facet-with-a-categorical-variable-fixing-labels",
+    "href": "slides/w01-03-viznum-slides.html#facet-with-a-categorical-variable-fixing-labels",
+    "title": "Visualising numeric data",
+    "section": "Facet with a categorical variable (fixing labels)",
+    "text": "Facet with a categorical variable (fixing labels)\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_histogram(\n    binwidth = 3,\n    alpha = 0.5\n  ) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Frequency\",\n    fill = \"World Bank Region\",\n    title = \"2023 Life Expectancy of Women\"\n  ) +\n  facet_wrap(~worldbankregion, nrow = 3) +\n  theme(\n    strip.background = element_blank(),\n    strip.text.x = element_blank()\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nWhich version of all these plots seems most useful, and why?"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#density-plot-1",
+    "href": "slides/w01-03-viznum-slides.html#density-plot-1",
+    "title": "Visualising numeric data",
+    "section": "Density plot",
+    "text": "Density plot\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density()\n\nA density function is a function whose value at any given point can be interpreted as providing a relative likelihood of values. That is, higher values of the density function indicate values of the random variable that are more likely to be observed."
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#density-plots-adjust-0.5",
+    "href": "slides/w01-03-viznum-slides.html#density-plots-adjust-0.5",
+    "title": "Visualising numeric data",
+    "section": "Density plots: adjust = 0.5\n",
+    "text": "Density plots: adjust = 0.5\n\n\n\n\nThe bandwidth is a parameter that specifies the degree of smoothing. A small bandwidth shows many bumps (like a histogram with a small bin width), while a large bandwidth smooths over many bumps. It is specified using the adjust argument.\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 0.5)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#density-plots-adjust-1",
+    "href": "slides/w01-03-viznum-slides.html#density-plots-adjust-1",
+    "title": "Visualising numeric data",
+    "section": "Density plots: adjust = 1\n",
+    "text": "Density plots: adjust = 1\n\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 1)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#density-plots-adjust-2",
+    "href": "slides/w01-03-viznum-slides.html#density-plots-adjust-2",
+    "title": "Visualising numeric data",
+    "section": "Density plots: adjust = 2\n",
+    "text": "Density plots: adjust = 2\n\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 2)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#customizing-density-plots",
+    "href": "slides/w01-03-viznum-slides.html#customizing-density-plots",
+    "title": "Visualising numeric data",
+    "section": "Customizing density plots",
+    "text": "Customizing density plots\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_density(adjust = 1) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Density\",\n    title = \"2023 Life Expectancy of Women\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#adding-a-categorical-variable",
+    "href": "slides/w01-03-viznum-slides.html#adding-a-categorical-variable",
+    "title": "Visualising numeric data",
+    "section": "Adding a categorical variable",
+    "text": "Adding a categorical variable\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      fill = worldbankregion\n    )\n  ) +\n  geom_density(adjust = 1) +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = \"Density\",\n    title = \"2023 Life Expectancy of Women\",\n    fill = \"Region\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#box-plot-1",
+    "href": "slides/w01-03-viznum-slides.html#box-plot-1",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(x = lifeexp)\n  ) +\n  geom_boxplot() + theme(\n  axis.title.y = element_blank(),\n  axis.text.y  = element_blank(),\n  axis.ticks.y = element_blank()\n)"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#box-plot-2",
+    "href": "slides/w01-03-viznum-slides.html#box-plot-2",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\n\n\n\n\n\n\n\n\n\n\n\n\nTechnical specifications vary across software packages\n\nMedian: line in the middle of the box\n\nHinges (25th and 75th percentiles): edges of the box\n\nUpper whisker: extends to the largest data point no more than (1.5 IQR) above the upper hinge (75th percentile); similarly for the lower whisker\n\nOutliers: observations beyond the whiskers, sometimes plotted"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#comparing-box-plots-and-density-plots",
+    "href": "slides/w01-03-viznum-slides.html#comparing-box-plots-and-density-plots",
+    "title": "Visualising numeric data",
+    "section": "Comparing box plots and density plots",
+    "text": "Comparing box plots and density plots\n\n\n\n\n\n\n\n\n\n\n\n\nWhat features of the distribution do both plots show well?\nWhat additional information does the density plot provide?\nWhat additional information does the box plot provide?\nIs the distribution symmetric or skewed?"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#box-plot-3",
+    "href": "slides/w01-03-viznum-slides.html#box-plot-3",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\nThe distribution of population is highly skewed.\n\n\n\n\n\n\n\n\n\n\n\n\nMost countries have relatively small populations.\nA few countries have extremely large populations.\nThese large populations appear as outliers.\nThe long right tail indicates a right-skewed distribution."
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#box-plot-4",
+    "href": "slides/w01-03-viznum-slides.html#box-plot-4",
+    "title": "Visualising numeric data",
+    "section": "Box plot",
+    "text": "Box plot\n\nHere we plot the natural logarithm of the population because the original population values are highly skewed (primarily due to China and India). On the log scale, the largest countries are no longer extreme outliers, and the smallest populations become the outliers.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe log (ln) transformation reduces the effect of extremely large populations.\nThe distribution is much more symmetric than on the original scale.\nCountries with the smallest populations now appear as outliers.\nLog transformations are often useful for variables that span several orders of magnitude."
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#customizing-box-plots",
+    "href": "slides/w01-03-viznum-slides.html#customizing-box-plots",
+    "title": "Visualising numeric data",
+    "section": "Customizing box plots",
+    "text": "Customizing box plots\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(aes(x = lifeexp)) +\n  geom_boxplot() +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = NULL,\n    title = \"2023 Life Expectancy of Women\"\n  ) +\n  theme(\n    axis.ticks.y = element_blank(),\n    axis.text.y = element_blank()\n  )"
+  },
+  {
+    "objectID": "slides/w01-03-viznum-slides.html#adding-a-categorical-variable-1",
+    "href": "slides/w01-03-viznum-slides.html#adding-a-categorical-variable-1",
     "title": "Visualising numeric data",
     "section": "Adding a categorical variable",
     "text": "Adding a categorical variable\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      y = worldbankregion\n    )\n  ) +\n  geom_boxplot() +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = NULL,\n    title = \"2023 Life Expectancy of Women\",\n    subtitle = \"By region\"\n  )"
