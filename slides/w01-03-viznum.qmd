@@ -4,7 +4,19 @@ subtitle: "Introduction to Global Health Data Science"
 date: "2026-08-26"
 format:
   revealjs:
+    output-file: w01-03-viznum-slides.html
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    pdf-separate-fragments: true
+    toc: false
     auto-stretch: false
+  html:
+    code-link: true
+  filters: 
+    - ../remove-fmt-skip.lua
+  editor_options: 
+    chunk_output_type: console
 ---
 
 ```{r, child="setup.Rmd", echo=FALSE}
