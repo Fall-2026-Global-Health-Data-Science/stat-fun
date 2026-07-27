@@ -21,4 +21,84 @@ library(tidyverse)
 
 ```
 
-Work up the collab-cxr example, starting with AI versus ground truth. Then maybe split up individual raters across students for lab later on?
+## collab-CXR 
+
+[collab-CXR](https://pubmed.ncbi.nlm.nih.gov/40319039/) is an open-source research project that provides a collaborative framework for developing and evaluating machine learning models for chest X-ray (CXR) analysis across multiple institutions. 
+
+We consider data from collab-CXR on chest x-ray detection of cardiomediastinal abnormalities, which are abnormal findings involving the heart or the mediastinum, the central compartment of the chest located between the lungs. This would include findings in the heart, great vessels, trachea, esophagus, major lymph nodes, or other soft tissues in the region.
+
+---
+
+## Abnormality detection
+
+ Today we evaluate the quality of a machine learning (ML) or AI model trained to make a diagnosis. The ML output is in the form of the probability an abnormality is present rather than a binary diagnosis, and part of the challenge for researchers is to pick a cutoff value of the probability for determining the abnormality is indeed present. To start, let's consider a probability of 0.50 or greater as evidence that the chest x-ray is abnormal in the region of interest.
+ 
+---
+
+## AI diagnosis versus "truth"
+
+<div style="margin-top:20px;">
+
+|              | **Normal** | **Abnormal** | **Total** |
+|---------------|:----------:|:-------------:|----------:|
+| **AI predicts normal**   |     830       |      70         |    900       |
+| **AI predicts abnormal**   |     251       |      145         |     396      |
+| **Total**     |    1081        |    215           |  1296 |
+
+</div>
+ 
+---
+
+## Investigating the quality of AI
+
+
+:::: columns
+
+::: {.column width="30%"}
+
+<div style="font-size:0.50em;">
+
+|              | **Normal** | **Abnormal** | **Total** |
+|---------------|:----------:|:-------------:|----------:|
+| **AI predicts normal**   |     830       |      70         |    900       |
+| **AI predicts abnormal**   |     251       |      145         |     396      |
+| **Total**     |    1081        |    215           |  1296 |
+
+</div>
+
+:::
+
+::: {.column width="5%"}
+
+&nbsp;
+
+:::
+
+::: {.column width="65%"}
+
+<div style="font-size:0.80em;">
+
+- Calculate the **sensitivity** of the AI model.
+
+- Calculate the **specificity** of the AI model.
+
+- If it is dangerous to miss a true cardiomediastinal abnormality, would you:
+  - (a) be happy with the sensitivity and specificity,
+  - (b) want to **increase the sensitivity**, or
+  - (c) want to **increase the specificity**?
+
+</div>
+
+:::
+
+::::
+
+---
+
+## You Try It!
+
+Download the repo [AMY PUT IN HERE AE-01]. Change the cutpoint in the variable `ai_prob` in order to make the change needed to catch more of the true cardiomediastinal abnormalities and re-calculate the sensitivity and specificity. 
+
+--- 
+
+
