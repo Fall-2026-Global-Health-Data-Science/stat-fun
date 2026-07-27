@@ -16,7 +16,7 @@ This lab will walk you through setting up the course technology, which consists 
 
 -   **GitHub**: A web hosting service for the Git version control system that also allows for transparent collaboration between team members. GitHub is the home for your Git-based projects on the internet (like DropBox but much better).
 
-Version control software like Git and GitHub is indispensable in modern data science practice, and learning how to use it is one of the things that distinguishes STA 199 from a similar course like STA 101. At a minimum, version control helps prevent your files from looking like this:
+Version control software like Git and GitHub is indispensable in modern data science practice, and learning how to use it is one of the things that distinguishes STA 198 from a similar course like STA 101. At a minimum, version control helps prevent your files from looking like this:
 
 ![](images/bad-version-control.png)
 
@@ -131,7 +131,7 @@ The following video walks you through the steps outlined in the SSH key generati
 
 A GitHub repository (repo) is a collection of files hosted on GitHub. Repos are the main way we will distribute files to you during the semester. When you copy the files in a repo to your local computing environment (your container, in this case), that's called "cloning". So, let's clone our first repo: 
 
--   Go to the repository for **lab-0** in the course GitHub organization: <https://github.com/Fall-2026-Global-Health-Data-Science/stat-fun/lab-0>.
+-   Go to the repository for **lab-0** in the course GitHub organization: <https://github.com/Fall-2026-Global-Health-Data-Science/lab-0>.
 
 -   Click on the green **CODE** button, select **Use SSH** (this might already be selected by default, and if it is, you'll see the text **Clone with SSH**).
     Click on the clipboard icon to copy the repo URL.
