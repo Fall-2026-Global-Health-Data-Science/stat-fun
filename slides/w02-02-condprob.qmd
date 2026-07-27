@@ -108,6 +108,8 @@ If events A and B are independent, then $$P(A \cap B)=P(A)\times P(B).$$
 
 **Check it out**: Are light injury and being carried back to the nest independent in our cohort?
 
+**Food for thought**: Is this result surprising to you?  Why or why not?
+
 ---
 
 ## Independent vs Disjoint Events
@@ -144,6 +146,26 @@ A *diagnostic test* like a mammogram is often characterized by its quality -- we
 Sensitivity is $P(B|A)$, and specificity is $P(\overline{B} \mid \overline{A})$. 
 
 A typical screening mammogram has sensitivity of 85% and specificity of 90%. 
+
+---
+
+## Sensitivity and Specificity
+
+<div style="font-size:0.8em;">
+
+Increasing sensitivity usually comes at the expense of specificity, and increasing specificity usually comes at the expense of sensitivity. Choosing the optimal balance depends on the consequences of false positives versus false negatives.
+
+- Prioritize sensitivity when 
+  - the disease is serious or highly contagious
+  - early detection improves outcomes
+  - a safe, cheap confirmatory test is available
+  - examples: in-hospital COVID screening, blood donor screening
+
+- Prioritize specificity when 
+  - false positives have severe consequences 
+  - examples: Tour de France drug testing, forensic DNA testing
+  
+</div>
 
 ---
 
@@ -450,7 +472,9 @@ $P(B)=P(B \mid A)P(A) + P(B \mid \overline{A})P(\overline{A})=0.85\times0.01+0.1
 
 Here, we can think of the 1% prevalence of breast cancer among 40 year old women as our **prior probability** a woman has cancer, and 7.9% as the **posterior probability** she has cancer after we see the data that her screening mammogram is positive.
 
-Cancer would be confirmed or ruled out by subsequent testing, such as a diagnostic mammogram, ultrasound, and/or biopsy. 
+**Bayesian statistics** is a framework for updating our beliefs about an event or hypothesis as new evidence emerges. 
+
+In this example, cancer would be confirmed or ruled out by subsequent medical care, such as a diagnostic mammogram, ultrasound, and/or biopsy. 
 
 ---
 
