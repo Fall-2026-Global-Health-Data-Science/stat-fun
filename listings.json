@@ -1,6 +1,12 @@
 [
   {
-    "listing": "/course-team.html",
+    "listing": "/lab.html",
+    "items": [
+      "/lab/lab-0.html"
+    ]
+  },
+  {
+    "listing": "/exam-review.html",
     "items": []
   },
   {
@@ -8,13 +14,7 @@
     "items": []
   },
   {
-    "listing": "/exam-review.html",
+    "listing": "/course-team.html",
     "items": []
-  },
-  {
-    "listing": "/lab.html",
-    "items": [
-      "/lab/lab-01.html"
-    ]
   }
 ]
