@@ -151,8 +151,114 @@ Amy Herring
 </div>
 
   <p class="date">2026-09-04</p>
-</section><section class="slide level2"><p>Work up the collab-cxr example, starting with AI versus ground truth. Then maybe split up individual raters across students for lab later on?</p>
-
+</section><section id="collab-cxr" class="slide level2"><h2>collab-CXR</h2>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/40319039/">collab-CXR</a> is an open-source research project that provides a collaborative framework for developing and evaluating machine learning models for chest X-ray (CXR) analysis across multiple institutions.</p>
+<p>We consider data from collab-CXR on chest x-ray detection of cardiomediastinal abnormalities, which are abnormal findings involving the heart or the mediastinum, the central compartment of the chest located between the lungs. This would include findings in the heart, great vessels, trachea, esophagus, major lymph nodes, or other soft tissues in the region.</p>
+</section><section id="abnormality-detection" class="slide level2"><h2>Abnormality detection</h2>
+<p>Today we evaluate the quality of a machine learning (ML) or AI model trained to make a diagnosis. The ML output is in the form of the probability an abnormality is present rather than a binary diagnosis, and part of the challenge for researchers is to pick a cutoff value of the probability for determining the abnormality is indeed present. To start, let’s consider a probability of 0.50 or greater as evidence that the chest x-ray is abnormal in the region of interest.</p>
+</section><section id="ai-diagnosis-versus-truth" class="slide level2"><h2>AI diagnosis versus “truth”</h2>
+<div style="margin-top:20px;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 22%">
+<col style="width: 28%">
+<col style="width: 20%">
+</colgroup>
+<thead><tr class="header">
+<th></th>
+<th style="text-align: center;"><strong>Normal</strong></th>
+<th style="text-align: center;"><strong>Abnormal</strong></th>
+<th style="text-align: right;"><strong>Total</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>AI predicts normal</strong></td>
+<td style="text-align: center;">830</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: right;">900</td>
+</tr>
+<tr class="even">
+<td><strong>AI predicts abnormal</strong></td>
+<td style="text-align: center;">251</td>
+<td style="text-align: center;">145</td>
+<td style="text-align: right;">396</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: center;">1081</td>
+<td style="text-align: center;">215</td>
+<td style="text-align: right;">1296</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="investigating-the-quality-of-ai" class="slide level2"><h2>Investigating the quality of AI</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div style="font-size:0.50em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 22%">
+<col style="width: 28%">
+<col style="width: 20%">
+</colgroup>
+<thead><tr class="header">
+<th></th>
+<th style="text-align: center;"><strong>Normal</strong></th>
+<th style="text-align: center;"><strong>Abnormal</strong></th>
+<th style="text-align: right;"><strong>Total</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>AI predicts normal</strong></td>
+<td style="text-align: center;">830</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: right;">900</td>
+</tr>
+<tr class="even">
+<td><strong>AI predicts abnormal</strong></td>
+<td style="text-align: center;">251</td>
+<td style="text-align: center;">145</td>
+<td style="text-align: right;">396</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: center;">1081</td>
+<td style="text-align: center;">215</td>
+<td style="text-align: right;">1296</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div class="column" style="width:5%;">
+<p>&nbsp;</p>
+</div><div class="column" style="width:65%;">
+<div style="font-size:0.80em;">
+<ul>
+<li><p>Calculate the <strong>sensitivity</strong> of the AI model.</p></li>
+<li><p>Calculate the <strong>specificity</strong> of the AI model.</p></li>
+<li>
+<p>If it is dangerous to miss a true cardiomediastinal abnormality, would you:</p>
+<ul>
+<li><ol type="a">
+<li>be happy with the sensitivity and specificity,</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>want to <strong>increase the sensitivity</strong>, or</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>want to <strong>increase the specificity</strong>?</li>
+</ol></li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+</section><section id="you-try-it" class="slide level2"><h2>You Try It!</h2>
+<p>Download the repo [AMY PUT IN HERE AE-01]. Change the cutpoint in the variable <code>ai_prob</code> in order to make the change needed to catch more of the true cardiomediastinal abnormalities and re-calculate the sensitivity and specificity.</p>
+</section><section class="slide level2">
 
 </section>
 </div>
