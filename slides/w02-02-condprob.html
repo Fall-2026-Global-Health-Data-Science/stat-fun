@@ -208,6 +208,7 @@ Amy Herring
 <p>We can use the multiplicative rule to check if two events are independent.</p>
 <p>If events A and B are independent, then <span class="math display">\[P(A \cap B)=P(A)\times P(B).\]</span></p>
 <p><strong>Check it out</strong>: Are light injury and being carried back to the nest independent in our cohort?</p>
+<p><strong>Food for thought</strong>: Is this result surprising to you? Why or why not?</p>
 </section><section id="independent-vs-disjoint-events" class="slide level2"><h2>Independent vs Disjoint Events</h2>
 <p>For <strong>independent events</strong> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, <span class="math inline">\(P(A \mid B)=P(A)\)</span> and <span class="math inline">\(P(B \mid A)=P(B)\)</span>, so knowing one event occurred tells us <em>nothing</em> about the chances the other event will occur.</p>
 <p>For two <strong>disjoint</strong> or <strong>mutually exclusive</strong> events, knowing that one event has occurred tells us that the other event definitely has not occurred, e.g.&nbsp;<span class="math inline">\(P(A \cap B)=0\)</span>.</p>
@@ -223,6 +224,26 @@ Amy Herring
 <p>A <em>diagnostic test</em> like a mammogram is often characterized by its quality – we want a test to have good sensitivity (picking up cancer when a person really has it) and specificity (ruling out cancer when a person is cancer-free).</p>
 <p>Sensitivity is <span class="math inline">\(P(B|A)\)</span>, and specificity is <span class="math inline">\(P(\overline{B} \mid \overline{A})\)</span>.</p>
 <p>A typical screening mammogram has sensitivity of 85% and specificity of 90%.</p>
+</section><section id="sensitivity-and-specificity-1" class="slide level2"><h2>Sensitivity and Specificity</h2>
+<div style="font-size:0.8em;">
+<p>Increasing sensitivity usually comes at the expense of specificity, and increasing specificity usually comes at the expense of sensitivity. Choosing the optimal balance depends on the consequences of false positives versus false negatives.</p>
+<ul>
+<li>Prioritize sensitivity when
+<ul>
+<li>the disease is serious or highly contagious</li>
+<li>early detection improves outcomes</li>
+<li>a safe, cheap confirmatory test is available</li>
+<li>examples: in-hospital COVID screening, blood donor screening</li>
+</ul>
+</li>
+<li>Prioritize specificity when
+<ul>
+<li>false positives have severe consequences</li>
+<li>examples: Tour de France drug testing, forensic DNA testing</li>
+</ul>
+</li>
+</ul>
+</div>
 </section><section id="bayes-theorem" class="slide level2"><h2>Bayes’ Theorem</h2>
 <p><strong>Bayes’ theorem</strong> gives us a formal way to update our beliefs based on new information. It says <span class="math inline">\(P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}=\frac{P(A \cap B)}{P(B)}\)</span>.</p>
 <p>In this example, a 40 year old woman with a positive screening mammogram may wish to know her chances of having cancer. Several papers have shown that even doctors tend to strongly overestimate her chances of having cancer.</p>
@@ -561,7 +582,8 @@ Amy Herring
 </div>
 </section><section id="bayes-theorem-and-baseline-prevalence" class="slide level2"><h2>Bayes’ Theorem and Baseline Prevalence</h2>
 <p>Here, we can think of the 1% prevalence of breast cancer among 40 year old women as our <strong>prior probability</strong> a woman has cancer, and 7.9% as the <strong>posterior probability</strong> she has cancer after we see the data that her screening mammogram is positive.</p>
-<p>Cancer would be confirmed or ruled out by subsequent testing, such as a diagnostic mammogram, ultrasound, and/or biopsy.</p>
+<p><strong>Bayesian statistics</strong> is a framework for updating our beliefs about an event or hypothesis as new evidence emerges.</p>
+<p>In this example, cancer would be confirmed or ruled out by subsequent medical care, such as a diagnostic mammogram, ultrasound, and/or biopsy.</p>
 </section><section id="you-try-it" class="slide level2"><h2>You Try It!</h2>
 <p>Most people who have a negative test result (e.g., mammogram looks good or COVID test negative) don’t worry any longer about whether they really do have disease. Are they right not to worry? Suppose our 40 year old woman with a baseline 1% breast cancer risk instead had a negative (all clear) mammogram. What is the updated probability she has breast cancer given this test result?</p>
 </section><section id="you-try-it-1" class="slide level2"><h2>You Try It!</h2>

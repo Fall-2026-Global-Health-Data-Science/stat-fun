@@ -53,7 +53,7 @@
     "href": "slides/w02-02-condprob.html#checking-independence",
     "title": "Conditional Probability",
     "section": "Checking Independence",
-    "text": "Checking Independence\nWe can use the multiplicative rule to check if two events are independent.\nIf events A and B are independent, then \\[P(A \\cap B)=P(A)\\times P(B).\\]\nCheck it out: Are light injury and being carried back to the nest independent in our cohort?"
+    "text": "Checking Independence\nWe can use the multiplicative rule to check if two events are independent.\nIf events A and B are independent, then \\[P(A \\cap B)=P(A)\\times P(B).\\]\nCheck it out: Are light injury and being carried back to the nest independent in our cohort?\nFood for thought: Is this result surprising to you? Why or why not?"
   },
   {
     "objectID": "slides/w02-02-condprob.html#independent-vs-disjoint-events",
@@ -75,6 +75,13 @@
     "title": "Conditional Probability",
     "section": "Sensitivity and Specificity",
     "text": "Sensitivity and Specificity\nA=has cancer B=mammogram positive\nA diagnostic test like a mammogram is often characterized by its quality – we want a test to have good sensitivity (picking up cancer when a person really has it) and specificity (ruling out cancer when a person is cancer-free).\nSensitivity is \\(P(B|A)\\), and specificity is \\(P(\\overline{B} \\mid \\overline{A})\\).\nA typical screening mammogram has sensitivity of 85% and specificity of 90%."
+  },
+  {
+    "objectID": "slides/w02-02-condprob.html#sensitivity-and-specificity-1",
+    "href": "slides/w02-02-condprob.html#sensitivity-and-specificity-1",
+    "title": "Conditional Probability",
+    "section": "Sensitivity and Specificity",
+    "text": "Sensitivity and Specificity\n\nIncreasing sensitivity usually comes at the expense of specificity, and increasing specificity usually comes at the expense of sensitivity. Choosing the optimal balance depends on the consequences of false positives versus false negatives.\n\nPrioritize sensitivity when\n\nthe disease is serious or highly contagious\nearly detection improves outcomes\na safe, cheap confirmatory test is available\nexamples: in-hospital COVID screening, blood donor screening\n\n\nPrioritize specificity when\n\nfalse positives have severe consequences\nexamples: Tour de France drug testing, forensic DNA testing"
   },
   {
     "objectID": "slides/w02-02-condprob.html#bayes-theorem",
@@ -137,7 +144,7 @@
     "href": "slides/w02-02-condprob.html#bayes-theorem-and-baseline-prevalence",
     "title": "Conditional Probability",
     "section": "Bayes’ Theorem and Baseline Prevalence",
-    "text": "Bayes’ Theorem and Baseline Prevalence\nHere, we can think of the 1% prevalence of breast cancer among 40 year old women as our prior probability a woman has cancer, and 7.9% as the posterior probability she has cancer after we see the data that her screening mammogram is positive.\nCancer would be confirmed or ruled out by subsequent testing, such as a diagnostic mammogram, ultrasound, and/or biopsy."
+    "text": "Bayes’ Theorem and Baseline Prevalence\nHere, we can think of the 1% prevalence of breast cancer among 40 year old women as our prior probability a woman has cancer, and 7.9% as the posterior probability she has cancer after we see the data that her screening mammogram is positive.\nBayesian statistics is a framework for updating our beliefs about an event or hypothesis as new evidence emerges.\nIn this example, cancer would be confirmed or ruled out by subsequent medical care, such as a diagnostic mammogram, ultrasound, and/or biopsy."
   },
   {
     "objectID": "slides/w02-02-condprob.html#you-try-it",
