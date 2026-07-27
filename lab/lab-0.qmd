@@ -1,8 +1,9 @@
 ---
-title: "Lab 1"
-categories: "Lab"
-execute:
-  eval: false
+title: Lab 1
+subtitle: Hello R!
+description: "Due: End of lab on Fri, August 28"
+categories: Lab
+draft: false
 ---
 
 This lab will walk you through setting up the course technology, which consists of the following:
@@ -78,7 +79,7 @@ credentials::ssh_setup_github()
 
 -   R will ask "No SSH key found. Generate one now?" You should click 1 for yes.
 -   You will generate a key. R will then ask "Would you like to open a browser now?" You should click 1 for yes.
--   You may be asked to provide your GitHub username and password to log into GitHub. After entering this information, you should paste the key in and give it a name. You might name it in a way that indicates where the key will be used, e.g., `sta199`).
+-   You may be asked to provide your GitHub username and password to log into GitHub. After entering this information, you should paste the key in and give it a name. You might name it in a way that indicates where the key will be used, e.g., `sta198`).
 
 You can find more detailed instructions [here](https://github.com/DukeStatSci/github_auth_guide) if you're interested.
 

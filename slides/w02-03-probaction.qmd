@@ -1,0 +1,24 @@
+---
+title: "Case Study: Humans and AI in Diagnostic Imaging"
+subtitle: "Introduction to Global Health Data Science"
+date: "2026-09-04"
+format:
+  revealjs:
+    auto-stretch: false
+---
+
+```{r, child="setup.Rmd", echo=FALSE}
+```
+
+
+```{r}
+#| label: packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+```
+
+Work up the collab-cxr example, starting with AI versus ground truth. Then maybe split up individual raters across students for lab later on?
