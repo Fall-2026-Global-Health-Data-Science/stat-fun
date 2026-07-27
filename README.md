@@ -1,4 +1,4 @@
-# fall-2026-global-health-data-science.github.io
+# fall-2026-global-health-data-science.github.io/stat-fun
 
 ## Rendering
 
