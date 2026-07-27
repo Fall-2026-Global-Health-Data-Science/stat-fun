@@ -131,7 +131,7 @@ The following video walks you through the steps outlined in the SSH key generati
 
 A GitHub repository (repo) is a collection of files hosted on GitHub. Repos are the main way we will distribute files to you during the semester. When you copy the files in a repo to your local computing environment (your container, in this case), that's called "cloning". So, let's clone our first repo: 
 
--   Go to the repository for **lab-01** in the course GitHub organization: <https://github.com/sta199-s26/lab-0>.
+-   Go to the repository for **lab-0** in the course GitHub organization: <https://github.com/Fall-2026-Global-Health-Data-Science/stat-fun/lab-0>.
 
 -   Click on the green **CODE** button, select **Use SSH** (this might already be selected by default, and if it is, you'll see the text **Clone with SSH**).
     Click on the clipboard icon to copy the repo URL.
