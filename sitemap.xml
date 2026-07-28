@@ -2,102 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/setup.html</loc>
-    <lastmod>2026-07-27T21:14:42.558Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-04-vizcat-slides.html</loc>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-04-vizcat.html</loc>
-    <lastmod>2026-07-27T21:14:42.569Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-02-ggplot-slides.html</loc>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-02-ggplot.html</loc>
-    <lastmod>2026-07-27T21:14:42.569Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-01-welcome-slides.html</loc>
+    <lastmod>2026-07-28T01:42:58.439Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-01-welcome.html</loc>
-    <lastmod>2026-07-27T21:14:42.558Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.439Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html</loc>
-    <lastmod>2026-07-27T21:14:42.498Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.384Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/computing-access.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/course-overview.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/course-syllabus.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/computing-cheatsheets.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/course-faq.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/lab.html</loc>
-    <lastmod>2026-07-27T21:14:42.531Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.414Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/course-support.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/computing-code-alongs.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/exam-review.html</loc>
-    <lastmod>2026-07-27T21:14:42.504Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.390Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/lab/lab-0.html</loc>
-    <lastmod>2026-07-27T21:14:42.534Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.417Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/index.html</loc>
-    <lastmod>2026-07-27T21:14:42.531Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.414Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/hw.html</loc>
-    <lastmod>2026-07-27T21:14:42.504Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.390Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/course-team.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/course-links.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/computing-troubleshooting.html</loc>
-    <lastmod>2026-07-27T21:14:42.494Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.380Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w02-01-prob.html</loc>
-    <lastmod>2026-07-27T21:14:42.569Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fall-2026-global-health-data-science.github.io/slides/w02-01-prob-slides.html</loc>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-03-viznum.html</loc>
-    <lastmod>2026-07-27T21:14:42.569Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w01-03-viznum-slides.html</loc>
-    <lastmod>2026-07-27T21:14:42.569Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.449Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w02-02-condprob.html</loc>
-    <lastmod>2026-07-27T21:14:42.569Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.450Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fall-2026-global-health-data-science.github.io/slides/w02-02-condprob-slides.html</loc>
+    <lastmod>2026-07-28T01:42:58.450Z</lastmod>
   </url>
   <url>
     <loc>https://fall-2026-global-health-data-science.github.io/slides/w02-03-probaction.html</loc>
-    <lastmod>2026-07-27T21:14:42.569Z</lastmod>
+    <lastmod>2026-07-28T01:42:58.450Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fall-2026-global-health-data-science.github.io/slides/w02-03-probaction-slides.html</loc>
+    <lastmod>2026-07-28T01:42:58.450Z</lastmod>
   </url>
 </urlset>

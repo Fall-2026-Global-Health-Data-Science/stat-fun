@@ -1,10 +1,122 @@
 [
   {
-    "objectID": "slides/w01-04-vizcat.html#variables",
-    "href": "slides/w01-04-vizcat.html#variables",
+    "objectID": "slides/w01-04-vizcat-slides.html#variables",
+    "href": "slides/w01-04-vizcat-slides.html#variables",
     "title": "Visualising categorical data",
     "section": "Variables",
     "text": "Variables\n\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#bar-plot-1",
+    "href": "slides/w01-04-vizcat-slides.html#bar-plot-1",
+    "title": "Visualising categorical data",
+    "section": "Bar plot",
+    "text": "Bar plot\n\n\n\n\nggplot(gats, aes(x = CURRENTSMOKE)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#stacked-bar-plot",
+    "href": "slides/w01-04-vizcat-slides.html#stacked-bar-plot",
+    "title": "Visualising categorical data",
+    "section": "Stacked bar plot",
+    "text": "Stacked bar plot\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar()"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#ok-i-dislike-those-colors",
+    "href": "slides/w01-04-vizcat-slides.html#ok-i-dislike-those-colors",
+    "title": "Visualising categorical data",
+    "section": "Ok, I dislike those colors",
+    "text": "Ok, I dislike those colors\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar() +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Current smoker\",\n    y = \"Count\",\n    fill = \"Gender\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#segmented-bar-plot",
+    "href": "slides/w01-04-vizcat-slides.html#segmented-bar-plot",
+    "title": "Visualising categorical data",
+    "section": "Segmented bar plot",
+    "text": "Segmented bar plot\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar(position = \"fill\") +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Current smoker\",\n    y = \"Proportion\",\n    fill = \"Gender\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nHere, instead of looking at raw counts, we’re looking at the proportion of smokers in each gender category."
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#which-plot-is-more-useful",
+    "href": "slides/w01-04-vizcat-slides.html#which-plot-is-more-useful",
+    "title": "Visualising categorical data",
+    "section": "Which plot is more useful?",
+    "text": "Which plot is more useful?"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#customizing-bar-plots",
+    "href": "slides/w01-04-vizcat-slides.html#customizing-bar-plots",
+    "title": "Visualising categorical data",
+    "section": "Customizing bar plots",
+    "text": "Customizing bar plots\n\n\n\n\nggplot(\n  gats,\n  aes(\n    y = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar(position = \"fill\") +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Proportion\",\n    y = \"Current Smoker?\",\n    fill = \"Gender\",\n    title = \"Smoking by Gender\",\n    subtitle = \"2018\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#side-by-side-bar-plot",
+    "href": "slides/w01-04-vizcat-slides.html#side-by-side-bar-plot",
+    "title": "Visualising categorical data",
+    "section": "Side-by-side bar plot",
+    "text": "Side-by-side bar plot\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = CURRENTSMOKE,\n    fill = GENDER\n  )\n) +\n  geom_bar(position = position_dodge()) +\n  scale_fill_manual(\n    values = c(\n      \"Male\" = \"#012169\",\n      \"Female\" = \"#C7BDD9\"\n    )\n  ) +\n  labs(\n    x = \"Current smoker\",\n    y = \"Count\",\n    fill = \"Gender\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#already-talked-about",
+    "href": "slides/w01-04-vizcat-slides.html#already-talked-about",
+    "title": "Visualising categorical data",
+    "section": "Already talked about…",
+    "text": "Already talked about…\n\nColoring and faceting histograms and density plots\nSide-by-side box plots"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#violin-plots",
+    "href": "slides/w01-04-vizcat-slides.html#violin-plots",
+    "title": "Visualising categorical data",
+    "section": "Violin plots",
+    "text": "Violin plots\nViolin plots are like boxplots, but instead of showing the quartiles (25th, 50th, and 75th %iles), they show rotated density plots on each side."
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#violin-plots-1",
+    "href": "slides/w01-04-vizcat-slides.html#violin-plots-1",
+    "title": "Visualising categorical data",
+    "section": "Violin plots",
+    "text": "Violin plots\n\n\n\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION\n  )\n) +\n  geom_violin()"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#ridge-plots",
+    "href": "slides/w01-04-vizcat-slides.html#ridge-plots",
+    "title": "Visualising categorical data",
+    "section": "Ridge plots",
+    "text": "Ridge plots\nRidge plots also show density estimates across categorical groups"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#ridge-plots-1",
+    "href": "slides/w01-04-vizcat-slides.html#ridge-plots-1",
+    "title": "Visualising categorical data",
+    "section": "Ridge plots",
+    "text": "Ridge plots\n\n\n\n\nlibrary(ggridges)\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION,\n    fill = EDUCATION,\n    color = EDUCATION\n  )\n) +\n  geom_density_ridges(alpha = 0.5)"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#muted-color-palette",
+    "href": "slides/w01-04-vizcat-slides.html#muted-color-palette",
+    "title": "Visualising categorical data",
+    "section": "Muted color palette",
+    "text": "Muted color palette\n\n\n\n\nlibrary(ggridges)\n\nduke_palette &lt;- c(\n  \"#012169\",  # Duke blue\n  \"#C7BDD9\",  # soft lavender\n  \"#9BB7A5\",  # muted sage\n  \"#D6C3A5\",  # warm sand\n  \"#A8B7C9\",  # dusty blue\n  \"#C9A7A1\",  # dusty rose\n  \"#B9C3A3\",  # olive sage\n  \"#8FA4B8\",  # slate blue\n  \"#D9D6CC\",  # warm gray\n  \"#B7AFC8\"   # gray lavender\n\n)\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION,\n    fill = EDUCATION,\n    color = EDUCATION\n  )\n) +\n  geom_density_ridges(alpha = 0.8) +\n  scale_fill_manual(values = duke_palette) +\n  scale_color_manual(values = duke_palette)"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat-slides.html#dont-need-the-legend",
+    "href": "slides/w01-04-vizcat-slides.html#dont-need-the-legend",
+    "title": "Visualising categorical data",
+    "section": "Don’t need the legend",
+    "text": "Don’t need the legend\n\n\n\n\nlibrary(ggridges)\n\nduke_palette &lt;- c(\n  \"#012169\", \"#C7BDD9\", \"#9BB7A5\",\n  \"#D6C3A5\", \"#A8B7C9\", \"#C9A7A1\",\n  \"#B9C3A3\", \"#8FA4B8\", \"#D9D6CC\",\n  \"#B7AFC8\"\n)\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION,\n    fill = EDUCATION,\n    color = EDUCATION\n  )\n) +\n  geom_density_ridges(alpha = 0.6) +\n  scale_fill_manual(values = duke_palette) +\n  scale_color_manual(values = duke_palette) +\n  theme(\n    legend.position = \"none\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-04-vizcat.html",
+    "href": "slides/w01-04-vizcat.html",
+    "title": "Visualising categorical data",
+    "section": "",
+    "text": "Numerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering.\n\n\n\nWe consider data from the Global Adult Tobacco Survey (GATS), which is designed to provide nationally-representative data on non-institutionalized people 15 years and older. This survey is a global standard for systematically monitoring adult tobacco use and is produced by the Centers for Disease Control (CDC) in collaboration with the World Health Organization (WHO), RTI International, and Johns Hopkins University.\nChina has the largest smoking population in the world and accounts for roughly 40% of tobacco consumption worldwide. We will focus on GATS data from China in 2018 (the most recent survey year), but note data from other countries are available from the WHO’s Microdata Repository.\n\n\nglimpse(gats)\n\nRows: 19,376\nColumns: 18\n$ CASEID         &lt;dbl&gt; 601010, 601012, 601013, 601014, 601015, …\n$ RESIDENCE      &lt;fct&gt; Urban, Urban, Urban, Urban, Urban, Urban…\n$ PROVINCE       &lt;fct&gt; Beijing, Beijing, Beijing, Beijing, Beij…\n$ REGION6        &lt;fct&gt; North, North, North, North, North, North…\n$ REGION3        &lt;fct&gt; East, East, East, East, East, East, East…\n$ AGE            &lt;dbl&gt; 33.95342, 35.92877, 70.52055, 56.95342, …\n$ GENDER         &lt;fct&gt; Female, Male, Male, Male, Female, Female…\n$ CURRENTSMOKE   &lt;fct&gt; No, No, No, No, Yes, No, No, No, No, Yes…\n$ EDUCATION      &lt;fct&gt; High School, Postgraduate, Secondary Sch…\n$ OCCUPATION     &lt;fct&gt; Other, Other, Retired, Other, Retired, B…\n$ AGESTART       &lt;dbl&gt; NA, NA, NA, NA, 20, NA, NA, NA, NA, 14, …\n$ CIGS_DAY       &lt;dbl&gt; NA, NA, NA, NA, 10, NA, NA, NA, NA, 5, N…\n$ HEARDOFECIG    &lt;fct&gt; No, Yes, Yes, Yes, Yes, Yes, Yes, No, Ye…\n$ ECIGUSE        &lt;fct&gt; NA, Not at All, Not at All, Not at All, …\n$ TRYSTOP        &lt;fct&gt; NA, NA, NA, NA, Yes, NA, NA, NA, NA, No,…\n$ HOMESMOKERULES &lt;fct&gt; Never Allowed, Never Allowed, Never Allo…\n$ SMOKESICK      &lt;fct&gt; Yes, Yes, Yes, Yes, Yes, Yes, Yes, Yes, …\n$ SMOKECANCER    &lt;fct&gt; Yes, Yes, Yes, Yes, Yes, Yes, Yes, Yes, …\n\n\n\n\n\nVariable\nDescription\n\n\n\nCURRENTSMOKE\nCurrent smoking status (yes, no, or don’t know)\n\n\nAGE\nComputed from date of birth\n\n\nEDUCATION\nHighest level of education completed\n\n\nGENDER\nInterviewer-recorded gender (male, female, or missing/NA)\n\n\nPROVINCE\nProvince of residence\n\n\n\nOther variables are also available in the dataset. Sample survey weights are not included but should be used to obtain nationally representative estimates (our unweighted estimates are fairly close for the quantities we consider today)."
+  },
+  {
+    "objectID": "slides/w01-04-vizcat.html#variables",
+    "href": "slides/w01-04-vizcat.html#variables",
+    "title": "Visualising categorical data",
+    "section": "",
+    "text": "Numerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering.\n\n\n\nWe consider data from the Global Adult Tobacco Survey (GATS), which is designed to provide nationally-representative data on non-institutionalized people 15 years and older. This survey is a global standard for systematically monitoring adult tobacco use and is produced by the Centers for Disease Control (CDC) in collaboration with the World Health Organization (WHO), RTI International, and Johns Hopkins University.\nChina has the largest smoking population in the world and accounts for roughly 40% of tobacco consumption worldwide. We will focus on GATS data from China in 2018 (the most recent survey year), but note data from other countries are available from the WHO’s Microdata Repository.\n\n\nglimpse(gats)\n\nRows: 19,376\nColumns: 18\n$ CASEID         &lt;dbl&gt; 601010, 601012, 601013, 601014, 601015, …\n$ RESIDENCE      &lt;fct&gt; Urban, Urban, Urban, Urban, Urban, Urban…\n$ PROVINCE       &lt;fct&gt; Beijing, Beijing, Beijing, Beijing, Beij…\n$ REGION6        &lt;fct&gt; North, North, North, North, North, North…\n$ REGION3        &lt;fct&gt; East, East, East, East, East, East, East…\n$ AGE            &lt;dbl&gt; 33.95342, 35.92877, 70.52055, 56.95342, …\n$ GENDER         &lt;fct&gt; Female, Male, Male, Male, Female, Female…\n$ CURRENTSMOKE   &lt;fct&gt; No, No, No, No, Yes, No, No, No, No, Yes…\n$ EDUCATION      &lt;fct&gt; High School, Postgraduate, Secondary Sch…\n$ OCCUPATION     &lt;fct&gt; Other, Other, Retired, Other, Retired, B…\n$ AGESTART       &lt;dbl&gt; NA, NA, NA, NA, 20, NA, NA, NA, NA, 14, …\n$ CIGS_DAY       &lt;dbl&gt; NA, NA, NA, NA, 10, NA, NA, NA, NA, 5, N…\n$ HEARDOFECIG    &lt;fct&gt; No, Yes, Yes, Yes, Yes, Yes, Yes, No, Ye…\n$ ECIGUSE        &lt;fct&gt; NA, Not at All, Not at All, Not at All, …\n$ TRYSTOP        &lt;fct&gt; NA, NA, NA, NA, Yes, NA, NA, NA, NA, No,…\n$ HOMESMOKERULES &lt;fct&gt; Never Allowed, Never Allowed, Never Allo…\n$ SMOKESICK      &lt;fct&gt; Yes, Yes, Yes, Yes, Yes, Yes, Yes, Yes, …\n$ SMOKECANCER    &lt;fct&gt; Yes, Yes, Yes, Yes, Yes, Yes, Yes, Yes, …\n\n\n\n\n\nVariable\nDescription\n\n\n\nCURRENTSMOKE\nCurrent smoking status (yes, no, or don’t know)\n\n\nAGE\nComputed from date of birth\n\n\nEDUCATION\nHighest level of education completed\n\n\nGENDER\nInterviewer-recorded gender (male, female, or missing/NA)\n\n\nPROVINCE\nProvince of residence\n\n\n\nOther variables are also available in the dataset. Sample survey weights are not included but should be used to obtain nationally representative estimates (our unweighted estimates are fairly close for the quantities we consider today)."
   },
   {
     "objectID": "slides/w01-04-vizcat.html#bar-plot-1",
@@ -105,11 +217,221 @@
     "text": "Don’t need the legend\n\n\n\n\nlibrary(ggridges)\n\nduke_palette &lt;- c(\n  \"#012169\", \"#C7BDD9\", \"#9BB7A5\",\n  \"#D6C3A5\", \"#A8B7C9\", \"#C9A7A1\",\n  \"#B9C3A3\", \"#8FA4B8\", \"#D9D6CC\",\n  \"#B7AFC8\"\n)\n\nggplot(\n  gats,\n  aes(\n    x = AGE,\n    y = EDUCATION,\n    fill = EDUCATION,\n    color = EDUCATION\n  )\n) +\n  geom_density_ridges(alpha = 0.6) +\n  scale_fill_manual(values = duke_palette) +\n  scale_color_manual(values = duke_palette) +\n  theme(\n    legend.position = \"none\"\n  )"
   },
   {
-    "objectID": "slides/w01-02-ggplot.html#ggplot2-in-tidyverse",
-    "href": "slides/w01-02-ggplot.html#ggplot2-in-tidyverse",
+    "objectID": "slides/w01-02-ggplot-slides.html#ggplot2-in-tidyverse",
+    "href": "slides/w01-02-ggplot-slides.html#ggplot2-in-tidyverse",
     "title": "Visualising data with ggplot2",
     "section": "ggplot2 \\(\\in\\) tidyverse",
     "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is the tidyverse’s data visualization package.\nThe structure of ggplot code can be summarized as:\n\n\nggplot(\n  data = my_data,\n  mapping = aes(\n    x = x_var,\n    y = y_var\n  )\n) +\n  geom_xxx() +\n  other_options"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#data-life-expectancy-from-infancy",
+    "href": "slides/w01-02-ggplot-slides.html#data-life-expectancy-from-infancy",
+    "title": "Visualising data with ggplot2",
+    "section": "Data: Life expectancy from infancy",
+    "text": "Data: Life expectancy from infancy\nIHME data on location (mostly countries), World Bank region, binary sex, and estimated life expectancy and population in 2023 will be used to explore the men’s health gap (later we will add more years).\n\n\n\n\n\n\n\n\n\n\nDr. Abernathy of The Simpsons (aged 40)\n\n\nglimpse(lifeexpwide2023)\n\nRows: 204\nColumns: 6\n$ location        &lt;chr&gt; \"Afghanistan\", \"Albania\", \"Algeria\", \"A…\n$ year            &lt;dbl&gt; 2023, 2023, 2023, 2023, 2023, 2023, 202…\n$ worldbankregion &lt;chr&gt; \"South Asia\", \"Europe and Central Asia\"…\n$ pop             &lt;dbl&gt; 38041757, 2854191, 43053054, 55312, 771…\n$ Female          &lt;dbl&gt; 68.98985, 82.05155, 77.60938, 74.38214,…\n$ Male            &lt;dbl&gt; 68.13812, 77.27016, 74.54654, 67.96911,…\n\n\nGrampa Simpson (Matt Groening)"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#life-expectancy",
+    "href": "slides/w01-02-ggplot-slides.html#life-expectancy",
+    "title": "Visualising data with ggplot2",
+    "section": "Life expectancy",
+    "text": "Life expectancy\n\n\n\n\n\n\n\n\n\n\n\n\nDiscuss\n\nWhat does the color represent?\nWhat overall pattern do you notice?\nWhat additional information would help explain the scatter?"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#building-the-plot",
+    "href": "slides/w01-02-ggplot-slides.html#building-the-plot",
+    "title": "Visualising data with ggplot2",
+    "section": "Building the plot",
+    "text": "Building the plot\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\",\n    subtitle = \"2023\",\n    x = \"Female life expectancy\",\n    y = \"Male life expectancy\",\n    color = \"World Bank Region\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-1",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-1",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data,and map female life expectancy to the x-axis\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female\n  )\n)"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-2",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-2",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data,\nmap female life expectancy to the x-axis,and map male life expectancy to the y-axis\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male\n  )\n)"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-3",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-3",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data,\nmap female life expectancy to the x-axis,\nmap male life expectancy to the y-axis,and represent each observation with a point\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-4",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-4",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data,\nmap female life expectancy to the x-axis,\nmap male life expectancy to the y-axis,\nrepresent each observation with a point,and map region to the color of each point\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-5",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-5",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data,\nmap female life expectancy to the x-axis,\nmap male life expectancy to the y-axis,\nrepresent each observation with a point,\nmap region to the color of each point,and title the plot “Life expectancy.”\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-6",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-6",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data,\nmap female life expectancy to the x-axis,\nmap male life expectancy to the y-axis,\nrepresent each observation with a point,\nmap region to the color of each point,\ntitle the plot “Life expectancy,” and add the subtitle “2023.”\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\", \n    subtitle = \"2023\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-7",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-7",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2023,” and refine x and y axis labels.\n\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\", \n    subtitle = \"2023\",\n     x = \"Female life expectancy\", \n     y = \"Male life expectancy\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-8",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-8",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2023,” refine the axis labels, and fix the legend label.\n\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\", \n    subtitle = \"2023\",\n     x = \"Female life expectancy\", \n     y = \"Male life expectancy\",\n     color=\"World Bank Region\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#coding-out-loud-9",
+    "href": "slides/w01-02-ggplot-slides.html#coding-out-loud-9",
+    "title": "Visualising data with ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\n\n\n\nStart with the lifeexpwide2023 data, map female life expectancy to the x-axis, map male life expectancy to the y-axis, represent each observation with a point, map region to the color of each point, title the plot “Life expectancy,” add the subtitle “2023,” refine the axis labels, fix the legend label, and add a caption for data source.\n\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Life expectancy\", \n    subtitle = \"2023\",\n     x = \"Female life expectancy\", \n     y = \"Male life expectancy\",\n     color=\"World Bank Region\",\n     caption = \"Source: IHME\"\n  )"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#argument-names",
+    "href": "slides/w01-02-ggplot-slides.html#argument-names",
+    "title": "Visualising data with ggplot2",
+    "section": "Argument names",
+    "text": "Argument names\n\n\n\n\n\n\n\nTip\n\n\nYou can omit the names of the first two arguments when building plots with ggplot().\n\n\n\n\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#aesthetics-options",
+    "href": "slides/w01-02-ggplot-slides.html#aesthetics-options",
+    "title": "Visualising data with ggplot2",
+    "section": "Aesthetics options",
+    "text": "Aesthetics options\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are:\n\ncolor\nshape\nsize\n\nalpha (transparency)"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#color",
+    "href": "slides/w01-02-ggplot-slides.html#color",
+    "title": "Visualising data with ggplot2",
+    "section": "Color",
+    "text": "Color\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#shape",
+    "href": "slides/w01-02-ggplot-slides.html#shape",
+    "title": "Visualising data with ggplot2",
+    "section": "Shape",
+    "text": "Shape\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    shape = worldbankregion\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nOops! Only 6 shapes are available, so this isn’t a good option for our more than 6 regions! Let’s fix that."
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#shape-take-2",
+    "href": "slides/w01-02-ggplot-slides.html#shape-take-2",
+    "title": "Visualising data with ggplot2",
+    "section": "Shape, take 2",
+    "text": "Shape, take 2\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    shape = worldbankregion\n  )\n) +\n  geom_point() +  \n  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))\n\n\n\n\n\n\n\n\n\n\n\nOops! Only 6 shapes are available, so this isn’t a good option for our more than 6 regions! Let’s fix that."
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#shape-1",
+    "href": "slides/w01-02-ggplot-slides.html#shape-1",
+    "title": "Visualising data with ggplot2",
+    "section": "Shape",
+    "text": "Shape\nCan also map to the same variable as color (helps for color vision deficiency)\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    shape = worldbankregion,\n    color=worldbankregion\n  )\n) + geom_point() \n+  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#size",
+    "href": "slides/w01-02-ggplot-slides.html#size",
+    "title": "Visualising data with ggplot2",
+    "section": "Size",
+    "text": "Size\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion,\n    size = pop\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#alpha-transparency",
+    "href": "slides/w01-02-ggplot-slides.html#alpha-transparency",
+    "title": "Visualising data with ggplot2",
+    "section": "Alpha (Transparency)",
+    "text": "Alpha (Transparency)\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion,\n    alpha = pop\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#mapping-vs.-setting-aesthetics",
+    "href": "slides/w01-02-ggplot-slides.html#mapping-vs.-setting-aesthetics",
+    "title": "Visualising data with ggplot2",
+    "section": "Mapping vs. setting aesthetics",
+    "text": "Mapping vs. setting aesthetics\n\n\nMapping\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    size = pop\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nSetting\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male\n  )\n) +\n  geom_point(size = 2)"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#mapping-vs.-setting",
+    "href": "slides/w01-02-ggplot-slides.html#mapping-vs.-setting",
+    "title": "Visualising data with ggplot2",
+    "section": "Mapping vs. setting",
+    "text": "Mapping vs. setting\n\n\nMapping: Determine the size, alpha, etc. of points based on the values of a variable in the data.\n\nGoes into aes().\n\n\n\nSetting: Determine the size, alpha, etc. of points not based on the values of a variable in the data.\n\nGoes into geom_*() (this was geom_point() in the previous example, but we’ll learn about other geoms soon!)."
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#faceting-1",
+    "href": "slides/w01-02-ggplot-slides.html#faceting-1",
+    "title": "Visualising data with ggplot2",
+    "section": "Faceting",
+    "text": "Faceting\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#faceting-2",
+    "href": "slides/w01-02-ggplot-slides.html#faceting-2",
+    "title": "Visualising data with ggplot2",
+    "section": "Faceting",
+    "text": "Faceting\n\n\n\nlifeexpwide %&gt;%\n  filter(\n    year %in% c(1999, 2009, 2023),\n    worldbankregion %in% c(\n      \"North America\",\n      \"South Asia\",\n      \"Sub-Saharan Africa\"\n    )\n  ) %&gt;%\n  ggplot(\n    aes(\n      x = Female,\n      y = Male\n    )\n  ) +\n  geom_point() +\n  facet_grid(year ~ worldbankregion)"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#various-ways-to-facet",
+    "href": "slides/w01-02-ggplot-slides.html#various-ways-to-facet",
+    "title": "Visualising data with ggplot2",
+    "section": "Various ways to facet",
+    "text": "Various ways to facet"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#faceting-summary",
+    "href": "slides/w01-02-ggplot-slides.html#faceting-summary",
+    "title": "Visualising data with ggplot2",
+    "section": "Faceting summary",
+    "text": "Faceting summary\n\n\nfacet_grid()\n\n2D grid\nrows ~ cols\nUse . for no split.\n\n\n\nfacet_wrap()\n\n1D ribbon wrapped according to the number of rows and columns specified or the available plotting area."
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#facet-and-color",
+    "href": "slides/w01-02-ggplot-slides.html#facet-and-color",
+    "title": "Visualising data with ggplot2",
+    "section": "Facet and color",
+    "text": "Facet and color\n\n\n\nlifeexpwide %&gt;%\n  filter(\n    year %in% c(1999, 2010, 2023),\n    worldbankregion %in% c(\n      \"North America\",\n      \"South Asia\",\n      \"Sub-Saharan Africa\"\n    )\n  ) %&gt;%\n  ggplot(\n    aes(\n      x = Female,\n      y = Male,\n      color = year\n    )\n  ) +\n  geom_point() +\n  facet_wrap(~worldbankregion)"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot-slides.html#facet-and-color-no-legend",
+    "href": "slides/w01-02-ggplot-slides.html#facet-and-color-no-legend",
+    "title": "Visualising data with ggplot2",
+    "section": "Facet and color, no legend",
+    "text": "Facet and color, no legend\n\n\n\nlifeexpwide %&gt;%\n  filter(\n    year %in% c(1999, 2010, 2023),\n    worldbankregion %in% c(\n      \"North America\",\n      \"South Asia\",\n      \"Sub-Saharan Africa\"\n    )\n  ) %&gt;%\n  ggplot(\n    aes(\n      x = Female,\n      y = Male,\n      color = year\n    )\n  ) +\n  geom_point() +\n  facet_wrap(~worldbankregion) +\n  guides(color = \"none\")"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot.html",
+    "href": "slides/w01-02-ggplot.html",
+    "title": "Visualising data with ggplot2",
+    "section": "",
+    "text": "ggplot2 is the tidyverse’s data visualization package.\nThe structure of ggplot code can be summarized as:\n\n\nggplot(\n  data = my_data,\n  mapping = aes(\n    x = x_var,\n    y = y_var\n  )\n) +\n  geom_xxx() +\n  other_options"
+  },
+  {
+    "objectID": "slides/w01-02-ggplot.html#ggplot2-in-tidyverse",
+    "href": "slides/w01-02-ggplot.html#ggplot2-in-tidyverse",
+    "title": "Visualising data with ggplot2",
+    "section": "",
+    "text": "ggplot2 is the tidyverse’s data visualization package.\nThe structure of ggplot code can be summarized as:\n\n\nggplot(\n  data = my_data,\n  mapping = aes(\n    x = x_var,\n    y = y_var\n  )\n) +\n  geom_xxx() +\n  other_options"
   },
   {
     "objectID": "slides/w01-02-ggplot.html#data-life-expectancy-from-infancy",
@@ -200,14 +522,14 @@
     "href": "slides/w01-02-ggplot.html#argument-names",
     "title": "Visualising data with ggplot2",
     "section": "Argument names",
-    "text": "Argument names\n\n\n\n\n\n\n\nTip\n\n\nYou can omit the names of the first two arguments when building plots with ggplot().\n\n\n\n\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()"
+    "text": "Argument names\n\n\n\n\n\n\nTip\n\n\n\nYou can omit the names of the first two arguments when building plots with ggplot().\n\n\n\n\n\nggplot(\n  data = lifeexpwide2023,\n  mapping = aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    color = worldbankregion\n  )\n) +\n  geom_point()"
   },
   {
     "objectID": "slides/w01-02-ggplot.html#aesthetics-options",
     "href": "slides/w01-02-ggplot.html#aesthetics-options",
     "title": "Visualising data with ggplot2",
     "section": "Aesthetics options",
-    "text": "Aesthetics options\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are:\n\ncolor\nshape\nsize\n\nalpha (transparency)"
+    "text": "Aesthetics options\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are:\n\n\ncolor\nshape\nsize\n\nalpha (transparency)"
   },
   {
     "objectID": "slides/w01-02-ggplot.html#color",
@@ -221,14 +543,14 @@
     "href": "slides/w01-02-ggplot.html#shape",
     "title": "Visualising data with ggplot2",
     "section": "Shape",
-    "text": "Shape\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    shape = worldbankregion\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nOops! Only 6 shapes are available, so this isn’t a good option for our more than 6 regions! Let’s fix that."
+    "text": "Shape\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    shape = worldbankregion\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nOops! Only 6 shapes are available, so this isn’t a good option for our more than 6 regions! Let’s fix that."
   },
   {
     "objectID": "slides/w01-02-ggplot.html#shape-take-2",
     "href": "slides/w01-02-ggplot.html#shape-take-2",
     "title": "Visualising data with ggplot2",
     "section": "Shape, take 2",
-    "text": "Shape, take 2\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    shape = worldbankregion\n  )\n) +\n  geom_point() +  \n  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))\n\n\n\n\n\n\n\n\n\n\n\nOops! Only 6 shapes are available, so this isn’t a good option for our more than 6 regions! Let’s fix that."
+    "text": "Shape, take 2\n\n\n\nggplot(\n  lifeexpwide2023,\n  aes(\n    x = Female,\n    y = Male,\n    shape = worldbankregion\n  )\n) +\n  geom_point() +  \n  scale_shape_manual(values = c(16,17,15,18,3,4,8,0,1,2))\n\n\n\n\n\n\n\n\n\n\n\n\nOops! Only 6 shapes are available, so this isn’t a good option for our more than 6 regions! Let’s fix that."
   },
   {
     "objectID": "slides/w01-02-ggplot.html#shape-1",
@@ -284,7 +606,7 @@
     "href": "slides/w01-02-ggplot.html#various-ways-to-facet",
     "title": "Visualising data with ggplot2",
     "section": "Various ways to facet",
-    "text": "Various ways to facet"
+    "text": "Various ways to facet\n\n\nlifeexpwide %&gt;%\n  filter(\n    year %in% c(1999, 2010, 2023),\n    worldbankregion %in% c(\"North America\",\"South Asia\",\"Sub-Saharan Africa\"\n    )\n  ) %&gt;%\n  ggplot(\n    aes(x = Female, y = Male)\n  ) +\n  geom_point() +\n  facet_wrap(~worldbankregion)\n\n\n\n\n\n\n\n\n\nlifeexpwide %&gt;%\n  filter(year %in% c(1999, 2010, 2023),worldbankregion %in% c(\"North America\",\"South Asia\",\"Sub-Saharan Africa\")) %&gt;%\n    ggplot(aes(x = Female,\n               y = Male)) + \n  geom_point() +\n  facet_grid(.~worldbankregion)"
   },
   {
     "objectID": "slides/w01-02-ggplot.html#faceting-summary",
@@ -308,11 +630,305 @@
     "text": "Facet and color, no legend\n\n\n\nlifeexpwide %&gt;%\n  filter(\n    year %in% c(1999, 2010, 2023),\n    worldbankregion %in% c(\n      \"North America\",\n      \"South Asia\",\n      \"Sub-Saharan Africa\"\n    )\n  ) %&gt;%\n  ggplot(\n    aes(\n      x = Female,\n      y = Male,\n      color = year\n    )\n  ) +\n  geom_point() +\n  facet_wrap(~worldbankregion) +\n  guides(color = \"none\")"
   },
   {
-    "objectID": "slides/w01-01-welcome.html#data-science",
-    "href": "slides/w01-01-welcome.html#data-science",
+    "objectID": "slides/w01-01-welcome-slides.html#data-science",
+    "href": "slides/w01-01-welcome-slides.html#data-science",
     "title": "Welcome to STA/GLHLTH 198!",
     "section": "Data science",
     "text": "Data science\n\nData science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nThis is a course on health data science, with an emphasis on statistical thinking and global health challenges\n\nOur process involves\n\nforming a question of interest,\n(collecting) and summarizing data,\nand interpreting and communicating results."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#global-health-data-science",
+    "href": "slides/w01-01-welcome-slides.html#global-health-data-science",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Global health data science",
+    "text": "Global health data science\nSTA/GLHLTH 198 will\n\nprovide a tour of basic statistical methods useful in public health and biomedical research\nemphasize intuition and understanding of the methods, with a focus on critical assessment of evidence, data-driven decision-making, and effective communication of insights from data\nmake use of timely, relevant examples from global health science, with opportunities to think about what makes us human\nutilize free, modern software and reproducible research methods for transparency and data sharing"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#frequently-asked-questions",
+    "href": "slides/w01-01-welcome-slides.html#frequently-asked-questions",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Frequently Asked Questions",
+    "text": "Frequently Asked Questions\n\nQ: What data science background does this course assume?A: None. No prior experience with data science or programming is expected.\nQ: Is this an intro statistics course?A: Statistics and data science are closely related, with substantial overlap. This course is an excellent way to begin learning statistics, but it is not a traditional high school statistics course.\nQ: Will we be doing computing?A: Yes—extensively. Computing is a core part of the course and an essential tool for learning data science and statistics."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#software",
+    "href": "slides/w01-01-welcome-slides.html#software",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Software",
+    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nWe’ll combine the ease of viewing in Excel with …"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#software-1",
+    "href": "slides/w01-01-welcome-slides.html#software-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Software",
+    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nthe rigor of the R programming language …"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#software-2",
+    "href": "slides/w01-01-welcome-slides.html#software-2",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Software",
+    "text": "Software\n\n\n\n\n\n\n\n\n\n\n\nin an integrated environment. To learn more, check out the introductory video for our computing toolkit."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#the-data-science-life-cycle",
+    "href": "slides/w01-01-welcome-slides.html#the-data-science-life-cycle",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "The data science life cycle",
+    "text": "The data science life cycle"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#statistical-process",
+    "href": "slides/w01-01-welcome-slides.html#statistical-process",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Statistical process",
+    "text": "Statistical process\nConvert data into useful information, whereby practitioners - form a question of interest, - collect, summarize, and analyze the data, - and interpret the results"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#identifying-the-question-of-interest",
+    "href": "slides/w01-01-welcome-slides.html#identifying-the-question-of-interest",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Identifying the question of interest",
+    "text": "Identifying the question of interest\nThe population is the group we would like to learn about.\n\nWhat is the prevalence of diabetes among U.S. adults, and has it changed over time?\nIs there a relationship between tumor type and five-year mortality in breast cancer patients?\nDoes the average amount of caffeine vary by vendor in 12 oz. cups of coffee at Duke coffee shops?\n\nIf we had data from every unit in the population, we could just calculate what we wanted and be done!"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#sampling-from-the-population",
+    "href": "slides/w01-01-welcome-slides.html#sampling-from-the-population",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Sampling from the population",
+    "text": "Sampling from the population\nUnfortunately, we (usually) have to settle with a sample from the population.\nIdeally, the sample is representative, allowing us to use probability and statistical inference to make conclusions that are generalizable to the broader population of interest."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#sampling-methods",
+    "href": "slides/w01-01-welcome-slides.html#sampling-methods",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Sampling methods",
+    "text": "Sampling methods\nProbability sampling (e.g., simple random sampling, stratified, cluster, or multi-stage sampling)\n\nAll units have a known chance of being selected\nMore likely to be generalizable\nCan be more expensive and time-consuming\n\nNon-probability sampling (e.g., quota, convenience, or snowball sampling)\n\nSome units unable to be selected, with no way of knowing size or effect of sampling errors\nLess generalizable to population of interest\nMore convenient and less costly"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#study-design",
+    "href": "slides/w01-01-welcome-slides.html#study-design",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Study design",
+    "text": "Study design\nExperimental studies (e.g., randomized controlled trials)\n\nResearchers directly control exposures or treatments\nAbility to make causal statements\nLess real-world applicability and generalizability\n\nObservational studies (e.g., surveys, electronic medical records)\n\nResearchers do not assign exposures or treatments\nReal-world setting with lower burden on participants\nInability to prove causality\nGenerally more susceptible to bias than experimental studies (learn more about many types of bias at the Catalog of Bias)"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#life-expectancy",
+    "href": "slides/w01-01-welcome-slides.html#life-expectancy",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Life Expectancy",
+    "text": "Life Expectancy\n\nThe Institute for Health Metrics and Evaluation (IHME) is a resource for data on a variety of important health outcomes worldwide.\nIHME maintains the Global Burden of Disease (GBD), a valuable resource for policymakers and others that quantifies health loss due to a variety of risk factors, diseases, and injuries."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#life-expectancy-1",
+    "href": "slides/w01-01-welcome-slides.html#life-expectancy-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Life Expectancy",
+    "text": "Life Expectancy\n\nWe consider data from IHME on (estimated) infant life expectancy from the years 1990–2023 as a function of location (primarily country) and binary gender.\nHere life expectancy is the # of years an infant can expect to live if mortality rates in the current year remain unchanged for the rest of their life. Life expectancy usually underestimates how long the baby will actually live because mortality rates have been declining over time."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#dataset-terminology",
+    "href": "slides/w01-01-welcome-slides.html#dataset-terminology",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Dataset terminology",
+    "text": "Dataset terminology\n\nEach row is an observation\n\nEach column is a variable\n\n\n\n\nlife &lt;- readr::read_csv(\"../data/lifeexpectancy_infant.csv\")\n\nlife\n\n# A tibble: 13,872 × 4\n   location    sex     year lifeexp\n   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n 1 Afghanistan Female  1990    59.8\n 2 Afghanistan Female  1991    59.8\n 3 Afghanistan Female  1992    60.2\n 4 Afghanistan Female  1993    60.5\n 5 Afghanistan Female  1994    60.7\n 6 Afghanistan Female  1995    61.1\n 7 Afghanistan Female  1996    61.6\n 8 Afghanistan Female  1997    61.6\n 9 Afghanistan Female  1998    60.7\n10 Afghanistan Female  1999    62.0\n# ℹ 13,862 more rows"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#whats-in-the-life-expectancy-data",
+    "href": "slides/w01-01-welcome-slides.html#whats-in-the-life-expectancy-data",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "What’s in the life expectancy data?",
+    "text": "What’s in the life expectancy data?\nTake a glimpse at the data:\n\nlibrary(tidyverse)\nglimpse(life)\n\nRows: 13,872\nColumns: 4\n$ location &lt;chr&gt; \"Afghanistan\", \"Afghanistan\", \"Afghanistan\", \"Afghanistan\", \"…\n$ sex      &lt;chr&gt; \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"…\n$ year     &lt;dbl&gt; 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2…\n$ lifeexp  &lt;dbl&gt; 59.77891, 59.75369, 60.19466, 60.47221, 60.69472, 61.14557, 6…"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#what-is-eda",
+    "href": "slides/w01-01-welcome-slides.html#what-is-eda",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "What is EDA?",
+    "text": "What is EDA?\n\nExploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics\nOften, this is visual – this is what we’ll focus on first\nBut we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis – this is what we’ll focus on next"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#life-expectancy-over-time",
+    "href": "slides/w01-01-welcome-slides.html#life-expectancy-over-time",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Life expectancy over time",
+    "text": "Life expectancy over time\n\nHow would you describe the relationship between year and life expectancy?\nWhat other variables would help us understand data points that don’t follow the overall trend?\nWhat is causing the outliers at the bottom?"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#outliers",
+    "href": "slides/w01-01-welcome-slides.html#outliers",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Outliers",
+    "text": "Outliers\nWe’ll learn how to make a more useful plot later, but first let’s look into the outliers.\n\n# We want to look at the bottom 5 values of life expectancy\n# (5 just in case some points are exactly the same)\nlife %&gt;%\n  top_n(-5, lifeexp)\n\n# A tibble: 5 × 4\n  location sex     year lifeexp\n  &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 Haiti    Female  2010   27.9 \n2 Haiti    Male    2010   34.8 \n3 Rwanda   Female  1994   16.8 \n4 Rwanda   Male    1994    9.88\n5 Rwanda   Male    1997   36.7 \n\n\nAre these data errors, realistic estimates, or neither?\n(Hint: Recall how life expectancy is calculated.)"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#data-visualization-1",
+    "href": "slides/w01-01-welcome-slides.html#data-visualization-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Data visualization",
+    "text": "Data visualization\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.”\n— John Tukey\n\n\nData visualization is the creation and study of the visual representation of data.\nThere are many tools for visualizing data—R is one of them.\nThere are many approaches and systems within R for making data visualizations. ggplot2 is one of them, and it’s what we’ll use in this course."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#ggplot2-in-tidyverse",
+    "href": "slides/w01-01-welcome-slides.html#ggplot2-in-tidyverse",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "ggplot2 \\(\\in\\) tidyverse",
+    "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is the tidyverse’s data visualization package.\n\ngg in “ggplot2” stands for Grammar of Graphics.\nInspired by the book Grammar of Graphics by Leland Wilkinson."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#grammar-of-graphics",
+    "href": "slides/w01-01-welcome-slides.html#grammar-of-graphics",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\n\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic.\n\n\n\n\n\n\n\n\n\n\n\nSource: BloggoType"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#mens-gap-in-life-expectancy-by-year",
+    "href": "slides/w01-01-welcome-slides.html#mens-gap-in-life-expectancy-by-year",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Men’s gap in life expectancy by year",
+    "text": "Men’s gap in life expectancy by year\nLet’s subset to a few countries to de-clutter the plot.\n\n\n\nlife %&gt;%\n  filter(location %in% c(\n    \"United States of America\",\n    \"Rwanda\",\n    \"China\"\n  )) %&gt;%\n  ggplot(aes(\n    x = year,\n    y = lifeexp,\n    shape = sex,\n    color = location\n  )) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nWe’ll learn to make this a lot better later!"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#hello-ggplot2",
+    "href": "slides/w01-01-welcome-slides.html#hello-ggplot2",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Hello ggplot2!",
+    "text": "Hello ggplot2!\n\n\nggplot() is the main function in ggplot2.\nPlots are constructed in layers.\nThe structure of the code for plots can be summarized as:\n\n\nggplot(\n  data = [dataset],\n  mapping = aes(x = [x-variable], y = [y-variable])\n) +\n  geom_xxx() +\n  other_options\n\n\nThe ggplot2 package comes with the tidyverse.\n\n\nlibrary(tidyverse)\n\n\nFor help with ggplot2, see https://ggplot2.tidyverse.org/."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#anscombes-quartet-datasaurus-dozen",
+    "href": "slides/w01-01-welcome-slides.html#anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Anscombe’s quartet / Datasaurus Dozen\n\n\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dino     55.4  97.2\n 2 dino     51.5  96.0\n 3 dino     46.2  94.5\n 4 dino     42.8  91.4\n 5 dino     40.8  88.3\n 6 dino     38.7  84.9\n 7 dino     35.6  79.9\n 8 dino     33.1  77.6\n 9 dino     29.0  74.5\n10 dino     26.2  71.4\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 star     58.2  91.9\n 2 star     58.2  92.2\n 3 star     58.7  90.3\n 4 star     57.3  89.9\n 5 star     58.1  92.0\n 6 star     57.5  88.1\n 7 star     28.1  63.5\n 8 star     28.1  63.6\n 9 star     28.1  63.1\n10 star     27.6  62.8\n# ℹ 132 more rows\n\n\n\n\n\n# A tibble: 142 × 3\n   dataset      x     y\n   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n 1 bullseye  51.2  83.3\n 2 bullseye  59.0  85.5\n 3 bullseye  51.9  85.8\n 4 bullseye  48.2  85.0\n 5 bullseye  41.7  84.0\n 6 bullseye  37.9  82.6\n 7 bullseye  39.5  80.8\n 8 bullseye  39.6  82.7\n 9 bullseye  34.8  80.0\n10 bullseye  27.6  72.8\n# ℹ 132 more rows\n\n\n# A tibble: 142 × 3\n   dataset     x     y\n   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n 1 dots     51.1  90.9\n 2 dots     50.5  89.1\n 3 dots     50.2  85.5\n 4 dots     50.1  83.1\n 5 dots     50.6  82.9\n 6 dots     50.3  83.0\n 7 dots     25.6  82.9\n 8 dots     25.5  82.9\n 9 dots     25.4  82.9\n10 dots     25.6  82.9\n# ℹ 132 more rows"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#summarising-anscombes-quartet-datasaurus-dozen",
+    "href": "slides/w01-01-welcome-slides.html#summarising-anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Summarising Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Summarising Anscombe’s quartet / Datasaurus Dozen\n\nsummdat &lt;- datasaurus_dozen %&gt;%\n  group_by(dataset) %&gt;%\n  summarise(\n    mean_x = mean(x),\n    mean_y = mean(y),\n    sd_x = sd(x),\n    sd_y = sd(y),\n    r = cor(x, y)\n  )"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#summarizing-anscombes-quartet-datasaurus-dozen",
+    "href": "slides/w01-01-welcome-slides.html#summarizing-anscombes-quartet-datasaurus-dozen",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Summarizing Anscombe’s quartet / Datasaurus Dozen",
+    "text": "Summarizing Anscombe’s quartet / Datasaurus Dozen\n\n\n# A tibble: 13 × 6\n   dataset    mean_x mean_y  sd_x  sd_y       r\n   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 away         54.3   47.8  16.8  26.9 -0.0641\n 2 bullseye     54.3   47.8  16.8  26.9 -0.0686\n 3 circle       54.3   47.8  16.8  26.9 -0.0683\n 4 dino         54.3   47.8  16.8  26.9 -0.0645\n 5 dots         54.3   47.8  16.8  26.9 -0.0603\n 6 h_lines      54.3   47.8  16.8  26.9 -0.0617\n 7 high_lines   54.3   47.8  16.8  26.9 -0.0685\n 8 slant_down   54.3   47.8  16.8  26.9 -0.0690\n 9 slant_up     54.3   47.8  16.8  26.9 -0.0686\n10 star         54.3   47.8  16.8  26.9 -0.0630\n11 v_lines      54.3   47.8  16.8  26.9 -0.0694\n12 wide_lines   54.3   47.8  16.8  26.9 -0.0666\n13 x_shape      54.3   47.8  16.8  26.9 -0.0656"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#visualizing-the-data",
+    "href": "slides/w01-01-welcome-slides.html#visualizing-the-data",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Visualizing the data",
+    "text": "Visualizing the data"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#questions",
+    "href": "slides/w01-01-welcome-slides.html#questions",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#homepage",
+    "href": "slides/w01-01-welcome-slides.html#homepage",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Homepage",
+    "text": "Homepage\nhttps://fall-2026-global-health-data-science.github.io/stat-fun/index.html\n\nAll course materials\nLinks to Canvas, GitHub, RStudio containers, etc."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#course-toolkit",
+    "href": "slides/w01-01-welcome-slides.html#course-toolkit",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Course toolkit",
+    "text": "Course toolkit\nAll linked from the course website:\n\nGitHub organization: github.com/Fall-2026-Global-Health-Data-Science\n\nRStudio containers: cmgr.oit.duke.edu/containers\n\nCommunication: Ed Discussion\nAssignment submission and feedback: Gradescope"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#activities",
+    "href": "slides/w01-01-welcome-slides.html#activities",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Activities",
+    "text": "Activities\n\nIntroduce new content and prepare for lectures by watching the videos and completing the readings\nAttend and actively participate in lectures (and answer questions for participation credit) and labs, office hours, team meetings\nPractice applying statistical concepts and computing with application exercises during lecture\nPut together what you’ve learned to analyze real-world data\n\nLab assignments\nQuizzes\nExams"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#grading",
+    "href": "slides/w01-01-welcome-slides.html#grading",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Grading",
+    "text": "Grading\n\n\nCategory\nPercentage\n\n\n\nLectures (attendance + participation)\n10%\n\n\nLabs\n15%\n\n\nMidterm 1\n25%\n\n\nMidterm 2\n25%\n\n\nMidterm 3\n25%\n\n\nFinal\nReplace lowest midterm\n\n\n\nSee course syllabus for how the final letter grade will be determined."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#wiggle-room",
+    "href": "slides/w01-01-welcome-slides.html#wiggle-room",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Wiggle room",
+    "text": "Wiggle room\n\nAfter Drop/Add, you can miss 4 lectures and still receive full attendance credit;\nWe drop the two lowest labs;\nWe will give the opportunity for oral exam retakes for partial credit;\nWe replace the lowest midterm score with your final exam score (if it’s better; otherwise the final does not affect your grade)."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#attendance-and-participation",
+    "href": "slides/w01-01-welcome-slides.html#attendance-and-participation",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Attendance and participation",
+    "text": "Attendance and participation\n\nDaily in lecture\nTracked for credit, but not based on correctness, only participation (often questions designed to make you think that might not have a single right answer!)"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#labs",
+    "href": "slides/w01-01-welcome-slides.html#labs",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Labs",
+    "text": "Labs\n\nHands-on practice with data analysis\nA single exercise per lab, graded based on being there and turning in something reasonable + correctness\nCompleted in-person, in lab, in teams\nTeams randomized each week for roughly first half of course\nDeveloped collaboratively, but turned in individually by the end of the lab session\nWeekly throughout semester, two lowest scores dropped\nNo late work accepted"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#exams",
+    "href": "slides/w01-01-welcome-slides.html#exams",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Exams",
+    "text": "Exams\n\nThree in-class midterm exams during semester\nFinal (optional to replace lowest grade on midterm)\nNo extensions or make-ups.\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed, and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class or be comfortable with relying on the make-up exam.\n\n\n\n\n\n\n\n\n\nIf you need testing accomodations\n\n\nMake sure I get a letter, and make your appointments in the Testing Center now."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#teams",
+    "href": "slides/w01-01-welcome-slides.html#teams",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Teams",
+    "text": "Teams\n\nRandomized at first for weekly labs\nThen selected by you or assigned by me if you don’t express a preference for remaining labs\n\nExpectations and roles\n\nEveryone is expected to contribute equal effort\n\nEveryone is expected to understand all code turned in\nIndividual contribution evaluated by peer evaluation, commits, etc."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#questions-1",
+    "href": "slides/w01-01-welcome-slides.html#questions-1",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#this-weeks-tasks",
+    "href": "slides/w01-01-welcome-slides.html#this-weeks-tasks",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "This week’s tasks",
+    "text": "This week’s tasks\n\nAttend lectures and lab:\n\nComputational setup;\nGetting to know you survey;\n\n\nRead the syllabus and ask questions on Ed;\nComplete readings and videos for next class;\nSend me SDAO letters and schedule testing center appointments."
+  },
+  {
+    "objectID": "slides/w01-01-welcome-slides.html#questions-2",
+    "href": "slides/w01-01-welcome-slides.html#questions-2",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html",
+    "href": "slides/w01-01-welcome.html",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "",
+    "text": "Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nThis is a course on health data science, with an emphasis on statistical thinking and global health challenges\n\nOur process involves\n\nforming a question of interest,\n(collecting) and summarizing data,\nand interpreting and communicating results."
+  },
+  {
+    "objectID": "slides/w01-01-welcome.html#data-science",
+    "href": "slides/w01-01-welcome.html#data-science",
+    "title": "Welcome to STA/GLHLTH 198!",
+    "section": "",
+    "text": "Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.\nThis is a course on health data science, with an emphasis on statistical thinking and global health challenges\n\nOur process involves\n\nforming a question of interest,\n(collecting) and summarizing data,\nand interpreting and communicating results."
   },
   {
     "objectID": "slides/w01-01-welcome.html#global-health-data-science",
@@ -326,7 +942,7 @@
     "href": "slides/w01-01-welcome.html#frequently-asked-questions",
     "title": "Welcome to STA/GLHLTH 198!",
     "section": "Frequently Asked Questions",
-    "text": "Frequently Asked Questions\n\nQ: What data science background does this course assume?A: None. No prior experience with data science or programming is expected.\nQ: Is this an intro statistics course?A: Statistics and data science are closely related, with substantial overlap. This course is an excellent way to begin learning statistics, but it is not a traditional high school statistics course.\nQ: Will we be doing computing?A: Yes—extensively. Computing is a core part of the course and an essential tool for learning data science and statistics."
+    "text": "Frequently Asked Questions\n\n\nQ: What data science background does this course assume?A: None. No prior experience with data science or programming is expected.\nQ: Is this an intro statistics course?A: Statistics and data science are closely related, with substantial overlap. This course is an excellent way to begin learning statistics, but it is not a traditional high school statistics course.\nQ: Will we be doing computing?A: Yes—extensively. Computing is a core part of the course and an essential tool for learning data science and statistics."
   },
   {
     "objectID": "slides/w01-01-welcome.html#software",
@@ -417,7 +1033,7 @@
     "href": "slides/w01-01-welcome.html#whats-in-the-life-expectancy-data",
     "title": "Welcome to STA/GLHLTH 198!",
     "section": "What’s in the life expectancy data?",
-    "text": "What’s in the life expectancy data?\nTake a glimpse at the data:\n\nlibrary(tidyverse)\nglimpse(life)\n\nRows: 13,872\nColumns: 4\n$ location &lt;chr&gt; \"Afghanistan\", \"Afghanistan\", \"Afghanistan\", \"Afghanistan\", \"…\n$ sex      &lt;chr&gt; \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"…\n$ year     &lt;dbl&gt; 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2…\n$ lifeexp  &lt;dbl&gt; 59.77891, 59.75369, 60.19466, 60.47221, 60.69472, 61.14557, 6…"
+    "text": "What’s in the life expectancy data?\nTake a glimpse at the data:\n\nlibrary(tidyverse)\nglimpse(life)\n\nRows: 13,872\nColumns: 4\n$ location &lt;chr&gt; \"Afghanistan\", \"Afghanistan\", \"Afghanistan\", \"Afghanistan\", \"…\n$ sex      &lt;chr&gt; \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"Female\", \"…\n$ year     &lt;dbl&gt; 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2…\n$ lifeexp  &lt;dbl&gt; 59.77891, 59.75369, 60.19466, 60.47221, 60.69472, 61.14557, 6…\n\n\n\n\nHow many rows and columns does this dataset have?\nWhat does each row represent?\nWhat does each column represent?\n\n\nHow many rows and columns does this dataset have?\n\n\nnrow(life) # number of rows\n\n[1] 13872\n\nncol(life) # number of columns\n\n[1] 4\n\ndim(life)  # dimensions (rows, columns)\n\n[1] 13872     4"
   },
   {
     "objectID": "slides/w01-01-welcome.html#what-is-eda",
@@ -459,14 +1075,14 @@
     "href": "slides/w01-01-welcome.html#grammar-of-graphics",
     "title": "Welcome to STA/GLHLTH 198!",
     "section": "Grammar of Graphics",
-    "text": "Grammar of Graphics\n\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic.\n\n\n\n\n\n\n\n\n\n\n\nSource: BloggoType"
+    "text": "Grammar of Graphics\n\n\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic.\n\n\n\n\n\n\n\n\n\n\n\n\nSource: BloggoType"
   },
   {
     "objectID": "slides/w01-01-welcome.html#mens-gap-in-life-expectancy-by-year",
     "href": "slides/w01-01-welcome.html#mens-gap-in-life-expectancy-by-year",
     "title": "Welcome to STA/GLHLTH 198!",
     "section": "Men’s gap in life expectancy by year",
-    "text": "Men’s gap in life expectancy by year\nLet’s subset to a few countries to de-clutter the plot.\n\n\n\nlife %&gt;%\n  filter(location %in% c(\n    \"United States of America\",\n    \"Rwanda\",\n    \"China\"\n  )) %&gt;%\n  ggplot(aes(\n    x = year,\n    y = lifeexp,\n    shape = sex,\n    color = location\n  )) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nWe’ll learn to make this a lot better later!"
+    "text": "Men’s gap in life expectancy by year\nLet’s subset to a few countries to de-clutter the plot.\n\n\n\nlife %&gt;%\n  filter(location %in% c(\n    \"United States of America\",\n    \"Rwanda\",\n    \"China\"\n  )) %&gt;%\n  ggplot(aes(\n    x = year,\n    y = lifeexp,\n    shape = sex,\n    color = location\n  )) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nWe’ll learn to make this a lot better later!\n\n\n\nWhat are the functions doing the plotting?\nWhat is the dataset being plotted?\nWhich variables map to which features (aesthetics) of the plot?\n\n\n\nlife %&gt;%\n  filter(location %in% c(\n    \"United States of America\",\n    \"Rwanda\",\n    \"China\"\n  )) %&gt;%\n  ggplot(aes(\n    x = year,\n    y = lifeexp,\n    shape = sex,\n    color = location\n  )) +\n  geom_point()"
   },
   {
     "objectID": "slides/w01-01-welcome.html#hello-ggplot2",
@@ -564,7 +1180,7 @@
     "href": "slides/w01-01-welcome.html#exams",
     "title": "Welcome to STA/GLHLTH 198!",
     "section": "Exams",
-    "text": "Exams\n\nThree in-class midterm exams during semester\nFinal (optional to replace lowest grade on midterm)\nNo extensions or make-ups.\n\n\n\n\n\n\n\nCaution\n\n\nExam dates cannot be changed, and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class or be comfortable with relying on the make-up exam.\n\n\n\n\n\n\n\n\n\nIf you need testing accomodations\n\n\nMake sure I get a letter, and make your appointments in the Testing Center now."
+    "text": "Exams\n\nThree in-class midterm exams during semester\nFinal (optional to replace lowest grade on midterm)\nNo extensions or make-ups.\n\n\n\n\n\n\n\nCaution\n\n\n\nExam dates cannot be changed, and no make-up exams will be given. If you can’t take the exams on these dates, you should drop this class or be comfortable with relying on the make-up exam.\n\n\n\n\n\n\n\n\nIf you need testing accomodations\n\n\n\nMake sure I get a letter, and make your appointments in the Testing Center now."
   },
   {
     "objectID": "slides/w01-01-welcome.html#teams",
@@ -1132,7 +1748,7 @@
     "href": "index.html",
     "title": "STA 198: Introduction to Global Health Data Science",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n1\nMon, Aug 24\nWelcome to STA 198!\n📝 Syllabus “📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto  🎥 Code along :: First data viz with UN Votes”\n🖥️ slides 01  🖥️ slides 02\n\n\n\n\n\nWed, Aug 26\nMeet the toolkit\n📗 r4ds - chp 1  📘 ims - chp 4  🎥 Visualizing data  🎥 Building a plot step-by-step with ggplot2  🎥 Grammar of graphics  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships \n\n🖥️ slides 03 🖥️ slides 04\n\n\n\n\n\nThu, Aug 27\nLab 0: Mise en place\n\n\nLab 0 due at the end of lab session (not graded)\n\n\n2\nMon, Aug 31\nARC Presentation  Grammar of data visualization\n\n🖥️ slides 05 🖥️ slides 06\n\n\n\n\n\nWed, Sep 2\nGrammar of data transformation\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\n\n\nThu, Sep 3\nLab 1: Exploring NC Counties\n\n\nLab 1 due at the end of the lab session\n\n\n3\nMon, Sep 7\nNo lecture - Labor Day\n\n\n\n\n\n\nWed, Sep 9\nExploratory data analysis I\nTo be posted\n\nHW 1 due at 11:59 pm\n\n\n\nThu, Sep 10\nLab 2: Get in teams then group_by()\n\nTo be posted\n\nLab 2 due at the end of the lab session\n\n\n4\nMon, Sep 14\nExploratory data analysis II\nTo be posted\n\n\n\n\n\nWed, Sep 16\nTidying data\nTo be posted\n\nHW 2 due at 11:59 pm\n\n\n\nThu, Sep 17\nLab 3: Inflation everywhere\nTo be posted\n\nLab 3 due at the end of the lab session\n\n\n5\nMon, Sep 21\nJoining data\nTo be posted\n\n\n\n\n\nWed, Sep 23\nData types and classes\nTo be posted\n\nHW 3 due at 11:59 pm\n\n\n\nThu, Sep 24\nLab 4: Changes in college athletics\nTo be posted\n\nLab 4 due at the end of lab session\n\n\n6\nMon, Sep 28\nImporting and recoding data\nTo be posted\n\n\n\n\n\nWed, Sep 30\nWeb scraping a single page\nTo be posted\n\nHW 4 due at 11:59 pm\n\n\n\nThu, Oct 1\nExam 1 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Oct 4\n\n\n\nExam 1 take-home due at noon (12 pm)\n\n\n7\nMon, Oct 5\nExam 1 review\nTo be posted\n\n\n\n\n\nWed, Oct 7\nExam 1 - In-class\nTo be posted\n\n\n\n\n\nThu, Oct 8\nProject milestone 1 - Working collaboratively [45 mins]  Project milestone 2 - Project proposals [30 mins]\nTo be posted\n\nProject milestone 1 due at the end of lab session\n\n\n\nFri, Oct 9\n\n\n\nMidterm course evaluation due at 11:59 pm (optional)\n\n\n8\nMon, Oct 12\nNo Lecture - Fall Break\nTo be posted\n\n\n\n\n\nWed, Oct 14\nWeb scraping many pages\nTo be posted\n\nProject milestone 2 due at 11:59 pm\n\n\n\nThu, Oct 15\nLab 5: TBD\nTo be posted\n\nLab 5 due at the end of lab session\n\n\n9\nMon, Oct 19\nData science ethics\nTo be posted\n\nPeer evaluation 1 due at 11:59 pm\n\n\n\nMon, Oct 19\nThe language of models\nTo be posted\n\n\n\n\n\nTue, Oct 20\nProject milestone 3 - Improve and progress\nTo be posted\n\nProject milestone 3 at the end of lab session\n\n\n10\nMon, Oct 26\nLinear regression with a single predictor\nTo be posted\n\n\n\n\n\nWed, Oct 28\nLinear regression with multiple predictors\nTo be posted\n\nHW 5 due at 11:59 pm\n\n\n\nThu, Oct 29\nProject milestone 4 - Peer review [30 minutes]  Lab 6: TBD\nTo be posted\n\nProject milestone 4 at the end of lab session  Lab 6 due at the end of lab session\n\n\n11\nMon, Nov 2\nModel selection and overfitting\nTo be posted\n\nPeer evaluation 2 due at 11:59 pm\n\n\n\nWed, Nov 4\nDeveloping and communicating data science results\nTo be posted\n\n\n\n\n\nThu, Nov 5\nProject milestone 6 - Presentation\nTo be posted\n\nProject milestone 6 presentation due at the start of lab session\n\n\n12\nMon, Nov 9\nLogistic regression\nTo be posted\n\nPeer evaluation 3 due at 11:59 pm\n\n\n\nWed, Nov 11\nSpending your data\nTo be posted\n\nHW 6 due at 11:59 pm\n\n\n\nThu, Nov 12\nExam 2 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Nov 15\n\n\n\nExam 2 take-home due at noon (12 pm)\n\n\n13\nMon, Nov 16\nExam 2 review\nTo be posted\n\n\n\n\n\nWed, Nov 18\nExam 2 - In-class\nTo be posted\n\n\n\n\n\nThu, Nov 19\nLab 7: Leavin’ on a jet plane\nTo be posted\n\nLab 7 due at the end of lab session\n\n\n14\nMon, Nov 23\nEvaluating models\nTo be posted\n\nProject milestone 6 write-up due at 11:59 pm\n\n\n\nWed, Nov 25\nNo lecture - Thanksgiving\nTo be posted\n\n\n\n\n\nWed, Nov 25\nNo lab - Thanksgiving\nTo be posted\n\n\n\n\n\nSat, Nov 28\n\n\n\n\n\n\n15\nMon, Nov 30\nQuantifying uncertainty with bootstrap intervals\nTo be posted\n\nPeer evaluation 4 due at 11:59 pm\n\n\n\nWed, Dec 2\nMaking decisions with randomization tests\nTo be posted\n\nHW 7 due at 11:59 pm\n\n\n\nFri, Dec 4\nLab 8: Inference\nTo be posted\n\nLab 8 due at the end of lab session\n\n\n\nSat, Dec 5\n\n\n\n\n\n\n\nNA\nFinal review (time TBD, location TBD)\n\n\n\n\n\n16\nThu, Dec 10\nFinal (9 am - 12 pm)\nTo be posted",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n1\nMon, Aug 24\nWelcome to STA 198!\n📝 Syllabus 📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto  🎥 Code along :: First data viz with UN Votes\n\n🖥️ slides 01  🖥️ slides 02  🗒️ notes 01  🗒️ notes 02 \n\n\n\n\n\nWed, Aug 26\nMeet the toolkit\n📗 r4ds - chp 1  📘 ims - chp 4  🎥 Visualizing data  🎥 Building a plot step-by-step with ggplot2  🎥 Grammar of graphics  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships \n\n🖥️ slides 03  🖥️ slides 04  🗒️ notes 03  🗒️ notes 04\n\n\n\n\n\nThu, Aug 27\nLab 0: Mise en place\n\n\nLab 0 due at the end of lab session (not graded)\n\n\n2\nMon, Aug 31\nARC Presentation  Grammar of data visualization\n\n🖥️ slides 05  🖥️ slides 06  🗒️ notes 05  🗒️ notes 06 \n\n\n\n\n\nWed, Sep 2\nGrammar of data transformation\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\n\n\nThu, Sep 3\nLab 1: Exploring NC Counties\n\n\nLab 1 due at the end of the lab session\n\n\n3\nMon, Sep 7\nNo lecture - Labor Day\n\n\n\n\n\n\nWed, Sep 9\nExploratory data analysis I\nTo be posted\n\nHW 1 due at 11:59 pm\n\n\n\nThu, Sep 10\nLab 2: Get in teams then group_by()\n\nTo be posted\n\nLab 2 due at the end of the lab session\n\n\n4\nMon, Sep 14\nExploratory data analysis II\nTo be posted\n\n\n\n\n\nWed, Sep 16\nTidying data\nTo be posted\n\nHW 2 due at 11:59 pm\n\n\n\nThu, Sep 17\nLab 3: Inflation everywhere\nTo be posted\n\nLab 3 due at the end of the lab session\n\n\n5\nMon, Sep 21\nJoining data\nTo be posted\n\n\n\n\n\nWed, Sep 23\nData types and classes\nTo be posted\n\nHW 3 due at 11:59 pm\n\n\n\nThu, Sep 24\nLab 4: Changes in college athletics\nTo be posted\n\nLab 4 due at the end of lab session\n\n\n6\nMon, Sep 28\nImporting and recoding data\nTo be posted\n\n\n\n\n\nWed, Sep 30\nWeb scraping a single page\nTo be posted\n\nHW 4 due at 11:59 pm\n\n\n\nThu, Oct 1\nExam 1 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Oct 4\n\n\n\nExam 1 take-home due at noon (12 pm)\n\n\n7\nMon, Oct 5\nExam 1 review\nTo be posted\n\n\n\n\n\nWed, Oct 7\nExam 1 - In-class\nTo be posted\n\n\n\n\n\nThu, Oct 8\nProject milestone 1 - Working collaboratively [45 mins]  Project milestone 2 - Project proposals [30 mins]\nTo be posted\n\nProject milestone 1 due at the end of lab session\n\n\n\nFri, Oct 9\n\n\n\nMidterm course evaluation due at 11:59 pm (optional)\n\n\n8\nMon, Oct 12\nNo Lecture - Fall Break\nTo be posted\n\n\n\n\n\nWed, Oct 14\nWeb scraping many pages\nTo be posted\n\nProject milestone 2 due at 11:59 pm\n\n\n\nThu, Oct 15\nLab 5: TBD\nTo be posted\n\nLab 5 due at the end of lab session\n\n\n9\nMon, Oct 19\nData science ethics\nTo be posted\n\nPeer evaluation 1 due at 11:59 pm\n\n\n\nMon, Oct 19\nThe language of models\nTo be posted\n\n\n\n\n\nTue, Oct 20\nProject milestone 3 - Improve and progress\nTo be posted\n\nProject milestone 3 at the end of lab session\n\n\n10\nMon, Oct 26\nLinear regression with a single predictor\nTo be posted\n\n\n\n\n\nWed, Oct 28\nLinear regression with multiple predictors\nTo be posted\n\nHW 5 due at 11:59 pm\n\n\n\nThu, Oct 29\nProject milestone 4 - Peer review [30 minutes]  Lab 6: TBD\nTo be posted\n\nProject milestone 4 at the end of lab session  Lab 6 due at the end of lab session\n\n\n11\nMon, Nov 2\nModel selection and overfitting\nTo be posted\n\nPeer evaluation 2 due at 11:59 pm\n\n\n\nWed, Nov 4\nDeveloping and communicating data science results\nTo be posted\n\n\n\n\n\nThu, Nov 5\nProject milestone 6 - Presentation\nTo be posted\n\nProject milestone 6 presentation due at the start of lab session\n\n\n12\nMon, Nov 9\nLogistic regression\nTo be posted\n\nPeer evaluation 3 due at 11:59 pm\n\n\n\nWed, Nov 11\nSpending your data\nTo be posted\n\nHW 6 due at 11:59 pm\n\n\n\nThu, Nov 12\nExam 2 - Take-home released\nTo be posted\n\n\n\n\n\nSun, Nov 15\n\n\n\nExam 2 take-home due at noon (12 pm)\n\n\n13\nMon, Nov 16\nExam 2 review\nTo be posted\n\n\n\n\n\nWed, Nov 18\nExam 2 - In-class\nTo be posted\n\n\n\n\n\nThu, Nov 19\nLab 7: Leavin’ on a jet plane\nTo be posted\n\nLab 7 due at the end of lab session\n\n\n14\nMon, Nov 23\nEvaluating models\nTo be posted\n\nProject milestone 6 write-up due at 11:59 pm\n\n\n\nWed, Nov 25\nNo lecture - Thanksgiving\nTo be posted\n\n\n\n\n\nWed, Nov 25\nNo lab - Thanksgiving\nTo be posted\n\n\n\n\n\nSat, Nov 28\n\n\n\n\n\n\n15\nMon, Nov 30\nQuantifying uncertainty with bootstrap intervals\nTo be posted\n\nPeer evaluation 4 due at 11:59 pm\n\n\n\nWed, Dec 2\nMaking decisions with randomization tests\nTo be posted\n\nHW 7 due at 11:59 pm\n\n\n\nFri, Dec 4\nLab 8: Inference\nTo be posted\n\nLab 8 due at the end of lab session\n\n\n\nSat, Dec 5\n\n\n\n\n\n\n\nNA\nFinal review (time TBD, location TBD)\n\n\n\n\n\n16\nThu, Dec 10\nFinal (9 am - 12 pm)\nTo be posted",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -1215,46 +1831,53 @@
     ]
   },
   {
+    "objectID": "slides/w02-01-prob.html",
+    "href": "slides/w02-01-prob.html",
+    "title": "Probability",
+    "section": "",
+    "text": "One goal of statistics is to answer a research question, by making inferences about a population based on data in one or more samples. - Population: the entire group we would like to make conclusions about (e.g., all people aged 15 and up in China, all pregnancies worldwide) - Sample: specific group we have collected data from (e.g., a random sample of non-institutionalized people aged 15 and up in sampled households, from sampled villages from sampled counties; pregnancies receiving prenatal care at Duke Hospital) - The validity of our inferences depends on a variety of factors, including the representativeness of our sample\nQuestion: how representative of worldwide pregnancies would a sample from Duke Hospital be?\n\n\n\n\n\nErik Frank and colleagues have been studying the behavior of the termite-hunting ant species M. analis in the Ivory Coast. During termite raids, some ants are injured by the defensive actions of the termites, and these ants often receive medical aid from nest mates.\nFrank’s team designed a series of experiments to explore factors related to different types of aid.\n\n\n\n\n\nTo test whether rescue behavior was directed primarily toward lightly injured rather than heavily injured ants, Frank and colleagues collected workers from groups departing on termite raids.\nWhen the raiding column returned, they presented it with an injured ant positioned at the front of the returning column.\nThe injured ant had either:\n\n\nLight injuries: two legs removed with forceps\n\nHeavy injuries: five legs removed\n\n\n\n\n\n\n\n\n\n\nThe researchers then observed how nest-mates responded to the injured ant.\nThey recorded several aspects of rescue behavior, including\n\nthe duration of interactions with the injured ant, and\nwhether the injured ant was carried back to the nest.\n\nBy comparing responses to lightly and heavily injured ants, they tested whether rescue behavior depended on the severity of the injury.\n\n\n\n\n\n\nIn order to draw principled conclusions from our data, we rely on a formal probabilistic framework that allows us to quantify uncertainty.\nStatistical inference is built upon the foundation of probability theory.\n\nThe probability of an event tells us how likely an event is to occur, and it can take values from 0 to 1, inclusive. It can be viewed as the proportion of times the event would occur if it could be observed an infinite number of times. It can also be viewed as our degree of belief an event will happen."
+  },
+  {
     "objectID": "slides/w02-01-prob.html#goal-of-statistics",
     "href": "slides/w02-01-prob.html#goal-of-statistics",
     "title": "Probability",
-    "section": "Goal of statistics",
-    "text": "Goal of statistics\nOne goal of statistics is to answer a research question, by making inferences about a population based on data in one or more samples. - Population: the entire group we would like to make conclusions about (e.g., all people aged 15 and up in China, all pregnancies worldwide) - Sample: specific group we have collected data from (e.g., a random sample of non-institutionalized people aged 15 and up in sampled households, from sampled villages from sampled counties; pregnancies receiving prenatal care at Duke Hospital) - The validity of our inferences depends on a variety of factors, including the representativeness of our sample\nQuestion: how representative of worldwide pregnancies would a sample from Duke Hospital be?"
+    "section": "",
+    "text": "One goal of statistics is to answer a research question, by making inferences about a population based on data in one or more samples. - Population: the entire group we would like to make conclusions about (e.g., all people aged 15 and up in China, all pregnancies worldwide) - Sample: specific group we have collected data from (e.g., a random sample of non-institutionalized people aged 15 and up in sampled households, from sampled villages from sampled counties; pregnancies receiving prenatal care at Duke Hospital) - The validity of our inferences depends on a variety of factors, including the representativeness of our sample\nQuestion: how representative of worldwide pregnancies would a sample from Duke Hospital be?"
   },
   {
     "objectID": "slides/w02-01-prob.html#wound-treatment-and-care-in-termite-hunting-ants",
     "href": "slides/w02-01-prob.html#wound-treatment-and-care-in-termite-hunting-ants",
     "title": "Probability",
-    "section": "Wound treatment and care in termite-hunting ants",
-    "text": "Wound treatment and care in termite-hunting ants\n\n\n\n\nErik Frank and colleagues have been studying the behavior of the termite-hunting ant species M. analis in the Ivory Coast. During termite raids, some ants are injured by the defensive actions of the termites, and these ants often receive medical aid from nest mates.\nFrank’s team designed a series of experiments to explore factors related to different types of aid."
+    "section": "",
+    "text": "Erik Frank and colleagues have been studying the behavior of the termite-hunting ant species M. analis in the Ivory Coast. During termite raids, some ants are injured by the defensive actions of the termites, and these ants often receive medical aid from nest mates.\nFrank’s team designed a series of experiments to explore factors related to different types of aid."
   },
   {
     "objectID": "slides/w02-01-prob.html#experimental-design",
     "href": "slides/w02-01-prob.html#experimental-design",
     "title": "Probability",
-    "section": "Experimental design",
-    "text": "Experimental design\n\n\n\nTo test whether rescue behavior was directed primarily toward lightly injured rather than heavily injured ants, Frank and colleagues collected workers from groups departing on termite raids.\nWhen the raiding column returned, they presented it with an injured ant positioned at the front of the returning column.\nThe injured ant had either:\n\n\nLight injuries: two legs removed with forceps\n\nHeavy injuries: five legs removed"
+    "section": "",
+    "text": "To test whether rescue behavior was directed primarily toward lightly injured rather than heavily injured ants, Frank and colleagues collected workers from groups departing on termite raids.\nWhen the raiding column returned, they presented it with an injured ant positioned at the front of the returning column.\nThe injured ant had either:\n\n\nLight injuries: two legs removed with forceps\n\nHeavy injuries: five legs removed"
   },
   {
     "objectID": "slides/w02-01-prob.html#measuring-rescue-behavior",
     "href": "slides/w02-01-prob.html#measuring-rescue-behavior",
     "title": "Probability",
-    "section": "Measuring rescue behavior",
-    "text": "Measuring rescue behavior\n\n\n\nThe researchers then observed how nest-mates responded to the injured ant.\nThey recorded several aspects of rescue behavior, including\n\nthe duration of interactions with the injured ant, and\nwhether the injured ant was carried back to the nest.\n\nBy comparing responses to lightly and heavily injured ants, they tested whether rescue behavior depended on the severity of the injury."
+    "section": "",
+    "text": "The researchers then observed how nest-mates responded to the injured ant.\nThey recorded several aspects of rescue behavior, including\n\nthe duration of interactions with the injured ant, and\nwhether the injured ant was carried back to the nest.\n\nBy comparing responses to lightly and heavily injured ants, they tested whether rescue behavior depended on the severity of the injury."
   },
   {
     "objectID": "slides/w02-01-prob.html#drawing-conclusions",
     "href": "slides/w02-01-prob.html#drawing-conclusions",
     "title": "Probability",
-    "section": "Drawing Conclusions",
-    "text": "Drawing Conclusions\nIn order to draw principled conclusions from our data, we rely on a formal probabilistic framework that allows us to quantify uncertainty.\nStatistical inference is built upon the foundation of probability theory."
+    "section": "",
+    "text": "In order to draw principled conclusions from our data, we rely on a formal probabilistic framework that allows us to quantify uncertainty.\nStatistical inference is built upon the foundation of probability theory."
   },
   {
     "objectID": "slides/w02-01-prob.html#probability",
     "href": "slides/w02-01-prob.html#probability",
     "title": "Probability",
-    "section": "Probability",
-    "text": "Probability\nThe probability of an event tells us how likely an event is to occur, and it can take values from 0 to 1, inclusive. It can be viewed as the proportion of times the event would occur if it could be observed an infinite number of times. It can also be viewed as our degree of belief an event will happen."
+    "section": "",
+    "text": "The probability of an event tells us how likely an event is to occur, and it can take values from 0 to 1, inclusive. It can be viewed as the proportion of times the event would occur if it could be observed an infinite number of times. It can also be viewed as our degree of belief an event will happen."
   },
   {
     "objectID": "slides/w02-01-prob.html#events",
@@ -1308,6 +1931,104 @@
   {
     "objectID": "slides/w02-01-prob.html#practicing-with-probabilities",
     "href": "slides/w02-01-prob.html#practicing-with-probabilities",
+    "title": "Probability",
+    "section": "Practicing with Probabilities",
+    "text": "Practicing with Probabilities\nDefine events A=carried back to the nest and B=lightly injured. Calculate the following probabilities for a randomly-selected injured ant from the study.\n\n\\(P(A)\\)\n\\(P(B)\\)\n\\(P(A \\cup B)\\)\n\\(P(A \\cap B)\\)\n\\(P(\\overline{A} \\cap B)\\)\n\\(P(A \\cap \\overline{B})\\)\n\\(P(\\overline{A} \\cap \\overline{B})\\)"
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#goal-of-statistics",
+    "href": "slides/w02-01-prob-slides.html#goal-of-statistics",
+    "title": "Probability",
+    "section": "Goal of statistics",
+    "text": "Goal of statistics\nOne goal of statistics is to answer a research question, by making inferences about a population based on data in one or more samples. - Population: the entire group we would like to make conclusions about (e.g., all people aged 15 and up in China, all pregnancies worldwide) - Sample: specific group we have collected data from (e.g., a random sample of non-institutionalized people aged 15 and up in sampled households, from sampled villages from sampled counties; pregnancies receiving prenatal care at Duke Hospital) - The validity of our inferences depends on a variety of factors, including the representativeness of our sample\nQuestion: how representative of worldwide pregnancies would a sample from Duke Hospital be?"
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#wound-treatment-and-care-in-termite-hunting-ants",
+    "href": "slides/w02-01-prob-slides.html#wound-treatment-and-care-in-termite-hunting-ants",
+    "title": "Probability",
+    "section": "Wound treatment and care in termite-hunting ants",
+    "text": "Wound treatment and care in termite-hunting ants\n\n\n\n\nErik Frank and colleagues have been studying the behavior of the termite-hunting ant species M. analis in the Ivory Coast. During termite raids, some ants are injured by the defensive actions of the termites, and these ants often receive medical aid from nest mates.\nFrank’s team designed a series of experiments to explore factors related to different types of aid."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#experimental-design",
+    "href": "slides/w02-01-prob-slides.html#experimental-design",
+    "title": "Probability",
+    "section": "Experimental design",
+    "text": "Experimental design\n\n\n\nTo test whether rescue behavior was directed primarily toward lightly injured rather than heavily injured ants, Frank and colleagues collected workers from groups departing on termite raids.\nWhen the raiding column returned, they presented it with an injured ant positioned at the front of the returning column.\nThe injured ant had either:\n\n\nLight injuries: two legs removed with forceps\n\nHeavy injuries: five legs removed"
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#measuring-rescue-behavior",
+    "href": "slides/w02-01-prob-slides.html#measuring-rescue-behavior",
+    "title": "Probability",
+    "section": "Measuring rescue behavior",
+    "text": "Measuring rescue behavior\n\n\n\nThe researchers then observed how nest-mates responded to the injured ant.\nThey recorded several aspects of rescue behavior, including\n\nthe duration of interactions with the injured ant, and\nwhether the injured ant was carried back to the nest.\n\nBy comparing responses to lightly and heavily injured ants, they tested whether rescue behavior depended on the severity of the injury."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#drawing-conclusions",
+    "href": "slides/w02-01-prob-slides.html#drawing-conclusions",
+    "title": "Probability",
+    "section": "Drawing Conclusions",
+    "text": "Drawing Conclusions\nIn order to draw principled conclusions from our data, we rely on a formal probabilistic framework that allows us to quantify uncertainty.\nStatistical inference is built upon the foundation of probability theory."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#probability",
+    "href": "slides/w02-01-prob-slides.html#probability",
+    "title": "Probability",
+    "section": "Probability",
+    "text": "Probability\nThe probability of an event tells us how likely an event is to occur, and it can take values from 0 to 1, inclusive. It can be viewed as the proportion of times the event would occur if it could be observed an infinite number of times. It can also be viewed as our degree of belief an event will happen."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#events",
+    "href": "slides/w02-01-prob-slides.html#events",
+    "title": "Probability",
+    "section": "Events",
+    "text": "Events\nAn event is the basic element to which probability is applied, e.g. the result of an observation or experiment.\n\n\nA is the event that an ant is carried back to the nest\n\nB is the event that an ant is lightly injured\n\nC is the event that a person has blood type A+"
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#sample-spaces",
+    "href": "slides/w02-01-prob-slides.html#sample-spaces",
+    "title": "Probability",
+    "section": "Sample Spaces",
+    "text": "Sample Spaces\nA sample space is the set of all possible outcomes. So for example, the sample space could be all possible blood types, the event C is the event that your blood type is A+, and the rest of the sample space, \\(\\overline{C}\\) as we will see in a minute, contains all other blood types.\nThe prevalence of blood types varies widely around the world. About 36% of the US population has blood type A+, and we can say \\(P(A+)=0.36\\) in the US.\nSample spaces depend on the research question. For exploration of ABO blood types, the sample space is {A+, A-, B+, B-, AB+, AB-, O+, O-}."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#operations-on-events",
+    "href": "slides/w02-01-prob-slides.html#operations-on-events",
+    "title": "Probability",
+    "section": "Operations on Events",
+    "text": "Operations on Events\n\nThe union of A and B, denoted \\(A \\cup B\\), is the event that A, or B, or both A and B, occur. Here, \\(A \\cup B\\) is the event that an ant is carried back to the nest, lightly injured, or both.\nThe intersection of A and B, denoted \\(A \\cap B\\), is the event that both A and B occur. Here \\(A \\cap B\\) is the event that a lightly injured ant is carried back to the nest. A and B are disjoint or mutually exclusive if \\(A \\cap B = \\emptyset\\) (A and B can’t occur simultaneously).\nThe complement of A, denoted \\(A^c\\) or \\(\\overline{A}\\), is the event A does not occur (not carried back to the nest). \\(A\\) and \\(\\overline{A}\\) are mutually exclusive."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#probability-rules",
+    "href": "slides/w02-01-prob-slides.html#probability-rules",
+    "title": "Probability",
+    "section": "Probability Rules",
+    "text": "Probability Rules\n\nThe probability of any event in the sample space is between 0 and 1, inclusive.\nThe probability of the entire sample space is 1.\nIf we know the probability of \\(A\\), often denoted \\(P(A)\\), it is easy to calculate the probability of \\(\\overline{A}\\) as \\(P(\\overline{A})=1-P(A)\\). This is called the complement rule: \\(P(A)+P(\\overline{A})=1\\)."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#additive-rule-of-probability",
+    "href": "slides/w02-01-prob-slides.html#additive-rule-of-probability",
+    "title": "Probability",
+    "section": "Additive rule of probability",
+    "text": "Additive rule of probability\n\n\n\n\n\nBecause typically two events can occur simultaneously, we need to avoid double counting when calculating the probability that either of two events will occur.\nThe general additive rule of probability is\n\\[P(A \\cup B) = P(A) + P(B) - P(A \\cap B).\\]\nBecause \\(A \\cap B\\) is part of both event \\(A\\) and event \\(B\\), it would otherwise be counted twice.\nIf events \\(A\\) and \\(B\\) are mutually exclusive, then \\(P(A \\cap B)=0\\), so the additive rule simplifies to \\(P(A \\cup B)=P(A)+P(B).\\)"
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#computing-probabilities",
+    "href": "slides/w02-01-prob-slides.html#computing-probabilities",
+    "title": "Probability",
+    "section": "Computing Probabilities",
+    "text": "Computing Probabilities\nIntuitively, we can think of the probability of an outcome (or set of outcomes) as the proportion of times the outcome (or set of outcomes) would occur if we observed the random process infinitely many times.\nIf all the outcomes in our random process (sample space \\(\\mathcal{S}\\)) are equally likely, then for some event \\(E\\),\nIf all outcomes are equally likely, then\n\\[\nP(E)=\n\\frac{\\mathrm{\\#\\ outcomes\\ in\\ }E}\n{\\mathrm{\\#\\ total\\ outcomes\\ in\\ }\\mathcal{S}}.\n\\]"
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#ant-rescue-behavior",
+    "href": "slides/w02-01-prob-slides.html#ant-rescue-behavior",
+    "title": "Probability",
+    "section": "Ant rescue behavior",
+    "text": "Ant rescue behavior\nConsider a subset of data from the ant experiment.\n\n\n\n\n\n\nCarried Back\nCarried Away\nNot Carried\n\n\n\nLightly Injured\n45\n0\n5\n\n\nHeavily Injured\n5\n5\n20\n\n\n\n\nYou can think of “carried away” as a type of disposal."
+  },
+  {
+    "objectID": "slides/w02-01-prob-slides.html#practicing-with-probabilities",
+    "href": "slides/w02-01-prob-slides.html#practicing-with-probabilities",
     "title": "Probability",
     "section": "Practicing with Probabilities",
     "text": "Practicing with Probabilities\nDefine events A=carried back to the nest and B=lightly injured. Calculate the following probabilities for a randomly-selected injured ant from the study.\n\n\\(P(A)\\)\n\\(P(B)\\)\n\\(P(A \\cup B)\\)\n\\(P(A \\cap B)\\)\n\\(P(\\overline{A} \\cap B)\\)\n\\(P(A \\cap \\overline{B})\\)\n\\(P(\\overline{A} \\cap \\overline{B})\\)"
@@ -1768,11 +2489,18 @@
     "text": "Adding a categorical variable\n\n\n\n\nlifespan2023 %&gt;%\n  filter(sex == \"Female\") %&gt;%\n  ggplot(\n    aes(\n      x = lifeexp,\n      y = worldbankregion\n    )\n  ) +\n  geom_boxplot() +\n  labs(\n    x = \"Female life expectancy (years)\",\n    y = NULL,\n    title = \"2023 Life Expectancy of Women\",\n    subtitle = \"By region\"\n  )"
   },
   {
+    "objectID": "slides/w02-02-condprob.html",
+    "href": "slides/w02-02-condprob.html",
+    "title": "Conditional Probability",
+    "section": "",
+    "text": "Often we wish to know the probabilty an event will occur given that another event has occured.\nFor example, instead of the marginal probability of contracting COVID (regardless of vaccination status), we may wish to know the probability that someone will contract COVID given that they have been vaccinated, or the probability someone will contract COVID given that they have not been vaccinated.\nThese are examples of conditional probability. The conditional probability that an ant is carried back (A) given that they are lightly injured (B) is denoted \\(P(A|B)\\), which we say as “probability of A given B.”"
+  },
+  {
     "objectID": "slides/w02-02-condprob.html#conditional-probability",
     "href": "slides/w02-02-condprob.html#conditional-probability",
     "title": "Conditional Probability",
-    "section": "Conditional Probability",
-    "text": "Conditional Probability\nOften we wish to know the probabilty an event will occur given that another event has occured.\nFor example, instead of the marginal probability of contracting COVID (regardless of vaccination status), we may wish to know the probability that someone will contract COVID given that they have been vaccinated, or the probability someone will contract COVID given that they have not been vaccinated.\nThese are examples of conditional probability. The conditional probability that an ant is carried back (A) given that they are lightly injured (B) is denoted \\(P(A|B)\\), which we say as “probability of A given B.”"
+    "section": "",
+    "text": "Often we wish to know the probabilty an event will occur given that another event has occured.\nFor example, instead of the marginal probability of contracting COVID (regardless of vaccination status), we may wish to know the probability that someone will contract COVID given that they have been vaccinated, or the probability someone will contract COVID given that they have not been vaccinated.\nThese are examples of conditional probability. The conditional probability that an ant is carried back (A) given that they are lightly injured (B) is denoted \\(P(A|B)\\), which we say as “probability of A given B.”"
   },
   {
     "objectID": "slides/w02-02-condprob.html#simple-example",
@@ -1929,11 +2657,179 @@
     "text": "You Try It!\nThe prevalence of cancer is strongly dependent on age. Calculate the conditional probability of cancer given a positive mammogram for women in the following age groups.\n\nWomen in their 20’s, for whom cancer prevalence is roughly \\(\\frac{1}{10000}\\)\n\nWomen in their 50’s, for whom cancer prevalence is roughly \\(\\frac{1}{50}\\)\n\nWomen in their 60’s, for whom cancer prevalence is roughly \\(\\frac{1}{30}\\)"
   },
   {
+    "objectID": "slides/w02-02-condprob-slides.html#conditional-probability",
+    "href": "slides/w02-02-condprob-slides.html#conditional-probability",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\nOften we wish to know the probabilty an event will occur given that another event has occured.\nFor example, instead of the marginal probability of contracting COVID (regardless of vaccination status), we may wish to know the probability that someone will contract COVID given that they have been vaccinated, or the probability someone will contract COVID given that they have not been vaccinated.\nThese are examples of conditional probability. The conditional probability that an ant is carried back (A) given that they are lightly injured (B) is denoted \\(P(A|B)\\), which we say as “probability of A given B.”"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#simple-example",
+    "href": "slides/w02-02-condprob-slides.html#simple-example",
+    "title": "Conditional Probability",
+    "section": "Simple Example",
+    "text": "Simple Example\nSuppose we have a small set containing 9 ants with light injuries carried back to the nest, 1 ant with a light injury that is not carried back, and 10 heavily-injured ants that are not carried back.\nIf we feel this set is a sample representative of a population of interest, we can estimate the probability an ant is carried back as \\(\\frac{9}{9+1+10}=0.45\\).\nWe may be interested in the conditional probability an ant is carried back given that it is only lightly injured, which we can estimate as \\(\\frac{9}{9+1}=0.9\\) – we just change the denominator to correspond to our smaller population of interest."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#conditional-probability-and-multiplicative-rule",
+    "href": "slides/w02-02-condprob-slides.html#conditional-probability-and-multiplicative-rule",
+    "title": "Conditional Probability",
+    "section": "Conditional probability and multiplicative rule",
+    "text": "Conditional probability and multiplicative rule\nMore formally, we define conditional probability as \\(P(A|B)=\\frac{P(A \\cap B)}{P(B)}\\) (verify this on your own using the simple example on the prior slide).\nManipulating this formula, we get the multiplicative rule of probability: \\(P(A \\cap B)=P(B)P(A|B)\\)."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#law-of-total-probability",
+    "href": "slides/w02-02-condprob-slides.html#law-of-total-probability",
+    "title": "Conditional Probability",
+    "section": "Law of total probability",
+    "text": "Law of total probability\nOne more helpful rule is the law of total probability:\n\\(P(A)= P(A \\cap B)+P(A \\cap \\overline{B})=P(A \\mid B)P(B) + P(A \\mid \\overline{B})P(\\overline{B}),\\) which translates to the obvious statement that the probability that A occurs is equal to the sum of the probabilities that A occurs with B and that A occurs without B."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#back-to-ant-outcomes",
+    "href": "slides/w02-02-condprob-slides.html#back-to-ant-outcomes",
+    "title": "Conditional Probability",
+    "section": "Back to ant outcomes",
+    "text": "Back to ant outcomes\nRecall our termite-raiding ant data:\n\n\n\n\n\n\nCarried Back\nCarried Away\nNot Carried\n\n\n\nLightly Injured\n45\n0\n5\n\n\nHeavily Injured\n5\n5\n20"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#three-probabilities",
+    "href": "slides/w02-02-condprob-slides.html#three-probabilities",
+    "title": "Conditional Probability",
+    "section": "Three Probabilities",
+    "text": "Three Probabilities\nDefine events A=carried back to the nest and B=lightly injured. Calculate the following probabilities for a randomly-selected ant in this cohort.\n\nMarginal probability of being carried back to the nest, \\(P(A)\\)\nJoint probability of being carried back to the nest and light injury, \\(P(A \\cap B)\\)\nConditional probability of being carried back to the nest given a light injury, \\(P(A \\mid B)\\)"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#independence",
+    "href": "slides/w02-02-condprob-slides.html#independence",
+    "title": "Conditional Probability",
+    "section": "Independence",
+    "text": "Independence\nEvents \\(A\\) and \\(B\\) are independent when \\(P(A \\mid B)=P(A)\\) or \\(P(B \\mid A)=P(B)\\).\nIn other words, knowing that one event has occurred does not lead to any change in the probability we assign to another event."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#checking-independence",
+    "href": "slides/w02-02-condprob-slides.html#checking-independence",
+    "title": "Conditional Probability",
+    "section": "Checking Independence",
+    "text": "Checking Independence\nWe can use the multiplicative rule to check if two events are independent.\nIf events A and B are independent, then \\[P(A \\cap B)=P(A)\\times P(B).\\]\nCheck it out: Are light injury and being carried back to the nest independent in our cohort?\nFood for thought: Is this result surprising to you? Why or why not?"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#independent-vs-disjoint-events",
+    "href": "slides/w02-02-condprob-slides.html#independent-vs-disjoint-events",
+    "title": "Conditional Probability",
+    "section": "Independent vs Disjoint Events",
+    "text": "Independent vs Disjoint Events\nFor independent events \\(A\\) and \\(B\\), \\(P(A \\mid B)=P(A)\\) and \\(P(B \\mid A)=P(B)\\), so knowing one event occurred tells us nothing about the chances the other event will occur.\nFor two disjoint or mutually exclusive events, knowing that one event has occurred tells us that the other event definitely has not occurred, e.g. \\(P(A \\cap B)=0\\).\nDisjoint events are therefore not independent!"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#mammogram-result",
+    "href": "slides/w02-02-condprob-slides.html#mammogram-result",
+    "title": "Conditional Probability",
+    "section": "Mammogram result",
+    "text": "Mammogram result\nLet \\(A\\) be the event that a woman has breast cancer (e.g., prevalence in population for a certain age group). Say \\(P(A)=0.01\\) for a 40-year-old woman.\nLet \\(B\\) be the event that a screening mammogram is positive.\nOnce a person has a positive mammogram, our mental estimate of the probability she has breast cancer, now \\(P(A|B)\\), has increased. How much should it increase? Are we certain she has cancer, e.g. P(cancer \\(\\mid\\) mammo positive)=1, or is there some chance the test is wrong?"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#sensitivity-and-specificity",
+    "href": "slides/w02-02-condprob-slides.html#sensitivity-and-specificity",
+    "title": "Conditional Probability",
+    "section": "Sensitivity and Specificity",
+    "text": "Sensitivity and Specificity\nA=has cancer B=mammogram positive\nA diagnostic test like a mammogram is often characterized by its quality – we want a test to have good sensitivity (picking up cancer when a person really has it) and specificity (ruling out cancer when a person is cancer-free).\nSensitivity is \\(P(B|A)\\), and specificity is \\(P(\\overline{B} \\mid \\overline{A})\\).\nA typical screening mammogram has sensitivity of 85% and specificity of 90%."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#sensitivity-and-specificity-1",
+    "href": "slides/w02-02-condprob-slides.html#sensitivity-and-specificity-1",
+    "title": "Conditional Probability",
+    "section": "Sensitivity and Specificity",
+    "text": "Sensitivity and Specificity\n\nIncreasing sensitivity usually comes at the expense of specificity, and increasing specificity usually comes at the expense of sensitivity. Choosing the optimal balance depends on the consequences of false positives versus false negatives.\n\nPrioritize sensitivity when\n\nthe disease is serious or highly contagious\nearly detection improves outcomes\na safe, cheap confirmatory test is available\nexamples: in-hospital COVID screening, blood donor screening\n\n\nPrioritize specificity when\n\nfalse positives have severe consequences\nexamples: Tour de France drug testing, forensic DNA testing"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#bayes-theorem",
+    "href": "slides/w02-02-condprob-slides.html#bayes-theorem",
+    "title": "Conditional Probability",
+    "section": "Bayes’ Theorem",
+    "text": "Bayes’ Theorem\nBayes’ theorem gives us a formal way to update our beliefs based on new information. It says \\(P(A \\mid B)=\\frac{P(B \\mid A)P(A)}{P(B)}=\\frac{P(A \\cap B)}{P(B)}\\).\nIn this example, a 40 year old woman with a positive screening mammogram may wish to know her chances of having cancer. Several papers have shown that even doctors tend to strongly overestimate her chances of having cancer.\nWe’ll consider two ways to solve this problem: one way using Bayes’ formula directly, and another based on a “hypothetical 10000” table, which applies known probabilities to a hypothetical population of 10,000 40 year old women."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000",
+    "href": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000",
+    "title": "Conditional Probability",
+    "section": "Hypothetical Population of 10,000",
+    "text": "Hypothetical Population of 10,000\n\n\n\nWe are still using Bayes’ theorem, but it is hidden behind the scenes.\nHere’s what we know:\n\nThe prevalence of breast cancer among 40-year-old women is 1%: \\[P(\\mathrm{cancer})=0.01\\]\n\nThe sensitivity of a screening mammogram is 85%\n\nThe specificity of a screening mammogram is 90%.\n\n\n\n\nLet’s construct a 2 × 2 table comparing true cancer status and mammogram results in our hypothetical population of 10,000 women.\n\n\n\n\n\n\n\n\n\n\n\n\nCancer\nNo Cancer\nTotal\n\n\n\nMammo +\n\n\n\n\n\nMammo −\n\n\n\n\n\nTotal\n\n\n10,000"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-1",
+    "href": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-1",
+    "title": "Conditional Probability",
+    "section": "Hypothetical Population of 10,000",
+    "text": "Hypothetical Population of 10,000\n\n\n\n\nThe prevalence of breast cancer among 40-year-old women is 1%: \\[P(\\mathrm{cancer})=0.01\\]\n\nThe sensitivity of a screening mammogram is 85%\n\nThe specificity of a screening mammogram is 90%.\n\n\n\n\nItem 1 says the prevalence in this group is 1%, so then we expect to have \\(10000\\times0.01=100\\) cases and \\(10000\\times0.99=9900\\) cancer-free women.\n\n\n\n\n\n\n\n\n\n\n\n\nCancer\nNo Cancer\nTotal\n\n\n\nMammo +\n\n\n\n\n\nMammo −\n\n\n\n\n\nTotal\n100\n9900\n10,000"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-2",
+    "href": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-2",
+    "title": "Conditional Probability",
+    "section": "Hypothetical Population of 10,000",
+    "text": "Hypothetical Population of 10,000\n\n\n\n\nThe prevalence of breast cancer among 40-year-old women is 1%: \\[P(\\mathrm{cancer})=0.01\\]\n\nThe sensitivity of a screening mammogram is 85%\n\nThe specificity of a screening mammogram is 90%.\n\n\n\n\nItem 2 gives the sensitivity, so \\(P(\\mathrm{mammo +} \\mid \\mathrm{cancer})=0.85\\).\nThus in the group of 100 women with cancer, the mammogram should pick up \\(100\\times0.85=85\\) of them, and miss the remaining \\(100-85=15\\).\n\n\n\n\n\n\n\n\n\n\n\n\nCancer\nNo Cancer\nTotal\n\n\n\nMammo +\n85\n\n\n\n\nMammo −\n15\n\n\n\n\nTotal\n100\n9900\n10,000"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-3",
+    "href": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-3",
+    "title": "Conditional Probability",
+    "section": "Hypothetical Population of 10,000",
+    "text": "Hypothetical Population of 10,000\n\n\n\n\nThe prevalence of breast cancer among 40-year-old women is 1%: \\[P(\\mathrm{cancer})=0.01\\]\n\nThe sensitivity of a screening mammogram is 85%\n\nThe specificity of a screening mammogram is 90%.\n\n\n\n\nItem 3 gives the specificity, so \\(P(\\mathrm{mammo -} \\mid \\mathrm{no cancer})=0.90\\).\nThus in the group of 9900 women without cancer, the mammogram should correctly identify \\(9900*0.90=8910\\) of them as being cancer-free, and it will mistakenly identify \\(9900-8910=990\\) as having cancer (false positives).\n\n\n\n\n\n\n\n\n\n\n\n\nCancer\nNo Cancer\nTotal\n\n\n\nMammo +\n85\n990\n\n\n\nMammo −\n15\n8910\n\n\n\nTotal\n100\n9900\n10,000"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-4",
+    "href": "slides/w02-02-condprob-slides.html#hypothetical-population-of-10000-4",
+    "title": "Conditional Probability",
+    "section": "Hypothetical Population of 10,000",
+    "text": "Hypothetical Population of 10,000\n\n\n\n\nThe prevalence of breast cancer among 40-year-old women is 1%: \\[P(\\mathrm{cancer})=0.01\\]\n\nThe sensitivity of a screening mammogram is 85%\n\nThe specificity of a screening mammogram is 90%.\n\n\n\n\nNow we complete the table by filling in the row totals.\n\n\n\n\n\n\n\n\n\n\n\n\nCancer\nNo Cancer\nTotal\n\n\n\nMammo +\n85\n990\n1075\n\n\nMammo −\n15\n8910\n8925\n\n\nTotal\n100\n9900\n10,000\n\n\n\nAt this point, it’s easy to calculate the conditional probability of cancer given a positive mammogram as \\(\\frac{85}{1075}=0.079\\)."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#bayes-theorem-in-action",
+    "href": "slides/w02-02-condprob-slides.html#bayes-theorem-in-action",
+    "title": "Conditional Probability",
+    "section": "Bayes’ Theorem in Action",
+    "text": "Bayes’ Theorem in Action\nAlternatively, we could just use Bayes’ Theorem directly.\n\nBaseline probability of cancer \\(P(A)=0.01\\) (prevalence)\nShe wants to know \\(P(A \\mid B)\\), or her chances of having cancer given that her mammogram is positive (also called positive predictive value).\nBayes’ Theorem: \\(P(A \\mid B)=\\frac{P(B \\mid A)P(A)}{P(B)}\\).\nSensitivity is \\(P(B \\mid A)=0.85\\).\nHow do we get \\(P(B)\\)?"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#bayes-theorem-in-action-1",
+    "href": "slides/w02-02-condprob-slides.html#bayes-theorem-in-action-1",
+    "title": "Conditional Probability",
+    "section": "Bayes’ Theorem in Action",
+    "text": "Bayes’ Theorem in Action\n\n\nHow do we get \\(P(B)\\)? We can get this using the law of total probability: \\(P(B)=P(B \\mid A)P(A) + P(B \\mid \\overline{A})P(\\overline{A})\\).\nWe can get \\(P(B \\mid \\overline{A})\\) using the specificity \\(P(\\overline{B} \\mid \\overline{A})=0.90\\) and the fact that \\(P(\\overline{B} \\mid \\overline{A})+P(B \\mid \\overline{A})=1\\). So \\(P(B \\mid \\overline{A})=1-0.9=0.1\\).\nThen \\(P(B)=P(B \\mid A)P(A) + P(B \\mid \\overline{A})P(\\overline{A})=0.85\\times0.01+0.1\\times0.99=0.1075\\)\nThen \\(P(A \\mid B)=\\frac{P(B \\mid A)P(A)}{P(B)}=\\frac{0.85*0.01}{0.1075}=0.079\\)."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#bayes-theorem-and-baseline-prevalence",
+    "href": "slides/w02-02-condprob-slides.html#bayes-theorem-and-baseline-prevalence",
+    "title": "Conditional Probability",
+    "section": "Bayes’ Theorem and Baseline Prevalence",
+    "text": "Bayes’ Theorem and Baseline Prevalence\nHere, we can think of the 1% prevalence of breast cancer among 40 year old women as our prior probability a woman has cancer, and 7.9% as the posterior probability she has cancer after we see the data that her screening mammogram is positive.\nBayesian statistics is a framework for updating our beliefs about an event or hypothesis as new evidence emerges.\nIn this example, cancer would be confirmed or ruled out by subsequent medical care, such as a diagnostic mammogram, ultrasound, and/or biopsy."
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#you-try-it",
+    "href": "slides/w02-02-condprob-slides.html#you-try-it",
+    "title": "Conditional Probability",
+    "section": "You Try It!",
+    "text": "You Try It!\nMost people who have a negative test result (e.g., mammogram looks good or COVID test negative) don’t worry any longer about whether they really do have disease. Are they right not to worry? Suppose our 40 year old woman with a baseline 1% breast cancer risk instead had a negative (all clear) mammogram. What is the updated probability she has breast cancer given this test result?"
+  },
+  {
+    "objectID": "slides/w02-02-condprob-slides.html#you-try-it-1",
+    "href": "slides/w02-02-condprob-slides.html#you-try-it-1",
+    "title": "Conditional Probability",
+    "section": "You Try It!",
+    "text": "You Try It!\nThe prevalence of cancer is strongly dependent on age. Calculate the conditional probability of cancer given a positive mammogram for women in the following age groups.\n\nWomen in their 20’s, for whom cancer prevalence is roughly \\(\\frac{1}{10000}\\)\n\nWomen in their 50’s, for whom cancer prevalence is roughly \\(\\frac{1}{50}\\)\n\nWomen in their 60’s, for whom cancer prevalence is roughly \\(\\frac{1}{30}\\)"
+  },
+  {
+    "objectID": "slides/w02-03-probaction.html",
+    "href": "slides/w02-03-probaction.html",
+    "title": "Case Study: Humans and AI in Diagnostic Imaging",
+    "section": "",
+    "text": "collab-CXR is an open-source research project that provides a collaborative framework for developing and evaluating machine learning models for chest X-ray (CXR) analysis across multiple institutions.\nWe consider data from collab-CXR on chest x-ray detection of cardiomediastinal abnormalities, which are abnormal findings involving the heart or the mediastinum, the central compartment of the chest located between the lungs. This would include findings in the heart, great vessels, trachea, esophagus, major lymph nodes, or other soft tissues in the region."
+  },
+  {
     "objectID": "slides/w02-03-probaction.html#collab-cxr",
     "href": "slides/w02-03-probaction.html#collab-cxr",
     "title": "Case Study: Humans and AI in Diagnostic Imaging",
-    "section": "collab-CXR",
-    "text": "collab-CXR\ncollab-CXR is an open-source research project that provides a collaborative framework for developing and evaluating machine learning models for chest X-ray (CXR) analysis across multiple institutions.\nWe consider data from collab-CXR on chest x-ray detection of cardiomediastinal abnormalities, which are abnormal findings involving the heart or the mediastinum, the central compartment of the chest located between the lungs. This would include findings in the heart, great vessels, trachea, esophagus, major lymph nodes, or other soft tissues in the region."
+    "section": "",
+    "text": "collab-CXR is an open-source research project that provides a collaborative framework for developing and evaluating machine learning models for chest X-ray (CXR) analysis across multiple institutions.\nWe consider data from collab-CXR on chest x-ray detection of cardiomediastinal abnormalities, which are abnormal findings involving the heart or the mediastinum, the central compartment of the chest located between the lungs. This would include findings in the heart, great vessels, trachea, esophagus, major lymph nodes, or other soft tissues in the region."
   },
   {
     "objectID": "slides/w02-03-probaction.html#abnormality-detection",
@@ -1959,6 +2855,41 @@
   {
     "objectID": "slides/w02-03-probaction.html#you-try-it",
     "href": "slides/w02-03-probaction.html#you-try-it",
+    "title": "Case Study: Humans and AI in Diagnostic Imaging",
+    "section": "You Try It!",
+    "text": "You Try It!\nDownload the repo [AMY PUT IN HERE AE-01]. Change the cutpoint in the variable ai_prob in order to make the change needed to catch more of the true cardiomediastinal abnormalities and re-calculate the sensitivity and specificity."
+  },
+  {
+    "objectID": "slides/w02-03-probaction-slides.html#collab-cxr",
+    "href": "slides/w02-03-probaction-slides.html#collab-cxr",
+    "title": "Case Study: Humans and AI in Diagnostic Imaging",
+    "section": "collab-CXR",
+    "text": "collab-CXR\ncollab-CXR is an open-source research project that provides a collaborative framework for developing and evaluating machine learning models for chest X-ray (CXR) analysis across multiple institutions.\nWe consider data from collab-CXR on chest x-ray detection of cardiomediastinal abnormalities, which are abnormal findings involving the heart or the mediastinum, the central compartment of the chest located between the lungs. This would include findings in the heart, great vessels, trachea, esophagus, major lymph nodes, or other soft tissues in the region."
+  },
+  {
+    "objectID": "slides/w02-03-probaction-slides.html#abnormality-detection",
+    "href": "slides/w02-03-probaction-slides.html#abnormality-detection",
+    "title": "Case Study: Humans and AI in Diagnostic Imaging",
+    "section": "Abnormality detection",
+    "text": "Abnormality detection\nToday we evaluate the quality of a machine learning (ML) or AI model trained to make a diagnosis. The ML output is in the form of the probability an abnormality is present rather than a binary diagnosis, and part of the challenge for researchers is to pick a cutoff value of the probability for determining the abnormality is indeed present. To start, let’s consider a probability of 0.50 or greater as evidence that the chest x-ray is abnormal in the region of interest."
+  },
+  {
+    "objectID": "slides/w02-03-probaction-slides.html#ai-diagnosis-versus-truth",
+    "href": "slides/w02-03-probaction-slides.html#ai-diagnosis-versus-truth",
+    "title": "Case Study: Humans and AI in Diagnostic Imaging",
+    "section": "AI diagnosis versus “truth”",
+    "text": "AI diagnosis versus “truth”\n\n\n\n\n\n\n\n\n\n\nNormal\nAbnormal\nTotal\n\n\n\nAI predicts normal\n830\n70\n900\n\n\nAI predicts abnormal\n251\n145\n396\n\n\nTotal\n1081\n215\n1296"
+  },
+  {
+    "objectID": "slides/w02-03-probaction-slides.html#investigating-the-quality-of-ai",
+    "href": "slides/w02-03-probaction-slides.html#investigating-the-quality-of-ai",
+    "title": "Case Study: Humans and AI in Diagnostic Imaging",
+    "section": "Investigating the quality of AI",
+    "text": "Investigating the quality of AI\n\n\n\n\n\n\n\n\n\n\n\n\nNormal\nAbnormal\nTotal\n\n\n\nAI predicts normal\n830\n70\n900\n\n\nAI predicts abnormal\n251\n145\n396\n\n\nTotal\n1081\n215\n1296\n\n\n\n\n\n \n\n\n\nCalculate the sensitivity of the AI model.\nCalculate the specificity of the AI model.\n\nIf it is dangerous to miss a true cardiomediastinal abnormality, would you:\n\n\nbe happy with the sensitivity and specificity,\n\n\nwant to increase the sensitivity, or\n\n\nwant to increase the specificity?"
+  },
+  {
+    "objectID": "slides/w02-03-probaction-slides.html#you-try-it",
+    "href": "slides/w02-03-probaction-slides.html#you-try-it",
     "title": "Case Study: Humans and AI in Diagnostic Imaging",
     "section": "You Try It!",
     "text": "You Try It!\nDownload the repo [AMY PUT IN HERE AE-01]. Change the cutpoint in the variable ai_prob in order to make the change needed to catch more of the true cardiomediastinal abnormalities and re-calculate the sensitivity and specificity."
