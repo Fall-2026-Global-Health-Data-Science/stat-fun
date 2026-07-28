@@ -96,21 +96,22 @@ d |>
     ),
     locations = cells_body(
       columns = everything(),
-      rows = str_detect(topic, "[Ll]ab|Project milestone|Final$")
+      rows = !is.na(week) 
+      # puts black line above rows where certain keywords are detected in certain columns
     )
   ) |>
   fmt_markdown(
     columns = c(topic, prepare, materials, due)
   ) |>
-  tab_options(table.width = pct(90),
-              table.align = 'left')) |>
+  tab_options(table.width = pct(83),
+              table.align = 'left') |>
   cols_width(
     week ~ pct(2),
-    date ~ pct(9),
-    prepare ~ pct(30),
+    date ~ pct(8),
+    prepare ~ pct(24),
     topic ~ pct(25),
-    materials ~ pct(12),
-    due ~ pct(12)
+    materials ~ pct(10),
+    due ~ pct(14)
   ) |>
   cols_label_with(fn = function(x) {
     janitor::make_clean_names(x, case = "title") |>
