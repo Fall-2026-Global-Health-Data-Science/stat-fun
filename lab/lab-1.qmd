@@ -1,0 +1,23 @@
+---
+title: Lab 1
+subtitle: Data Visualization
+description: "Due: End of lab on Fri, September 4"
+categories: Lab
+draft: false
+---
+
+
+## Download the repo (just a reminder of the steps!)
+
+-   Go to the repository for **lab-1** in the course GitHub organization: <https://github.com/Fall-2026-Global-Health-Data-Science/lab-01>.
+
+-   Click on the green **CODE** button, select **Use SSH** (this might already be selected by default, and if it is, you'll see the text **Clone with SSH**).
+    Click on the clipboard icon to copy the repo URL.
+
+-   In RStudio, go to *File* ➛ *New Project* ➛*Version Control* ➛ *Git*.
+
+-   Copy and paste the URL of your assignment repo into the dialog box *Repository URL*. Again, please make sure to have *SSH* highlighted under *Clone* when you copy the address.
+
+-   Click *Create Project*.
+
+- Complete the lab assignment and turn in using Canvas!
