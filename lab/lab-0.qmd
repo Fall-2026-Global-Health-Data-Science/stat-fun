@@ -1,5 +1,5 @@
 ---
-title: Lab 1
+title: Lab 0
 subtitle: Hello R!
 description: "Due: End of lab on Fri, August 28"
 categories: Lab
