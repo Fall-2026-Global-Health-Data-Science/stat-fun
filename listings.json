@@ -1,13 +1,14 @@
 [
   {
-    "listing": "/lab.html",
-    "items": [
-      "/lab/lab-0.html"
-    ]
-  },
-  {
     "listing": "/exam-review.html",
     "items": []
+  },
+  {
+    "listing": "/lab.html",
+    "items": [
+      "/lab/lab-0.html",
+      "/lab/lab-1.html"
+    ]
   },
   {
     "listing": "/hw.html",
