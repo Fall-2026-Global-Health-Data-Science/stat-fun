@@ -4,7 +4,18 @@ subtitle: "Introduction to Global Health Data Science"
 date: "2026-09-02"
 format:
   revealjs:
-    auto-stretch: false
+    output-file: w02-02-condprob-slides.html
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    pdf-separate-fragments: true
+    toc: false
+  html:
+    code-link: true
+filters: 
+  - ../remove-fmt-skip.lua
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, child="setup.Rmd", echo=FALSE}
