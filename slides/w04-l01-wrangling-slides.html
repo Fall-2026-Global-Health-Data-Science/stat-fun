@@ -29,6 +29,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-f0195dcd610196b9111c6e10e98695f4.css">
 <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -151,7 +217,732 @@ Amy Herring
 </div>
 
   <p class="date">2026-09-14</p>
-</section><section class="slide level2">
+</section><section id="main-ideas" class="slide level2"><h2>Main Ideas</h2>
+<ul>
+<li><p>Organizing our data according to a consistent set of “tidy” principles makes data easy to work with and leverages the ways <code>R</code> is effective.</p></li>
+<li><p>Often we need to wrangle our data in order to extract meaning (including creating new variables, calculating summary statistics, subsetting data, etc).</p></li>
+<li><p>Using only <strong>seven key verbs</strong> we can accomplish a wide variety of data wrangling tasks.</p></li>
+</ul></section><section id="tidy-principles" class="slide level2"><h2>Tidy Principles</h2>
+<p>Tidy data have three related characteristics</p>
+<ol type="1">
+<li><p>Each variable forms a column.</p></li>
+<li><p>Each observation forms a row.</p></li>
+<li><p>Each value has its own cell.</p></li>
+</ol></section><section id="rural-and-urban-patterns-of-global-obesity" class="slide level2"><h2>Rural and Urban Patterns of Global Obesity</h2>
+<div style="font-size:0.85em;">
+<p>Obesity is a major risk factor for numerous non-communicable diseases, including diabetes, cardiovascular disease, hypertension, stroke, and some cancers. We consider data from an exercise developed by the <a href="https://www.opencasestudies.org/ocs-bp-rural-and-urban-obesity/#Motivation">Johns Hopkins Open Case Studies Project</a> on average body mass index around the world.</p>
+<p><br></p>
+<p>Body mass index (BMI) is calculated as weight in kg divided by the square of height in m: <span class="math inline">\(BMI=\frac{kg}{m^2}\)</span>. While it is not a perfect surrogate for say visceral fat (e.g., people may have a high BMI due to muscle mass rather than visceral fat), it is an easily-obtained surrogate that is often used in large studies of health. The World Health Organization acknowledges that while BMI is a useful indicator at the population level, it is only a rough guide at the individual level because it does not always correspond to the same body fat % in different individuals.</p>
+</div>
+</section><section id="who-classification-of-bmi" class="slide level2"><h2>WHO Classification of BMI</h2>
+
+<img data-src="../img/whobmi.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section><section id="data" class="slide level2"><h2>Data</h2>
+<p>Our data include summaries of BMI from 200 countries worldwide, both at the national level and in urban and rural areas separately, for the years 1985 and 2017, separately for men and women. The original data source is NCD-RisC, the non-communicable disease risk factor collaboration. 2017 remains the most recent year for which they have published BMI broken out by urban/rural status.</p>
+</section><section id="data-wrangling" class="slide level2"><h2>Data Wrangling</h2>
+<div style="font-size:0.8em;">
+<p>Often we need to wrangle our data to extract meaning. This includes calculating new variables, summary statistics, grouping by variables, renaming, reordering, selecting subsets of data, filtering by various conditions, etc.</p>
+<p>We can accomplish a great deal of wrangling by learning just <strong>seven key verbs</strong>. Each of these functions takes a data frame as input and returns a data frame as output.</p>
+<ul>
+<li>filter</li>
+<li>arrange</li>
+<li>select</li>
+<li>slice</li>
+<li>mutate</li>
+<li>summarize</li>
+<li>group_by</li>
+</ul>
+</div>
+</section><section class="slide level2"><p>We first explore the data a bit.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">load</span>(<span class="st">"../data/BMI_long.Rdata"</span>)</span>
+<span id="cb1-2"><a></a><span class="fu">glimpse</span>(BMI_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,400
+Columns: 5
+$ Country &lt;chr&gt; "Afghanistan", "Afghanistan", "Afghanistan", "A…
+$ Sex     &lt;chr&gt; "Men", "Men", "Men", "Men", "Men", "Men", "Wome…
+$ Region  &lt;chr&gt; "National", "Rural", "Urban", "National", "Rura…
+$ Year    &lt;chr&gt; "1985", "1985", "1985", "2017", "2017", "2017",…
+$ BMI     &lt;dbl&gt; 20.2, 19.7, 22.4, 22.8, 22.5, 23.6, 20.6, 20.1,…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">names</span>(BMI_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Country" "Sex"     "Region"  "Year"    "BMI"    </code></pre>
+</div>
+</div>
+</section><section class="slide level2"><div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">head</span>(BMI_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  Country     Sex   Region   Year    BMI
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Afghanistan Men   National 1985   20.2
+2 Afghanistan Men   Rural    1985   19.7
+3 Afghanistan Men   Urban    1985   22.4
+4 Afghanistan Men   National 2017   22.8
+5 Afghanistan Men   Rural    2017   22.5
+6 Afghanistan Men   Urban    2017   23.6</code></pre>
+</div>
+</div>
+<p>The <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function returns “A tibble: 6 x 5” and then the first six rows of the <code>BMI_long</code> data. A <strong>tibble</strong> is a tweaked, opinionated version of the <code>R</code> data frame.</p>
+</section><section class="slide level2"><p>There are a few differences a <code>tidyverse</code> tibble and an <code>R</code> data frame. We discuss two primary differences.</p>
+<p>First, a tibble provides more information than a data frame. When you print a tibble, it will show the first ten rows and all of the columns that fit on the screen, along with the type of each column.</p>
+<p>You can modify the number of rows and columns shown using the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function options.</p>
+<p>Second, tibbles are somewhat more strict than data frames when it comes to subsetting data.</p>
+</section><section class="slide level2"><h3 id="select"><code>select()</code></h3>
+<p>The <code>select()</code> function picks off one or more columns by name.</p>
+<p>Let’s say we want a dataset that only contains the variable BMI.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">select</span>(BMI_long, BMI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 1
+    BMI
+  &lt;dbl&gt;
+1  20.2
+2  19.7
+3  22.4
+4  22.8
+5  22.5
+6  23.6
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p>We can also use <code>select()</code> to exclude variables. Let’s exclude <code>BMI</code> but keep all other variables.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">select</span>(BMI_long, <span class="sc">-</span>BMI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 4
+  Country     Sex   Region   Year 
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;
+1 Afghanistan Men   National 1985 
+2 Afghanistan Men   Rural    1985 
+3 Afghanistan Men   Urban    1985 
+4 Afghanistan Men   National 2017 
+5 Afghanistan Men   Rural    2017 
+6 Afghanistan Men   Urban    2017 
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p>We can also use <code>select()</code> to select a range of variables. Here, we select the first three variables.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">select</span>(BMI_long, Country<span class="sc">:</span>Region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 3
+  Country     Sex   Region  
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;   
+1 Afghanistan Men   National
+2 Afghanistan Men   Rural   
+3 Afghanistan Men   Urban   
+4 Afghanistan Men   National
+5 Afghanistan Men   Rural   
+6 Afghanistan Men   Urban   
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><h3 id="arrange"><code>arrange()</code></h3>
+<p>The <code>arrange()</code> function orders rows (observations) in specific ways.</p>
+<p>Let’s arrange the data by descending BMI, with large BMI values on top.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">arrange</span>(BMI_long, <span class="fu">desc</span>(BMI))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 5
+  Country        Sex   Region   Year    BMI
+  &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 American Samoa Women Urban    2017   35.4
+2 American Samoa Women National 2017   35.3
+3 American Samoa Women Rural    2017   35  
+4 Samoa          Women Urban    2017   34.7
+5 American Samoa Men   Rural    2017   34.6
+6 American Samoa Women Urban    1985   34.4
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p>Or with low BMI values on top.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">arrange</span>(BMI_long, BMI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 5
+  Country     Sex   Region   Year    BMI
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Bangladesh  Women Rural    1985   17.7
+2 Bangladesh  Women National 1985   18.2
+3 Timor-Leste Women Rural    1985   18.2
+4 Viet Nam    Women Rural    1985   18.2
+5 Nepal       Women Rural    1985   18.3
+6 Ethiopia    Men   Rural    1985   18.4
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p>Or by two factors…</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">arrange</span>(BMI_long, <span class="fu">desc</span>(Country), BMI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 5
+  Country  Sex   Region   Year    BMI
+  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Zimbabwe Men   Rural    1985   20.9
+2 Zimbabwe Men   National 1985   21.2
+3 Zimbabwe Men   Rural    2017   21.9
+4 Zimbabwe Men   Urban    1985   22.1
+5 Zimbabwe Men   National 2017   22.3
+6 Zimbabwe Men   Urban    2017   23.3
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><h3 id="the-pipe">The Pipe</h3>
+<p>The pipe is a technique for passing information from one process to another.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(BMI)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">select</span>(Country, BMI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 2
+  Country          BMI
+  &lt;chr&gt;          &lt;dbl&gt;
+1 American Samoa  35.4
+2 American Samoa  35.3
+3 American Samoa  35  
+4 Samoa           34.7
+5 American Samoa  34.6
+6 American Samoa  34.4
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+<p>When reading code “in English”, say “and then” whenever you see a pipe.</p>
+</section><section class="slide level2"><p>R also has an alternative pipe, which is <code>|&gt;</code> instead of <code>%&gt;%</code>. Feel free to use either one.</p>
+<p>Keyboard shortcut: command-shift-M (mac) or control-shift-M (windows)</p>
+</section><section class="slide level2"><h3 id="slice"><code>slice()</code></h3>
+<p>Slice selects rows based on their position.</p>
+<p>Here we slice off the first 5 rows of the <code>BMI_long</code> data.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  Country     Sex   Region   Year    BMI
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Afghanistan Men   National 1985   20.2
+2 Afghanistan Men   Rural    1985   19.7
+3 Afghanistan Men   Urban    1985   22.4
+4 Afghanistan Men   National 2017   22.8
+5 Afghanistan Men   Rural    2017   22.5</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p><strong>Question:</strong> What is the code chunk below accomplishing? Guess before running the code.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(BMI)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  Country        Sex   Region   Year    BMI
+  &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 American Samoa Women Urban    2017   35.4
+2 American Samoa Women National 2017   35.3
+3 American Samoa Women Rural    2017   35  
+4 Samoa          Women Urban    2017   34.7
+5 American Samoa Men   Rural    2017   34.6</code></pre>
+</div>
+</div>
+</details></section><section class="slide level2"><p>To add comments to code, use the pound sign. This is helpful for debugging as well - you can temporarily disable a line.</p>
+<p><strong>Question:</strong> What will happen if you comment out the line containing <code>arrange()</code> in the previous code chunk? Try it.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a></a>  <span class="co"># arrange(desc(BMI)) %&gt;%</span></span>
+<span id="cb25-3"><a></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  Country     Sex   Region   Year    BMI
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Afghanistan Men   National 1985   20.2
+2 Afghanistan Men   Rural    1985   19.7
+3 Afghanistan Men   Urban    1985   22.4
+4 Afghanistan Men   National 2017   22.8
+5 Afghanistan Men   Rural    2017   22.5</code></pre>
+</div>
+</div>
+</details></section><section class="slide level2"><h3 id="filter"><code>filter()</code></h3>
+<p><code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> selects rows satisfying certain conditions.</p>
+<p>We can use a single condition. Here we select all rows where the country is Iceland.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"Iceland"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 5
+  Country Sex   Region   Year    BMI
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Iceland Men   National 1985   24.8
+2 Iceland Men   Rural    1985   25.2
+3 Iceland Men   Urban    1985   24.8
+4 Iceland Men   National 2017   27.1
+5 Iceland Men   Rural    2017   27.3
+6 Iceland Men   Urban    2017   27.1
+# ℹ 6 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p>We can use more than one condition. Here we select all rows where the Country is Iceland and the year is 2017.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"Iceland"</span>, Year <span class="sc">==</span> <span class="dv">2017</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  Country Sex   Region   Year    BMI
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Iceland Men   National 2017   27.1
+2 Iceland Men   Rural    2017   27.3
+3 Iceland Men   Urban    2017   27.1
+4 Iceland Women National 2017   25.5
+5 Iceland Women Rural    2017   25.9
+6 Iceland Women Urban    2017   25.5</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p>More complex conditions are possible!</p>
+<p><strong>Question:</strong> In plain English, what is the code below accomplishing?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">filter</span>(Country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Iceland"</span>, <span class="st">"Ireland"</span>),</span>
+<span id="cb31-3"><a></a>         Year <span class="sc">==</span> <span class="dv">2017</span> <span class="sc">|</span> Region <span class="sc">==</span> <span class="st">"National"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 5
+  Country Sex   Region   Year    BMI
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+1 Iceland Men   National 1985   24.8
+2 Iceland Men   National 2017   27.1
+3 Iceland Men   Rural    2017   27.3
+4 Iceland Men   Urban    2017   27.1
+5 Iceland Women National 1985   24.3
+6 Iceland Women National 2017   25.5
+# ℹ 10 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><p>The table of logical operators below will be helpful as you work with filtering.</p>
+<table class="caption-top">
+<thead><tr class="header">
+<th style="text-align: left;">operator</th>
+<th style="text-align: left;">definition</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;">is less than?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&lt;=</code></td>
+<td style="text-align: left;">is less than or equal to?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;">is greater than?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;=</code></td>
+<td style="text-align: left;">is greater than or equal to?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>==</code></td>
+<td style="text-align: left;">is exactly equal to?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!=</code></td>
+<td style="text-align: left;">is not equal to?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>x &amp; y</code></td>
+<td style="text-align: left;">is x AND y?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+<code>x</code> <span class="math inline">\(\mid\)</span> <code>y</code>
+</td>
+<td style="text-align: left;">is x OR y?</td>
+</tr>
+</tbody>
+</table></section><section class="slide level2"><p>The table of logical operators below will be helpful as you work with filtering.</p>
+<table class="caption-top">
+<thead><tr class="header">
+<th style="text-align: left;">operator</th>
+<th style="text-align: left;">definition</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>is.na(x)</code></td>
+<td style="text-align: left;">is x NA?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!is.na(x)</code></td>
+<td style="text-align: left;">is x not NA?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>x %in% y</code></td>
+<td style="text-align: left;">is x in y?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!(x %in% y)</code></td>
+<td style="text-align: left;">is x not in y?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>!x</code></td>
+<td style="text-align: left;">is not x?</td>
+</tr>
+</tbody>
+</table>
+<div style="font-size:0.8em;">
+<p>The final operator only makes sense if <code>x</code> is logical (TRUE / FALSE).</p>
+<p>R denotes missing values by NA. Missing values can cause biased or misleading results in any analysis, and it is important to understand why values are missing before drawing conclusions from data, especially if the fraction of missing values is not very small.</p>
+</div>
+</section><section class="slide level2"><h3 id="mutate"><code>mutate()</code></h3>
+<p><code>mutate()</code> creates a new variable. Here we categorize BMI using the WHO classification.</p>
+<p>Here’s our code:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bmiclass =</span> <span class="fu">cut</span>(BMI,</span>
+<span id="cb33-3"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="cn">Inf</span>),</span>
+<span id="cb33-4"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb33-5"><a></a>      <span class="st">"Underweight"</span>,</span>
+<span id="cb33-6"><a></a>      <span class="st">"Normal Range"</span>,</span>
+<span id="cb33-7"><a></a>      <span class="st">"Overweight"</span>,</span>
+<span id="cb33-8"><a></a>      <span class="st">"Obese I"</span>,</span>
+<span id="cb33-9"><a></a>      <span class="st">"Obese II"</span>,</span>
+<span id="cb33-10"><a></a>      <span class="st">"Obese III"</span></span>
+<span id="cb33-11"><a></a>    ),</span>
+<span id="cb33-12"><a></a>    <span class="at">right =</span> <span class="cn">FALSE</span> <span class="co">#intervals [a,b)</span></span>
+<span id="cb33-13"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb33-14"><a></a>  <span class="fu">select</span>(BMI, bmiclass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2"><h3 id="mutate-1"><code>mutate()</code></h3>
+<p><code>mutate()</code> creates a new variable. Here we categorize BMI using the WHO classification.</p>
+<p>Here’s our output:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 2
+    BMI bmiclass    
+  &lt;dbl&gt; &lt;fct&gt;       
+1  20.2 Normal Range
+2  19.7 Normal Range
+3  22.4 Normal Range
+4  22.8 Normal Range
+5  22.5 Normal Range
+6  23.6 Normal Range
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</section><section class="slide level2"><div style="font-size:0.75em;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bmiclass =</span> <span class="fu">cut</span>(</span>
+<span id="cb35-3"><a></a>    BMI,</span>
+<span id="cb35-4"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="cn">Inf</span>),</span>
+<span id="cb35-5"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb35-6"><a></a>      <span class="st">"Underweight"</span>,</span>
+<span id="cb35-7"><a></a>      <span class="st">"Normal Range"</span>,</span>
+<span id="cb35-8"><a></a>      <span class="st">"Overweight"</span>,</span>
+<span id="cb35-9"><a></a>      <span class="st">"Obese I"</span>,</span>
+<span id="cb35-10"><a></a>      <span class="st">"Obese II"</span>,</span>
+<span id="cb35-11"><a></a>      <span class="st">"Obese III"</span></span>
+<span id="cb35-12"><a></a>    ),</span>
+<span id="cb35-13"><a></a>    <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb35-14"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb35-15"><a></a>  <span class="fu">mutate</span>(<span class="at">normal_range =</span> bmiclass <span class="sc">==</span> <span class="st">"Normal Range"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-16"><a></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,400 × 7
+  Country     Sex   Region   Year    BMI bmiclass    normal_range
+  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;lgl&gt;       
+1 Afghanistan Men   National 1985   20.2 Normal Ran… TRUE        
+2 Afghanistan Men   Rural    1985   19.7 Normal Ran… TRUE        
+3 Afghanistan Men   Urban    1985   22.4 Normal Ran… TRUE        
+4 Afghanistan Men   National 2017   22.8 Normal Ran… TRUE        
+5 Afghanistan Men   Rural    2017   22.5 Normal Ran… TRUE        
+6 Afghanistan Men   Urban    2017   23.6 Normal Ran… TRUE        
+# ℹ 2,394 more rows</code></pre>
+</div>
+</div>
+</details>
+</div>
+</section><section class="slide level2"><h3 id="summarize"><code>summarize()</code></h3>
+<div style="font-size:0.65em;">
+<p><code>summarize</code> calculates summary statistics. It collapses rows into summary statistics and removes columns irrelevant to the calculation. Be sure to name your columns!</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bmiclass =</span> <span class="fu">cut</span>(BMI,</span>
+<span id="cb37-3"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="cn">Inf</span>),</span>
+<span id="cb37-4"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb37-5"><a></a>      <span class="st">"Underweight"</span>,</span>
+<span id="cb37-6"><a></a>      <span class="st">"Normal Range"</span>,</span>
+<span id="cb37-7"><a></a>      <span class="st">"Overweight"</span>,</span>
+<span id="cb37-8"><a></a>      <span class="st">"Obese I"</span>,</span>
+<span id="cb37-9"><a></a>      <span class="st">"Obese II"</span>,</span>
+<span id="cb37-10"><a></a>      <span class="st">"Obese III"</span></span>
+<span id="cb37-11"><a></a>    ),</span>
+<span id="cb37-12"><a></a>    <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb37-13"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb37-14"><a></a>  <span class="fu">mutate</span>(<span class="at">normal_range =</span> bmiclass <span class="sc">==</span> <span class="st">"Normal Range"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-15"><a></a>  <span class="fu">summarize</span>(<span class="at">fracnormal =</span> <span class="fu">mean</span>(normal_range))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  fracnormal
+       &lt;dbl&gt;
+1         NA</code></pre>
+</div>
+</div>
+</details>
+</div>
+</section><section class="slide level2"><div style="font-size:0.65em;">
+<p><strong>Question:</strong> The code chunk returns an NA. What is going wrong?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bmiclass =</span> <span class="fu">cut</span>(BMI,</span>
+<span id="cb39-3"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="cn">Inf</span>),</span>
+<span id="cb39-4"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb39-5"><a></a>      <span class="st">"Underweight"</span>,</span>
+<span id="cb39-6"><a></a>      <span class="st">"Normal Range"</span>,</span>
+<span id="cb39-7"><a></a>      <span class="st">"Overweight"</span>,</span>
+<span id="cb39-8"><a></a>      <span class="st">"Obese I"</span>,</span>
+<span id="cb39-9"><a></a>      <span class="st">"Obese II"</span>,</span>
+<span id="cb39-10"><a></a>      <span class="st">"Obese III"</span></span>
+<span id="cb39-11"><a></a>    ),</span>
+<span id="cb39-12"><a></a>    <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb39-13"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb39-14"><a></a>  <span class="fu">group_by</span>(bmiclass) <span class="sc">%&gt;%</span></span>
+<span id="cb39-15"><a></a>  <span class="fu">count</span>(bmiclass) <span class="sc">%&gt;%</span></span>
+<span id="cb39-16"><a></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  bmiclass         n
+  &lt;fct&gt;        &lt;int&gt;
+1 Underweight      7
+2 Normal Range  1185
+3 Overweight    1091
+4 Obese I         96
+5 Obese II         3
+6 &lt;NA&gt;            18</code></pre>
+</div>
+</div>
+<p>Ahh, count() is a very useful function!</p>
+</details>
+</div>
+</section><section class="slide level2"><div style="font-size:0.65em;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a></a>  <span class="fu">count</span>(BMI<span class="sc">==</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  `BMI == "NA"`     n
+  &lt;lgl&gt;         &lt;int&gt;
+1 FALSE          2382
+2 NA               18</code></pre>
+</div>
+</div>
+<p>OK great, so the problem was with the source variable. We can just drop those few NA’s when we take the mean, so that we get the mean of the observed values. In general, one would follow up on the NA values to understand why data were missing. What seems to be the issue here?</p>
+</details>
+</div>
+</section><section class="slide level2"><p>Let’s print all 18 variables and see if we can tell what’s going on.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(BMI)<span class="sc">==</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a></a>  <span class="fu">print</span>(<span class="at">n=</span><span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="investigating-missing-values" class="slide level2"><h2>Investigating Missing Values</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 5
+   Country               Sex   Region Year    BMI
+   &lt;chr&gt;                 &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
+ 1 Bermuda               Men   Rural  1985     NA
+ 2 Bermuda               Men   Rural  2017     NA
+ 3 Bermuda               Women Rural  1985     NA
+ 4 Bermuda               Women Rural  2017     NA
+ 5 China (Hong Kong SAR) Men   Rural  2017     NA
+ 6 China (Hong Kong SAR) Women Rural  2017     NA
+ 7 Nauru                 Men   Rural  1985     NA
+ 8 Nauru                 Men   Rural  2017     NA
+ 9 Nauru                 Women Rural  1985     NA
+10 Nauru                 Women Rural  2017     NA
+11 Singapore             Men   Rural  1985     NA
+12 Singapore             Men   Rural  2017     NA
+13 Singapore             Women Rural  1985     NA
+14 Singapore             Women Rural  2017     NA
+15 Tokelau               Men   Urban  1985     NA
+16 Tokelau               Men   Urban  2017     NA
+17 Tokelau               Women Urban  1985     NA
+18 Tokelau               Women Urban  2017     NA</code></pre>
+</div>
+</div>
+<p>This makes sense! Hong Kong, Singapore, Bermuda, and Nauru do not classify any of their population as rural; Tokelau does not classify any of its population as urban.</p>
+</section><section class="slide level2"><div style="font-size:0.65em;">
+<p>Finally, let’s get the proportion of values with mean BMI in the normal range.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bmiclass =</span> <span class="fu">cut</span>(BMI,</span>
+<span id="cb45-3"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="cn">Inf</span>),</span>
+<span id="cb45-4"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb45-5"><a></a>      <span class="st">"Underweight"</span>,</span>
+<span id="cb45-6"><a></a>      <span class="st">"Normal Range"</span>,</span>
+<span id="cb45-7"><a></a>      <span class="st">"Overweight"</span>,</span>
+<span id="cb45-8"><a></a>      <span class="st">"Obese I"</span>,</span>
+<span id="cb45-9"><a></a>      <span class="st">"Obese II"</span>,</span>
+<span id="cb45-10"><a></a>      <span class="st">"Obese III"</span></span>
+<span id="cb45-11"><a></a>    ),</span>
+<span id="cb45-12"><a></a>    <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb45-13"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb45-14"><a></a>  <span class="fu">mutate</span>(<span class="at">normal_range =</span> bmiclass <span class="sc">==</span> <span class="st">"Normal Range"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-15"><a></a>  <span class="fu">summarize</span>(<span class="at">fracnormal =</span> <span class="fu">mean</span>(normal_range,<span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  fracnormal
+       &lt;dbl&gt;
+1      0.497</code></pre>
+</div>
+</div>
+</details>
+</div>
+</section><section class="slide level2"><h3 id="group_by"><code>group_by()</code></h3>
+<div style="font-size:0.65em;">
+<p><code>group_by()</code> is powerful when paired with summarize to calculate summary statistics by group. Here we find the proportion of means that are in the normal range for each region. If you don’t <code>ungroup()</code> after you use it, there may be unforeseen consequences down the road, so this is good practice.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bmiclass =</span> <span class="fu">cut</span>(BMI,</span>
+<span id="cb47-3"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="cn">Inf</span>),</span>
+<span id="cb47-4"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Underweight"</span>,<span class="st">"Normal Range"</span>,<span class="st">"Overweight"</span>,<span class="st">"Obese I"</span>,<span class="st">"Obese II"</span>,<span class="st">"Obese III"</span></span>
+<span id="cb47-5"><a></a>    ),</span>
+<span id="cb47-6"><a></a>    <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb47-7"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb47-8"><a></a>  <span class="fu">mutate</span>(<span class="at">normal_range =</span> bmiclass <span class="sc">==</span> <span class="st">"Normal Range"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-9"><a></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
+<span id="cb47-10"><a></a>  <span class="fu">summarize</span>(<span class="at">fracnormal =</span> <span class="fu">mean</span>(normal_range,<span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-11"><a></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Region   fracnormal
+  &lt;chr&gt;         &lt;dbl&gt;
+1 National      0.506
+2 Rural         0.541
+3 Urban         0.446</code></pre>
+</div>
+</div>
+</details>
+</div>
+</section><section class="slide level2"><div style="font-size:0.65em;">
+<p>We can calculate more than one summary statistic in <code>summarize()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a></a>  <span class="fu">mutate</span>(<span class="at">bmiclass =</span> <span class="fu">cut</span>(</span>
+<span id="cb49-3"><a></a>    BMI,</span>
+<span id="cb49-4"><a></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="cn">Inf</span>),</span>
+<span id="cb49-5"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb49-6"><a></a>      <span class="st">"Underweight"</span>,</span>
+<span id="cb49-7"><a></a>      <span class="st">"Normal Range"</span>,</span>
+<span id="cb49-8"><a></a>      <span class="st">"Overweight"</span>,</span>
+<span id="cb49-9"><a></a>      <span class="st">"Obese I"</span>,<span class="st">"Obese II"</span>,<span class="st">"Obese III"</span></span>
+<span id="cb49-10"><a></a>    ),</span>
+<span id="cb49-11"><a></a>    <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb49-12"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb49-13"><a></a>  <span class="fu">mutate</span>(<span class="at">normal_range =</span> bmiclass <span class="sc">==</span> <span class="st">"Normal Range"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-14"><a></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
+<span id="cb49-15"><a></a>  <span class="fu">summarize</span>(</span>
+<span id="cb49-16"><a></a>    <span class="at">fracnormal =</span> <span class="fu">mean</span>(normal_range, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-17"><a></a>    <span class="at">max_BMI =</span> <span class="fu">max</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-18"><a></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  Region   fracnormal max_BMI
+  &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 National      0.506    35.3
+2 Rural         0.541    35  
+3 Urban         0.446    35.4</code></pre>
+</div>
+</div>
+</details>
+</div>
+</section><section class="slide level2"><div style="font-size:0.85em;">
+<p><strong>Question:</strong> What is the code chunk below doing?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>BMI_long <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a></a>  <span class="fu">count</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details><summary>
+Click to reveal output
+</summary><div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  Year      n  prop
+  &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
+1 1985   1200   0.5
+2 2017   1200   0.5</code></pre>
+</div>
+</div>
+</details>
+</div>
+</section><section class="slide level2"><h3 id="distinct">distinct()</h3>
+<div style="font-size:0.85em;">
+<p>One more nifty command is the <code>distinct</code> command in R, which eliminates duplicate rows.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>age <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb53-2"><a></a>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+  value
+  &lt;dbl&gt;
+1     1
+2     1
+3     1
+4     2
+5     3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">distinct</span>(age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  value
+  &lt;dbl&gt;
+1     1
+2     2
+3     3</code></pre>
+</div>
+</div>
+</div>
+</section><section class="slide level2"><h3 id="additional-resources">Additional Resources</h3>
+<ul>
+<li><a href="https://style.tidyverse.org/">https://style.tidyverse.org/</a></li>
+<li><a href="https://www.opencasestudies.org/ocs-bp-rural-and-urban-obesity/">https://www.opencasestudies.org/ocs-bp-rural-and-urban-obesity/</a></li>
+</ul>
+
 
 </section>
 </div>
