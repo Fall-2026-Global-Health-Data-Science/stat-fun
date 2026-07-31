@@ -1,0 +1,482 @@
+---
+title: "Data Wrangling II"
+subtitle: "Introduction to Global Health Data Science"
+date: "2026-09-14"
+format:
+  revealjs:
+    output-file: w04-02-wranglingII-slides.html
+    footer: "[🔗 sta198-fa26-2.github.io](https://sta198-fa26-2.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    pdf-separate-fragments: true
+    toc: false
+  html:
+    code-link: true
+filters: 
+  - ../remove-fmt-skip.lua
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, child="setup.Rmd", echo=FALSE}
+```
+
+
+```{r}
+#| label: packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(knitr)
+options(
+  dplyr.print_min = 10, 
+  dplyr.print_max = 10
+  )
+
+```
+
+
+## [We...]{.hand}
+
+[[have]{style="color: green;"}]{style="font-size: 2em;"} [multiple data frames]{.hand}
+
+[[want]{style="color: deeppink;"}]{style="font-size: 2em;"} [to bring them together]{.hand}
+
+This slide deck adapted from Data Science in a Box!
+
+
+```{r include=FALSE}
+professions <- read_csv("../data/professions.csv")
+dates <- read_csv("../data/dates.csv")
+works <- read_csv("../data/works.csv")
+```
+
+## Data: Women in Science 
+
+Information on 10 women in science who changed the world
+
+::: {.small}
+```{r professions-table}
+#| echo: false
+professions %>% select(name) %>% kable()
+```
+:::
+
+::: {.footnote}
+Source: [Discover Magazine](https://www.discovermagazine.com/the-sciences/meet-10-women-in-science-who-changed-the-world)
+
+
+:::
+
+
+## Inputs
+
+::: {.panel-tabset}
+
+## professions
+
+```{r professions-tab}
+professions
+```
+
+How many rows are in the data?
+
+## dates
+
+```{r dates-tab}
+dates
+```
+
+How many rows are in the data?
+
+## works
+
+```{r works-tab}
+works
+```
+
+How many rows are in the data?
+
+:::
+
+## Desired output
+
+```{r desired-output}
+#| echo: false
+professions %>%
+  left_join(dates) %>%
+  left_join(works)
+```
+
+---
+
+# Joining data frames
+
+## Joining data frames
+
+```{r join-syntax}
+#| eval: false
+something_join(x, y)
+```
+
+<div style="font-size:0.85em;">
+
+
+- `left_join()`: all rows from x
+- `right_join()`: all rows from y
+- `full_join()`: all rows from both x and y
+- `semi_join()`: all rows from x where there are matching values in y, keeping just columns from x
+- `inner_join()`: all rows from x where there are matching values in y, return all combination of multiple matches in the case of multiple matches
+- `anti_join()`: return all rows from x where there are not matching values in y, never duplicate rows of x
+- ...
+
+</div>
+
+---
+
+For the next few slides...
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r make-x}
+#| echo: false
+x <- tibble(
+  id = c(1, 2, 3),
+  value_x = c("x1", "x2", "x3")
+  )
+```
+
+```{r show-x}
+x
+```
+:::
+
+::: {.column width="50%"}
+```{r make-y}
+#| echo: false
+y <- tibble(
+  id = c(1, 2, 4),
+  value_y = c("y1", "y2", "y4")
+  )
+```
+
+```{r show-y}
+y
+```
+:::
+
+:::
+
+## `left_join()`
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r left-join-gif}
+#| echo: false
+#| out.width: "80%"
+#| out.extra: 'style="background-color: #FDF6E3"'
+include_graphics("../img/left-join.gif")
+```
+:::
+
+::: {.column width="50%"}
+```{r left-join-code}
+left_join(x, y)
+```
+:::
+
+:::
+
+
+## `left_join()`
+
+```{r}
+professions %>%
+  left_join(dates) #<<
+```
+
+---
+
+## `right_join()`
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r right-join-gif}
+#| echo: false
+#| out.width: "80%"
+#| out.extra: 'style="background-color: #FDF6E3"'
+include_graphics("../img/right-join.gif")
+```
+:::
+
+::: {.column width="50%"}
+```{r right-join-code}
+right_join(x, y)
+```
+:::
+
+:::
+
+## `right_join()`
+
+
+```{r}
+professions %>%
+  right_join(dates) #<<
+```
+
+## `full_join()`
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r full-join-gif}
+#| echo: false
+#| out.width: "80%"
+#| out.extra: 'style="background-color: #FDF6E3"'
+include_graphics("../img/full-join.gif")
+```
+:::
+
+::: {.column width="50%"}
+```{r full-join-code}
+full_join(x, y)
+```
+:::
+
+:::
+
+## `full_join()`
+
+```{r}
+dates %>%
+  full_join(works) #<<
+```
+
+
+
+## `inner_join()`
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r inner-join-gif}
+#| echo: false
+#| out.width: "80%"
+#| out.extra: 'style="background-color: #FDF6E3"'
+include_graphics("../img/inner-join.gif")
+```
+:::
+
+::: {.column width="50%"}
+```{r inner-join-code}
+inner_join(x, y)
+```
+:::
+
+:::
+
+## `inner_join()`
+
+```{r}
+dates %>%
+  inner_join(works) #<<
+```
+
+## `semi_join()`
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r semi-join-gif}
+#| echo: false
+#| out.width: "80%"
+#| out.extra: 'style="background-color: #FDF6E3"'
+include_graphics("../img/semi-join.gif")
+```
+:::
+
+::: {.column width="50%"}
+```{r semi-join-code}
+semi_join(x, y)
+```
+:::
+
+:::
+
+## `semi_join()`
+
+```{r}
+dates %>%
+  semi_join(works) #<<
+```
+
+## `anti_join()`
+
+::: {.columns}
+
+::: {.column width="50%"}
+```{r anti-join-gif}
+#| echo: false
+#| out.width: "80%"
+#| out.extra: 'style="background-color: #FDF6E3"'
+include_graphics("../img/anti-join.gif")
+```
+:::
+
+::: {.column width="50%"}
+```{r anti-join-code}
+anti_join(x, y)
+```
+:::
+
+:::
+
+
+## `anti_join()`
+
+```{r}
+dates %>%
+  anti_join(works) #<<
+```
+
+
+## Putting it all together
+
+```{r}
+professions %>%
+  left_join(dates) %>%
+  left_join(works)
+```
+
+## Dealing with the missing values
+
+Just in case you're curious...
+
+```{r msng-code}
+#| eval: false
+professions %>%
+  left_join(dates) %>%
+  left_join(works) %>%
+  mutate(
+    birth_year = case_when(
+      name == "Ada Lovelace" ~ 1815,
+      name == "Marie Curie" ~ 1867,
+      TRUE ~ birth_year
+    ),
+    death_year = case_when(
+      name == "Ada Lovelace" ~ 1852,
+      name == "Marie Curie" ~ 1934,
+      TRUE ~ death_year
+    ),
+    known_for = case_when(
+      name == "Rosalind Franklin" ~ "X-ray diffraction images revealing DNA's double helix structure",
+      TRUE ~ known_for
+    )
+  )
+```
+
+---
+
+```{r msng-output}
+#| echo: false
+professions %>%
+  left_join(dates) %>%
+  left_join(works) %>%
+  mutate(
+    birth_year = case_when(
+      name == "Ada Lovelace" ~ 1815,
+      name == "Marie Curie" ~ 1867,
+      TRUE ~ birth_year
+    ),
+    death_year = case_when(
+      name == "Ada Lovelace" ~ 1852,
+      name == "Marie Curie" ~ 1934,
+      TRUE ~ death_year
+    ),
+    known_for = case_when(
+      name == "Rosalind Franklin" ~ "X-ray diffraction images revealing DNA's double helix structure",
+      TRUE ~ known_for
+    )
+  )
+```
+
+---
+
+# Case study: Medical records
+
+---
+
+## Medical Records
+  
+
+<div style="font-size:0.8em;">
+
+- Have:
+  - Enrolled: officially enrolled in Duke MyChart
+  - Survey: completed by those seen in hospital clinics over past year
+- Want: Survey info for all officially enrolled in Duke MyChart
+
+
+---
+
+```{r load-data}
+#| include: false
+enrollment <- read_csv("../data/enrolled.csv")
+survey <- read_csv("../data/survey.csv")
+```
+
+::: {.columns}
+
+::: {.column width="35%"}
+```{r show-enrollment}
+#| message: false
+enrollment
+```
+:::
+
+::: {.column width="65%"}
+```{r show-survey}
+#| message: false
+survey
+```
+:::
+
+:::
+
+</div>
+
+## Medical records
+
+::: {.panel-tabset}
+
+## In MyChart
+
+```{r in-mychart}
+enrollment %>% 
+  left_join(survey, by = "name") %>% 
+  select(name, clinic)
+```
+
+## Survey missing
+
+```{r survey-missing}
+enrollment %>% 
+  anti_join(survey, by = "name")
+```
+
+## MyChart not activated
+
+```{r mychart-not-activated}
+survey %>% 
+  anti_join(enrollment, by = "name")
+```
+
+:::
+
