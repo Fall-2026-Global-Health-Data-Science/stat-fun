@@ -1750,356 +1750,75 @@
     "text": "You try it!\nVerify at home you can do the calculations when three embryos are implanted.\n\n\n\n\n\n\n\n\n\nEmbryos implanted (n)\nP(no baby)\nP(at least 1 baby)\nP(2 babies)\nP(&gt;2 babies)\n\n\n\n1\n0.5\n0.5\n0\n0\n\n\n2\n0.25\n0.75\n0.25\n0\n\n\n3\n0.125\n0.875\n0.375\n0.125"
   },
   {
-    "objectID": "computing-troubleshooting.html",
-    "href": "computing-troubleshooting.html",
-    "title": "Computing troubleshooting",
+    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html",
+    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html",
+    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
     "section": "",
-    "text": "If you’re having difficulty launching an RStudio session from your reserved container, go to status.oit.duke.edu and scroll down to Teaching and Learning Tools. Under this heading you’ll find an entry called Container Manager (CMGR Coursework Containers).\n\nIf the status shows something other than Operational, this means there is a known incident with the containers. Check back later to see if it’s been resolved. If there’s a deadline coming up soon, post on the Ed Discussions to let us know that there’s an issue. We can look into how quickly it might get resolved and decide on what to do about the deadline accordingly. Note: We don’t anticipate this to happen regularly, the systems are Operational a huge majority of the time!\nIf the status shows Operational, this means the system is expected to be working. If you’re still having trouble, follow the steps in the order given below:\n\nRestart your browser.\nMake sure there are no updates pending for your browser. If there are, install those updates and restart your browser again.\nRequest a restart of your container – To do so, select your container as you usually do and then, instead of Login, click on Request Restart. Read the warning in the next page, and then click once more where it says “click here” to restart your container.\nClear your browser cache and restart your browser again.\nRestart your computer to ensure a fresh new connection.\nIf your issue persists, post on the course forum with details on what you’ve tried and the errors you see (including verbatim errors and/or screenshots).",
+    "text": "Warning: package 'tibble' was built under R version 4.3.3\n\n\nWarning: package 'knitr' was built under R version 4.3.3\nA DASH-format data dictionary for the three simplified teaching files in cxr_data.RData (built via a reproducible R pipeline from the full Collab-CXR research file). See simplification_memo_shared_Jul21.qmd for the reasoning behind every simplification choice."
+  },
+  {
+    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#study_variables-sheet",
+    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#study_variables-sheet",
+    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
+    "section": "Study_Variables sheet",
+    "text": "Study_Variables sheet\n\nCodeDataset_Name &lt;- c(rep(\"cxr_readings\", 9), rep(\"cxr_cases\", 7), rep(\"cxr_combined\", 12))\n\nVariable_Name &lt;- c(\n  \"patient_id\", \"pathology\", \"radiologist_id\", \"had_ai_help\", \"had_history\",\n  \"radiologist_prob\", \"ai_prob\", \"truth\", \"time_seconds\",\n  \"patient_id\", \"pathology\", \"truth\", \"ai_prob\", \"mean_human_prob\", \"human_accuracy\", \"n_reads\",\n  \"patient_id\", \"pathology\", \"radiologist_id\", \"had_ai_help\", \"had_history\",\n  \"radiologist_prob\", \"ai_prob\", \"truth\", \"time_seconds\", \"mean_human_prob\", \"human_accuracy\", \"n_reads\"\n)\n\nVariable_Label &lt;- c(\n  \"Patient case identifier\", \"Pathology being rated\", \"Radiologist identifier\",\n  \"AI assistance available\", \"Clinical history available\",\n  \"Radiologist's probability rating\", \"AI's probability rating\",\n  \"Ground truth label\", \"Active reading time\",\n  \"Patient case identifier\", \"Pathology being rated\", \"Ground truth label\",\n  \"AI's probability rating\", \"Average radiologist probability\",\n  \"Share of correct human reads\", \"Number of readings\",\n  \"Patient case identifier\", \"Pathology being rated\", \"Radiologist identifier\",\n  \"AI assistance available\", \"Clinical history available\",\n  \"Radiologist's probability rating\", \"AI's probability rating\",\n  \"Ground truth label\", \"Active reading time\",\n  \"Average radiologist probability\", \"Share of correct human reads\", \"Number of readings\"\n)\n\nVariable_Label_Description &lt;- c(\n  \"Links to the Stanford AIMI CheXmultimodal dataset; patient_id N corresponds to image file N.jpg. One patient appears many times (once per pathology, per radiologist who read that case).\",\n  \"Which of 4 top-level chest X-ray findings this row rates. Simplified from the original 104-code hierarchy down to the 4 top-level ('level 0') categories that also have an AI prediction available.\",\n  \"Opaque ID for the study participant who produced this reading. 227 distinct radiologists appear across the file. Same person can appear under different had_ai_help / had_history combinations.\",\n  \"TRUE if the radiologist was shown the AI's prediction (alg_pred) while making this reading; FALSE if they read unassisted. Derived from the source file's with_ai boolean, not by parsing the treatment code string.\",\n  \"TRUE if the radiologist was given the patient's clinical history/indication when making this reading; FALSE otherwise. Derived from the source file's with_ch boolean.\",\n  \"The radiologist's own probability estimate (0-1) that this pathology is present, reported via an interface slider.\",\n  \"The CheXpert model's probability estimate (0-1) that this pathology is present, based on the image alone. Identical for every radiologist reading the same patient/pathology, whether or not had_ai_help is TRUE for that reading.\",\n  \"Binary (0/1) diagnostic gold standard, from the 5 Mount-Sinai-based expert labelers' averaged rating thresholded at 0.5 (source column gt_binary_simple_us). Constant across every radiologist who read the same case.\",\n  \"Seconds the radiologist spent actively working on this case (source column active_time). Excludes idle/away time.\",\n  \"Same identifier and meaning as in cxr_readings, but each row here is one patient x pathology combination, not one individual reading.\",\n  \"Same 4 categories as in cxr_readings.\",\n  \"Same binary ground truth as cxr_readings; one value per case since it does not depend on who read it.\",\n  \"Same AI probability as cxr_readings; included once per case since it is identical across all readers of that case.\",\n  \"Average of radiologist_prob across all radiologists who read this patient/pathology combination (n_reads readings), rounded to 4 decimal places.\",\n  \"Proportion of individual radiologist reads for this case that were correct, using a 0.5 cutoff on radiologist_prob against truth.\",\n  \"How many individual radiologist readings (rows in cxr_readings) this case/pathology combination has. Varies 35-106 per case because of the study's mixed designs - some cases were read once, others up to 4 times under a within-subject washout design.\",\n  \"Same as cxr_readings.\", \"Same as cxr_readings.\", \"Same as cxr_readings.\",\n  \"Same as cxr_readings.\", \"Same as cxr_readings.\", \"Same as cxr_readings.\", \"Same as cxr_readings.\",\n  \"Same as cxr_readings.\", \"Same as cxr_readings.\",\n  \"Same as cxr_cases's mean_human_prob, joined onto every reading of this case (so the value repeats n_reads times across the readings for a given patient/pathology).\",\n  \"Same as cxr_cases's human_accuracy, joined onto every reading of this case (repeats n_reads times).\",\n  \"Same as cxr_cases's n_reads, joined onto every reading of this case (repeats n_reads times).\"\n)\n\nVariable_Type &lt;- c(\n  \"Numeric\", \"Coded\", \"Character\", \"Coded\", \"Coded\", \"Numeric\", \"Numeric\", \"Coded\", \"Numeric\",\n  \"Numeric\", \"Coded\", \"Coded\", \"Numeric\", \"Numeric\", \"Numeric\", \"Numeric\",\n  \"Numeric\", \"Coded\", \"Character\", \"Coded\", \"Coded\", \"Numeric\", \"Numeric\", \"Coded\", \"Numeric\", \"Numeric\", \"Numeric\", \"Numeric\"\n)\n\nVariable_Code_List &lt;- c(\n  NA, \"Pathology_Selected\", NA, \"Boolean_TrueFalse\", \"Boolean_TrueFalse\", NA, NA, \"Binary_01\", NA,\n  NA, \"Pathology_Selected\", \"Binary_01\", NA, NA, NA, NA,\n  NA, \"Pathology_Selected\", NA, \"Boolean_TrueFalse\", \"Boolean_TrueFalse\", NA, NA, \"Binary_01\", NA, NA, NA, NA\n)\n\nValue_Range_Minimum &lt;- c(NA, NA, NA, NA, NA, 0, 0, 0, 0, NA, NA, 0, 0, 0, 0, 35, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 35)\nValue_Range_Maximum &lt;- c(NA, NA, NA, NA, NA, 1, 1, 1, NA, NA, NA, 1, 1, 1, 1, 106, NA, NA, NA, NA, NA, 1, 1, 1, NA, 1, 1, 106)\n\nall_vecs &lt;- list(Variable_Name, Variable_Label, Variable_Label_Description, Variable_Type,\n                  Variable_Code_List, Value_Range_Minimum, Value_Range_Maximum, Dataset_Name)\nstopifnot(length(unique(sapply(all_vecs, length))) == 1)\nstopifnot(!anyNA(Variable_Name), !anyNA(Variable_Label))\n\nstudy_variables &lt;- tibble(\n  `Dataset Name` = Dataset_Name,\n  `Variable Name` = Variable_Name,\n  `Variable Label` = Variable_Label,\n  `Variable Label Description` = Variable_Label_Description,\n  `Variable Type` = Variable_Type,\n  `Variable Code List` = Variable_Code_List,\n  `Value Range Minimum` = Value_Range_Minimum,\n  `Value Range Maximum` = Value_Range_Maximum\n)\n\nkable(study_variables, caption = \"Study_Variables sheet (DASH Codebook format)\")\n\n\nStudy_Variables sheet (DASH Codebook format)\n\n\n\n\n\n\n\n\n\n\n\nDataset Name\nVariable Name\nVariable Label\nVariable Label Description\nVariable Type\nVariable Code List\nValue Range Minimum\nValue Range Maximum\n\n\n\ncxr_readings\npatient_id\nPatient case identifier\nLinks to the Stanford AIMI CheXmultimodal dataset; patient_id N corresponds to image file N.jpg. One patient appears many times (once per pathology, per radiologist who read that case).\nNumeric\nNA\nNA\nNA\n\n\ncxr_readings\npathology\nPathology being rated\nWhich of 4 top-level chest X-ray findings this row rates. Simplified from the original 104-code hierarchy down to the 4 top-level (‘level 0’) categories that also have an AI prediction available.\nCoded\nPathology_Selected\nNA\nNA\n\n\ncxr_readings\nradiologist_id\nRadiologist identifier\nOpaque ID for the study participant who produced this reading. 227 distinct radiologists appear across the file. Same person can appear under different had_ai_help / had_history combinations.\nCharacter\nNA\nNA\nNA\n\n\ncxr_readings\nhad_ai_help\nAI assistance available\nTRUE if the radiologist was shown the AI’s prediction (alg_pred) while making this reading; FALSE if they read unassisted. Derived from the source file’s with_ai boolean, not by parsing the treatment code string.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_readings\nhad_history\nClinical history available\nTRUE if the radiologist was given the patient’s clinical history/indication when making this reading; FALSE otherwise. Derived from the source file’s with_ch boolean.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_readings\nradiologist_prob\nRadiologist’s probability rating\nThe radiologist’s own probability estimate (0-1) that this pathology is present, reported via an interface slider.\nNumeric\nNA\n0\n1\n\n\ncxr_readings\nai_prob\nAI’s probability rating\nThe CheXpert model’s probability estimate (0-1) that this pathology is present, based on the image alone. Identical for every radiologist reading the same patient/pathology, whether or not had_ai_help is TRUE for that reading.\nNumeric\nNA\n0\n1\n\n\ncxr_readings\ntruth\nGround truth label\nBinary (0/1) diagnostic gold standard, from the 5 Mount-Sinai-based expert labelers’ averaged rating thresholded at 0.5 (source column gt_binary_simple_us). Constant across every radiologist who read the same case.\nCoded\nBinary_01\n0\n1\n\n\ncxr_readings\ntime_seconds\nActive reading time\nSeconds the radiologist spent actively working on this case (source column active_time). Excludes idle/away time.\nNumeric\nNA\n0\nNA\n\n\ncxr_cases\npatient_id\nPatient case identifier\nSame identifier and meaning as in cxr_readings, but each row here is one patient x pathology combination, not one individual reading.\nNumeric\nNA\nNA\nNA\n\n\ncxr_cases\npathology\nPathology being rated\nSame 4 categories as in cxr_readings.\nCoded\nPathology_Selected\nNA\nNA\n\n\ncxr_cases\ntruth\nGround truth label\nSame binary ground truth as cxr_readings; one value per case since it does not depend on who read it.\nCoded\nBinary_01\n0\n1\n\n\ncxr_cases\nai_prob\nAI’s probability rating\nSame AI probability as cxr_readings; included once per case since it is identical across all readers of that case.\nNumeric\nNA\n0\n1\n\n\ncxr_cases\nmean_human_prob\nAverage radiologist probability\nAverage of radiologist_prob across all radiologists who read this patient/pathology combination (n_reads readings), rounded to 4 decimal places.\nNumeric\nNA\n0\n1\n\n\ncxr_cases\nhuman_accuracy\nShare of correct human reads\nProportion of individual radiologist reads for this case that were correct, using a 0.5 cutoff on radiologist_prob against truth.\nNumeric\nNA\n0\n1\n\n\ncxr_cases\nn_reads\nNumber of readings\nHow many individual radiologist readings (rows in cxr_readings) this case/pathology combination has. Varies 35-106 per case because of the study’s mixed designs - some cases were read once, others up to 4 times under a within-subject washout design.\nNumeric\nNA\n35\n106\n\n\ncxr_combined\npatient_id\nPatient case identifier\nSame as cxr_readings.\nNumeric\nNA\nNA\nNA\n\n\ncxr_combined\npathology\nPathology being rated\nSame as cxr_readings.\nCoded\nPathology_Selected\nNA\nNA\n\n\ncxr_combined\nradiologist_id\nRadiologist identifier\nSame as cxr_readings.\nCharacter\nNA\nNA\nNA\n\n\ncxr_combined\nhad_ai_help\nAI assistance available\nSame as cxr_readings.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_combined\nhad_history\nClinical history available\nSame as cxr_readings.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_combined\nradiologist_prob\nRadiologist’s probability rating\nSame as cxr_readings.\nNumeric\nNA\n0\n1\n\n\ncxr_combined\nai_prob\nAI’s probability rating\nSame as cxr_readings.\nNumeric\nNA\n0\n1\n\n\ncxr_combined\ntruth\nGround truth label\nSame as cxr_readings.\nCoded\nBinary_01\n0\n1\n\n\ncxr_combined\ntime_seconds\nActive reading time\nSame as cxr_readings.\nNumeric\nNA\n0\nNA\n\n\ncxr_combined\nmean_human_prob\nAverage radiologist probability\nSame as cxr_cases’s mean_human_prob, joined onto every reading of this case (so the value repeats n_reads times across the readings for a given patient/pathology).\nNumeric\nNA\n0\n1\n\n\ncxr_combined\nhuman_accuracy\nShare of correct human reads\nSame as cxr_cases’s human_accuracy, joined onto every reading of this case (repeats n_reads times).\nNumeric\nNA\n0\n1\n\n\ncxr_combined\nn_reads\nNumber of readings\nSame as cxr_cases’s n_reads, joined onto every reading of this case (repeats n_reads times).\nNumeric\nNA\n35\n106"
+  },
+  {
+    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#code_lists-sheet",
+    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#code_lists-sheet",
+    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
+    "section": "Code_Lists sheet",
+    "text": "Code_Lists sheet\n\nCodeCode_List_Name &lt;- c(\n  \"Pathology_Selected\", \"Pathology_Selected\", \"Pathology_Selected\", \"Pathology_Selected\",\n  \"Boolean_TrueFalse\", \"Boolean_TrueFalse\",\n  \"Binary_01\", \"Binary_01\"\n)\nValue &lt;- c(\n  \"Any abnormality\", \"Airspace opacity\", \"Cardiomediastinal abnormality\", \"Support device or hardware\",\n  \"TRUE\", \"FALSE\",\n  \"0\", \"1\"\n)\nValue_Label &lt;- c(\n  \"Top-level flag: is any finding present on this image at all? (source pathology code 106_abnormal)\",\n  \"Any airspace opacity finding, e.g. consolidation, infiltrate (source pathology code 2_airspace_opacity)\",\n  \"Any abnormality of the heart/mediastinum silhouette (source pathology code 34_cardiomediastinal_abnormality)\",\n  \"Any tube, line, or other medical hardware finding (source pathology code 78_support_device_hardware)\",\n  \"Yes\",\n  \"No\",\n  \"No / Negative\",\n  \"Yes / Positive\"\n)\nstopifnot(length(Code_List_Name) == length(Value), length(Value) == length(Value_Label))\n\ncode_lists &lt;- tibble(\n  `Code List Name` = Code_List_Name,\n  Value = Value,\n  `Value Label` = Value_Label\n)\n\nkable(code_lists, caption = \"Code_Lists sheet (DASH Codebook format)\")\n\n\nCode_Lists sheet (DASH Codebook format)\n\n\n\n\n\n\nCode List Name\nValue\nValue Label\n\n\n\nPathology_Selected\nAny abnormality\nTop-level flag: is any finding present on this image at all? (source pathology code 106_abnormal)\n\n\nPathology_Selected\nAirspace opacity\nAny airspace opacity finding, e.g. consolidation, infiltrate (source pathology code 2_airspace_opacity)\n\n\nPathology_Selected\nCardiomediastinal abnormality\nAny abnormality of the heart/mediastinum silhouette (source pathology code 34_cardiomediastinal_abnormality)\n\n\nPathology_Selected\nSupport device or hardware\nAny tube, line, or other medical hardware finding (source pathology code 78_support_device_hardware)\n\n\nBoolean_TrueFalse\nTRUE\nYes\n\n\nBoolean_TrueFalse\nFALSE\nNo\n\n\nBinary_01\n0\nNo / Negative\n\n\nBinary_01\n1\nYes / Positive"
+  },
+  {
+    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#cross-check-against-the-live-rdata-file",
+    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#cross-check-against-the-live-rdata-file",
+    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
+    "section": "Cross-check against the live RData file",
+    "text": "Cross-check against the live RData file\n\nCodeload(\"cxr_data.RData\")\n\ndict_readings_vars &lt;- study_variables$`Variable Name`[study_variables$`Dataset Name` == \"cxr_readings\"]\ndict_cases_vars &lt;- study_variables$`Variable Name`[study_variables$`Dataset Name` == \"cxr_cases\"]\ndict_combined_vars &lt;- study_variables$`Variable Name`[study_variables$`Dataset Name` == \"cxr_combined\"]\n\ncheck_match &lt;- function(dict_vars, data_vars, label) {\n  missing_from_dict &lt;- setdiff(data_vars, dict_vars)\n  missing_from_data &lt;- setdiff(dict_vars, data_vars)\n  if (length(missing_from_dict) &gt; 0) {\n    message(label, \": columns in data but not in dictionary: \", paste(missing_from_dict, collapse = \", \"))\n  }\n  if (length(missing_from_data) &gt; 0) {\n    message(label, \": columns in dictionary but not in data: \", paste(missing_from_data, collapse = \", \"))\n  }\n  if (length(missing_from_dict) == 0 && length(missing_from_data) == 0) {\n    message(label, \": dictionary and data columns match exactly (\", length(data_vars), \" variables).\")\n  }\n}\n\ncheck_match(dict_readings_vars, colnames(cxr_readings), \"cxr_readings\")\n\ncxr_readings: dictionary and data columns match exactly (9 variables).\n\nCodecheck_match(dict_cases_vars, colnames(cxr_cases), \"cxr_cases\")\n\ncxr_cases: dictionary and data columns match exactly (7 variables).\n\nCodecheck_match(dict_combined_vars, colnames(cxr_combined), \"cxr_combined\")\n\ncxr_combined: dictionary and data columns match exactly (12 variables)."
+  },
+  {
+    "objectID": "computing-access.html",
+    "href": "computing-access.html",
+    "title": "Computing access",
+    "section": "",
+    "text": "To access computing resources for the introductory data science courses offered by the Duke University Department of Statistical Science, go to the Duke Container Manager website, cmgr.oit.duke.edu/containers.\nIf this is your first time accessing the containers, click on reserve STA199 on the Reservations available menu on the right. You only need to do this once, and when you do, you’ll see this container moved to the My reservations menu on the left.\nNext, click on STA199 under My reservations to access the RStudio instance you’ll use for the course.",
     "crumbs": [
       "Computing",
-      "Troubleshooting"
+      "Access"
     ]
   },
   {
-    "objectID": "course-links.html",
-    "href": "course-links.html",
-    "title": "Useful links",
+    "objectID": "course-overview.html",
+    "href": "course-overview.html",
+    "title": "STA 199Fall 2026",
     "section": "",
-    "text": "Course GitHub organization\n🔗 on GitHub\n\n\n\nRStudio containers\n🔗 on Duke Container Manager\n\n\n\nOffice hours\n🔗 on Google Sheets\n\n\n\nEd Discussion\n🔗 on Canvas | |\n\n\n\nGradescope\n🔗 on Canvas | |\n\n\n\nGradebook\n🔗 on Canvas | |\n\n\n\nTexbooks\n🔗 R for Data Science\n🔗 Introduction to Modern Statistics\n\n\n\nPackage documentation\n🔗 ggplot2: ggplot2.tidyverse.org\n🔗 dplyr: dplyr.tidyverse.org\n🔗 tidyr: tidyr.tidyverse.org\n🔗 forcats: forcats.tidyverse.org\n🔗 stringr: stringr.tidyverse.org\n🔗 lubridate: lubridate.tidyverse.org\n🔗 readr: readr.tidyverse.org\n🔗 readxl: readxl.tidyverse.org",
+    "text": "Intro to data science and statistical thinking. Learn to explore, visualize, and analyze data to understand natural phenomena, investigate patterns, model outcomes, and make predictions, all in a reproducible and shareable manner. Gain experience in data wrangling and munging, exploratory data analysis, predictive modeling, data visualization, and effective communication of results. Work on problems and case studies inspired by and based on real-world questions and data. The course will focus on the R statistical computing language. No statistical or computing background is necessary. Not open to students who have taken a 100-level Statistical Science course, Statistical Science 210, or a Statistical Science course numbered 300 or above.",
     "crumbs": [
       "Course information",
-      "Useful links"
+      "Overview"
     ]
   },
   {
-    "objectID": "course-team.html",
-    "href": "course-team.html",
-    "title": "Teaching team",
+    "objectID": "course-overview.html#overview",
+    "href": "course-overview.html#overview",
+    "title": "STA 199Fall 2026",
     "section": "",
-    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education, as well as pedagogical approaches for enhancing the retention of women and underrepresented minorities in STEM.\n\n\n\n\n\n\n\nOffice hours\nLocation\n\n\n\n\nTBD\nBio Sci 111\n\n\nTBD\nOld Chem 211C",
+    "text": "Intro to data science and statistical thinking. Learn to explore, visualize, and analyze data to understand natural phenomena, investigate patterns, model outcomes, and make predictions, all in a reproducible and shareable manner. Gain experience in data wrangling and munging, exploratory data analysis, predictive modeling, data visualization, and effective communication of results. Work on problems and case studies inspired by and based on real-world questions and data. The course will focus on the R statistical computing language. No statistical or computing background is necessary. Not open to students who have taken a 100-level Statistical Science course, Statistical Science 210, or a Statistical Science course numbered 300 or above.",
     "crumbs": [
       "Course information",
-      "Team"
+      "Overview"
     ]
   },
   {
-    "objectID": "course-team.html#instructor",
-    "href": "course-team.html#instructor",
-    "title": "Teaching team",
-    "section": "",
-    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education, as well as pedagogical approaches for enhancing the retention of women and underrepresented minorities in STEM.\n\n\n\n\n\n\n\nOffice hours\nLocation\n\n\n\n\nTBD\nBio Sci 111\n\n\nTBD\nOld Chem 211C",
+    "objectID": "course-overview.html#meetings",
+    "href": "course-overview.html#meetings",
+    "title": "STA 199Fall 2026",
+    "section": "Meetings",
+    "text": "Meetings\n\n\n\n\n\n\n\n\n\nMeeting\nLocation\nTime\nInstructor / TAs\n\n\n\n\nLecture\nBiological Sciences 111\nMon & Wed 1:25 - 2:40 pm\nDr. Mine Çetinkaya-Rundel\n\n\nLab 01\nPerkins LINK 087 (Classroom 3)\nThur 8:30 - 9:45 am\nTBD\n\n\nLab 02\nPerkins LINK 087 (Classroom 3)\nThur 10:05 - 11:20 am\nTBD\n\n\nLab 03\nOld Chemistry 001\nThur 10:05 - 11:20 am\nTBD\n\n\nLab 04\nPerkins LINK 087 (Classroom 3)\nThur 11:45 am - 1:00 pm\nTBD\n\n\nLab 05\nPerkins LINK 071 (Classroom 5)\nThur 11:45 am - 1:00 pm\nTBD\n\n\nLab 06\nPerkins LINK 087 (Classroom 3)\nThur 1:25 - 2:40 pm\nTBD\n\n\nLab 07\nPerkins LINK 071 (Classroom 5)\nThur 1:25 - 2:40 pm\nTBD\n\n\nLab 08\nPerkins LINK 087 (Classroom 3)\nThur 3:05 - 4:20 pm\nTBD\n\n\nLab 09\nPerkins LINK 071 (Classroom 5)\nThur 3:05 - 4:20 pm\nTBD\n\n\nLab 10\nPerkins LINK 087 (Classroom 3)\nThur 4:40 - 5:55 pm\nTBD",
     "crumbs": [
       "Course information",
-      "Team"
-    ]
-  },
-  {
-    "objectID": "course-team.html#teaching-assistants",
-    "href": "course-team.html#teaching-assistants",
-    "title": "Teaching team",
-    "section": "Teaching assistants",
-    "text": "Teaching assistants\nEach TA holds office hours. Some TAs are also leaders or helpers for lab sections. Some TAs help out in lecture.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Name\n      \n      \n        Role(s)\n      \n      \n        Section(s)\n      \n      \n        Office hours\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nName\nRole(s)\nSection(s)\nOffice hours\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Course information",
-      "Team"
-    ]
-  },
-  {
-    "objectID": "course-team.html#course-coordinator",
-    "href": "course-team.html#course-coordinator",
-    "title": "Teaching team",
-    "section": "Course coordinator",
-    "text": "Course coordinator\n\nDr. Mary Knox (she/her) is the course coordinator for this course. You can contact her (at mary.knox@duke.edu) with any questions regarding registration, accommodations, missed work, extensions, etc.",
-    "crumbs": [
-      "Course information",
-      "Team"
-    ]
-  },
-  {
-    "objectID": "hw.html",
-    "href": "hw.html",
-    "title": "Homeworks",
-    "section": "",
-    "text": "No.\nTitle\nDue date\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Homeworks"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "STA 198: Introduction to Global Health Data Science",
-    "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n1\nMon, Aug 24\nWelcome to STA 198!\n📝 Syllabus  📗 r4ds - intro  📗 r4ds - chp 1  📘 ims - chp 1  📘 ims - chp 2  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto  🎥 Code along :: First data viz with UN Votes 🎥 Visualizing data  🎥 Building a plot step-by-step with ggplot2  🎥 Grammar of graphics \n\n🖥️ slides 01  🖥️ slides 02  🗒️ notes 01  🗒️ notes 02 \n\n\n\n\n\nWed, Aug 26\nData Visualization\n📘 ims - chp 4  📗 r4ds - chp 2  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships \n\n🖥️ slides 03  🖥️ slides 04  🗒️ notes 03  🗒️ notes 04\n\n\n\n\n\nFri, Aug 28\nLab 0: Getting Started!\n\n\nLab 0 due at the end of lab session (not graded)\n\n\n2\nMon, Aug 31\nProbability\n📙Seeing Theory - Chapter 1: Basic Probability\n\n🖥️ slides 05  🖥️ slides 06  🗒️ notes 05  🗒️ notes 06 \n\n\n\n\n\nWed, Sep 2\nConditional Probability\n📙Seeing Theory - Chapter 2: Compound Probability\n\n🖥️ slides 07 \n\n\n\n\n\nFri, Sep 4\nLab 1: Data Visualization\n\n\nLab 1 due at the end of the lab session\n\n\n3\nMon, Sep 7\nNo lecture - Labor Day\n\n\n\n\n\n\nWed, Sep 9\nDiscrete Distributions\nTo be posted\n\n\n\n\n\nFri, Sep 11\nLab 2: Discrete data and probabilities\nTo be posted\n\nLab 2 due at the end of the lab session\n\n\n4\nMon, Sep 14\nData Wrangling\nTo be posted\n\n\n\n\n\nWed, Sep 16\nTidying Data\nTo be posted\n\n\n\n\n\nFri, Sep 18\nLab 3: Data wrangling and tidying\nTo be posted\n\nLab 3 due at the end of the lab session\n\n\n5\nMon, Sep 21\nGaussian Distribution\nTo be posted\n\n\n\n\n\nWed, Sep 23\nCentral Limit Theorem; Confidence Intervals\nTo be posted\n\n\n\n\n\nFri, Sep 25\nLab 4\nTo be posted\n\nLab 4 due at the end of lab session\n\n\n6\nMon, Sep 28\nExam Review and Practice\nTo be posted\n\n\n\n\n\nWed, Sep 30\nExam 1\nTo be posted\n\n\n\n\n\nFri, Oct 2\nExam 1 Feedback\nTo be posted\n\n\n\n\n7\nMon, Oct 5\nTesting\nTo be posted\n\n\n\n\n\nWed, Oct 7\nTesting\nTo be posted\n\n\n\n\n\nFri, Oct 9\nLab 5: Testing\nTo be posted\n\nLab 5 due at the end of lab session\n\n\n\nFri, Oct 9\n\n\n\nMidterm course evaluation due at 11:59 pm (optional)\n\n\n8\nMon, Oct 12\nNo Lecture - Fall Break\nTo be posted\n\n\n\n\n\nWed, Oct 14\nANOVA\nTo be posted\n\n\n\n\n\nFri, Oct 16\nLab 6: ANOVA/Testing\nTo be posted\n\nLab 6 due at the end of lab session\n\n\n9\nMon, Oct 19\nNonparametric methods\nTo be posted\n\n\n\n\n\nMon, Oct 19\nIntroduction to Modelling\nTo be posted\n\n\n\n\n\nWed, Oct 21\nLab 7\nTo be posted\n\nLab 7 due at the end of lab session\n\n\n10\nMon, Oct 26\nLinear regression with a single predictor\nTo be posted\n\n\n\n\n\nWed, Oct 28\nLinear regression with multiple predictors\nTo be posted\n\n\n\n\n\nFri, Oct 30\nLab 8: Regression\nTo be posted\n\nLab 8 due at the end of lab session\n\n\n11\nMon, Nov 2\nExam Review\nTo be posted\n\n\n\n\n\nWed, Nov 4\nExam 2\nTo be posted\n\n\n\n\n\nFri, Nov 6\nExam 2 Feedback\nTo be posted\n\n\n\n\n12\nMon, Nov 9\nContingency tables\nTo be posted\n\n\n\n\n\nWed, Nov 11\nLogistic regression; causality\nTo be posted\n\n\n\n\n\nFri, Nov 13\nLab 9: Logistic Regression\nTo be posted\n\nLab 9 due at the end of lab session\n\n\n13\nMon, Nov 16\nCase Study\nTo be posted\n\n\n\n\n\nWed, Nov 18\nSurvival Analysis\nTo be posted\n\n\n\n\n\nFri, Nov 20\nLab 10\nTo be posted\n\nLab 10 due at the end of lab session\n\n\n14\nMon, Nov 23\nCase Study\nTo be posted\n\n\n\n\n\nWed, Nov 25\nNo lecture - Thanksgiving\nTo be posted\n\n\n\n\n\nFri, Nov 27\nNo lab - Thanksgiving\nTo be posted\n\n\n\n\n15\nMon, Nov 30\nExam Review\nTo be posted\n\n\n\n\n\nWed, Dec 2\nExam 3\nTo be posted\n\n\n\n\n\nFri, Dec 4\nExam 3 Feedback\nTo be posted\n\n\n\n\n\nNA\nFinal review (time TBD, location TBD)",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "lab/lab-1.html",
-    "href": "lab/lab-1.html",
-    "title": "Lab 1",
-    "section": "",
-    "text": "Go to the repository for lab-1 in the course GitHub organization: https://github.com/Fall-2026-Global-Health-Data-Science/lab-01.\nClick on the green CODE button, select Use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.\nIn RStudio, go to File ➛ New Project ➛Version Control ➛ Git.\nCopy and paste the URL of your assignment repo into the dialog box Repository URL. Again, please make sure to have SSH highlighted under Clone when you copy the address.\nClick Create Project.\nComplete the lab assignment and turn in using Canvas!"
-  },
-  {
-    "objectID": "lab/lab-1.html#download-the-repo-just-a-reminder-of-the-steps",
-    "href": "lab/lab-1.html#download-the-repo-just-a-reminder-of-the-steps",
-    "title": "Lab 1",
-    "section": "",
-    "text": "Go to the repository for lab-1 in the course GitHub organization: https://github.com/Fall-2026-Global-Health-Data-Science/lab-01.\nClick on the green CODE button, select Use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.\nIn RStudio, go to File ➛ New Project ➛Version Control ➛ Git.\nCopy and paste the URL of your assignment repo into the dialog box Repository URL. Again, please make sure to have SSH highlighted under Clone when you copy the address.\nClick Create Project.\nComplete the lab assignment and turn in using Canvas!"
-  },
-  {
-    "objectID": "course-faq.html",
-    "href": "course-faq.html",
-    "title": "FAQ",
-    "section": "",
-    "text": "Go to your Files tab, check the box next to the file you want to download, then click on the blue gear icon on the Files tab to reveal the drop down menu, and select Export… If you have selected multiple files to export, RStudio will zip them up into a single zip file for you. If you’ve selected just a single file, it will only download that. The downloaded file will go to wherever files you download off the internet goes on your computer (usually your Downloads folder).",
-    "crumbs": [
-      "Course information",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "course-faq.html#how-do-i-export-my-assignment-pdf-from-rstudio-to-upload-to-gradescope",
-    "href": "course-faq.html#how-do-i-export-my-assignment-pdf-from-rstudio-to-upload-to-gradescope",
-    "title": "FAQ",
-    "section": "",
-    "text": "Go to your Files tab, check the box next to the file you want to download, then click on the blue gear icon on the Files tab to reveal the drop down menu, and select Export… If you have selected multiple files to export, RStudio will zip them up into a single zip file for you. If you’ve selected just a single file, it will only download that. The downloaded file will go to wherever files you download off the internet goes on your computer (usually your Downloads folder).",
-    "crumbs": [
-      "Course information",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "course-faq.html#how-can-i-submit-my-assignment-to-gradescope",
-    "href": "course-faq.html#how-can-i-submit-my-assignment-to-gradescope",
-    "title": "FAQ",
-    "section": "How can I submit my assignment to Gradescope?",
-    "text": "How can I submit my assignment to Gradescope?\nThe instructions for submitting your assignment to Gradescope can be found here. In a nutshell, you’ll upload your PDF and them mark the page(s) where each question can be found. It’s OK if a question spans multiple pages, just mark them all. It’s also OK if a page includes multiple questions.",
-    "crumbs": [
-      "Course information",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "course-faq.html#can-i-use-a-local-install-of-r-and-rstudio-instead-of-using-the-rstudio-containers",
-    "href": "course-faq.html#can-i-use-a-local-install-of-r-and-rstudio-instead-of-using-the-rstudio-containers",
-    "title": "FAQ",
-    "section": "Can I use a local install of R and RStudio instead of using the RStudio containers?",
-    "text": "Can I use a local install of R and RStudio instead of using the RStudio containers?\nThe short answer is, I’d rather you didn’t, to save yourself some headache. But, the long answer is, sure! But you will need to install a specific versions of R and RStudio for everything to work as expected. You will also need to install the R packages we’re using as well as have Git installed on your computer. These are not extremely challenging things to get right, but they are not trivial either, particularly on certain operating systems. Myself and the TAs are always happy to provide help with any computational questions when you’re working in the containers we have provided for you. If you’re working on your local setup, we can’t guarantee being able to resolve your issues, though we’re happy to try.\nIf you want to take this path, here is what you need to do:\n\nDownload and install R 4.6.0: https://cran.r-project.org/\nDownload and install RStudio: https://posit.co/download/rstudio-desktop/\nInstall Quarto 1.9.37 or higher: https://quarto.org/docs/get-started/\nInstall Git: https://happygitwithr.com/install-git.html\nInstall any necessary packages with install.packages(\"___\")\n\nAnd I’d like to reiterate again that successful installation of these software is not a learning goal of this course. So if any of this seems tedious or intimidating in any way, just use the computing environment we have set up for you. More on that here.",
-    "crumbs": [
-      "Course information",
-      "FAQ"
-    ]
-  },
-  {
-    "objectID": "lab.html",
-    "href": "lab.html",
-    "title": "Labs",
-    "section": "",
-    "text": "No.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nHello R!\n\n\nDue: End of lab on Fri, August 28\n\n\n\n\n\n\nLab 1\n\n\nData Visualization\n\n\nDue: End of lab on Fri, September 4\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Labs"
-    ]
-  },
-  {
-    "objectID": "course-support.html",
-    "href": "course-support.html",
-    "title": "Course support",
-    "section": "",
-    "text": "Most of you will need help at some point, and we want to make sure you can identify where that is so that you don’t get too frustrated and feel comfortable seeking help.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#lectures-and-labs",
-    "href": "course-support.html#lectures-and-labs",
-    "title": "Course support",
-    "section": "Lectures and labs",
-    "text": "Lectures and labs\nIf you have a question during the lecture or lab, feel free to ask it! There are likely other students with the same question, so asking will create a learning opportunity for everyone.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#help-from-humans",
-    "href": "course-support.html#help-from-humans",
-    "title": "Course support",
-    "section": "Help from humans",
-    "text": "Help from humans\n\nOffice hours\nThe teaching team is here to help you be successful in the course. You are encouraged to attend office hours during the times posted on the home page to ask questions about the course content and assignments. Many questions are most effectively answered in person, so office hours are a valuable resource. I encourage each and every one of you to take advantage of this resource! Make a pledge to stop by during office hours at least once during the first three weeks of class. If you have no questions, stop by and say hi and introduce yourself. You can find a list of everyone’s office hours here.\nDr. Mine Çetinkaya-Rundel’s office hours will start in Week 1, TA office hours will start in Week 2.\n\n\nEd Discussion\nHave a question that can’t wait for office hours? Prefer to write out your question in detail rather than asking in person? The course discussion forum, Ed Discussion, is the best venue for these! There is a chance another student has already asked a similar question, so please check the other posts on before asking a new question. If you know the answer to a question that is posted, I encourage you to respond!\nYou can access this tool on the course website toolbar – just click on the lifesaver icon.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#email",
-    "href": "course-support.html#email",
-    "title": "Course support",
-    "section": "Email",
-    "text": "Email\nPlease refrain from emailing any course content questions (those should go to Ed Discussion), and only use email for questions about personal matters that may not be appropriate for the public course forum (e.g., illness, accommodations, etc.). For such matters, you may email Dr. Mine Çetinkaya-Rundel at mc301@duke.edu.\nIf there is a question that’s not appropriate for the public forum, you are welcome to email me directly. If you email me, please include “STA 199” in the subject line. Barring extenuating circumstances, I will respond to STA 199 emails within 48 hours Monday - Friday. Response time may be slower for emails sent Friday evening - Sunday.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#academic-support",
-    "href": "course-support.html#academic-support",
-    "title": "Course support",
-    "section": "Academic support",
-    "text": "Academic support\nThere are times you may need help with the class that is beyond what can be provided by the teaching team. In those instances, I encourage you to visit the Academic Resource Center. The Academic Resource Center (ARC) offers free services to all students during their undergraduate careers at Duke. Services include Learning Consultations, Peer Tutoring and Study Groups, ADHD/LD Coaching, Outreach Workshops, and more. Because learning is a process unique to every individual, they work with each student to discover and develop their own academic strategy for success at Duke. Contact the ARC to schedule an appointment. Undergraduates in any year, studying any discipline can benefit! Contact theARC@duke.edu, 919-684-5917.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#mental-health-and-well-being",
-    "href": "course-support.html#mental-health-and-well-being",
-    "title": "Course support",
-    "section": "Mental health and well-being",
-    "text": "Mental health and well-being\nDuke is committed to holistic student wellbeing, which includes one’s mental, emotional, and physical health. The university offers resources to help students manage daily stress, to encourage intentional self-care, and to access just-in-time support. If you find you need support, your mental and/or emotional health concerns are impacting your day-to-day activities, your academic performance, or you need someone to talk to, the resources below are available to you:\n\nDukeReach: DukeReach provides comprehensive outreach services to support students in managing all aspects of well-being, including referrals and follow-up services for students who are experiencing significant challenges related to mental health, physical health, social adjustment, and/or a variety of other stressors. You can reach the DukeReach team at dukereach@duke.edu.\nCounseling and Psychological Services (CAPS): CAPS offers counseling services to Duke students including virtual appointments, and referrals in the community. You do not need an appointment for an initial assessment. You may walk in or call 919-660-1000 to get started. Hours: Monday-Friday 9:00am - 4:00pm. After hours counseling services are available at no additional cost to students, you can call: 919-660-1000 Option 2.\nTimelyCare1: TimelyCare is an online platform that is a convenient, confidential, and free way for Duke students to receive 24/7 mental health support through TalkNow and scheduled counseling.\nDuke Student Health: Student Health offers a wide range of healthcare services for all Duke students, many of which are covered by the student health fee. To make an appointment call (919) 681-9355. Hours: Monday - Friday, 8am - 4:30pm, Thursday 9am - 4:30pm. Closed from 12-12:30 each day.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#course-costs",
-    "href": "course-support.html#course-costs",
-    "title": "Course support",
-    "section": "Course costs",
-    "text": "Course costs\n\nTextbooks: The textbooks for this course are freely available on the web.\nLaptops: Each student is expected to have a laptop they can bring to each lecture and lab.\n\nIf you are having difficulty with the costs associated with this course, here are some resources:\n\nKarsh Office of Undergraduate Support: Regardless of your aid package, Karsh offers loans and resources for connecting students with campus programs that might help alleviate course costs.\nDukeLIFE: The Course Material Assistance program offers assistance for eligible students, including through the LIFE Loaner Laptop Program. Students who are eligible for DukeLIFE benefits are notified before the start of the semester; program resources are limited.\nDuke Libraries: The library’s Top Textbook Program allows you to rent some textbooks for 3 hours at a time.\nDuke Link: You can reserve rental equipment from the Link for course-specific technology needs, such as a Digital Voice Recorder, HD Video Camera, TI-84 Plus CE, DSLR camera kit, Tripod, Shotgun Mic, iPad Mini 4, Handheld Projector, or GoPro.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#assistance-with-zoom-or-canvas",
-    "href": "course-support.html#assistance-with-zoom-or-canvas",
-    "title": "Course support",
-    "section": "Assistance with Zoom or Canvas",
-    "text": "Assistance with Zoom or Canvas\nFor technical help with Canvas visit go.canvas.duke.edu/get-help/. For technical help with Zoom contact the Duke OIT Service Desk at oit.duke.edu/help. You can also access the self-service help documentation for Zoom and Canvas.\nNote that we will be using Canvas minimally in this course (primarily for announcements and the grade book). All assignment submissions will take place on Gradescope and GitHub, and conversations will take place on Ed Discussion.\nZoom will be used for online office hours and as a backup option should we need to hold the course online instead of in person.",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "course-support.html#footnotes",
-    "href": "course-support.html#footnotes",
-    "title": "Course support",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nFormerly known as Blue Devils Care.↩︎",
-    "crumbs": [
-      "Course information",
-      "Support"
-    ]
-  },
-  {
-    "objectID": "computing-code-alongs.html",
-    "href": "computing-code-alongs.html",
-    "title": "Code alongs",
-    "section": "",
-    "text": "The following videos feature “code alongs” as an additional resource for getting coding practice.\nThe files you can use to follow along with the videos can be found at https://github.com/sta199/code-alongs.",
-    "crumbs": [
-      "Computing",
-      "Code alongs"
-    ]
-  },
-  {
-    "objectID": "computing-code-alongs.html#data-visualization-and-transformation",
-    "href": "computing-code-alongs.html#data-visualization-and-transformation",
-    "title": "Code alongs",
-    "section": "Data visualization and transformation",
-    "text": "Data visualization and transformation\n\nUN Votes\nFirst look at R amd RStudio.\n\n\n\nFirst look at Palmer Penguins\nFirst look at data science with the tidyverse.\n\n\n\nFlights and pipes\nData transformation\n\n\n\nStarwars characters\nData visualization\n\n\n\nDiving deeper with Palmer Penguins\nData visualization and transformation",
-    "crumbs": [
-      "Computing",
-      "Code alongs"
-    ]
-  },
-  {
-    "objectID": "exam-review.html",
-    "href": "exam-review.html",
-    "title": "Exam reviews",
-    "section": "",
-    "text": "Title\nSubtitle\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Exam reviews"
-    ]
-  },
-  {
-    "objectID": "lab/lab-0.html",
-    "href": "lab/lab-0.html",
-    "title": "Lab 0",
-    "section": "",
-    "text": "This lab will walk you through setting up the course technology, which consists of the following:\nVersion control software like Git and GitHub is indispensable in modern data science practice, and learning how to use it is one of the things that distinguishes STA 198 from a similar course like STA 101. At a minimum, version control helps prevent your files from looking like this:\nWe’ve all been there, but it’s time to kick the habit."
-  },
-  {
-    "objectID": "lab/lab-0.html#access-r-and-rstudio",
-    "href": "lab/lab-0.html#access-r-and-rstudio",
-    "title": "Lab 0",
-    "section": "1. Access R and RStudio",
-    "text": "1. Access R and RStudio\nInstead of asking you to download any new programs onto your computer, we host everything pre-packaged for you in the cloud. You just have to login through your web browser, and you’re ready to go:\n\nGo to https://cmgr.oit.duke.edu/containers and login with your Duke NetID and Password.\nClick STA198 to log into the Docker container. You should now see the RStudio environment.\n\nGo to https://cmgr.oit.duke.edu/containers and under Reservations available click on reserve STA198 to reserve a container for yourself.\n\n\n\n\n\n\nNote\n\n\n\nA container is a self-contained instance of RStudio for you, and you alone. You will do all of your computing in your container.\n\n\nOnce you’ve reserved the container you’ll see that it will show up under My reservations.\nTo launch your container click on it under My reservations, then click Login, and then Start.1\n\n\n\n\n\n\nWarning\n\n\n\nPlease double and triple check that you have reserved the STA198 container and not some other. The various containers differ in the software they include, so if you reserve something else, you may be missing something we need."
-  },
-  {
-    "objectID": "lab/lab-0.html#create-a-github-account",
-    "href": "lab/lab-0.html#create-a-github-account",
-    "title": "Lab 0",
-    "section": "2. Create a GitHub account",
-    "text": "2. Create a GitHub account\nGo to https://github.com/ and walk through the steps for creating an account. You do not have to use your Duke email address, but I recommend doing so.2\n\n\n\n\n\n\nNote\n\n\n\nYou’ll need to choose a user name. I recommend reviewing the user name advice at https://happygitwithr.com/github-acct#username-advice before choosing a username.\n\n\n\n\n\n\n\n\nWhat if I already have a GitHub account?\n\n\n\n\n\nIf you already have a GitHub account, you do not need to create a new one for this course. Just log in to that account to make sure you still remember your username and password. If you are unsure of your login credentials, carefully follow GitHub’s instructions for recovering this information. If you accumulate too many failed login attempts, you will be locked out of your account for the day, which will make it difficult for you to complete the rest of this lab."
-  },
-  {
-    "objectID": "lab/lab-0.html#set-up-your-ssh-key",
-    "href": "lab/lab-0.html#set-up-your-ssh-key",
-    "title": "Lab 0",
-    "section": "3. Set up your SSH key",
-    "text": "3. Set up your SSH key\nYou will authenticate GitHub using SSH (Secure Shell Protocol – it doesn’t really matter what this means for the purpose of this course). Below is an outline of the authentication steps; you are encouraged to follow along as your TA demonstrates the steps.\n\n\n\n\n\n\nNote\n\n\n\nYou only need to do this authentication process one time on a single system.\n\n\n\nGo back to your RStudio container, copy this command into the console, and hit enter:\n\n\ncredentials::ssh_setup_github()\n\n\nR will ask “No SSH key found. Generate one now?” You should click 1 for yes.\nYou will generate a key. R will then ask “Would you like to open a browser now?” You should click 1 for yes.\nYou may be asked to provide your GitHub username and password to log into GitHub. After entering this information, you should paste the key in and give it a name. You might name it in a way that indicates where the key will be used, e.g., sta198).\n\nYou can find more detailed instructions here if you’re interested."
-  },
-  {
-    "objectID": "lab/lab-0.html#configure-git-to-introduce-yourself",
-    "href": "lab/lab-0.html#configure-git-to-introduce-yourself",
-    "title": "Lab 0",
-    "section": "4. Configure Git to introduce yourself",
-    "text": "4. Configure Git to introduce yourself\nNext, you need to configure your git so that RStudio can communicate with GitHub. This requires two pieces of information: your name and email address.\nTo do so, you will use the use_git_config() function from the usethis package.\n\n\n\n\n\n\nNote\n\n\n\nYou’ll hear about 📦 packages a lot in the context of R – basically they’re how developers write functions and bundle them to distribute to the community (and more on this later too!).\n\n\nType the following lines of code in the console in RStudio filling in your name and the address associated with your GitHub account.\n\nusethis::use_git_config(\n  user.name = \"Your name\", \n  user.email = \"Email associated with your GitHub account\"\n)\n\nFor example,\n\nusethis::use_git_config(\n  user.name = \"James Duke\", \n  user.email = \"jbduke@gmail.com\"\n)\n\nGmail appears because that is the one James used to create his GitHub account. You must use the exact same email address that you used to create your GitHub account.\n\n\n\n\n\n\nHow do I know if I did it right?\n\n\n\n\n\nWhen you input the usethis::use_git_config(...) command into the console and hit enter/return, it will appear as if nothing happened. To verify that everything worked, you can briefly switch over to the Terminal tab (should be to the right of Console) and type the commands git config user.name and git config user.email. If all is well, these will return whatever text you originally provided. If you notice a mistake or typo, you can just go back to the Console and rerun usethis::use_git_config(...) with modified inputs.\n\n\n\n\n\n\n\n\n\nNeed a recap? Watch this video!\n\n\n\n\n\nThe following video walks you through the steps outlined in the SSH key generation and Git configuration sections above."
-  },
-  {
-    "objectID": "lab/lab-0.html#a-first-repo",
-    "href": "lab/lab-0.html#a-first-repo",
-    "title": "Lab 0",
-    "section": "5. A first repo",
-    "text": "5. A first repo\nA GitHub repository (repo) is a collection of files hosted on GitHub. Repos are the main way we will distribute files to you during the semester. When you copy the files in a repo to your local computing environment (your container, in this case), that’s called “cloning”. So, let’s clone our first repo:\n\nGo to the repository for lab-0 in the course GitHub organization: https://github.com/Fall-2026-Global-Health-Data-Science/lab-0.\n\nClick on the green CODE button, select Use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.\n\n\n\n\n\nIn RStudio, go to File ➛ New Project ➛Version Control ➛ Git.\nCopy and paste the URL of your assignment repo into the dialog box Repository URL. Again, please make sure to have SSH highlighted under Clone when you copy the address.\n\nClick Create Project.\n\n\n\n\n\n\nSince this is the first time you are connecting to GitHub from this RStudio instance, you will be asked to confirm the authenticity of the host. This will happen in a pop-up window like the one below. Type yes in the box and hit Enter.\n\n\n\n\n\nRStudio will now clone the repo and create a new RStudio project for you. This might take a few seconds. Once done, the files from your GitHub repo will be displayed in the Files pane in RStudio.\n\nYou will need to get used to these steps, because you’ll probably clone at least one new repo every week."
-  },
-  {
-    "objectID": "lab/lab-0.html#hello-sta-198",
-    "href": "lab/lab-0.html#hello-sta-198",
-    "title": "Lab 0",
-    "section": "6. Hello STA 198!",
-    "text": "6. Hello STA 198!\nFill out the course “Getting to know you” survey on Canvas: https://canvas.duke.edu/courses/72135/quizzes/44911.\nWe will use the information collected in this survey for a variety of goals, from inviting you to the course GitHub organization (more on that later) to getting to know you as a person and your course goals and concerns."
-  },
-  {
-    "objectID": "lab/lab-0.html#footnotes",
-    "href": "lab/lab-0.html#footnotes",
-    "title": "Lab 0",
-    "section": "Footnotes",
-    "text": "Footnotes\n\nYes, it’s too many steps. I don’t know why! But it works, and you’ll get used to it. Trust me, it beats downloading and installing everything you need on your computers!↩︎\nGitHub has some perks for students you can take advantage of later in the course or in your future work, and it helps to have a .edu address to get verified as a student.↩︎"
-  },
-  {
-    "objectID": "computing-cheatsheets.html",
-    "href": "computing-cheatsheets.html",
-    "title": "R cheatsheets",
-    "section": "",
-    "text": "The following cheatsheets come from https://www.rstudio.com/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
-    "crumbs": [
-      "Computing",
-      "Cheatsheets"
+      "Overview"
     ]
   },
   {
@@ -2312,76 +2031,357 @@
     ]
   },
   {
-    "objectID": "course-overview.html",
-    "href": "course-overview.html",
-    "title": "STA 199Fall 2026",
+    "objectID": "computing-cheatsheets.html",
+    "href": "computing-cheatsheets.html",
+    "title": "R cheatsheets",
     "section": "",
-    "text": "Intro to data science and statistical thinking. Learn to explore, visualize, and analyze data to understand natural phenomena, investigate patterns, model outcomes, and make predictions, all in a reproducible and shareable manner. Gain experience in data wrangling and munging, exploratory data analysis, predictive modeling, data visualization, and effective communication of results. Work on problems and case studies inspired by and based on real-world questions and data. The course will focus on the R statistical computing language. No statistical or computing background is necessary. Not open to students who have taken a 100-level Statistical Science course, Statistical Science 210, or a Statistical Science course numbered 300 or above.",
-    "crumbs": [
-      "Course information",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "course-overview.html#overview",
-    "href": "course-overview.html#overview",
-    "title": "STA 199Fall 2026",
-    "section": "",
-    "text": "Intro to data science and statistical thinking. Learn to explore, visualize, and analyze data to understand natural phenomena, investigate patterns, model outcomes, and make predictions, all in a reproducible and shareable manner. Gain experience in data wrangling and munging, exploratory data analysis, predictive modeling, data visualization, and effective communication of results. Work on problems and case studies inspired by and based on real-world questions and data. The course will focus on the R statistical computing language. No statistical or computing background is necessary. Not open to students who have taken a 100-level Statistical Science course, Statistical Science 210, or a Statistical Science course numbered 300 or above.",
-    "crumbs": [
-      "Course information",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "course-overview.html#meetings",
-    "href": "course-overview.html#meetings",
-    "title": "STA 199Fall 2026",
-    "section": "Meetings",
-    "text": "Meetings\n\n\n\n\n\n\n\n\n\nMeeting\nLocation\nTime\nInstructor / TAs\n\n\n\n\nLecture\nBiological Sciences 111\nMon & Wed 1:25 - 2:40 pm\nDr. Mine Çetinkaya-Rundel\n\n\nLab 01\nPerkins LINK 087 (Classroom 3)\nThur 8:30 - 9:45 am\nTBD\n\n\nLab 02\nPerkins LINK 087 (Classroom 3)\nThur 10:05 - 11:20 am\nTBD\n\n\nLab 03\nOld Chemistry 001\nThur 10:05 - 11:20 am\nTBD\n\n\nLab 04\nPerkins LINK 087 (Classroom 3)\nThur 11:45 am - 1:00 pm\nTBD\n\n\nLab 05\nPerkins LINK 071 (Classroom 5)\nThur 11:45 am - 1:00 pm\nTBD\n\n\nLab 06\nPerkins LINK 087 (Classroom 3)\nThur 1:25 - 2:40 pm\nTBD\n\n\nLab 07\nPerkins LINK 071 (Classroom 5)\nThur 1:25 - 2:40 pm\nTBD\n\n\nLab 08\nPerkins LINK 087 (Classroom 3)\nThur 3:05 - 4:20 pm\nTBD\n\n\nLab 09\nPerkins LINK 071 (Classroom 5)\nThur 3:05 - 4:20 pm\nTBD\n\n\nLab 10\nPerkins LINK 087 (Classroom 3)\nThur 4:40 - 5:55 pm\nTBD",
-    "crumbs": [
-      "Course information",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "computing-access.html",
-    "href": "computing-access.html",
-    "title": "Computing access",
-    "section": "",
-    "text": "To access computing resources for the introductory data science courses offered by the Duke University Department of Statistical Science, go to the Duke Container Manager website, cmgr.oit.duke.edu/containers.\nIf this is your first time accessing the containers, click on reserve STA199 on the Reservations available menu on the right. You only need to do this once, and when you do, you’ll see this container moved to the My reservations menu on the left.\nNext, click on STA199 under My reservations to access the RStudio instance you’ll use for the course.",
+    "text": "The following cheatsheets come from https://www.rstudio.com/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
     "crumbs": [
       "Computing",
-      "Access"
+      "Cheatsheets"
     ]
   },
   {
-    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html",
-    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html",
-    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
+    "objectID": "lab/lab-0.html",
+    "href": "lab/lab-0.html",
+    "title": "Lab 0",
     "section": "",
-    "text": "Warning: package 'tibble' was built under R version 4.3.3\n\n\nWarning: package 'knitr' was built under R version 4.3.3\nA DASH-format data dictionary for the three simplified teaching files in cxr_data.RData (built via a reproducible R pipeline from the full Collab-CXR research file). See simplification_memo_shared_Jul21.qmd for the reasoning behind every simplification choice."
+    "text": "This lab will walk you through setting up the course technology, which consists of the following:\nVersion control software like Git and GitHub is indispensable in modern data science practice, and learning how to use it is one of the things that distinguishes STA 198 from a similar course like STA 101. At a minimum, version control helps prevent your files from looking like this:\nWe’ve all been there, but it’s time to kick the habit."
   },
   {
-    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#study_variables-sheet",
-    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#study_variables-sheet",
-    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
-    "section": "Study_Variables sheet",
-    "text": "Study_Variables sheet\n\nCodeDataset_Name &lt;- c(rep(\"cxr_readings\", 9), rep(\"cxr_cases\", 7), rep(\"cxr_combined\", 12))\n\nVariable_Name &lt;- c(\n  \"patient_id\", \"pathology\", \"radiologist_id\", \"had_ai_help\", \"had_history\",\n  \"radiologist_prob\", \"ai_prob\", \"truth\", \"time_seconds\",\n  \"patient_id\", \"pathology\", \"truth\", \"ai_prob\", \"mean_human_prob\", \"human_accuracy\", \"n_reads\",\n  \"patient_id\", \"pathology\", \"radiologist_id\", \"had_ai_help\", \"had_history\",\n  \"radiologist_prob\", \"ai_prob\", \"truth\", \"time_seconds\", \"mean_human_prob\", \"human_accuracy\", \"n_reads\"\n)\n\nVariable_Label &lt;- c(\n  \"Patient case identifier\", \"Pathology being rated\", \"Radiologist identifier\",\n  \"AI assistance available\", \"Clinical history available\",\n  \"Radiologist's probability rating\", \"AI's probability rating\",\n  \"Ground truth label\", \"Active reading time\",\n  \"Patient case identifier\", \"Pathology being rated\", \"Ground truth label\",\n  \"AI's probability rating\", \"Average radiologist probability\",\n  \"Share of correct human reads\", \"Number of readings\",\n  \"Patient case identifier\", \"Pathology being rated\", \"Radiologist identifier\",\n  \"AI assistance available\", \"Clinical history available\",\n  \"Radiologist's probability rating\", \"AI's probability rating\",\n  \"Ground truth label\", \"Active reading time\",\n  \"Average radiologist probability\", \"Share of correct human reads\", \"Number of readings\"\n)\n\nVariable_Label_Description &lt;- c(\n  \"Links to the Stanford AIMI CheXmultimodal dataset; patient_id N corresponds to image file N.jpg. One patient appears many times (once per pathology, per radiologist who read that case).\",\n  \"Which of 4 top-level chest X-ray findings this row rates. Simplified from the original 104-code hierarchy down to the 4 top-level ('level 0') categories that also have an AI prediction available.\",\n  \"Opaque ID for the study participant who produced this reading. 227 distinct radiologists appear across the file. Same person can appear under different had_ai_help / had_history combinations.\",\n  \"TRUE if the radiologist was shown the AI's prediction (alg_pred) while making this reading; FALSE if they read unassisted. Derived from the source file's with_ai boolean, not by parsing the treatment code string.\",\n  \"TRUE if the radiologist was given the patient's clinical history/indication when making this reading; FALSE otherwise. Derived from the source file's with_ch boolean.\",\n  \"The radiologist's own probability estimate (0-1) that this pathology is present, reported via an interface slider.\",\n  \"The CheXpert model's probability estimate (0-1) that this pathology is present, based on the image alone. Identical for every radiologist reading the same patient/pathology, whether or not had_ai_help is TRUE for that reading.\",\n  \"Binary (0/1) diagnostic gold standard, from the 5 Mount-Sinai-based expert labelers' averaged rating thresholded at 0.5 (source column gt_binary_simple_us). Constant across every radiologist who read the same case.\",\n  \"Seconds the radiologist spent actively working on this case (source column active_time). Excludes idle/away time.\",\n  \"Same identifier and meaning as in cxr_readings, but each row here is one patient x pathology combination, not one individual reading.\",\n  \"Same 4 categories as in cxr_readings.\",\n  \"Same binary ground truth as cxr_readings; one value per case since it does not depend on who read it.\",\n  \"Same AI probability as cxr_readings; included once per case since it is identical across all readers of that case.\",\n  \"Average of radiologist_prob across all radiologists who read this patient/pathology combination (n_reads readings), rounded to 4 decimal places.\",\n  \"Proportion of individual radiologist reads for this case that were correct, using a 0.5 cutoff on radiologist_prob against truth.\",\n  \"How many individual radiologist readings (rows in cxr_readings) this case/pathology combination has. Varies 35-106 per case because of the study's mixed designs - some cases were read once, others up to 4 times under a within-subject washout design.\",\n  \"Same as cxr_readings.\", \"Same as cxr_readings.\", \"Same as cxr_readings.\",\n  \"Same as cxr_readings.\", \"Same as cxr_readings.\", \"Same as cxr_readings.\", \"Same as cxr_readings.\",\n  \"Same as cxr_readings.\", \"Same as cxr_readings.\",\n  \"Same as cxr_cases's mean_human_prob, joined onto every reading of this case (so the value repeats n_reads times across the readings for a given patient/pathology).\",\n  \"Same as cxr_cases's human_accuracy, joined onto every reading of this case (repeats n_reads times).\",\n  \"Same as cxr_cases's n_reads, joined onto every reading of this case (repeats n_reads times).\"\n)\n\nVariable_Type &lt;- c(\n  \"Numeric\", \"Coded\", \"Character\", \"Coded\", \"Coded\", \"Numeric\", \"Numeric\", \"Coded\", \"Numeric\",\n  \"Numeric\", \"Coded\", \"Coded\", \"Numeric\", \"Numeric\", \"Numeric\", \"Numeric\",\n  \"Numeric\", \"Coded\", \"Character\", \"Coded\", \"Coded\", \"Numeric\", \"Numeric\", \"Coded\", \"Numeric\", \"Numeric\", \"Numeric\", \"Numeric\"\n)\n\nVariable_Code_List &lt;- c(\n  NA, \"Pathology_Selected\", NA, \"Boolean_TrueFalse\", \"Boolean_TrueFalse\", NA, NA, \"Binary_01\", NA,\n  NA, \"Pathology_Selected\", \"Binary_01\", NA, NA, NA, NA,\n  NA, \"Pathology_Selected\", NA, \"Boolean_TrueFalse\", \"Boolean_TrueFalse\", NA, NA, \"Binary_01\", NA, NA, NA, NA\n)\n\nValue_Range_Minimum &lt;- c(NA, NA, NA, NA, NA, 0, 0, 0, 0, NA, NA, 0, 0, 0, 0, 35, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 35)\nValue_Range_Maximum &lt;- c(NA, NA, NA, NA, NA, 1, 1, 1, NA, NA, NA, 1, 1, 1, 1, 106, NA, NA, NA, NA, NA, 1, 1, 1, NA, 1, 1, 106)\n\nall_vecs &lt;- list(Variable_Name, Variable_Label, Variable_Label_Description, Variable_Type,\n                  Variable_Code_List, Value_Range_Minimum, Value_Range_Maximum, Dataset_Name)\nstopifnot(length(unique(sapply(all_vecs, length))) == 1)\nstopifnot(!anyNA(Variable_Name), !anyNA(Variable_Label))\n\nstudy_variables &lt;- tibble(\n  `Dataset Name` = Dataset_Name,\n  `Variable Name` = Variable_Name,\n  `Variable Label` = Variable_Label,\n  `Variable Label Description` = Variable_Label_Description,\n  `Variable Type` = Variable_Type,\n  `Variable Code List` = Variable_Code_List,\n  `Value Range Minimum` = Value_Range_Minimum,\n  `Value Range Maximum` = Value_Range_Maximum\n)\n\nkable(study_variables, caption = \"Study_Variables sheet (DASH Codebook format)\")\n\n\nStudy_Variables sheet (DASH Codebook format)\n\n\n\n\n\n\n\n\n\n\n\nDataset Name\nVariable Name\nVariable Label\nVariable Label Description\nVariable Type\nVariable Code List\nValue Range Minimum\nValue Range Maximum\n\n\n\ncxr_readings\npatient_id\nPatient case identifier\nLinks to the Stanford AIMI CheXmultimodal dataset; patient_id N corresponds to image file N.jpg. One patient appears many times (once per pathology, per radiologist who read that case).\nNumeric\nNA\nNA\nNA\n\n\ncxr_readings\npathology\nPathology being rated\nWhich of 4 top-level chest X-ray findings this row rates. Simplified from the original 104-code hierarchy down to the 4 top-level (‘level 0’) categories that also have an AI prediction available.\nCoded\nPathology_Selected\nNA\nNA\n\n\ncxr_readings\nradiologist_id\nRadiologist identifier\nOpaque ID for the study participant who produced this reading. 227 distinct radiologists appear across the file. Same person can appear under different had_ai_help / had_history combinations.\nCharacter\nNA\nNA\nNA\n\n\ncxr_readings\nhad_ai_help\nAI assistance available\nTRUE if the radiologist was shown the AI’s prediction (alg_pred) while making this reading; FALSE if they read unassisted. Derived from the source file’s with_ai boolean, not by parsing the treatment code string.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_readings\nhad_history\nClinical history available\nTRUE if the radiologist was given the patient’s clinical history/indication when making this reading; FALSE otherwise. Derived from the source file’s with_ch boolean.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_readings\nradiologist_prob\nRadiologist’s probability rating\nThe radiologist’s own probability estimate (0-1) that this pathology is present, reported via an interface slider.\nNumeric\nNA\n0\n1\n\n\ncxr_readings\nai_prob\nAI’s probability rating\nThe CheXpert model’s probability estimate (0-1) that this pathology is present, based on the image alone. Identical for every radiologist reading the same patient/pathology, whether or not had_ai_help is TRUE for that reading.\nNumeric\nNA\n0\n1\n\n\ncxr_readings\ntruth\nGround truth label\nBinary (0/1) diagnostic gold standard, from the 5 Mount-Sinai-based expert labelers’ averaged rating thresholded at 0.5 (source column gt_binary_simple_us). Constant across every radiologist who read the same case.\nCoded\nBinary_01\n0\n1\n\n\ncxr_readings\ntime_seconds\nActive reading time\nSeconds the radiologist spent actively working on this case (source column active_time). Excludes idle/away time.\nNumeric\nNA\n0\nNA\n\n\ncxr_cases\npatient_id\nPatient case identifier\nSame identifier and meaning as in cxr_readings, but each row here is one patient x pathology combination, not one individual reading.\nNumeric\nNA\nNA\nNA\n\n\ncxr_cases\npathology\nPathology being rated\nSame 4 categories as in cxr_readings.\nCoded\nPathology_Selected\nNA\nNA\n\n\ncxr_cases\ntruth\nGround truth label\nSame binary ground truth as cxr_readings; one value per case since it does not depend on who read it.\nCoded\nBinary_01\n0\n1\n\n\ncxr_cases\nai_prob\nAI’s probability rating\nSame AI probability as cxr_readings; included once per case since it is identical across all readers of that case.\nNumeric\nNA\n0\n1\n\n\ncxr_cases\nmean_human_prob\nAverage radiologist probability\nAverage of radiologist_prob across all radiologists who read this patient/pathology combination (n_reads readings), rounded to 4 decimal places.\nNumeric\nNA\n0\n1\n\n\ncxr_cases\nhuman_accuracy\nShare of correct human reads\nProportion of individual radiologist reads for this case that were correct, using a 0.5 cutoff on radiologist_prob against truth.\nNumeric\nNA\n0\n1\n\n\ncxr_cases\nn_reads\nNumber of readings\nHow many individual radiologist readings (rows in cxr_readings) this case/pathology combination has. Varies 35-106 per case because of the study’s mixed designs - some cases were read once, others up to 4 times under a within-subject washout design.\nNumeric\nNA\n35\n106\n\n\ncxr_combined\npatient_id\nPatient case identifier\nSame as cxr_readings.\nNumeric\nNA\nNA\nNA\n\n\ncxr_combined\npathology\nPathology being rated\nSame as cxr_readings.\nCoded\nPathology_Selected\nNA\nNA\n\n\ncxr_combined\nradiologist_id\nRadiologist identifier\nSame as cxr_readings.\nCharacter\nNA\nNA\nNA\n\n\ncxr_combined\nhad_ai_help\nAI assistance available\nSame as cxr_readings.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_combined\nhad_history\nClinical history available\nSame as cxr_readings.\nCoded\nBoolean_TrueFalse\nNA\nNA\n\n\ncxr_combined\nradiologist_prob\nRadiologist’s probability rating\nSame as cxr_readings.\nNumeric\nNA\n0\n1\n\n\ncxr_combined\nai_prob\nAI’s probability rating\nSame as cxr_readings.\nNumeric\nNA\n0\n1\n\n\ncxr_combined\ntruth\nGround truth label\nSame as cxr_readings.\nCoded\nBinary_01\n0\n1\n\n\ncxr_combined\ntime_seconds\nActive reading time\nSame as cxr_readings.\nNumeric\nNA\n0\nNA\n\n\ncxr_combined\nmean_human_prob\nAverage radiologist probability\nSame as cxr_cases’s mean_human_prob, joined onto every reading of this case (so the value repeats n_reads times across the readings for a given patient/pathology).\nNumeric\nNA\n0\n1\n\n\ncxr_combined\nhuman_accuracy\nShare of correct human reads\nSame as cxr_cases’s human_accuracy, joined onto every reading of this case (repeats n_reads times).\nNumeric\nNA\n0\n1\n\n\ncxr_combined\nn_reads\nNumber of readings\nSame as cxr_cases’s n_reads, joined onto every reading of this case (repeats n_reads times).\nNumeric\nNA\n35\n106"
+    "objectID": "lab/lab-0.html#access-r-and-rstudio",
+    "href": "lab/lab-0.html#access-r-and-rstudio",
+    "title": "Lab 0",
+    "section": "1. Access R and RStudio",
+    "text": "1. Access R and RStudio\nInstead of asking you to download any new programs onto your computer, we host everything pre-packaged for you in the cloud. You just have to login through your web browser, and you’re ready to go:\n\nGo to https://cmgr.oit.duke.edu/containers and login with your Duke NetID and Password.\nClick STA198 to log into the Docker container. You should now see the RStudio environment.\n\nGo to https://cmgr.oit.duke.edu/containers and under Reservations available click on reserve STA198 to reserve a container for yourself.\n\n\n\n\n\n\nNote\n\n\n\nA container is a self-contained instance of RStudio for you, and you alone. You will do all of your computing in your container.\n\n\nOnce you’ve reserved the container you’ll see that it will show up under My reservations.\nTo launch your container click on it under My reservations, then click Login, and then Start.1\n\n\n\n\n\n\nWarning\n\n\n\nPlease double and triple check that you have reserved the STA198 container and not some other. The various containers differ in the software they include, so if you reserve something else, you may be missing something we need."
   },
   {
-    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#code_lists-sheet",
-    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#code_lists-sheet",
-    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
-    "section": "Code_Lists sheet",
-    "text": "Code_Lists sheet\n\nCodeCode_List_Name &lt;- c(\n  \"Pathology_Selected\", \"Pathology_Selected\", \"Pathology_Selected\", \"Pathology_Selected\",\n  \"Boolean_TrueFalse\", \"Boolean_TrueFalse\",\n  \"Binary_01\", \"Binary_01\"\n)\nValue &lt;- c(\n  \"Any abnormality\", \"Airspace opacity\", \"Cardiomediastinal abnormality\", \"Support device or hardware\",\n  \"TRUE\", \"FALSE\",\n  \"0\", \"1\"\n)\nValue_Label &lt;- c(\n  \"Top-level flag: is any finding present on this image at all? (source pathology code 106_abnormal)\",\n  \"Any airspace opacity finding, e.g. consolidation, infiltrate (source pathology code 2_airspace_opacity)\",\n  \"Any abnormality of the heart/mediastinum silhouette (source pathology code 34_cardiomediastinal_abnormality)\",\n  \"Any tube, line, or other medical hardware finding (source pathology code 78_support_device_hardware)\",\n  \"Yes\",\n  \"No\",\n  \"No / Negative\",\n  \"Yes / Positive\"\n)\nstopifnot(length(Code_List_Name) == length(Value), length(Value) == length(Value_Label))\n\ncode_lists &lt;- tibble(\n  `Code List Name` = Code_List_Name,\n  Value = Value,\n  `Value Label` = Value_Label\n)\n\nkable(code_lists, caption = \"Code_Lists sheet (DASH Codebook format)\")\n\n\nCode_Lists sheet (DASH Codebook format)\n\n\n\n\n\n\nCode List Name\nValue\nValue Label\n\n\n\nPathology_Selected\nAny abnormality\nTop-level flag: is any finding present on this image at all? (source pathology code 106_abnormal)\n\n\nPathology_Selected\nAirspace opacity\nAny airspace opacity finding, e.g. consolidation, infiltrate (source pathology code 2_airspace_opacity)\n\n\nPathology_Selected\nCardiomediastinal abnormality\nAny abnormality of the heart/mediastinum silhouette (source pathology code 34_cardiomediastinal_abnormality)\n\n\nPathology_Selected\nSupport device or hardware\nAny tube, line, or other medical hardware finding (source pathology code 78_support_device_hardware)\n\n\nBoolean_TrueFalse\nTRUE\nYes\n\n\nBoolean_TrueFalse\nFALSE\nNo\n\n\nBinary_01\n0\nNo / Negative\n\n\nBinary_01\n1\nYes / Positive"
+    "objectID": "lab/lab-0.html#create-a-github-account",
+    "href": "lab/lab-0.html#create-a-github-account",
+    "title": "Lab 0",
+    "section": "2. Create a GitHub account",
+    "text": "2. Create a GitHub account\nGo to https://github.com/ and walk through the steps for creating an account. You do not have to use your Duke email address, but I recommend doing so.2\n\n\n\n\n\n\nNote\n\n\n\nYou’ll need to choose a user name. I recommend reviewing the user name advice at https://happygitwithr.com/github-acct#username-advice before choosing a username.\n\n\n\n\n\n\n\n\nWhat if I already have a GitHub account?\n\n\n\n\n\nIf you already have a GitHub account, you do not need to create a new one for this course. Just log in to that account to make sure you still remember your username and password. If you are unsure of your login credentials, carefully follow GitHub’s instructions for recovering this information. If you accumulate too many failed login attempts, you will be locked out of your account for the day, which will make it difficult for you to complete the rest of this lab."
   },
   {
-    "objectID": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#cross-check-against-the-live-rdata-file",
-    "href": "data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html#cross-check-against-the-live-rdata-file",
-    "title": "Collab-CXR Teaching Dataset: Data Dictionary (DASH Format)",
-    "section": "Cross-check against the live RData file",
-    "text": "Cross-check against the live RData file\n\nCodeload(\"cxr_data.RData\")\n\ndict_readings_vars &lt;- study_variables$`Variable Name`[study_variables$`Dataset Name` == \"cxr_readings\"]\ndict_cases_vars &lt;- study_variables$`Variable Name`[study_variables$`Dataset Name` == \"cxr_cases\"]\ndict_combined_vars &lt;- study_variables$`Variable Name`[study_variables$`Dataset Name` == \"cxr_combined\"]\n\ncheck_match &lt;- function(dict_vars, data_vars, label) {\n  missing_from_dict &lt;- setdiff(data_vars, dict_vars)\n  missing_from_data &lt;- setdiff(dict_vars, data_vars)\n  if (length(missing_from_dict) &gt; 0) {\n    message(label, \": columns in data but not in dictionary: \", paste(missing_from_dict, collapse = \", \"))\n  }\n  if (length(missing_from_data) &gt; 0) {\n    message(label, \": columns in dictionary but not in data: \", paste(missing_from_data, collapse = \", \"))\n  }\n  if (length(missing_from_dict) == 0 && length(missing_from_data) == 0) {\n    message(label, \": dictionary and data columns match exactly (\", length(data_vars), \" variables).\")\n  }\n}\n\ncheck_match(dict_readings_vars, colnames(cxr_readings), \"cxr_readings\")\n\ncxr_readings: dictionary and data columns match exactly (9 variables).\n\nCodecheck_match(dict_cases_vars, colnames(cxr_cases), \"cxr_cases\")\n\ncxr_cases: dictionary and data columns match exactly (7 variables).\n\nCodecheck_match(dict_combined_vars, colnames(cxr_combined), \"cxr_combined\")\n\ncxr_combined: dictionary and data columns match exactly (12 variables)."
+    "objectID": "lab/lab-0.html#set-up-your-ssh-key",
+    "href": "lab/lab-0.html#set-up-your-ssh-key",
+    "title": "Lab 0",
+    "section": "3. Set up your SSH key",
+    "text": "3. Set up your SSH key\nYou will authenticate GitHub using SSH (Secure Shell Protocol – it doesn’t really matter what this means for the purpose of this course). Below is an outline of the authentication steps; you are encouraged to follow along as your TA demonstrates the steps.\n\n\n\n\n\n\nNote\n\n\n\nYou only need to do this authentication process one time on a single system.\n\n\n\nGo back to your RStudio container, copy this command into the console, and hit enter:\n\n\ncredentials::ssh_setup_github()\n\n\nR will ask “No SSH key found. Generate one now?” You should click 1 for yes.\nYou will generate a key. R will then ask “Would you like to open a browser now?” You should click 1 for yes.\nYou may be asked to provide your GitHub username and password to log into GitHub. After entering this information, you should paste the key in and give it a name. You might name it in a way that indicates where the key will be used, e.g., sta198).\n\nYou can find more detailed instructions here if you’re interested."
+  },
+  {
+    "objectID": "lab/lab-0.html#configure-git-to-introduce-yourself",
+    "href": "lab/lab-0.html#configure-git-to-introduce-yourself",
+    "title": "Lab 0",
+    "section": "4. Configure Git to introduce yourself",
+    "text": "4. Configure Git to introduce yourself\nNext, you need to configure your git so that RStudio can communicate with GitHub. This requires two pieces of information: your name and email address.\nTo do so, you will use the use_git_config() function from the usethis package.\n\n\n\n\n\n\nNote\n\n\n\nYou’ll hear about 📦 packages a lot in the context of R – basically they’re how developers write functions and bundle them to distribute to the community (and more on this later too!).\n\n\nType the following lines of code in the console in RStudio filling in your name and the address associated with your GitHub account.\n\nusethis::use_git_config(\n  user.name = \"Your name\", \n  user.email = \"Email associated with your GitHub account\"\n)\n\nFor example,\n\nusethis::use_git_config(\n  user.name = \"James Duke\", \n  user.email = \"jbduke@gmail.com\"\n)\n\nGmail appears because that is the one James used to create his GitHub account. You must use the exact same email address that you used to create your GitHub account.\n\n\n\n\n\n\nHow do I know if I did it right?\n\n\n\n\n\nWhen you input the usethis::use_git_config(...) command into the console and hit enter/return, it will appear as if nothing happened. To verify that everything worked, you can briefly switch over to the Terminal tab (should be to the right of Console) and type the commands git config user.name and git config user.email. If all is well, these will return whatever text you originally provided. If you notice a mistake or typo, you can just go back to the Console and rerun usethis::use_git_config(...) with modified inputs.\n\n\n\n\n\n\n\n\n\nNeed a recap? Watch this video!\n\n\n\n\n\nThe following video walks you through the steps outlined in the SSH key generation and Git configuration sections above."
+  },
+  {
+    "objectID": "lab/lab-0.html#a-first-repo",
+    "href": "lab/lab-0.html#a-first-repo",
+    "title": "Lab 0",
+    "section": "5. A first repo",
+    "text": "5. A first repo\nA GitHub repository (repo) is a collection of files hosted on GitHub. Repos are the main way we will distribute files to you during the semester. When you copy the files in a repo to your local computing environment (your container, in this case), that’s called “cloning”. So, let’s clone our first repo:\n\nGo to the repository for lab-0 in the course GitHub organization: https://github.com/Fall-2026-Global-Health-Data-Science/lab-0.\n\nClick on the green CODE button, select Use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.\n\n\n\n\n\nIn RStudio, go to File ➛ New Project ➛Version Control ➛ Git.\nCopy and paste the URL of your assignment repo into the dialog box Repository URL. Again, please make sure to have SSH highlighted under Clone when you copy the address.\n\nClick Create Project.\n\n\n\n\n\n\nSince this is the first time you are connecting to GitHub from this RStudio instance, you will be asked to confirm the authenticity of the host. This will happen in a pop-up window like the one below. Type yes in the box and hit Enter.\n\n\n\n\n\nRStudio will now clone the repo and create a new RStudio project for you. This might take a few seconds. Once done, the files from your GitHub repo will be displayed in the Files pane in RStudio.\n\nYou will need to get used to these steps, because you’ll probably clone at least one new repo every week."
+  },
+  {
+    "objectID": "lab/lab-0.html#hello-sta-198",
+    "href": "lab/lab-0.html#hello-sta-198",
+    "title": "Lab 0",
+    "section": "6. Hello STA 198!",
+    "text": "6. Hello STA 198!\nFill out the course “Getting to know you” survey on Canvas: https://canvas.duke.edu/courses/72135/quizzes/44911.\nWe will use the information collected in this survey for a variety of goals, from inviting you to the course GitHub organization (more on that later) to getting to know you as a person and your course goals and concerns."
+  },
+  {
+    "objectID": "lab/lab-0.html#footnotes",
+    "href": "lab/lab-0.html#footnotes",
+    "title": "Lab 0",
+    "section": "Footnotes",
+    "text": "Footnotes\n\nYes, it’s too many steps. I don’t know why! But it works, and you’ll get used to it. Trust me, it beats downloading and installing everything you need on your computers!↩︎\nGitHub has some perks for students you can take advantage of later in the course or in your future work, and it helps to have a .edu address to get verified as a student.↩︎"
+  },
+  {
+    "objectID": "exam-review.html",
+    "href": "exam-review.html",
+    "title": "Exam reviews",
+    "section": "",
+    "text": "Title\nSubtitle\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Exam reviews"
+    ]
+  },
+  {
+    "objectID": "computing-code-alongs.html",
+    "href": "computing-code-alongs.html",
+    "title": "Code alongs",
+    "section": "",
+    "text": "The following videos feature “code alongs” as an additional resource for getting coding practice.\nThe files you can use to follow along with the videos can be found at https://github.com/sta199/code-alongs.",
+    "crumbs": [
+      "Computing",
+      "Code alongs"
+    ]
+  },
+  {
+    "objectID": "computing-code-alongs.html#data-visualization-and-transformation",
+    "href": "computing-code-alongs.html#data-visualization-and-transformation",
+    "title": "Code alongs",
+    "section": "Data visualization and transformation",
+    "text": "Data visualization and transformation\n\nUN Votes\nFirst look at R amd RStudio.\n\n\n\nFirst look at Palmer Penguins\nFirst look at data science with the tidyverse.\n\n\n\nFlights and pipes\nData transformation\n\n\n\nStarwars characters\nData visualization\n\n\n\nDiving deeper with Palmer Penguins\nData visualization and transformation",
+    "crumbs": [
+      "Computing",
+      "Code alongs"
+    ]
+  },
+  {
+    "objectID": "course-support.html",
+    "href": "course-support.html",
+    "title": "Course support",
+    "section": "",
+    "text": "Most of you will need help at some point, and we want to make sure you can identify where that is so that you don’t get too frustrated and feel comfortable seeking help.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#lectures-and-labs",
+    "href": "course-support.html#lectures-and-labs",
+    "title": "Course support",
+    "section": "Lectures and labs",
+    "text": "Lectures and labs\nIf you have a question during the lecture or lab, feel free to ask it! There are likely other students with the same question, so asking will create a learning opportunity for everyone.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#help-from-humans",
+    "href": "course-support.html#help-from-humans",
+    "title": "Course support",
+    "section": "Help from humans",
+    "text": "Help from humans\n\nOffice hours\nThe teaching team is here to help you be successful in the course. You are encouraged to attend office hours during the times posted on the home page to ask questions about the course content and assignments. Many questions are most effectively answered in person, so office hours are a valuable resource. I encourage each and every one of you to take advantage of this resource! Make a pledge to stop by during office hours at least once during the first three weeks of class. If you have no questions, stop by and say hi and introduce yourself. You can find a list of everyone’s office hours here.\nDr. Mine Çetinkaya-Rundel’s office hours will start in Week 1, TA office hours will start in Week 2.\n\n\nEd Discussion\nHave a question that can’t wait for office hours? Prefer to write out your question in detail rather than asking in person? The course discussion forum, Ed Discussion, is the best venue for these! There is a chance another student has already asked a similar question, so please check the other posts on before asking a new question. If you know the answer to a question that is posted, I encourage you to respond!\nYou can access this tool on the course website toolbar – just click on the lifesaver icon.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#email",
+    "href": "course-support.html#email",
+    "title": "Course support",
+    "section": "Email",
+    "text": "Email\nPlease refrain from emailing any course content questions (those should go to Ed Discussion), and only use email for questions about personal matters that may not be appropriate for the public course forum (e.g., illness, accommodations, etc.). For such matters, you may email Dr. Mine Çetinkaya-Rundel at mc301@duke.edu.\nIf there is a question that’s not appropriate for the public forum, you are welcome to email me directly. If you email me, please include “STA 199” in the subject line. Barring extenuating circumstances, I will respond to STA 199 emails within 48 hours Monday - Friday. Response time may be slower for emails sent Friday evening - Sunday.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#academic-support",
+    "href": "course-support.html#academic-support",
+    "title": "Course support",
+    "section": "Academic support",
+    "text": "Academic support\nThere are times you may need help with the class that is beyond what can be provided by the teaching team. In those instances, I encourage you to visit the Academic Resource Center. The Academic Resource Center (ARC) offers free services to all students during their undergraduate careers at Duke. Services include Learning Consultations, Peer Tutoring and Study Groups, ADHD/LD Coaching, Outreach Workshops, and more. Because learning is a process unique to every individual, they work with each student to discover and develop their own academic strategy for success at Duke. Contact the ARC to schedule an appointment. Undergraduates in any year, studying any discipline can benefit! Contact theARC@duke.edu, 919-684-5917.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#mental-health-and-well-being",
+    "href": "course-support.html#mental-health-and-well-being",
+    "title": "Course support",
+    "section": "Mental health and well-being",
+    "text": "Mental health and well-being\nDuke is committed to holistic student wellbeing, which includes one’s mental, emotional, and physical health. The university offers resources to help students manage daily stress, to encourage intentional self-care, and to access just-in-time support. If you find you need support, your mental and/or emotional health concerns are impacting your day-to-day activities, your academic performance, or you need someone to talk to, the resources below are available to you:\n\nDukeReach: DukeReach provides comprehensive outreach services to support students in managing all aspects of well-being, including referrals and follow-up services for students who are experiencing significant challenges related to mental health, physical health, social adjustment, and/or a variety of other stressors. You can reach the DukeReach team at dukereach@duke.edu.\nCounseling and Psychological Services (CAPS): CAPS offers counseling services to Duke students including virtual appointments, and referrals in the community. You do not need an appointment for an initial assessment. You may walk in or call 919-660-1000 to get started. Hours: Monday-Friday 9:00am - 4:00pm. After hours counseling services are available at no additional cost to students, you can call: 919-660-1000 Option 2.\nTimelyCare1: TimelyCare is an online platform that is a convenient, confidential, and free way for Duke students to receive 24/7 mental health support through TalkNow and scheduled counseling.\nDuke Student Health: Student Health offers a wide range of healthcare services for all Duke students, many of which are covered by the student health fee. To make an appointment call (919) 681-9355. Hours: Monday - Friday, 8am - 4:30pm, Thursday 9am - 4:30pm. Closed from 12-12:30 each day.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#course-costs",
+    "href": "course-support.html#course-costs",
+    "title": "Course support",
+    "section": "Course costs",
+    "text": "Course costs\n\nTextbooks: The textbooks for this course are freely available on the web.\nLaptops: Each student is expected to have a laptop they can bring to each lecture and lab.\n\nIf you are having difficulty with the costs associated with this course, here are some resources:\n\nKarsh Office of Undergraduate Support: Regardless of your aid package, Karsh offers loans and resources for connecting students with campus programs that might help alleviate course costs.\nDukeLIFE: The Course Material Assistance program offers assistance for eligible students, including through the LIFE Loaner Laptop Program. Students who are eligible for DukeLIFE benefits are notified before the start of the semester; program resources are limited.\nDuke Libraries: The library’s Top Textbook Program allows you to rent some textbooks for 3 hours at a time.\nDuke Link: You can reserve rental equipment from the Link for course-specific technology needs, such as a Digital Voice Recorder, HD Video Camera, TI-84 Plus CE, DSLR camera kit, Tripod, Shotgun Mic, iPad Mini 4, Handheld Projector, or GoPro.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#assistance-with-zoom-or-canvas",
+    "href": "course-support.html#assistance-with-zoom-or-canvas",
+    "title": "Course support",
+    "section": "Assistance with Zoom or Canvas",
+    "text": "Assistance with Zoom or Canvas\nFor technical help with Canvas visit go.canvas.duke.edu/get-help/. For technical help with Zoom contact the Duke OIT Service Desk at oit.duke.edu/help. You can also access the self-service help documentation for Zoom and Canvas.\nNote that we will be using Canvas minimally in this course (primarily for announcements and the grade book). All assignment submissions will take place on Gradescope and GitHub, and conversations will take place on Ed Discussion.\nZoom will be used for online office hours and as a backup option should we need to hold the course online instead of in person.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "course-support.html#footnotes",
+    "href": "course-support.html#footnotes",
+    "title": "Course support",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nFormerly known as Blue Devils Care.↩︎",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "lab.html",
+    "href": "lab.html",
+    "title": "Labs",
+    "section": "",
+    "text": "No.\n\n\n\nTitle\n\n\n\nDue date\n\n\n\n\n\n\n\n\nLab 0\n\n\nHello R!\n\n\nDue: End of lab on Fri, August 28\n\n\n\n\n\n\nLab 1\n\n\nData Visualization\n\n\nDue: End of lab on Fri, September 4\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Labs"
+    ]
+  },
+  {
+    "objectID": "course-faq.html",
+    "href": "course-faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "Go to your Files tab, check the box next to the file you want to download, then click on the blue gear icon on the Files tab to reveal the drop down menu, and select Export… If you have selected multiple files to export, RStudio will zip them up into a single zip file for you. If you’ve selected just a single file, it will only download that. The downloaded file will go to wherever files you download off the internet goes on your computer (usually your Downloads folder).",
+    "crumbs": [
+      "Course information",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "course-faq.html#how-do-i-export-my-assignment-pdf-from-rstudio-to-upload-to-gradescope",
+    "href": "course-faq.html#how-do-i-export-my-assignment-pdf-from-rstudio-to-upload-to-gradescope",
+    "title": "FAQ",
+    "section": "",
+    "text": "Go to your Files tab, check the box next to the file you want to download, then click on the blue gear icon on the Files tab to reveal the drop down menu, and select Export… If you have selected multiple files to export, RStudio will zip them up into a single zip file for you. If you’ve selected just a single file, it will only download that. The downloaded file will go to wherever files you download off the internet goes on your computer (usually your Downloads folder).",
+    "crumbs": [
+      "Course information",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "course-faq.html#how-can-i-submit-my-assignment-to-gradescope",
+    "href": "course-faq.html#how-can-i-submit-my-assignment-to-gradescope",
+    "title": "FAQ",
+    "section": "How can I submit my assignment to Gradescope?",
+    "text": "How can I submit my assignment to Gradescope?\nThe instructions for submitting your assignment to Gradescope can be found here. In a nutshell, you’ll upload your PDF and them mark the page(s) where each question can be found. It’s OK if a question spans multiple pages, just mark them all. It’s also OK if a page includes multiple questions.",
+    "crumbs": [
+      "Course information",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "course-faq.html#can-i-use-a-local-install-of-r-and-rstudio-instead-of-using-the-rstudio-containers",
+    "href": "course-faq.html#can-i-use-a-local-install-of-r-and-rstudio-instead-of-using-the-rstudio-containers",
+    "title": "FAQ",
+    "section": "Can I use a local install of R and RStudio instead of using the RStudio containers?",
+    "text": "Can I use a local install of R and RStudio instead of using the RStudio containers?\nThe short answer is, I’d rather you didn’t, to save yourself some headache. But, the long answer is, sure! But you will need to install a specific versions of R and RStudio for everything to work as expected. You will also need to install the R packages we’re using as well as have Git installed on your computer. These are not extremely challenging things to get right, but they are not trivial either, particularly on certain operating systems. Myself and the TAs are always happy to provide help with any computational questions when you’re working in the containers we have provided for you. If you’re working on your local setup, we can’t guarantee being able to resolve your issues, though we’re happy to try.\nIf you want to take this path, here is what you need to do:\n\nDownload and install R 4.6.0: https://cran.r-project.org/\nDownload and install RStudio: https://posit.co/download/rstudio-desktop/\nInstall Quarto 1.9.37 or higher: https://quarto.org/docs/get-started/\nInstall Git: https://happygitwithr.com/install-git.html\nInstall any necessary packages with install.packages(\"___\")\n\nAnd I’d like to reiterate again that successful installation of these software is not a learning goal of this course. So if any of this seems tedious or intimidating in any way, just use the computing environment we have set up for you. More on that here.",
+    "crumbs": [
+      "Course information",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "lab/lab-1.html",
+    "href": "lab/lab-1.html",
+    "title": "Lab 1",
+    "section": "",
+    "text": "Go to the repository for lab-1 in the course GitHub organization: https://github.com/Fall-2026-Global-Health-Data-Science/lab-01.\nClick on the green CODE button, select Use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.\nIn RStudio, go to File ➛ New Project ➛Version Control ➛ Git.\nCopy and paste the URL of your assignment repo into the dialog box Repository URL. Again, please make sure to have SSH highlighted under Clone when you copy the address.\nClick Create Project.\nComplete the lab assignment and turn in using Canvas!"
+  },
+  {
+    "objectID": "lab/lab-1.html#download-the-repo-just-a-reminder-of-the-steps",
+    "href": "lab/lab-1.html#download-the-repo-just-a-reminder-of-the-steps",
+    "title": "Lab 1",
+    "section": "",
+    "text": "Go to the repository for lab-1 in the course GitHub organization: https://github.com/Fall-2026-Global-Health-Data-Science/lab-01.\nClick on the green CODE button, select Use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.\nIn RStudio, go to File ➛ New Project ➛Version Control ➛ Git.\nCopy and paste the URL of your assignment repo into the dialog box Repository URL. Again, please make sure to have SSH highlighted under Clone when you copy the address.\nClick Create Project.\nComplete the lab assignment and turn in using Canvas!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STA 198: Introduction to Global Health Data Science",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nPREPARE\nMATERIALS\nDUE\n\n\n\n1\nMon, Aug 24\nWelcome to STA 198!\n📝 Syllabus  📗 r4ds - intro  📗 r4ds - chp 1  📘 ims - chp 1  📘 ims - chp 2  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto  🎥 Code along :: First data viz with UN Votes  🎥 Visualizing data  🎥 Building a plot step-by-step with ggplot2  🎥 Grammar of graphics \n\n🖥️ slides 01  🖥️ slides 02  🗒️ notes 01  🗒️ notes 02 \n\n\n\n\n\nWed, Aug 26\nData Visualization\n📘 ims - chp 4  📘 ims - chp 5  📗 r4ds - chp 2  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships \n\n🖥️ slides 03  🖥️ slides 04  🗒️ notes 03  🗒️ notes 04\n\n\n\n\n\nFri, Aug 28\nLab 0: Getting Started!\n\n\nLab 0 due at the end of lab session (not graded)\n\n\n2\nMon, Aug 31\nProbability\n📙Seeing Theory - Chapter 1: Basic Probability\n\n🖥️ slides 05  🗒️ notes 05 \n\n\n\n\n\nWed, Sep 2\nConditional Probability\n📙Seeing Theory - Chapter 2: Compound Probability\n\n🖥️ slides 06  🗒️ notes 06 \n\n\n\n\n\nFri, Sep 4\nLab 1: Data Visualization\n\n\nLab 1 due at the end of the lab session\n\n\n3\nMon, Sep 7\nNo lecture - Labor Day\n\n\n\n\n\n\nWed, Sep 9\nDiscrete Distributions\nTo be posted\n🖥️ slides 07 \n\n\n\n\n\nFri, Sep 11\nLab 2: Discrete data and probabilities\nTo be posted\n\nLab 2 due at the end of the lab session\n\n\n4\nMon, Sep 14\nData Wrangling\nTo be posted\n\n\n\n\n\nWed, Sep 16\nTidying Data\nTo be posted\n\n\n\n\n\nFri, Sep 18\nLab 3: Data wrangling and tidying\nTo be posted\n\nLab 3 due at the end of the lab session\n\n\n5\nMon, Sep 21\nGaussian Distribution\nTo be posted\n\n\n\n\n\nWed, Sep 23\nCentral Limit Theorem; Confidence Intervals\nTo be posted\n\n\n\n\n\nFri, Sep 25\nLab 4\nTo be posted\n\nLab 4 due at the end of lab session\n\n\n6\nMon, Sep 28\nExam Review and Practice\nTo be posted\n\n\n\n\n\nWed, Sep 30\nExam 1\nTo be posted\n\n\n\n\n\nFri, Oct 2\nExam 1 Feedback\nTo be posted\n\n\n\n\n7\nMon, Oct 5\nTesting\nTo be posted\n\n\n\n\n\nWed, Oct 7\nTesting\nTo be posted\n\n\n\n\n\nFri, Oct 9\nLab 5: Testing\nTo be posted\n\nLab 5 due at the end of lab session\n\n\n\nFri, Oct 9\n\n\n\nMidterm course evaluation due at 11:59 pm (optional)\n\n\n8\nMon, Oct 12\nNo Lecture - Fall Break\nTo be posted\n\n\n\n\n\nWed, Oct 14\nANOVA\nTo be posted\n\n\n\n\n\nFri, Oct 16\nLab 6: ANOVA/Testing\nTo be posted\n\nLab 6 due at the end of lab session\n\n\n9\nMon, Oct 19\nNonparametric methods\nTo be posted\n\n\n\n\n\nMon, Oct 19\nIntroduction to Modelling\nTo be posted\n\n\n\n\n\nWed, Oct 21\nLab 7\nTo be posted\n\nLab 7 due at the end of lab session\n\n\n10\nMon, Oct 26\nLinear regression with a single predictor\nTo be posted\n\n\n\n\n\nWed, Oct 28\nLinear regression with multiple predictors\nTo be posted\n\n\n\n\n\nFri, Oct 30\nLab 8: Regression\nTo be posted\n\nLab 8 due at the end of lab session\n\n\n11\nMon, Nov 2\nExam Review\nTo be posted\n\n\n\n\n\nWed, Nov 4\nExam 2\nTo be posted\n\n\n\n\n\nFri, Nov 6\nExam 2 Feedback\nTo be posted\n\n\n\n\n12\nMon, Nov 9\nContingency tables\nTo be posted\n\n\n\n\n\nWed, Nov 11\nLogistic regression; causality\nTo be posted\n\n\n\n\n\nFri, Nov 13\nLab 9: Logistic Regression\nTo be posted\n\nLab 9 due at the end of lab session\n\n\n13\nMon, Nov 16\nCase Study\nTo be posted\n\n\n\n\n\nWed, Nov 18\nSurvival Analysis\nTo be posted\n\n\n\n\n\nFri, Nov 20\nLab 10\nTo be posted\n\nLab 10 due at the end of lab session\n\n\n14\nMon, Nov 23\nCase Study\nTo be posted\n\n\n\n\n\nWed, Nov 25\nNo lecture - Thanksgiving\nTo be posted\n\n\n\n\n\nFri, Nov 27\nNo lab - Thanksgiving\nTo be posted\n\n\n\n\n15\nMon, Nov 30\nExam Review\nTo be posted\n\n\n\n\n\nWed, Dec 2\nExam 3\nTo be posted\n\n\n\n\n\nFri, Dec 4\nExam 3 Feedback\nTo be posted\n\n\n\n\n\nNA\nFinal review (time TBD, location TBD)",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "hw.html",
+    "href": "hw.html",
+    "title": "Homeworks",
+    "section": "",
+    "text": "No.\nTitle\nDue date\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Homeworks"
+    ]
+  },
+  {
+    "objectID": "course-team.html",
+    "href": "course-team.html",
+    "title": "Teaching team",
+    "section": "",
+    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education, as well as pedagogical approaches for enhancing the retention of women and underrepresented minorities in STEM.\n\n\n\n\n\n\n\nOffice hours\nLocation\n\n\n\n\nTBD\nBio Sci 111\n\n\nTBD\nOld Chem 211C",
+    "crumbs": [
+      "Course information",
+      "Team"
+    ]
+  },
+  {
+    "objectID": "course-team.html#instructor",
+    "href": "course-team.html#instructor",
+    "title": "Teaching team",
+    "section": "",
+    "text": "Dr. Mine Çetinkaya-Rundel (she/her) is Professor of the Practice and Director of Undergraduate Studies at the Department of Statistical Science at Duke University. Mine’s work focuses on innovation in statistics and data science pedagogy, with an emphasis on computing, reproducible research, student-centered learning, and open-source education, as well as pedagogical approaches for enhancing the retention of women and underrepresented minorities in STEM.\n\n\n\n\n\n\n\nOffice hours\nLocation\n\n\n\n\nTBD\nBio Sci 111\n\n\nTBD\nOld Chem 211C",
+    "crumbs": [
+      "Course information",
+      "Team"
+    ]
+  },
+  {
+    "objectID": "course-team.html#teaching-assistants",
+    "href": "course-team.html#teaching-assistants",
+    "title": "Teaching team",
+    "section": "Teaching assistants",
+    "text": "Teaching assistants\nEach TA holds office hours. Some TAs are also leaders or helpers for lab sections. Some TAs help out in lecture.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Name\n      \n      \n        Role(s)\n      \n      \n        Section(s)\n      \n      \n        Office hours\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\nName\nRole(s)\nSection(s)\nOffice hours\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Course information",
+      "Team"
+    ]
+  },
+  {
+    "objectID": "course-team.html#course-coordinator",
+    "href": "course-team.html#course-coordinator",
+    "title": "Teaching team",
+    "section": "Course coordinator",
+    "text": "Course coordinator\n\nDr. Mary Knox (she/her) is the course coordinator for this course. You can contact her (at mary.knox@duke.edu) with any questions regarding registration, accommodations, missed work, extensions, etc.",
+    "crumbs": [
+      "Course information",
+      "Team"
+    ]
+  },
+  {
+    "objectID": "course-links.html",
+    "href": "course-links.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "Course GitHub organization\n🔗 on GitHub\n\n\n\nRStudio containers\n🔗 on Duke Container Manager\n\n\n\nOffice hours\n🔗 on Google Sheets\n\n\n\nEd Discussion\n🔗 on Canvas | |\n\n\n\nGradescope\n🔗 on Canvas | |\n\n\n\nGradebook\n🔗 on Canvas | |\n\n\n\nTexbooks\n🔗 R for Data Science\n🔗 Introduction to Modern Statistics\n\n\n\nPackage documentation\n🔗 ggplot2: ggplot2.tidyverse.org\n🔗 dplyr: dplyr.tidyverse.org\n🔗 tidyr: tidyr.tidyverse.org\n🔗 forcats: forcats.tidyverse.org\n🔗 stringr: stringr.tidyverse.org\n🔗 lubridate: lubridate.tidyverse.org\n🔗 readr: readr.tidyverse.org\n🔗 readxl: readxl.tidyverse.org",
+    "crumbs": [
+      "Course information",
+      "Useful links"
+    ]
+  },
+  {
+    "objectID": "computing-troubleshooting.html",
+    "href": "computing-troubleshooting.html",
+    "title": "Computing troubleshooting",
+    "section": "",
+    "text": "If you’re having difficulty launching an RStudio session from your reserved container, go to status.oit.duke.edu and scroll down to Teaching and Learning Tools. Under this heading you’ll find an entry called Container Manager (CMGR Coursework Containers).\n\nIf the status shows something other than Operational, this means there is a known incident with the containers. Check back later to see if it’s been resolved. If there’s a deadline coming up soon, post on the Ed Discussions to let us know that there’s an issue. We can look into how quickly it might get resolved and decide on what to do about the deadline accordingly. Note: We don’t anticipate this to happen regularly, the systems are Operational a huge majority of the time!\nIf the status shows Operational, this means the system is expected to be working. If you’re still having trouble, follow the steps in the order given below:\n\nRestart your browser.\nMake sure there are no updates pending for your browser. If there are, install those updates and restart your browser again.\nRequest a restart of your container – To do so, select your container as you usually do and then, instead of Login, click on Request Restart. Read the warning in the next page, and then click once more where it says “click here” to restart your container.\nClear your browser cache and restart your browser again.\nRestart your computer to ensure a fresh new connection.\nIf your issue persists, post on the course forum with details on what you’ve tried and the errors you see (including verbatim errors and/or screenshots).",
+    "crumbs": [
+      "Computing",
+      "Troubleshooting"
+    ]
   },
   {
     "objectID": "slides/w02-01-prob.html",
