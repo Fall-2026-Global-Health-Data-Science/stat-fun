@@ -2,146 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/setup.html</loc>
-    <lastmod>2026-07-31T16:27:11.871Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.717Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w01-04-vizcat-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w01-04-vizcat.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w01-02-ggplot-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.890Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.737Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w01-02-ggplot.html</loc>
-    <lastmod>2026-07-31T16:27:11.890Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w01-01-welcome-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.871Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w01-01-welcome.html</loc>
-    <lastmod>2026-07-31T16:27:11.871Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w03-l01-discretedist-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w03-l01-discretedist.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html</loc>
-    <lastmod>2026-07-31T16:27:11.816Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/computing-access.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/course-overview.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/course-syllabus.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/computing-cheatsheets.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/lab/lab-0.html</loc>
-    <lastmod>2026-07-31T16:27:11.849Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/exam-review.html</loc>
-    <lastmod>2026-07-31T16:27:11.822Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/computing-code-alongs.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/course-support.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/lab.html</loc>
-    <lastmod>2026-07-31T16:27:11.846Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/course-faq.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/lab/lab-1.html</loc>
-    <lastmod>2026-07-31T16:27:11.849Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/index.html</loc>
-    <lastmod>2026-07-31T16:27:11.846Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/hw.html</loc>
-    <lastmod>2026-07-31T16:27:11.822Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/course-team.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/course-links.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/computing-troubleshooting.html</loc>
-    <lastmod>2026-07-31T16:27:11.812Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w04-l01-wrangling.html</loc>
-    <lastmod>2026-07-31T16:27:11.968Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w04-l01-wrangling-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.968Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w02-01-prob.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w02-01-prob-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sta198-fa26-2.github.io/slides/w01-03-viznum.html</loc>
-    <lastmod>2026-07-31T16:27:11.939Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.737Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w01-03-viznum-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.939Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.791Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w01-03-viznum.html</loc>
+    <lastmod>2026-07-31T16:29:47.791Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w01-01-welcome-slides.html</loc>
+    <lastmod>2026-07-31T16:29:47.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w01-01-welcome.html</loc>
+    <lastmod>2026-07-31T16:29:47.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/data/cxr_simplified_dataset_data_dictionary_shared_Jul21.html</loc>
+    <lastmod>2026-07-31T16:29:47.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/computing-access.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/course-overview.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/course-syllabus.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/computing-cheatsheets.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/lab/lab-0.html</loc>
+    <lastmod>2026-07-31T16:29:47.693Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/exam-review.html</loc>
+    <lastmod>2026-07-31T16:29:47.663Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/computing-code-alongs.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/course-support.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/lab.html</loc>
+    <lastmod>2026-07-31T16:29:47.690Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/course-faq.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/lab/lab-1.html</loc>
+    <lastmod>2026-07-31T16:29:47.693Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/index.html</loc>
+    <lastmod>2026-07-31T16:29:47.690Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/hw.html</loc>
+    <lastmod>2026-07-31T16:29:47.663Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/course-team.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/course-links.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/computing-troubleshooting.html</loc>
+    <lastmod>2026-07-31T16:29:47.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w02-01-prob.html</loc>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w02-01-prob-slides.html</loc>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w03-01-discretedist.html</loc>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w03-01-discretedist-slides.html</loc>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w04-01-wrangling.html</loc>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta198-fa26-2.github.io/slides/w04-01-wrangling-slides.html</loc>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w02-02-condprob.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w02-02-condprob-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w02-03-probaction.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
   </url>
   <url>
     <loc>https://sta198-fa26-2.github.io/slides/w02-03-probaction-slides.html</loc>
-    <lastmod>2026-07-31T16:27:11.963Z</lastmod>
+    <lastmod>2026-07-31T16:29:47.818Z</lastmod>
   </url>
 </urlset>
