@@ -5,9 +5,9 @@ website:
   page-navigation: true
   title: "STA 198"
   description: "Homepage for STA 198 - Introduction to Global Health Data Science at Duke University, Fall 2026."
-  site-url: "https://fall-2026-global-health-data-science.github.io"
+  site-url: "https://sta198-fa26-2.github.io/"
 
-  repo-url: https://github.com/sta199-f26/sta199-f26.github.io/
+  repo-url: https://github.com/sta198-fa26-2/sta198-fa26-2.github.io
   repo-actions: [edit, issue]
 
   open-graph: true
