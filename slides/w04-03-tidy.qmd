@@ -1,0 +1,97 @@
+---
+title: "Tidying Data"
+subtitle: "Introduction to Global Health Data Science"
+date: "2026-09-16"
+format:
+  revealjs:
+    output-file: w04-03-tidy-slides.html
+    footer: "[🔗 sta198-fa26-2.github.io](https://sta198-fa26-2.github.io/)"
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    pdf-separate-fragments: true
+    toc: false
+  html:
+    code-link: true
+filters: 
+  - ../remove-fmt-skip.lua
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, child="setup.Rmd", echo=FALSE}
+```
+
+
+```{r}
+#| label: packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(knitr)
+options(
+  dplyr.print_min = 10, 
+  dplyr.print_max = 10
+  )
+
+```
+
+
+## [We...]{.hand}
+
+[[have]{style="color: green;"}]{style="font-size: 2em;"} [data organised in a suboptimal manner for our analysis]{.hand}
+
+[[want]{style="color: deeppink;"}]{style="font-size: 2em;"} [to reorganize the data to carry on with our analysis]{.hand}
+
+This slide deck adapted from Data Science in a Box!
+
+
+TODO: FIND GOOD DATA FOR
+
+- wide to long format (chest x-ray data?)
+- line plot (ebola cases?)
+
+
+
+
+## Medical Records
+
+old stuff
+
+<div style="font-size:0.8em;">
+
+- Have:
+  - Enrolled: officially enrolled in Duke MyChart
+  - Survey: completed by those seen in hospital clinics over past year
+- Want: Survey info for all officially enrolled in Duke MyChart
+
+
+---
+
+```{r load-data}
+#| include: false
+enrollment <- read_csv("../data/enrolled.csv")
+survey <- read_csv("../data/survey.csv")
+```
+
+::: {.columns}
+
+::: {.column width="35%"}
+```{r show-enrollment}
+#| message: false
+enrollment
+```
+:::
+
+::: {.column width="65%"}
+```{r show-survey}
+#| message: false
+survey
+```
+:::
+
+:::
+
+</div>
