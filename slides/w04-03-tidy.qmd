@@ -48,50 +48,499 @@ options(
 This slide deck adapted from Data Science in a Box!
 
 
-TODO: FIND GOOD DATA FOR
+TODO: FIND GOOD DATA 
 
 - wide to long format (chest x-ray data?)
 - line plot (ebola cases?)
 
 
 
+# Data tidying
 
-## Medical Records
+## Tidy data
 
-old stuff
+> "Tidy datasets are easy to manipulate, model and visualise, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table."
+>
+> Tidy Data, <https://vita.had.co.nz/papers/tidy-data.pdf>
 
-<div style="font-size:0.8em;">
+. . .
 
-- Have:
-  - Enrolled: officially enrolled in Duke MyChart
-  - Survey: completed by those seen in hospital clinics over past year
-- Want: Survey info for all officially enrolled in Duke MyChart
+**Note:** "easy to manipulate" = "straightforward to manipulate"
 
+## Goal
 
----
+Visualize StatSci majors over the years!
 
-```{r load-data}
-#| include: false
-enrollment <- read_csv("../data/enrolled.csv")
-survey <- read_csv("../data/survey.csv")
+```{r readdata}
+#| echo: false
+degrees <- read_csv("../data/statsci_clean.csv")
+
+degrees_long <- degrees %>%
+  pivot_longer(
+    cols = -degree_type,
+    names_to = "year",
+    values_to = "count"
+  ) %>%
+  mutate(year = as.integer(year))
+
 ```
 
-::: {.columns}
+```{r plot}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 5
 
-::: {.column width="35%"}
-```{r show-enrollment}
-#| message: false
-enrollment
+muted_colors <- c(
+  "AB"  = "#4C72A8",  # muted blue
+  "AB2" = "#DD8452",  # muted orange
+  "BS"  = "#8C4F6E",  # muted magenta/wine
+  "BS2" = "#55A868"   # muted green
+)
+
+line_types <- c(
+  "AB"  = "11", # fine dash: 1pt on, 1pt off
+  "AB2" = "11",
+  "BS"  = "solid",
+  "BS2" = "solid"
+)
+
+ggplot(degrees_long, aes(x = year, y = count, color = degree_type, linetype = degree_type)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 1.8) +
+  scale_color_manual(values = muted_colors) +
+  scale_linetype_manual(values = line_types) +
+  scale_x_continuous(breaks = unique(degrees_long$year)) +
+  labs(
+    title = "Statistical Science Degrees Awarded by Type and Year",
+    x = "Year",
+    y = "Number of Degrees",
+    color = "Degree Type",
+    linetype = "Degree Type"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    legend.position = "right"
+  )
 ```
-:::
 
-::: {.column width="65%"}
-```{r show-survey}
-#| message: false
-survey
+
+## Data {.smaller}
+
+
+
+```{r}
+#| label: degrees-display
+
+degrees
 ```
-:::
 
-:::
 
+::: incremental
+-   The first column (variable) is the `degree`:
+
+    ::: small
+    -   AB (Bachelor of Arts)
+    -   AB2 (Bachelor of Arts, 2nd major)
+    -   BS (Bachelor of Science)
+    -   BS2 (Bachelor of Science, 2nd major)
+    :::
+
+-   The remaining columns show the number of students graduating with that major in a given academic year from 2011 to 2026.
+
+<div style="font-size:0.5em;">
+If you double major, your first major determines the degree you will earn. For example, if you double major in English and Statistical Science, you will graduate with a BA degree, because your first major (English) offers the BA degree. If, on the other hand, you were to make Statistical Science the first major, you would have the option to complete either the BA or the BS degree, since Statistical Science offers a BS as well as a BA track. 
 </div>
+
+:::
+
+## Let's plan! {.smaller}
+
+Review the goal plot and sketch the data frame needed to create it. What would go inside `aes` when we call `ggplot`?
+
+```{r plot2}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 5
+
+muted_colors <- c(
+  "AB"  = "#4C72A8",  # muted blue
+  "AB2" = "#DD8452",  # muted orange
+  "BS"  = "#8C4F6E",  # muted magenta/wine
+  "BS2" = "#55A868"   # muted green
+)
+
+line_types <- c(
+  "AB"  = "11", # fine dash: 1pt on, 1pt off
+  "AB2" = "11",
+  "BS"  = "solid",
+  "BS2" = "solid"
+)
+
+ggplot(degrees_long, aes(x = year, y = count, color = degree_type, linetype = degree_type)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 1.8) +
+  scale_color_manual(values = muted_colors) +
+  scale_linetype_manual(values = line_types) +
+  scale_x_continuous(breaks = unique(degrees_long$year)) +
+  labs(
+    title = "Statistical Science Degrees Awarded by Type and Year",
+    x = "Year",
+    y = "Number of Degrees",
+    color = "Degree Type",
+    linetype = "Degree Type"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    legend.position = "right"
+  )
+```
+
+
+## The Goal {.smaller .nostretch}
+
+We want to write code that starts something like this:
+
+```{r}
+#| eval: false
+
+ggplot(degrees, aes(x = year, y = count, color = degree_type)) + 
+  ...
+
+```
+
+. . .
+
+<br>
+
+But our data are not in the right format :(
+
+```{r}
+degrees
+```
+
+## The Challenge {.smaller .nostretch}
+
+::: columns
+::: {.column width="70%"}
+***How do we go from this ....***
+
+```{r}
+#| echo: false
+cat("# A tibble: 4 x 16")
+degrees |> 
+  select(1:10) |> 
+  as.data.frame()
+```
+:::
+
+::: {.column .fragment width="30%"}
+***.... to this??***
+
+```{r}
+#| echo: false
+cat("# A tibble: 60 x 3")
+print(degrees |>
+        pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year",
+    names_transform = as.numeric) |>
+      slice_head(n = 17) |>
+        as.data.frame())
+```
+:::
+:::
+
+# Pivot
+
+## `pivot_longer()` {.smaller .scrollable}
+
+::: columns
+::: {.column width="65%"}
+```{r}
+#| echo: false
+cat("# A tibble: 4 x 16")
+degrees |> 
+  select(1:10) |> 
+  as.data.frame()
+```
+
+::: {.task .fragment}
+Pivot the `degrees` data frame *longer* such that each row represents a degree type / year combination.
+
+`year` and `count` (number of graduates for that year) are columns in the resulting data frame.
+:::
+:::
+
+::: {.column width="5%"}
+⟶
+:::
+
+::: {.column width="30%"}
+```{r}
+#| echo: false
+cat("# A tibble: 60 x 3")
+print(degrees |>
+        pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year",
+    names_transform = as.numeric) |>
+      slice_head(n = 17) |>
+        as.data.frame())
+```
+:::
+:::
+
+## `pivot_longer()` {.smaller .scrollable}
+
+::: columns
+::: {.column width="65%"}
+```{r}
+#| echo: false
+cat("# A tibble: 4 x 16")
+degrees |> 
+  select(1:10) |> 
+  as.data.frame()
+```
+
+::: {.task .fragment}
+```{r}
+#| eval: false
+
+degrees |>
+  pivot_longer(
+    
+    cols = ___________________ ,
+    
+    names_to = _______________ ,
+    
+    values_to = ______________
+  )
+```
+:::
+:::
+
+::: {.column width="5%"}
+⟶
+:::
+
+::: {.column width="30%"}
+```{r}
+#| echo: false
+cat("# A tibble: 60 x 3")
+print(degrees |>
+        pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year",
+    names_transform = as.numeric) |>
+      slice_head(n = 17) |>
+        as.data.frame())
+```
+:::
+:::
+
+## `year` {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r}
+degrees |> 
+  pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year"
+  )
+```
+:::
+
+::: {.column width="50%"}
+::: question
+What is the type of the `year` variable? Why? What should it be?
+:::
+
+::: fragment
+::: incremental
+-   It's a character (`chr`) variable since the information came from the columns of the original data frame.
+
+-   R cannot know that these character strings represent years.
+
+-   The variable type should be numeric.
+:::
+:::
+:::
+:::
+
+## `pivot_longer()` again {.smaller .scrollable}
+
+::: question
+This time, also make sure `year` is a numerical variable in the resulting data frame.
+:::
+
+::: columns
+::: {.column width = "50%"}
+
+```{r}
+#| eval: false
+degrees |>
+  pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year"
+  )
+```
+:::
+
+::: {.column width = "50%" }
+
+:::
+
+:::
+
+## `pivot_longer()` again {.smaller .scrollable}
+
+::: question
+This time, also make sure `year` is a numerical variable in the resulting data frame.
+:::
+
+::: columns
+::: {.column width = "50%"}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|6"
+degrees |>
+  pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year",
+    names_transform = as.numeric
+  )
+```
+:::
+
+::: {.column width = "50%" .fragment}
+
+```{r}
+#| echo: false
+degrees |>
+  pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year",
+    names_transform = as.numeric
+  )
+```
+
+:::
+
+:::
+
+
+
+# Pivot Wider
+
+## We pivotted longer... what about wider? {.smaller}
+
+::: columns
+::: {.column width="65%"}
+```{r}
+#| echo: false
+cat("# A tibble: 4 x 16")
+degrees |> 
+  select(1:10) |> 
+  as.data.frame()
+```
+
+::: {.task .fragment}
+Can we go the other direction?
+:::
+:::
+
+::: {.column width="5%"}
+⟵
+:::
+
+::: {.column width="30%"}
+```{r}
+#| echo: false
+cat("# A tibble: 60 x 3")
+print(degrees |>
+        pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year",
+    names_transform = as.numeric) |>
+      slice_head(n = 17) |>
+        as.data.frame())
+```
+:::
+:::
+
+## We pivotted longer... what about wider? {.smaller}
+
+::: columns
+::: {.column width="65%"}
+```{r}
+#| echo: false
+cat("# A tibble: 4 x 16")
+degrees |> 
+  select(1:10) |> 
+  as.data.frame()
+```
+
+::: task
+```{r}
+#| eval: false
+degrees_longer |> 
+  pivot_wider(
+    names_from = ____________ ,
+    
+    values_from = ___________ , 
+  )
+```
+:::
+:::
+
+::: {.column width="5%"}
+⟵
+:::
+
+::: {.column width="30%"}
+```{r}
+#| echo: false
+cat("# A tibble: 60 x 3")
+print(degrees |>
+        pivot_longer(
+    cols = -degree_type,
+    values_to = "count",
+    names_to = "year",
+    names_transform = as.numeric) |>
+      slice_head(n = 17) |>
+        as.data.frame())
+```
+:::
+:::
+
+##  {.smaller}
+
+![](../img/tidyr-pivoting.gif){fig-align="center"}
+
+## Recap: Pivot {.smaller}
+
+::: incremental
+-   ***When should you pivot?*** If all of the data you need is in your data frame, but the columns you need don't exist, there is a good chance it's time to pivot!
+-   ***Wide and long:*** Data sets can't be labeled as *wide* or *long* but they can be made *wider* or *longer* for a certain analysis that requires a certain format
+-   ***Pivot longer - data type:*** When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the `pivot_longer()` function.
+:::
+
+
+
+
+
+
