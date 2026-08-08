@@ -221,54 +221,467 @@ Amy Herring
 <p><span style="font-size: 2em;"><span style="color: green;">have</span></span> <span class="hand">data organised in a suboptimal manner for our analysis</span></p>
 <p><span style="font-size: 2em;"><span style="color: deeppink;">want</span></span> <span class="hand">to reorganize the data to carry on with our analysis</span></p>
 <p>This slide deck adapted from Data Science in a Box!</p>
-<p>TODO: FIND GOOD DATA FOR</p>
+<p>TODO: FIND GOOD DATA</p>
 <ul>
 <li>wide to long format (chest x-ray data?)</li>
 <li>line plot (ebola cases?)</li>
-</ul></section><section id="medical-records" class="slide level2"><h2>Medical Records</h2>
-<p>old stuff</p>
-<div style="font-size:0.8em;">
+</ul></section><section><section id="data-tidying" class="title-slide slide level1 center"><h1>Data tidying</h1>
+
+</section><section id="tidy-data" class="slide level2"><h2>Tidy data</h2>
+<blockquote>
+<p>“Tidy datasets are easy to manipulate, model and visualise, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table.”</p>
+<p>Tidy Data, <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a></p>
+</blockquote>
+<div class="fragment">
+<p><strong>Note:</strong> “easy to manipulate” = “straightforward to manipulate”</p>
+</div>
+</section><section id="goal-visualize-statsci-majors-over-the-years" class="slide level2"><h2>Goal: Visualize StatSci Majors Over the Years!</h2>
+
+<img data-src="w04-03-tidy_files/figure-revealjs/plot-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><div style="font-size:0.5em;">
+<p>Any ideas about the big bump in 2023?</p>
+</div>
+</section><section id="data" class="slide level2 smaller"><h2>Data</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>degrees</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  degree_type `2011` `2012` `2013` `2014` `2015` `2016` `2017`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 AB               2      2      4      1      3      6      3
+2 AB2              0      1      0      0      4      4      1
+3 BS               5      9      4     13     10     17     24
+4 BS2              2      6      1      0      5      6      6
+# ℹ 9 more variables: `2018` &lt;dbl&gt;, `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;,
+#   `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;, `2023` &lt;dbl&gt;, `2024` &lt;dbl&gt;,
+#   `2025` &lt;dbl&gt;, `2026` &lt;dbl&gt;</code></pre>
+</div>
+</div>
 <ul>
-<li>Have:
+<li class="fragment">
+<p>The first column (variable) is the <code>degree</code>:</p>
+<div class="small">
 <ul>
-<li>Enrolled: officially enrolled in Duke MyChart</li>
-<li>Survey: completed by those seen in hospital clinics over past year</li>
+<li class="fragment">AB (Bachelor of Arts)</li>
+<li class="fragment">AB2 (Bachelor of Arts, 2nd major)</li>
+<li class="fragment">BS (Bachelor of Science)</li>
+<li class="fragment">BS2 (Bachelor of Science, 2nd major)</li>
 </ul>
+</div>
 </li>
-<li>Want: Survey info for all officially enrolled in Duke MyChart</li>
+<li class="fragment"><p>The remaining columns show the number of students graduating with that major in a given academic year from 2011 to 2026.</p></li>
 </ul>
-<hr>
+<div style="font-size:0.5em;">
+<p>If you double major, your first major determines the degree you will earn. For example, if you double major in English and Statistical Science, you will graduate with a BA degree, because your first major (English) offers the BA degree. If, on the other hand, you were to make Statistical Science the first major, you would have the option to complete either the BA or the BS degree, since Statistical Science offers a BS as well as a BA track.</p>
+</div>
+</section><section id="lets-plan" class="slide level2 smaller"><h2>Let’s plan!</h2>
+<p>Review the goal plot and sketch the data frame needed to create it. What would go inside <code>aes</code> when we call <code>ggplot</code>?</p>
+
+<img data-src="w04-03-tidy_files/figure-revealjs/plot2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section><section id="the-goal" class="slide level2 smaller nostretch"><h2>The Goal</h2>
+<p>We want to write code that starts something like this:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(degrees, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> degree_type, <span class="at">linetype =</span> degree_type)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<p>But our data are not in the right format :(</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>degrees</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  degree_type `2011` `2012` `2013` `2014` `2015` `2016` `2017`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 AB               2      2      4      1      3      6      3
+2 AB2              0      1      0      0      4      4      1
+3 BS               5      9      4     13     10     17     24
+4 BS2              2      6      1      0      5      6      6
+# ℹ 9 more variables: `2018` &lt;dbl&gt;, `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;,
+#   `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;, `2023` &lt;dbl&gt;, `2024` &lt;dbl&gt;,
+#   `2025` &lt;dbl&gt;, `2026` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>We don’t even have the variables <code>count</code> or <code>year</code>.</p>
+</div>
+</section><section id="the-challenge" class="slide level2 smaller nostretch"><h2>The Challenge</h2>
 <div class="columns">
-<div class="column" style="width:35%;">
+<div class="column" style="width:70%;">
+<p><strong><em>How do we go from this ….</em></strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>enrollment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-     id name          
-  &lt;dbl&gt; &lt;chr&gt;         
-1     1 Erling Haaland
-2     2 Lamine Yamal  
-3     3 Aitana Bonmati</code></pre>
+<pre><code># A tibble: 4 x 16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  degree_type 2011 2012 2013 2014 2015 2016 2017 2018 2019
+1          AB    2    2    4    1    3    6    3    4    4
+2         AB2    0    1    0    0    4    4    1    0    0
+3          BS    5    9    4   13   10   17   24   21   26
+4         BS2    2    6    1    0    5    6    6    8    8</code></pre>
 </div>
 </div>
-</div><div class="column" style="width:65%;">
+</div><div class="column fragment" style="width:30%;">
+<p><strong><em>…. to this??</em></strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>survey</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-     id name             clinic                      
-  &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       
-1     2 Lamine Yamal     Nutrition                   
-2     3 Aitana Bonmati   Orthopedics                 
-3     4 Gianni Infantino Cognitive Behavioral Therapy
-4     5 Lionel Messi     Endocrinology               </code></pre>
+<pre><code># A tibble: 60 x 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   degree_type year count
+1           AB 2011     2
+2           AB 2012     2
+3           AB 2013     4
+4           AB 2014     1
+5           AB 2015     3
+6           AB 2016     6
+7           AB 2017     3
+8           AB 2018     4
+9           AB 2019     4
+10          AB 2020     1
+11          AB 2021     0
+12          AB 2022     0
+13          AB 2023     2
+14          AB 2024     1
+15          AB 2025     0
+16          AB 2026     2
+17         AB2 2011     0</code></pre>
 </div>
 </div>
 </div></div>
+</section></section><section><section id="pivot" class="title-slide slide level1 center"><h1>Pivot</h1>
+
+</section><section id="pivot_longer" class="slide level2 smaller scrollable"><h2><code>pivot_longer()</code></h2>
+<div class="columns">
+<div class="column" style="width:65%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 16</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  degree_type 2011 2012 2013 2014 2015 2016 2017 2018 2019
+1          AB    2    2    4    1    3    6    3    4    4
+2         AB2    0    1    0    0    4    4    1    0    0
+3          BS    5    9    4   13   10   17   24   21   26
+4         BS2    2    6    1    0    5    6    6    8    8</code></pre>
+</div>
+</div>
+<div class="task fragment">
+<p>Pivot the <code>degrees</code> data frame <em>longer</em> such that each row represents a degree type / year combination.</p>
+<p><code>year</code> and <code>count</code> (number of graduates for that year) are columns in the resulting data frame.</p>
+</div>
+</div><div class="column" style="width:5%;">
+<p>➔</p>
+</div><div class="column" style="width:30%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 x 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   degree_type year count
+1           AB 2011     2
+2           AB 2012     2
+3           AB 2013     4
+4           AB 2014     1
+5           AB 2015     3
+6           AB 2016     6
+7           AB 2017     3
+8           AB 2018     4
+9           AB 2019     4
+10          AB 2020     1
+11          AB 2021     0
+12          AB 2022     0
+13          AB 2023     2
+14          AB 2024     1
+15          AB 2025     0
+16          AB 2026     2
+17         AB2 2011     0</code></pre>
+</div>
+</div>
+</div></div>
+</section><section id="pivot_longer-1" class="slide level2 smaller scrollable"><h2><code>pivot_longer()</code></h2>
+<div class="columns">
+<div class="column" style="width:65%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  degree_type 2011 2012 2013 2014 2015 2016 2017 2018 2019
+1          AB    2    2    4    1    3    6    3    4    4
+2         AB2    0    1    0    0    4    4    1    0    0
+3          BS    5    9    4   13   10   17   24   21   26
+4         BS2    2    6    1    0    5    6    6    8    8</code></pre>
+</div>
+</div>
+<div class="task fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>degrees <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb16-3"><a></a>    </span>
+<span id="cb16-4"><a></a>    <span class="at">cols =</span> ___________________ ,</span>
+<span id="cb16-5"><a></a>    </span>
+<span id="cb16-6"><a></a>    <span class="at">names_to =</span> _______________ ,</span>
+<span id="cb16-7"><a></a>    </span>
+<span id="cb16-8"><a></a>    <span class="at">values_to =</span> ______________</span>
+<span id="cb16-9"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+<p>➔</p>
+</div><div class="column" style="width:30%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 x 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   degree_type year count
+1           AB 2011     2
+2           AB 2012     2
+3           AB 2013     4
+4           AB 2014     1
+5           AB 2015     3
+6           AB 2016     6
+7           AB 2017     3
+8           AB 2018     4
+9           AB 2019     4
+10          AB 2020     1
+11          AB 2021     0
+12          AB 2022     0
+13          AB 2023     2
+14          AB 2024     1
+15          AB 2025     0
+16          AB 2026     2
+17         AB2 2011     0</code></pre>
+</div>
+</div>
+</div></div>
+</section><section id="year" class="slide level2 smaller"><h2><code>year</code></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>degrees <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb19-3"><a></a>    <span class="at">cols =</span> <span class="sc">-</span>degree_type,</span>
+<span id="cb19-4"><a></a>    <span class="at">values_to =</span> <span class="st">"count"</span>,</span>
+<span id="cb19-5"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span></span>
+<span id="cb19-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 64 × 3
+   degree_type year  count
+   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
+ 1 AB          2011      2
+ 2 AB          2012      2
+ 3 AB          2013      4
+ 4 AB          2014      1
+ 5 AB          2015      3
+ 6 AB          2016      6
+ 7 AB          2017      3
+ 8 AB          2018      4
+ 9 AB          2019      4
+10 AB          2020      1
+# ℹ 54 more rows</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="question">
+<p>What is the type of the <code>year</code> variable? Why? What should it be?</p>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment"><p>It’s a character (<code>chr</code>) variable since the information came from the columns of the original data frame.</p></li>
+<li class="fragment"><p>R cannot know that these character strings represent years.</p></li>
+<li class="fragment"><p>The variable type should be numeric.</p></li>
+</ul>
+</div>
+</div></div>
+</section><section id="pivot_longer-again" class="slide level2 smaller scrollable"><h2>
+<code>pivot_longer()</code> again</h2>
+<div class="question">
+<p>This time, also make sure <code>year</code> is a numerical variable in the resulting data frame.</p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>degrees <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb21-3"><a></a>    <span class="at">cols =</span> <span class="sc">-</span>degree_type,</span>
+<span id="cb21-4"><a></a>    <span class="at">values_to =</span> <span class="st">"count"</span>,</span>
+<span id="cb21-5"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span></span>
+<span id="cb21-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+
+</div></div>
+</section><section id="pivot_longer-again-1" class="slide level2 smaller scrollable"><h2>
+<code>pivot_longer()</code> again</h2>
+<div class="question">
+<p>This time, also make sure <code>year</code> is a numerical variable in the resulting data frame.</p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>degrees <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-3"><a></a>    <span class="at">cols =</span> <span class="sc">-</span>degree_type,</span>
+<span id="cb22-4"><a></a>    <span class="at">values_to =</span> <span class="st">"count"</span>,</span>
+<span id="cb22-5"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb22-6"><a></a>    <span class="at">names_transform =</span> as.numeric</span>
+<span id="cb22-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 64 × 3
+   degree_type  year count
+   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 AB           2011     2
+ 2 AB           2012     2
+ 3 AB           2013     4
+ 4 AB           2014     1
+ 5 AB           2015     3
+ 6 AB           2016     6
+ 7 AB           2017     3
+ 8 AB           2018     4
+ 9 AB           2019     4
+10 AB           2020     1
+# ℹ 54 more rows</code></pre>
+</div>
+</div>
+</div></div>
+</section></section><section><section id="pivot-wider" class="title-slide slide level1 center"><h1>Pivot Wider</h1>
+
+</section><section id="we-pivoted-longer-what-about-wider" class="slide level2 smaller"><h2>We pivoted longer… what about wider?</h2>
+<div class="columns">
+<div class="column" style="width:65%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  degree_type 2011 2012 2013 2014 2015 2016 2017 2018 2019
+1          AB    2    2    4    1    3    6    3    4    4
+2         AB2    0    1    0    0    4    4    1    0    0
+3          BS    5    9    4   13   10   17   24   21   26
+4         BS2    2    6    1    0    5    6    6    8    8</code></pre>
+</div>
+</div>
+<div class="task fragment">
+<p>Can we go the other direction?</p>
+</div>
+</div><div class="column" style="width:5%;">
+<p>⬅</p>
+</div><div class="column" style="width:30%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 x 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   degree_type year count
+1           AB 2011     2
+2           AB 2012     2
+3           AB 2013     4
+4           AB 2014     1
+5           AB 2015     3
+6           AB 2016     6
+7           AB 2017     3
+8           AB 2018     4
+9           AB 2019     4
+10          AB 2020     1
+11          AB 2021     0
+12          AB 2022     0
+13          AB 2023     2
+14          AB 2024     1
+15          AB 2025     0
+16          AB 2026     2
+17         AB2 2011     0</code></pre>
+</div>
+</div>
+</div></div>
+</section><section id="we-pivotted-longer-what-about-wider" class="slide level2 smaller"><h2>We pivotted longer… what about wider?</h2>
+<div class="columns">
+<div class="column" style="width:65%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 16</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  degree_type 2011 2012 2013 2014 2015 2016 2017 2018 2019
+1          AB    2    2    4    1    3    6    3    4    4
+2         AB2    0    1    0    0    4    4    1    0    0
+3          BS    5    9    4   13   10   17   24   21   26
+4         BS2    2    6    1    0    5    6    6    8    8</code></pre>
+</div>
+</div>
+<div class="task">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>degrees_long <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb30-3"><a></a>    <span class="at">names_from =</span> ____________ ,</span>
+<span id="cb30-4"><a></a>    </span>
+<span id="cb30-5"><a></a>    <span class="at">values_from =</span> ___________ , </span>
+<span id="cb30-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+<p>⬅</p>
+</div><div class="column" style="width:30%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 x 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   degree_type year count
+1           AB 2011     2
+2           AB 2012     2
+3           AB 2013     4
+4           AB 2014     1
+5           AB 2015     3
+6           AB 2016     6
+7           AB 2017     3
+8           AB 2018     4
+9           AB 2019     4
+10          AB 2020     1
+11          AB 2021     0
+12          AB 2022     0
+13          AB 2023     2
+14          AB 2024     1
+15          AB 2025     0
+16          AB 2026     2
+17         AB2 2011     0</code></pre>
+</div>
+</div>
+</div></div>
+</section><section class="slide level2"><div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>degrees_long <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb33-3"><a></a>    <span class="at">names_from =</span> year,</span>
+<span id="cb33-4"><a></a>    <span class="at">values_from =</span> count, </span>
+<span id="cb33-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  degree_type `2011` `2012` `2013` `2014` `2015` `2016` `2017`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 AB               2      2      4      1      3      6      3
+2 AB2              0      1      0      0      4      4      1
+3 BS               5      9      4     13     10     17     24
+4 BS2              2      6      1      0      5      6      6
+# ℹ 9 more variables: `2018` &lt;dbl&gt;, `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;,
+#   `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;, `2023` &lt;dbl&gt;, `2024` &lt;dbl&gt;,
+#   `2025` &lt;dbl&gt;, `2026` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section><section id="section" class="slide level2 smaller"><h2></h2>
+
+<img data-src="../img/tidyr-pivoting.gif" class="quarto-figure quarto-figure-center r-stretch"></section><section id="recap-pivot" class="slide level2 smaller"><h2>Recap: Pivot</h2>
+<ul>
+<li class="fragment">
+<strong><em>When should you pivot?</em></strong> If all of the data you need is in your data frame, but the columns you need don’t exist, there is a good chance it’s time to pivot!</li>
+<li class="fragment">
+<strong><em>Wide and long:</em></strong> Data sets can’t be labeled as <em>wide</em> or <em>long</em> but they can be made <em>wider</em> or <em>longer</em> for a certain analysis that requires a certain format</li>
+<li class="fragment">
+<strong><em>Pivot longer - data type:</em></strong> When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the <code>pivot_longer()</code> function.</li>
+</ul>
 
 
-</section>
+</section></section>
 </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
