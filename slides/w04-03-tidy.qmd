@@ -560,8 +560,103 @@ degrees_long |>
 -   ***Pivot longer - data type:*** When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the `pivot_longer()` function.
 :::
 
+## Now for the Plot!
+
+```{r}
+
+ggplot(degrees_long, 
+       aes(x = year, y = count, color = degree_type)) +
+  geom_line()
+
+```
+
+---
+
+First, let's fix the labels.
+
+```{r}
+
+ggplot(degrees_long, 
+       aes(x = year, y = count, color = degree_type)) +
+  geom_line() +
+  labs(
+    title = "Statistical Science Degrees Awarded by Type and Year",
+    x = "Year",
+    y = "Number of Degrees",
+    color = "Degree Type"
+  ) 
+
+```
+
+---
+
+I'd like to make it print all the year values, not just every 5th year.
+
+```{r}
+ggplot(degrees_long, 
+       aes(x = year, y = count, color = degree_type)) +
+  geom_line() +
+  labs(
+    title = "Statistical Science Degrees Awarded by Type and Year",
+    x = "Year",
+    y = "Number of Degrees",
+    color = "Degree Type"
+  ) + 
+  scale_x_continuous(breaks = unique(degrees_long$year))
+```
+
+---
+
+<div style="font-size:0.75em;">
+
+Yuck, the years print on top of each other. Let's adjust that.
+
+```{r}
+ggplot(degrees_long, 
+       aes(x = year, y = count, color = degree_type)) +
+  geom_line() +
+  labs(
+    title = "Statistical Science Degrees Awarded by Type and Year",
+    x = "Year",
+    y = "Number of Degrees",
+    color = "Degree Type"
+  ) + scale_x_continuous(breaks = unique(degrees_long$year)) +
+    theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+```
+
+</div>
+
+---
+
+That's pretty good. If you want to play with more bells and whistles later, the full code is here.
+
+<div style="font-size:0.7em;">
 
 
+```{r}
+#| eval: false
+ggplot(degrees_long, aes(x = year, y = count, color = degree_type, linetype = degree_type)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 1.8) +
+  scale_color_manual(values = muted_colors) +
+  scale_linetype_manual(values = line_types) +
+  scale_x_continuous(breaks = unique(degrees_long$year)) +
+  labs(
+    title = "Statistical Science Degrees Awarded by Type and Year",
+    x = "Year",
+    y = "Number of Degrees",
+    color = "Degree Type",
+    linetype = "Degree Type"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank(),
+    legend.position = "right"
+  )
+```
 
+</div>
 
 
