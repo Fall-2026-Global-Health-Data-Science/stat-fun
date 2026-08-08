@@ -41,6 +41,7 @@ options(
 
 ## [We...]{.hand}
 
+
 [[have]{style="color: green;"}]{style="font-size: 2em;"} [data organised in a suboptimal manner for our analysis]{.hand}
 
 [[want]{style="color: deeppink;"}]{style="font-size: 2em;"} [to reorganize the data to carry on with our analysis]{.hand}
@@ -67,9 +68,7 @@ TODO: FIND GOOD DATA
 
 **Note:** "easy to manipulate" = "straightforward to manipulate"
 
-## Goal
-
-Visualize StatSci majors over the years!
+## Goal: Visualize StatSci Majors Over the Years!
 
 ```{r readdata}
 #| echo: false
@@ -123,7 +122,12 @@ ggplot(degrees_long, aes(x = year, y = count, color = degree_type, linetype = de
     panel.grid.minor = element_blank(),
     legend.position = "right"
   )
+
 ```
+
+<div style="font-size:0.5em;">
+Any ideas about the big bump in 2023?
+</div>
 
 
 ## Data {.smaller}
@@ -207,7 +211,7 @@ We want to write code that starts something like this:
 ```{r}
 #| eval: false
 
-ggplot(degrees, aes(x = year, y = count, color = degree_type)) + 
+ggplot(degrees, aes(x = year, y = count, color = degree_type, linetype = degree_type)) + 
   ...
 
 ```
@@ -221,6 +225,9 @@ But our data are not in the right format :(
 ```{r}
 degrees
 ```
+
+
+We don't even have the variables `count` or `year`.
 
 ## The Challenge {.smaller .nostretch}
 
@@ -277,7 +284,7 @@ Pivot the `degrees` data frame *longer* such that each row represents a degree t
 :::
 
 ::: {.column width="5%"}
-⟶
+➔
 :::
 
 ::: {.column width="30%"}
@@ -326,7 +333,7 @@ degrees |>
 :::
 
 ::: {.column width="5%"}
-⟶
+➔
 :::
 
 ::: {.column width="30%"}
@@ -445,7 +452,7 @@ degrees |>
 
 # Pivot Wider
 
-## We pivotted longer... what about wider? {.smaller}
+## We pivoted longer... what about wider? {.smaller}
 
 ::: columns
 ::: {.column width="65%"}
@@ -463,7 +470,7 @@ Can we go the other direction?
 :::
 
 ::: {.column width="5%"}
-⟵
+⬅
 :::
 
 ::: {.column width="30%"}
@@ -497,7 +504,7 @@ degrees |>
 ::: task
 ```{r}
 #| eval: false
-degrees_longer |> 
+degrees_long |> 
   pivot_wider(
     names_from = ____________ ,
     
@@ -508,7 +515,7 @@ degrees_longer |>
 :::
 
 ::: {.column width="5%"}
-⟵
+⬅
 :::
 
 ::: {.column width="30%"}
@@ -526,6 +533,20 @@ print(degrees |>
 ```
 :::
 :::
+
+---
+
+
+
+```{r}
+degrees_long |> 
+  pivot_wider(
+    names_from = year,
+    values_from = count, 
+  )
+```
+
+---
 
 ##  {.smaller}
 
