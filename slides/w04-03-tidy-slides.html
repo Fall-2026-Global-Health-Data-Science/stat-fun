@@ -678,7 +678,85 @@ Amy Herring
 <strong><em>Wide and long:</em></strong> Data sets can’t be labeled as <em>wide</em> or <em>long</em> but they can be made <em>wider</em> or <em>longer</em> for a certain analysis that requires a certain format</li>
 <li class="fragment">
 <strong><em>Pivot longer - data type:</em></strong> When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the <code>pivot_longer()</code> function.</li>
-</ul>
+</ul></section><section id="now-for-the-plot" class="slide level2"><h2>Now for the Plot!</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">ggplot</span>(degrees_long, </span>
+<span id="cb35-2"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> degree_type)) <span class="sc">+</span></span>
+<span id="cb35-3"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section><section class="slide level2"><p>First, let’s fix the labels.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">ggplot</span>(degrees_long, </span>
+<span id="cb36-2"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> degree_type)) <span class="sc">+</span></span>
+<span id="cb36-3"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb36-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-5"><a></a>    <span class="at">title =</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span id="cb36-6"><a></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb36-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of Degrees"</span>,</span>
+<span id="cb36-8"><a></a>    <span class="at">color =</span> <span class="st">"Degree Type"</span></span>
+<span id="cb36-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section><section class="slide level2"><p>I’d like to make it print all the year values, not just every 5th year.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">ggplot</span>(degrees_long, </span>
+<span id="cb37-2"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> degree_type)) <span class="sc">+</span></span>
+<span id="cb37-3"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb37-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-5"><a></a>    <span class="at">title =</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span id="cb37-6"><a></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb37-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of Degrees"</span>,</span>
+<span id="cb37-8"><a></a>    <span class="at">color =</span> <span class="st">"Degree Type"</span></span>
+<span id="cb37-9"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb37-10"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(degrees_long<span class="sc">$</span>year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section><section class="slide level2"><div style="font-size:0.75em;">
+<p>Yuck, the years print on top of each other. Let’s adjust that.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">ggplot</span>(degrees_long, </span>
+<span id="cb38-2"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> degree_type)) <span class="sc">+</span></span>
+<span id="cb38-3"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb38-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb38-5"><a></a>    <span class="at">title =</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span id="cb38-6"><a></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb38-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of Degrees"</span>,</span>
+<span id="cb38-8"><a></a>    <span class="at">color =</span> <span class="st">"Degree Type"</span></span>
+<span id="cb38-9"><a></a>  ) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(degrees_long<span class="sc">$</span>year)) <span class="sc">+</span></span>
+<span id="cb38-10"><a></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section><section class="slide level2"><p>That’s pretty good. If you want to play with more bells and whistles later, the full code is here.</p>
+<div style="font-size:0.7em;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">ggplot</span>(degrees_long, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> degree_type, <span class="at">linetype =</span> degree_type)) <span class="sc">+</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb39-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb39-4"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> muted_colors) <span class="sc">+</span></span>
+<span id="cb39-5"><a></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> line_types) <span class="sc">+</span></span>
+<span id="cb39-6"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(degrees_long<span class="sc">$</span>year)) <span class="sc">+</span></span>
+<span id="cb39-7"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-8"><a></a>    <span class="at">title =</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span id="cb39-9"><a></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb39-10"><a></a>    <span class="at">y =</span> <span class="st">"Number of Degrees"</span>,</span>
+<span id="cb39-11"><a></a>    <span class="at">color =</span> <span class="st">"Degree Type"</span>,</span>
+<span id="cb39-12"><a></a>    <span class="at">linetype =</span> <span class="st">"Degree Type"</span></span>
+<span id="cb39-13"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb39-14"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb39-15"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb39-16"><a></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb39-17"><a></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb39-18"><a></a>    <span class="at">legend.position =</span> <span class="st">"right"</span></span>
+<span id="cb39-19"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 
 
 </section></section>

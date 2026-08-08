@@ -500,6 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#we-pivotted-longer-what-about-wider" id="toc-we-pivotted-longer-what-about-wider" class="nav-link" data-scroll-target="#we-pivotted-longer-what-about-wider">We pivotted longer… what about wider?</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   <li><a href="#recap-pivot" id="toc-recap-pivot" class="nav-link" data-scroll-target="#recap-pivot">Recap: Pivot</a></li>
+  <li><a href="#now-for-the-plot" id="toc-now-for-the-plot" class="nav-link" data-scroll-target="#now-for-the-plot">Now for the Plot!</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta198-fa26-2/sta198-fa26-2.github.io/edit/main/slides/w04-03-tidy.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta198-fa26-2/sta198-fa26-2.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="w04-03-tidy-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -1030,6 +1031,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <strong><em>Pivot longer - data type:</em></strong> When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the <code>pivot_longer()</code> function.</li>
 </ul>
+</div>
+</section><section id="now-for-the-plot" class="level2"><h2 class="anchored" data-anchor-id="now-for-the-plot">Now for the Plot!</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">degrees_long</span>, </span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">count</span>, color <span class="op">=</span> <span class="va">degree_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="w04-03-tidy_files/figure-revealjs/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>First, let’s fix the labels.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">degrees_long</span>, </span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">count</span>, color <span class="op">=</span> <span class="va">degree_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Number of Degrees"</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"Degree Type"</span></span>
+<span>  <span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="w04-03-tidy_files/figure-revealjs/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>I’d like to make it print all the year values, not just every 5th year.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">degrees_long</span>, </span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">count</span>, color <span class="op">=</span> <span class="va">degree_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Number of Degrees"</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"Degree Type"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">degrees_long</span><span class="op">$</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="w04-03-tidy_files/figure-revealjs/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<div style="font-size:0.75em;">
+<p>Yuck, the years print on top of each other. Let’s adjust that.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">degrees_long</span>, </span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">count</span>, color <span class="op">=</span> <span class="va">degree_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Number of Degrees"</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"Degree Type"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">degrees_long</span><span class="op">$</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="w04-03-tidy_files/figure-revealjs/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="w04-03-tidy_files/figure-revealjs/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<p>That’s pretty good. If you want to play with more bells and whistles later, the full code is here.</p>
+<div style="font-size:0.7em;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">degrees_long</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">count</span>, color <span class="op">=</span> <span class="va">degree_type</span>, linetype <span class="op">=</span> <span class="va">degree_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">muted_colors</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_linetype_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">line_types</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">degrees_long</span><span class="op">$</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Statistical Science Degrees Awarded by Type and Year"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Number of Degrees"</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"Degree Type"</span>,</span>
+<span>    linetype <span class="op">=</span> <span class="st">"Degree Type"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_minimal</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span></span>
+<span>    axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    legend.position <span class="op">=</span> <span class="st">"right"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 
 

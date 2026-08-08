@@ -1190,6 +1190,13 @@
     "text": "Recap: Pivot\n\n\nWhen should you pivot? If all of the data you need is in your data frame, but the columns you need don’t exist, there is a good chance it’s time to pivot!\n\nWide and long: Data sets can’t be labeled as wide or long but they can be made wider or longer for a certain analysis that requires a certain format\n\nPivot longer - data type: When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the pivot_longer() function."
   },
   {
+    "objectID": "slides/w04-03-tidy-slides.html#now-for-the-plot",
+    "href": "slides/w04-03-tidy-slides.html#now-for-the-plot",
+    "title": "Tidying Data",
+    "section": "Now for the Plot!",
+    "text": "Now for the Plot!\n\nggplot(degrees_long, \n       aes(x = year, y = count, color = degree_type)) +\n  geom_line()"
+  },
+  {
     "objectID": "slides/w04-03-tidy.html",
     "href": "slides/w04-03-tidy.html",
     "title": "Tidying Data",
@@ -1300,6 +1307,13 @@
     "title": "Tidying Data",
     "section": "Recap: Pivot",
     "text": "Recap: Pivot\n\n\n\nWhen should you pivot? If all of the data you need is in your data frame, but the columns you need don’t exist, there is a good chance it’s time to pivot!\n\nWide and long: Data sets can’t be labeled as wide or long but they can be made wider or longer for a certain analysis that requires a certain format\n\nPivot longer - data type: When pivoting longer, variable names that turn into values are characters by default. If you need them to be in another format, you need to explicitly make that transformation, which you can do so within the pivot_longer() function."
+  },
+  {
+    "objectID": "slides/w04-03-tidy.html#now-for-the-plot",
+    "href": "slides/w04-03-tidy.html#now-for-the-plot",
+    "title": "Tidying Data",
+    "section": "Now for the Plot!",
+    "text": "Now for the Plot!\n\nggplot(degrees_long, \n       aes(x = year, y = count, color = degree_type)) +\n  geom_line()\n\n\n\n\n\n\n\n\nFirst, let’s fix the labels.\n\nggplot(degrees_long, \n       aes(x = year, y = count, color = degree_type)) +\n  geom_line() +\n  labs(\n    title = \"Statistical Science Degrees Awarded by Type and Year\",\n    x = \"Year\",\n    y = \"Number of Degrees\",\n    color = \"Degree Type\"\n  ) \n\n\n\n\n\n\n\n\nI’d like to make it print all the year values, not just every 5th year.\n\nggplot(degrees_long, \n       aes(x = year, y = count, color = degree_type)) +\n  geom_line() +\n  labs(\n    title = \"Statistical Science Degrees Awarded by Type and Year\",\n    x = \"Year\",\n    y = \"Number of Degrees\",\n    color = \"Degree Type\"\n  ) + \n  scale_x_continuous(breaks = unique(degrees_long$year))\n\n\n\n\n\n\n\n\n\nYuck, the years print on top of each other. Let’s adjust that.\n\nggplot(degrees_long, \n       aes(x = year, y = count, color = degree_type)) +\n  geom_line() +\n  labs(\n    title = \"Statistical Science Degrees Awarded by Type and Year\",\n    x = \"Year\",\n    y = \"Number of Degrees\",\n    color = \"Degree Type\"\n  ) + scale_x_continuous(breaks = unique(degrees_long$year)) +\n    theme(axis.text.x = element_text(angle = 45, hjust=1))\n\n\n\n\n\n\n\n\n\nThat’s pretty good. If you want to play with more bells and whistles later, the full code is here.\n\n\nggplot(degrees_long, aes(x = year, y = count, color = degree_type, linetype = degree_type)) +\n  geom_line(linewidth = 1.1) +\n  geom_point(size = 1.8) +\n  scale_color_manual(values = muted_colors) +\n  scale_linetype_manual(values = line_types) +\n  scale_x_continuous(breaks = unique(degrees_long$year)) +\n  labs(\n    title = \"Statistical Science Degrees Awarded by Type and Year\",\n    x = \"Year\",\n    y = \"Number of Degrees\",\n    color = \"Degree Type\",\n    linetype = \"Degree Type\"\n  ) +\n  theme_minimal(base_size = 13) +\n  theme(\n    axis.text.x = element_text(angle = 45, hjust = 1),\n    panel.grid.minor = element_blank(),\n    legend.position = \"right\"\n  )"
   },
   {
     "objectID": "slides/w01-01-welcome-slides.html#data-science",
